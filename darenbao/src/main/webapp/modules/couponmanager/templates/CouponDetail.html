@@ -1,0 +1,67 @@
+<div class="ui-dialog dialog-md couponDetailWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">兑换券编码</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row" style="margin-right: 10px;">
+					<div class="row">
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label class="col-md-6 control-label">兑换状态：</label>
+								<div class="input-group col-md-6">
+									<select name="status" class="form-control ">
+										<option value="-1" selected='selected'>全部</option>
+										<option value="0">未分配</option>
+										<option value="1">未兑换</option>
+										<option value="2">已兑换</option>
+										<option value="3">已禁用</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-4">
+							<div class="input-group btn-group pull-right good-info-main-btngroup">
+								<input type="text" name="conditions" class="form-control"
+									placeholder="根据兑换券编码或者店铺编号搜索"> <span
+									class="input-group-btn">
+									<button type="submit" name="search" class="btn btn-info"
+										action="search">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+						
+						<div class="col-md-2" align="right">
+    		                            编码总数：
+    	                </div>
+                        <div class="col-md-2">
+                    	<label id="detailCount"></label>
+                    </div>
+					</div>
+					
+					<div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="good-info-main-btngroup" role="search">
+                        <button type="button" class="btn btn-info" action="add">新建兑换券</button>
+                        <button type="button" class="btn btn-info" action="allocate">分配到店铺</button>
+                        <button type="button" class="btn btn-info" action="forbidden">禁用</button>
+                        <button type="button" class="btn btn-info" action="delete">删除</button>
+                      </div>
+                    </div>
+                   </div>
+					<div class="col-md-12 emgceval-content-div"
+						id="couponDetail-info-content-div"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" action="cancel-button">关闭</button>
+	</div>
+</div>

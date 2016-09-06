@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.base.CargoSkuStockLogMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.stock.dao.base.po.CargoSkuStockLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="out_shelves_no" property="outShelvesNo" jdbcType="INTEGER" />
+    <result column="on_sales_no" property="onSalesNo" jdbcType="INTEGER" />
+    <result column="on_pay_no" property="onPayNo" jdbcType="INTEGER" />
+    <result column="on_send_no" property="onSendNo" jdbcType="INTEGER" />
+    <result column="inbound_id" property="inboundId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_count" property="updateCount" jdbcType="INTEGER" />
+    <result column="update_status" property="updateStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cargo_sku_id, out_shelves_no, on_sales_no, on_pay_no, on_send_no, inbound_id, 
+    create_time, create_by, update_count, update_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_sku_stock_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cargo_sku_stock_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.stock.dao.base.po.CargoSkuStockLog" >
+    insert into cargo_sku_stock_log (id, cargo_sku_id, out_shelves_no, 
+      on_sales_no, on_pay_no, on_send_no, 
+      inbound_id, create_time, create_by, 
+      update_count, update_status)
+    values (#{id,jdbcType=BIGINT}, #{cargoSkuId,jdbcType=BIGINT}, #{outShelvesNo,jdbcType=INTEGER}, 
+      #{onSalesNo,jdbcType=INTEGER}, #{onPayNo,jdbcType=INTEGER}, #{onSendNo,jdbcType=INTEGER}, 
+      #{inboundId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{updateCount,jdbcType=INTEGER}, #{updateStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.stock.dao.base.po.CargoSkuStockLog" >
+    insert into cargo_sku_stock_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cargoSkuId != null" >
+        cargo_sku_id,
+      </if>
+      <if test="outShelvesNo != null" >
+        out_shelves_no,
+      </if>
+      <if test="onSalesNo != null" >
+        on_sales_no,
+      </if>
+      <if test="onPayNo != null" >
+        on_pay_no,
+      </if>
+      <if test="onSendNo != null" >
+        on_send_no,
+      </if>
+      <if test="inboundId != null" >
+        inbound_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateCount != null" >
+        update_count,
+      </if>
+      <if test="updateStatus != null" >
+        update_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cargoSkuId != null" >
+        #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="outShelvesNo != null" >
+        #{outShelvesNo,jdbcType=INTEGER},
+      </if>
+      <if test="onSalesNo != null" >
+        #{onSalesNo,jdbcType=INTEGER},
+      </if>
+      <if test="onPayNo != null" >
+        #{onPayNo,jdbcType=INTEGER},
+      </if>
+      <if test="onSendNo != null" >
+        #{onSendNo,jdbcType=INTEGER},
+      </if>
+      <if test="inboundId != null" >
+        #{inboundId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateCount != null" >
+        #{updateCount,jdbcType=INTEGER},
+      </if>
+      <if test="updateStatus != null" >
+        #{updateStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.stock.dao.base.po.CargoSkuStockLog" >
+    update cargo_sku_stock_log
+    <set >
+      <if test="cargoSkuId != null" >
+        cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="outShelvesNo != null" >
+        out_shelves_no = #{outShelvesNo,jdbcType=INTEGER},
+      </if>
+      <if test="onSalesNo != null" >
+        on_sales_no = #{onSalesNo,jdbcType=INTEGER},
+      </if>
+      <if test="onPayNo != null" >
+        on_pay_no = #{onPayNo,jdbcType=INTEGER},
+      </if>
+      <if test="onSendNo != null" >
+        on_send_no = #{onSendNo,jdbcType=INTEGER},
+      </if>
+      <if test="inboundId != null" >
+        inbound_id = #{inboundId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateCount != null" >
+        update_count = #{updateCount,jdbcType=INTEGER},
+      </if>
+      <if test="updateStatus != null" >
+        update_status = #{updateStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.stock.dao.base.po.CargoSkuStockLog" >
+    update cargo_sku_stock_log
+    set cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT},
+      out_shelves_no = #{outShelvesNo,jdbcType=INTEGER},
+      on_sales_no = #{onSalesNo,jdbcType=INTEGER},
+      on_pay_no = #{onPayNo,jdbcType=INTEGER},
+      on_send_no = #{onSendNo,jdbcType=INTEGER},
+      inbound_id = #{inboundId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_count = #{updateCount,jdbcType=INTEGER},
+      update_status = #{updateStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

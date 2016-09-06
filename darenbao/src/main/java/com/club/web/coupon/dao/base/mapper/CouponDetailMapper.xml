@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.coupon.dao.base.CouponDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.coupon.dao.base.po.CouponDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_code" property="shopCode" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, `password`, coupon_id, `status`, shop_id, shop_code, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.coupon.dao.base.po.CouponDetail" >
+    insert into coupon_detail (id, code, `password`, 
+      coupon_id, `status`, shop_id, 
+      shop_code, updateTime)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{couponId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{shopId,jdbcType=BIGINT}, 
+      #{shopCode,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.coupon.dao.base.po.CouponDetail" >
+    insert into coupon_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="password != null" >
+        `password`,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="shopCode != null" >
+        shop_code,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null" >
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.coupon.dao.base.po.CouponDetail" >
+    update coupon_detail
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopCode != null" >
+        shop_code = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.coupon.dao.base.po.CouponDetail" >
+    update coupon_detail
+    set code = #{code,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      shop_code = #{shopCode,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

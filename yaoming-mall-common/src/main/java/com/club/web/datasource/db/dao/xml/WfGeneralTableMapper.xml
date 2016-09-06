@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.datasource.db.dao.mapper.IWfGeneralTableMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.datasource.db.po.WfGeneralTablePO">
+  	<id column="table_id" property="tableId" jdbcType="INTEGER" />
+  	<result column="table_name" property="tableName" jdbcType="VARCHAR" />
+  	<result column="is_page" property="isPage" jdbcType="VARCHAR" />
+  	<result column="is_checkbox" property="isCheckbox" jdbcType="VARCHAR" />
+  	<result column="ext_json" property="extJson" jdbcType="VARCHAR" />
+  	<result column="data_set_id" property="dataSetId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+  	table_id,table_name,is_page,is_checkbox,ext_json,data_set_id
+  </sql>
+  <sql id="Arg_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Arg_Where_Clause" >
+    <where >
+      <foreach collection="arg.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>  
+  <select id="selectByArg" resultMap="BaseResultMap" parameterType="com.club.web.datasource.db.arg.WfGeneralTableArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from WF_GENERAL_TABLE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>  
+  <select id="selectByArgAndPage" resultMap="BaseResultMap" parameterType="com.club.web.datasource.db.arg.WfGeneralTableArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+     <if test="columns == null" >
+    	<include refid="Base_Column_List" />
+    </if>
+    <if test="columns != null" >
+    	${columns}
+   	</if>
+    from WF_GENERAL_TABLE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+	<if test="groupByClause != null" >
+      group by ${groupByClause}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="countByArg" parameterType="com.club.web.datasource.db.arg.WfGeneralTableArg" resultType="java.lang.Integer" >
+    <if test="countsql1 != null" >
+    	${countsql1}
+    	<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+		${countsql2}
+    </if>
+	<if test="countsql1 == null" >
+		select count(*) from WF_GENERAL_TABLE
+		<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+	</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select
+	<include refid="Base_Column_List" />
+	from WF_GENERAL_TABLE
+	where table_id = #{tableId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.club.web.datasource.db.po.WfGeneralTablePO"  >
+		insert into WF_GENERAL_TABLE(table_id,table_name,is_page,is_checkbox,ext_json,data_set_id)
+		values (#{tableId,jdbcType=INTEGER},#{tableName,jdbcType=VARCHAR},#{isPage,jdbcType=VARCHAR},#{isCheckbox,jdbcType=VARCHAR},#{extJson,jdbcType=VARCHAR},#{dataSetId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.datasource.db.po.WfGeneralTablePO">
+		insert into WF_GENERAL_TABLE
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="tableId != null" >
+			table_id,
+		</if>
+		<if test="tableName != null" >
+			table_name,
+		</if>
+		<if test="isPage != null" >
+			is_page,
+		</if>
+		<if test="isCheckbox != null" >
+			is_checkbox,
+		</if>
+		<if test="extJson != null" >
+			ext_json,
+		</if>
+		<if test="dataSetId != null" >
+			data_set_id,
+		</if>
+ 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		<if test="tableId != null" >
+			#{tableId,jdbcType=INTEGER},
+		</if>
+		<if test="tableName != null" >
+			#{tableName,jdbcType=VARCHAR},
+		</if>
+		<if test="isPage != null" >
+			#{isPage,jdbcType=VARCHAR},
+		</if>
+		<if test="isCheckbox != null" >
+			#{isCheckbox,jdbcType=VARCHAR},
+		</if>
+		<if test="extJson != null" >
+			#{extJson,jdbcType=VARCHAR},
+		</if>
+		<if test="dataSetId != null" >
+			#{dataSetId,jdbcType=INTEGER},
+		</if>
+ 	</trim> 	
+  </insert>	
+  <insert id="insertBatch" parameterType="list"  >
+	insert into WF_GENERAL_TABLE(table_id,table_name,is_page,is_checkbox,ext_json,data_set_id)
+	 values 
+	 <foreach collection="list" item="item" index="index" separator=",">
+	 		(#{item.tableId,jdbcType=INTEGER},#{item.tableName,jdbcType=VARCHAR},#{item.isPage,jdbcType=VARCHAR},#{item.isCheckbox,jdbcType=VARCHAR},#{item.extJson,jdbcType=VARCHAR},#{item.dataSetId,jdbcType=INTEGER})
+	 </foreach>
+  </insert>
+  <update id="updateByArgSelective" parameterType="map" >
+    update WF_GENERAL_TABLE
+    <set>
+		<if test="record.tableName != null" >
+			table_name= #{record.tableName,jdbcType=VARCHAR},
+		</if>
+		<if test="record.isPage != null" >
+			is_page= #{record.isPage,jdbcType=VARCHAR},
+		</if>
+		<if test="record.isCheckbox != null" >
+			is_checkbox= #{record.isCheckbox,jdbcType=VARCHAR},
+		</if>
+		<if test="record.extJson != null" >
+			ext_json= #{record.extJson,jdbcType=VARCHAR},
+		</if>
+		<if test="record.dataSetId != null" >
+			data_set_id= #{record.dataSetId,jdbcType=INTEGER}
+		</if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByArg" parameterType="map" >
+    update WF_GENERAL_TABLE
+    set 
+		table_id = #{record.tableId,jdbcType=INTEGER},
+		table_name = #{record.tableName,jdbcType=VARCHAR},
+		is_page = #{record.isPage,jdbcType=VARCHAR},
+		is_checkbox = #{record.isCheckbox,jdbcType=VARCHAR},
+		ext_json = #{record.extJson,jdbcType=VARCHAR},
+		data_set_id = #{record.dataSetId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.datasource.db.po.WfGeneralTablePO" >
+		update WF_GENERAL_TABLE
+	<set >
+	<if test="tableName != null" >
+		table_name = #{tableName,jdbcType=VARCHAR},
+	</if>
+	<if test="isPage != null" >
+		is_page = #{isPage,jdbcType=VARCHAR},
+	</if>
+	<if test="isCheckbox != null" >
+		is_checkbox = #{isCheckbox,jdbcType=VARCHAR},
+	</if>
+	<if test="extJson != null" >
+		ext_json = #{extJson,jdbcType=VARCHAR},
+	</if>
+		data_set_id = #{dataSetId,jdbcType=INTEGER}
+	</set >
+	 where table_id = #{tableId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.datasource.db.po.WfGeneralTablePO" >
+		update WF_GENERAL_TABLE
+		set 
+			table_name = #{tableName,jdbcType=VARCHAR},
+			is_page = #{isPage,jdbcType=VARCHAR},
+			is_checkbox = #{isCheckbox,jdbcType=VARCHAR},
+			ext_json = #{extJson,jdbcType=VARCHAR},
+			data_set_id = #{dataSetId,jdbcType=INTEGER}
+	 where table_id = #{tableId,jdbcType=INTEGER}
+   </update>
+  <delete id="deleteByArg" parameterType="com.club.web.datasource.db.arg.WfGeneralTableArg" >
+    delete from WF_GENERAL_TABLE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	 delete from WF_GENERAL_TABLE
+	 where table_id = #{tableId,jdbcType=INTEGER}
+  </delete>
+</mapper>  

@@ -1,0 +1,154 @@
+<div class="ui-dialog dialog-md DetailsActivityWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">活动部落信息详情</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<input type="hidden" name="id" />
+				<div class="col-md-6 subbranchNameDiv">
+					<div class="form-group">
+						<label class="col-md-4 control-label">所属分店：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="subbranchName"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">类型：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="typeName"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">活动主题：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="title"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">报名人数：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control">
+								<span name="participation"></span>人报名
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">活动类型：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="activityTypeName"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">主办方：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="sponsorName"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">手机号码：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="sponsorTel"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">开始时间：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="beginTime"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">截止时间：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="endTime"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">报名开始时间：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="regStartTime"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">报名截止时间：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="regEndTime"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">活动状态：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="activityStatusName"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">发布地址：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="createAddress"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">活动地址：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="activityAddress"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="col-md-2 control-label">活动图片：</label>
+						<div class="input-group col-md-9">
+							<div class="flex-container" id="activityPic_img_container"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label">赞：</label>
+						<div class="input-group col-md-8">
+							<div class="form-control" name="pointNum"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="col-md-2 control-label">活动介绍：</label>
+						<div class="input-group col-md-9">
+							<div id="editorContent" name="content"
+								style="width: 100%; height: 200px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

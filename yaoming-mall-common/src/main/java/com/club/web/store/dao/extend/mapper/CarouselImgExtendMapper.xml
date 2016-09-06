@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.CarouselImgExtendMapper" >
+  <resultMap id="CarouseBaseResultMap" type="com.club.web.store.vo.CarouselImgVo" >
+    <result column="id" property="id"/>
+    <result column="status" property="status"/>
+    <result column="line_status" property="lineStatus"/>
+    <result column="category" property="category"/>
+    <result column="sort" property="sort"/>
+    <result column="remk" property="remk"/>
+    <result column="create_time" property="createTime"/>
+    <result column="pic_url" property="picUrl"/>
+    <result column="rich_text" property="richText"/>
+    <result column="category_name" property="categoryName"/>
+  </resultMap>
+ <select id="queryCarouselImgList" resultMap="CarouseBaseResultMap">
+ 	select c.id, c.`status`, c.line_status, c.category, c.sort, c.remk,c.create_time,c.rich_text,m.pic_url from carousel_img c left join
+ 	image m on c.pic_url=m.id
+ 	where 1=1
+ 	<if test="status!=-1 ">
+    	and status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and remk like #{matchParam}
+    </if>
+     order by sort desc,create_time desc limit #{startIndex},#{pageSize} 
+ </select>
+ <select id="queryCarouselImgListTotal" resultType="int">
+ 	select count(1) from carousel_img where 1=1
+ 	<if test="status!=-1 ">
+    	and status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and remk like #{matchParam}
+    </if>
+ </select>
+  <select id="queryBannerImgList" resultMap="CarouseBaseResultMap">
+  	select m.id,m.`status`, m.line_status, m.category, m.sort, m.remk,m.create_time,n.pic_url,m.rich_text,m.title category_name from
+ 	(select c.id, c.`status`, c.line_status, c.category, c.sort, c.remk,c.create_time,c.pic_url,c.rich_text,s.title 
+ 	from carousel_img c left join shop_theme_manager s on c.category=s.id) m left join image n on m.pic_url=n.id
+ 	where 1=1
+ 	<if test="status!=-1 ">
+    	and m.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and m.remk like #{matchParam}
+    </if>
+     order by m.sort desc,m.create_time desc limit #{startIndex},#{pageSize} 
+ </select>
+  <select id="queryBannerImgListTotal" resultType="int">
+ 	select count(1) from carousel_img c left join shop_theme_manager s on c.category=s.id
+ 	where 1=1
+ 	<if test="status!=-1 ">
+    	and c.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and c.remk like #{matchParam}
+    </if>
+ </select>
+ <delete id="delCarouselImg">
+ 	delete from carousel_img where id in
+	 <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+  		#{item}  
+ 	</foreach>  
+ </delete>
+  <resultMap id="CarouseDoBaseResultMap" type="com.club.web.store.domain.CarouselImgDo" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+	    <result column="status" property="status" jdbcType="INTEGER" />
+	    <result column="line_status" property="lineStatus" jdbcType="INTEGER" />
+	    <result column="category" property="category" jdbcType="BIGINT" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="remk" property="remk" jdbcType="VARCHAR" />
+	    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="rich_text" property="richText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+ <select id="queryCarouselById" resultMap="CarouseDoBaseResultMap">
+ 	select id, `status`, line_status, category, sort, remk,create_time,pic_url,rich_text from carousel_img
+ 	where id=#{id}
+ </select>
+   <resultMap id="CarousePrevBaseResultMap" type="com.club.web.store.vo.CarouselImgPrevVo" >
+	    <result column="id" property="id" />
+	    <result column="line_status" property="lineStatus"  />
+	    <result column="pic_url" property="picUrl"  />
+	    <result column="rich_text" property="lineUrl"  />
+  </resultMap>
+ <select id="getCarouselByCatory" resultMap="CarousePrevBaseResultMap">
+ 	select c.id,c.line_status,m.pic_url,c.rich_text
+ 	from carousel_img c left join image m on c.pic_url=m.id
+    where status=1 and category=#{categoryId} order by sort desc
+ </select>
+ <select id="getRichTextById" resultType="Map">
+	 select remk title,rich_text content from carousel_img where id=#{id}
+ </select>
+ 
+</mapper>

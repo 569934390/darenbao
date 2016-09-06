@@ -1,0 +1,44 @@
+<div class="row stock-goods-manager">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                        	<label class="control-label">分类：</label>&nbsp;
+							<div class="input-group col-md-3" style="z-index: 1000">
+								<input type="text" style="padding-left: 8px;" id="stock_classify_name" class="form-control" name="stock_classify_name" readonly="readonly" placeholder="请选择分类" data-rule="required;">
+								<input type="text" id="stock_classify" name="stock_classify" hidden="true" value="0">
+								<span class="input-group-addon">
+									<a href="javascript:void(0);" id="stock-menuBtn" class="inforeport-add-triangle">
+										<span class="glyphicon glyphicon-triangle-bottom"></span>
+									</a>
+								</span>
+								<div class="menuContent" style="position: absolute;background-color:#00BFFF;width: 200px; max-height: 350px; overflow-y: auto;" id="tree_select_menu_html_stock">
+									<ul id="treeDemoStock" class="ztree" style="width:auto;overflow: auto;z-index: 1000"></ul>
+								</div>
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        	<label class="control-label">品牌：</label>&nbsp;
+                            <select name="stock_brand" id="stock-second-sta" class="combobox form-control" field="combobox">
+                                <option value="0" selected="selected">全部</option>     
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+				          <input type="text" name="stock_param" class="form-control" placeholder="SKU/货品名称 /货品编码">
+                        	&nbsp;&nbsp;<button class="btn btn-info" action="search-stock-goods">搜索</button>&nbsp;
+                        	 <button type="button" class="btn btn-info" action="stock-refresh" title="刷新">刷新
+                       		 </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                 <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <a class="btn" action="chechk-stock-btn" style="color: red">提示：<span id="stock-check-total">0</span>&nbsp;个商品库存记录有误，点击查看>></a>
+                      </div>
+                    </div>
+                </div>
+	            <div class="col-md-12 emgceval-content-div" id="stock-goods-rule-content-div">
+	            </div>
+            </div>           
+	        <div class="row" style="margin-right:10px;">
+	        </div>               
+</div>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.TradeEexpressageExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.TradeEexpressage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="official_website_url" property="officialWebsiteUrl" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, logo_url, name, number, official_website_url, state, create_time, update_time, 
+    creator
+  </sql>
+  <select id="selectByPage" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_expressage
+    where 1=1
+    <if test="state!=2">
+    <![CDATA[
+    and state = #{state} 
+    ]]>
+    </if>
+    limit #{start},#{limit}
+  </select>
+  <select id="selectByPageCount" resultType="int">
+    select 
+   count(*)
+    from trade_expressage
+    where 1=1
+     <if test="state!=2">
+    <![CDATA[
+    and state = #{state} 
+    ]]>
+    </if>
+   <if test="name!=null and name!=''">
+   <![CDATA[
+   and name =#{name}
+   ]]>
+   </if>
+  </select>
+  
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/darenbao/darenbao.iml" filepath="$PROJECT_DIR$/darenbao/darenbao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yaoming-mall-common/yaoming-mall-common.iml" filepath="$PROJECT_DIR$/yaoming-mall-common/yaoming-mall-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yaoming-parent/yaoming-parent.iml" filepath="$PROJECT_DIR$/yaoming-parent/yaoming-parent.iml" />
+    </modules>
+  </component>
+</project>

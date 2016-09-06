@@ -1,0 +1,28 @@
+<div class="ui-dialog dialog-md AddActivityTypeWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增活动部落分类信息</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="activity-type-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id"/>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动分类标题：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="name" data-rule="required;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

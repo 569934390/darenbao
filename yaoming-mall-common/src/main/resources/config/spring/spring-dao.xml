@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- 扫描包，应用Spring注解 -->
+	<context:spring-configured />
+	<context:component-scan base-package="com.club, com.yaoming" />
+	<context:load-time-weaver aspectj-weaving="on" />
+
+	<!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean name="majorSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="frameworkdataSource" p:configLocation="classpath:config/mybatis/webappsqlmapconfig.xml">
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:com/club/**/*Mapper.xml</value>
+				<value>classpath*:com/yaoming/**/dao/**/*Mapper.xml</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 配置主要的majorSqlSessionTemplate -->
+	<bean id="majorSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg index="0" ref="majorSqlSessionFactory" />
+		<constructor-arg index="1" value="BATCH" /> 
+		<!-- 如果想要进行批量操作可加入这个属性 -->
+	</bean>
+
+	<!-- 
+		这里配置 *Mapper.java 的包
+		由于项目原来的文件名有问题
+		所以我们需要对自己的新增木块进行单独配置，使用“,”分隔
+		如: com.club.web.stock.**.dao,com.club.web.store.**.dao
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="
+			com.yaoming.**.dao, 
+			com.club.web.stock.**.dao, 
+			com.club.web.store.**.dao, 
+			com.club.web.image.**.dao,
+			com.club.web.module.**.dao,
+			com.club.web.event.**.dao,
+			com.club.web.deal.**.dao, 
+			com.club.web.util.**.dao,
+			com.club.web.mobile.**.dao,
+			com.club.web.spread.**.dao,
+			com.club.web.weixin.**.dao,
+			com.club.web.finance.**.dao,
+			com.club.web.coupon.**.dao,
+			com.club.web.integral.**.dao,
+			com.club.web.message.**.dao,
+			com.club.web.autoRepeat.**.dao
+		" />
+	</bean>
+</beans>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.spread.dao.extend.MarketSpreadClassifyExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.spread.vo.MarketSpreadClassifyVo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+
+  <select id="selectAllSpreadClassify"  resultMap="BaseResultMap" parameterType="map">
+    select * 
+    from market_spread_classify 
+    limit #{start},#{limit}
+  </select>
+  
+  <select id="findAllSpreadClassify"  resultMap="BaseResultMap">
+    select * 
+    from market_spread_classify 
+  </select>
+  
+  <select id="findAllSpreadClassifyOnStatus"  resultMap="BaseResultMap">
+    select * 
+    from market_spread_classify where status=1;
+  </select>
+  
+  <select id="querySpreadClassifyCountPage" resultType="java.lang.Long" >
+    select count(1) as count from market_spread_classify 
+  </select>
+  
+   <update id="updateStatusById" >
+     update market_spread_classify 
+    <set>
+      <if test="status != null" >
+        `status` = #{status}
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  
+</mapper>

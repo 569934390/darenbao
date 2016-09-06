@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.SubbranchGoodsSoldoutExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.SubbranchGoodSoldout" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="subranch_id" property="subranchId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, good_id, subranch_id, create_time
+  </sql>
+  <select id="selectByGoodId" resultType="int" parameterType="java.lang.Long" >
+    select 
+    count(*)
+    from store_subbranch_good_soldout
+    where  good_id= #{goodId,jdbcType=BIGINT}
+  </select>
+  
+   <select id="selectBySubbranchIdList" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from store_subbranch_good_soldout
+    where subranch_id = #{subbranchId,jdbcType=BIGINT}
+    limit #{start},#{limit}
+  </select>
+  
+   <select id="selectBySubbranchIdCount" resultType="int" parameterType="java.lang.Long" >
+    select 
+    count(*)
+    from store_subbranch_good_soldout
+    where  subranch_id= #{subbranchId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteSubbranchGoodsSoldout" parameterType="com.club.web.store.dao.base.po.SubbranchGoodSoldout">
+  delete from store_subbranch_good_soldout where subranch_id=#{subranchId,jdbcType=BIGINT}
+  <if test="goodId!=null">
+  <![CDATA[
+   and good_id=#{goodId,jdbcType=BIGINT}
+  ]]>
+  </if>
+ 
+  </delete>
+  <select id="getShopGoodStatus" resultType="int">
+  	select count(1) from store_subbranch_good_soldout where good_id=#{goodId} and subranch_id=#{shopId}
+  </select>
+  <delete id="deleteSubbranchGoodsSoldoutByCondition">
+  	delete from store_subbranch_good_soldout where subranch_id=#{shopId} and good_id in
+  	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+	  		#{item}  
+	</foreach>  
+  </delete>
+</mapper>

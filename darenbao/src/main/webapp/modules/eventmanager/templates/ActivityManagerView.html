@@ -1,0 +1,67 @@
+<div class="row activity-manager">
+    <div id="activity-tabs" class="ui-tabs">
+        <!-- <ul class="ui-tabs-nav">
+            <li>
+                <a href="#tabs-no-check">待审核</a>
+            </li>
+            <li>
+                <a class="btn" action="tabs-check">已审核</a>
+            </li>
+        </ul>
+        <div id="tabs-no-check" class="ui-tabs-panel">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+					                            开始时间：<div class="input-group"><input type="text" field="datetime" class="form-control" name="beginTime" data-rule="match[lt, endTime, date]"></div>
+					                            活动类型：
+					           <select class="combobox form-control" name="activityTypeId" field="combobox">
+	                               <option value="0" selected="selected">全部</option>
+                               </select>                 
+					                           名称：<input type="text" name="title" class="form-control" placeholder="按活动主题/活动地址/主办方搜索...">
+                        </div>
+                        <button class="btn btn-info" action="search-no-check">搜索</button>
+                        <button class="btn btn-info" action="refresh-no-check">刷新</button>
+                        <button class="btn btn-info" action="check">审核通过</button>
+                        <button class="btn btn-info" action="no-check">审核不通过</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width:99%">
+                <div class="col-md-12" id="activity-manager-no-check-content-div">
+                </div>
+            </div>
+        </div> -->
+        <div id="tabs-check" class="ui-tabs-panel">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+					                            开始时间：<div class="input-group"><input type="text" field="datetime" class="form-control" name="beginTime" data-rule="match[lt, endTime, date]"></div>
+					                            活动类型：
+					           <select class="combobox form-control" name="activityTypeId" field="combobox">
+	                                <option value="0" selected="selected">全部</option>
+                               </select>                 
+					                           名称：<input type="text" name="title" class="form-control" placeholder="按活动主题/主办方搜索...">
+                        </div>
+                       <button class="btn btn-info" action="search-check">搜索</button>
+                            <button class="btn btn-info" action="refresh-check">刷新</button>
+                       <button class="btn btn-info" action="check-add">新增</button>
+                       <button class="btn btn-info" action="check-edit">编辑</button>
+                       <button class="btn btn-info" action="check-delete">删除</button>
+                       <button class="btn btn-info" action="start">启用</button>
+                       <button class="btn btn-info" action="stop">禁用</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width:99%">
+                <div class="col-md-12" id="activity-manager-check-content-div">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

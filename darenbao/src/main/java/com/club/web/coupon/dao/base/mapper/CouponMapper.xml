@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.coupon.dao.base.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.coupon.dao.base.po.Coupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="nums" property="nums" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="twoDimension_code" property="twodimensionCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `name`, good_id, begin_time, end_time, nums, shop_id, creator, updateTime, twoDimension_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.coupon.dao.base.po.Coupon" >
+    insert into coupon (id, `name`, good_id, 
+      begin_time, end_time, nums, 
+      shop_id, creator, updateTime, 
+      twoDimension_code)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{goodId,jdbcType=BIGINT}, 
+      #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{nums,jdbcType=BIGINT}, 
+      #{shopId,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{twodimensionCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.coupon.dao.base.po.Coupon" >
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="twodimensionCode != null" >
+        twoDimension_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="twodimensionCode != null" >
+        #{twodimensionCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.coupon.dao.base.po.Coupon" >
+    update coupon
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="twodimensionCode != null" >
+        twoDimension_code = #{twodimensionCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.coupon.dao.base.po.Coupon" >
+    update coupon
+    set `name` = #{name,jdbcType=VARCHAR},
+      good_id = #{goodId,jdbcType=BIGINT},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      nums = #{nums,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=BIGINT},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      twoDimension_code = #{twodimensionCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

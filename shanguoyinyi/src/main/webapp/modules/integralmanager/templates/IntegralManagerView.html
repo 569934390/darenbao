@@ -1,0 +1,64 @@
+<div class="row integral-manager">
+    <div id="tabs" class="ui-tabs">
+        <ul class="ui-tabs-nav">
+            <li>
+                <a href="#tabs-a">积分消费明细</a>
+            </li>
+            <li>
+                <a >积分规则信息</a>
+            </li>
+            
+        </ul>
+        <div id="tabs-a" class="ui-tabs-panel">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            名称：<input type="text" name="iclientName" class="form-control">
+                            手机号码：<input type="text" name="iphone" class="form-control">
+                            消费时间：<div class="input-group"><input type="text" field="datetime" class="form-control" name="istartTime" data-rule="match[lt, endTime, date]"></div>
+                            到 <div class="input-group"><input type="text" name="iendTime" field="datetime" class="form-control"></div>
+                        </div>
+                        <button class="btn btn-info" action="search-integral">搜索</button>
+                      </div>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <div class="row" style="width:99%">
+                <div class="col-md-12" id="integral-manager-content-div">
+                </div>
+            </div>
+        </div>
+        <div id="tabs-b" class="ui-tabs-panel">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            名称：<input type="text" name="ruleName" class="form-control">
+                            优先级：
+                            <select class="combobox form-control" name="ruleLevel" field="combobox">
+                                <option value="1">高</option>
+                                <option value="2">中</option>
+                                <option value="3">低</option>
+                                <option value="" selected="selected">全部</option>
+                            </select>
+                            有效期：<div class="input-group"><input type="text" field="datetime" class="form-control" name="ruleStartTime" data-rule="match[lt, ruleEndTime, date]"></div>
+                            到 <div class="input-group"><input type="text" name="ruleEndTime" field="datetime" class="form-control"></div>
+                        </div>
+                        <button class="btn btn-info" action="search-rule">搜索</button>
+                        <button class="btn btn-info" action="add-rule">新增</button>
+                        <button class="btn btn-info" action="activie-rule">启用</button>
+                        <button class="btn btn-info" action="unactive-rule">停用</button>
+                      </div>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <div class="row" style="">
+                <div class="col-md-12" id="integral-rule-content-div">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

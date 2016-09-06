@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd
+    http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd">
+	<http pattern="/**" auto-config="false" use-expressions="true"  
+	    authentication-manager-ref="userAuthenticationManager"
+		entry-point-ref="loginUrlAuthenticationEntryPoint">
+	    <headers>
+	        <frame-options policy="SAMEORIGIN"/>
+	    </headers>
+		<csrf disabled="true"/>
+		<custom-filter position="FORM_LOGIN_FILTER" ref="ajaxLoginFilter" />
+		<custom-filter before="FORM_LOGIN_FILTER" ref="formLoginFilter" />
+		<logout invalidate-session="true" logout-url="/j_spring_security_logout" logout-success-url="/login.html" />
+		<!-- 避免ajax post 被cache -->
+		<request-cache ref="nonAjaxRequestCache" />
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="filterSecurityInterceptor" />
+		
+	</http>
+
+	<!-- SECURITY MODULE BEGIN -->
+	<beans:bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<beans:property name="accessDecisionManager" ref="accessDecisionManager" />
+		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+	</beans:bean>
+	<!-- 自定义资源权限关系认证 -->
+	<beans:bean id="accessDecisionManager" class="com.yaoming.module.security.service.impl.AccessDecisionManagerImpl" />
+	<!-- 自定义资源权限关系集合 -->
+	<beans:bean id="securityMetadataSource" class="com.yaoming.module.security.service.impl.SecurityMetadataSourceImpl">
+		<beans:property name="matcher" value="ant" />
+	</beans:bean>
+<!-- 	<beans:bean id="securityLoader" class="com.yaoming.module.security.domain.impl.DefaultSecurityLoader"> -->
+<!-- 		<beans:property name="cacheEnabled" value="false" /> -->
+<!-- 	</beans:bean> -->
+	<beans:bean id="defaultFunctionService" class="com.yaoming.module.security.service.impl.DefaultSecurityFunctionServiceImpl" >
+		<beans:property name="usernameFieldName" value="mobile" />
+	</beans:bean>
+	<!-- SECURITY MODULE END -->
+
+	<!-- 总入口 -->
+	<beans:bean id="loginUrlAuthenticationEntryPoint"
+		class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
+		<beans:constructor-arg>
+			<beans:map>
+			    <!-- 表单登录入口 -->
+				<beans:entry key-ref="nonAjaxRequestMatcher" value-ref="formLoginUrlAuthenticationEntryPoint" />
+			</beans:map>
+		</beans:constructor-arg>
+		<!-- AJAX登录入口 -->
+		<beans:property name="defaultEntryPoint" ref="ajaxLoginUrlAuthenticationEntryPoint" />
+	</beans:bean>
+
+	<beans:bean id="nonAjaxRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache">
+		<beans:property name="requestMatcher" ref="nonAjaxRequestMatcher" />
+	</beans:bean>
+
+ 	<beans:bean id="nonAjaxRequestMatcher" class="com.club.web.security.NonAjaxRequestMatcher" />
+	
+	<!-- 表单登录 -->
+	<beans:bean id="formLoginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg value="/login.html" />
+	</beans:bean>
+	<beans:bean id="formLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="userAuthenticationManager" />
+		<beans:property name="authenticationFailureHandler" ref="formLoginFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="formLoginSuccessHandler" />
+		<beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
+	</beans:bean>
+	<beans:bean id="formLoginFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/login.html?login_error=t" />
+	</beans:bean>
+	<beans:bean id="formLoginSuccessHandler" class="com.club.web.security.WebAuthenticationSuccessHandler">
+		<beans:property name="alwaysUseDefaultTargetUrl" value="false" />
+		<beans:property name="defaultTargetUrl" value="/main.html" />
+	</beans:bean>
+
+	<!-- AJAX登录 -->
+	<beans:bean id="ajaxLoginUrlAuthenticationEntryPoint" class="com.club.web.security.AjaxLoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg value="/login.html" />
+	</beans:bean>
+
+	<beans:bean id="ajaxLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="userAuthenticationManager" />
+		<beans:property name="authenticationFailureHandler" ref="loginFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
+		<beans:property name="filterProcessesUrl" value="/login.do" />
+	</beans:bean>
+	<beans:bean id="loginFailureHandler" class="com.club.web.security.AjaxAuthenticationFailureHandler" />
+	<beans:bean id="loginSuccessHandler" class="com.club.web.security.AjaxAuthenticationSuccessHandler" />
+
+	<!-- CLIENT登录 -->
+<!-- 	<beans:bean id="clientLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"> -->
+<!-- 		<beans:property name="authenticationManager" ref="userAuthenticationManager" /> -->
+<!-- 		<beans:property name="authenticationFailureHandler" ref="clientLoginFailureHandler" /> -->
+<!-- 		<beans:property name="authenticationSuccessHandler" ref="clientLoginSuccessHandler" /> -->
+<!-- 		<beans:property name="filterProcessesUrl" value="/client/login.do" /> -->
+<!-- 	</beans:bean> -->
+<!-- 	<beans:bean id="clientLoginFailureHandler" class="com.club.web.security.AjaxAuthenticationFailureHandler" /> -->
+<!-- 	<beans:bean id="clientLoginSuccessHandler" class="com.club.web.security.AjaxAuthenticationSuccessHandler" /> -->
+
+
+	<authentication-manager id="userAuthenticationManager"
+		erase-credentials="false">
+		<authentication-provider>
+			<password-encoder hash="md5" />
+			<jdbc-user-service id="userAuthentication"
+				data-source-ref="frameworkdataSource"
+				users-by-username-query="select login_name, password, true from staff_t where login_name=?"
+				authorities-by-username-query="select b.login_name, c.name from _security_role_user a left join staff_t b on a.user_id=b.staff_id left join _security_role c on a.role_id=c.id where b.login_name=?" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

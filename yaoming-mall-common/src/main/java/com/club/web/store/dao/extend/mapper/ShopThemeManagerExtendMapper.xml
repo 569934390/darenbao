@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.ShopThemeManagerExtendMapper" >
+  <resultMap id="ThemeBaseResultMap" type="com.club.web.store.vo.ShopThemeManagerVo" >
+    <result column="id" property="id"  />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId"  />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="remk" property="remk" jdbcType="VARCHAR" />
+    <result column="pic_url" property="titlePicUrl" jdbcType="VARCHAR" />
+    <result column="subtitle_pic_url_one" property="subtitlePicUrlOne" jdbcType="VARCHAR" />
+    <result column="subtitle_pic_url_two" property="subtitlePicUrlTwo" jdbcType="VARCHAR" />
+     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   <resultMap id="BaseResultMapDo" type="com.club.web.store.domain.ShopThemeManagerDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="remk" property="remk" jdbcType="VARCHAR" />
+    <result column="title_pic_url" property="titlePicUrl" jdbcType="VARCHAR" />
+    <result column="subtitle_pic_url_one" property="subtitlePicUrlOne" jdbcType="VARCHAR" />
+    <result column="subtitle_pic_url_two" property="subtitlePicUrlTwo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap> 
+  <select id="queryThemeList" resultMap="ThemeBaseResultMap">
+ 	 select m.id, m.title, m.classify_id, m.`status`, m.sort, m.remk, g.pic_url, m.subtitle_pic_url_one,m.subtitle_pic_url_two,m.create_time
+ 	 from shop_theme_manager m left join image g on g.id=m.title_pic_url where 1=1
+ 	<if test="status!=-1 ">
+    	and m.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and  m.title like #{matchParam}
+    </if>
+     order by m.sort asc,m.create_time desc limit #{startIndex},#{pageSize} 
+  </select>
+  <select id="queryThemeListTotal" resultType="int">
+ 	 select count(1) from shop_theme_manager m where 1=1
+ 	<if test="status!=-1 ">
+    	and m.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and m.title like #{matchParam}
+    </if>
+  </select>
+  <select id="queryStartTheme" resultMap="ThemeBaseResultMap">
+  	select m.id, m.title from shop_theme_manager m where status=#{status}
+  </select>
+  <select id="queryThemeObjById" resultMap="BaseResultMapDo">
+  	select id, title, classify_id, `status`, sort, remk, title_pic_url, subtitle_pic_url_one,subtitle_pic_url_two, create_time
+  	from shop_theme_manager where id=#{id}
+  </select>
+  <delete id="delTheme">
+   	delete from shop_theme_manager where id in
+	 <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+  		#{item}  
+ 	</foreach>  
+  </delete>
+  <resultMap id="PrevResultMap" type="com.club.web.store.vo.ShopThemeExtendVo" >
+    <result column="id" property="id"  />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId" jdbcType="VARCHAR" />
+    <result column="pic_url" property="titlePicUrl" jdbcType="VARCHAR" />
+  </resultMap> 
+  <select id="queryPrevTheme" resultMap="PrevResultMap">
+  	select m.id,m.title,m.classify_id,g.pic_url from shop_theme_manager m left join image g on g.id=m.title_pic_url
+  	 where status=1 order by sort asc;
+  </select>
+</mapper>

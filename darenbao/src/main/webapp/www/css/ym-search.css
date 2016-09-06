@@ -1,0 +1,67 @@
+.ym-search {
+    font-size: 0.7rem;
+    color: #FFF;
+    vertical-align: top;
+    background-color: inherit;
+    /*height: inherit;*/
+    line-height: inherit;
+    transition: left 0.6s;
+    -webkit-transition: left 0.6s;
+    -moz-transition: left 0.6s;
+    -ms-transition: left 0.6s;
+    -o-transition: left 0.6s;
+    transition: left 0.6s;
+}
+
+.ym-search .ysb-btn-o {
+    padding: .1rem .7rem 0 .4rem;
+}
+
+.ym-search .ysb-btn-o img {
+    height: inherit;
+    line-height: inherit;
+    vertical-align: middle;
+    margin: -0.2rem -0.2rem 0rem -0.3rem;
+}
+
+.ym-search .ysb-open {
+    display: -webkit-box;
+    height: inherit;
+    line-height: inherit;
+}
+
+.ym-search .ysb-open-icon-search {
+    height: inherit;
+    line-height: inherit;
+    position: absolute;
+    padding: 0.3rem;
+}
+
+.ym-search .ysb-open .ysb-open-input {
+    -webkit-box-flex: 1;
+    background-color: #FFF;
+    margin: 0.25rem 0rem 0rem 0.3rem;
+    border-radius: 4px;
+    padding: 0 1.7rem;
+    height: 80%;
+}
+
+.ym-search .ysb-open-icon-clear {
+    height: inherit;
+    line-height: inherit;
+    position: absolute;
+    padding: 0.5rem;
+    right: 1.9rem;
+    opacity: 0.6;
+}
+
+.ym-search .ysb-open .ysb-btn-c {
+    padding: 0.4rem;
+}
+
+/*@-webkit-keyframes slide-in-right {*/
+    /*from { left: 100% } to { left: 0 }*/
+/*}*/
+/*@-webkit-keyframes slide-out-right {*/
+    /*from { left: 0 } to { left: 100% }*/
+/*}*/

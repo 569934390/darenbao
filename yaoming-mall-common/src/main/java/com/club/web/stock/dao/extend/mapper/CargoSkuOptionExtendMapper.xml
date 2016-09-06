@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoSkuOptionExtendMapper" >
+
+<!-- com.club.web.stock.dao.base.CargoSkuOptionMapper.BaseResultMap -->
+	<select id="getListBySkuId" parameterType="_long" resultMap="com.club.web.stock.dao.base.CargoSkuItemMapper.BaseResultMap">
+		SELECT 
+			a.id, 
+			b.cargo_sku_type_id, 
+			b.`value`, b.`name`, 
+			a.create_time, 
+			a.create_by, 
+			a.update_time, 
+			a.update_by
+		FROM `cargo_sku_option` a
+		left join cargo_sku_item b on a.cargo_sku_item_id=b.id 
+		where a.cargo_sku_id=#{skuId};
+	</select>
+	
+	<delete id="deleteBySkuId" parameterType="_long">
+		delete from cargo_sku_option where cargo_sku_id=#{skuId};
+	</delete>
+</mapper>

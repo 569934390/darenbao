@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="darenbao:war">
+    <output-path>$PROJECT_DIR$/darenbao/target</output-path>
+    <root id="archive" name="darenbao.war">
+      <element id="artifact" artifact-name="darenbao:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoBaseSkuTypeExtendMapper">
+  <resultMap id="BaseResultMap" type="com.club.web.stock.vo.CargoBaseSkuTypeVo">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, `type`, `name`, create_time, create_by, update_time, update_by
+  </sql>
+  
+  <select id="selectBySkuNameAndSkuType" resultMap="BaseResultMap" parameterType="map">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_base_sku_type
+    where 1 = 1 
+    <if test="skuName != null">
+    	and `name` like #{skuName} 
+    </if>
+    <if test="skuType != null">
+    	and `type` = #{skuType} 
+    </if>
+    limit #{start},#{limit}
+  </select>
+  
+  <select id="queryCargoBaseSkuTypeCountPage" resultType="java.lang.Long" parameterType="map">
+    select 
+	count(1) as count 
+	from cargo_base_sku_type 
+	where 1 = 1 
+	<if test="skuName != null">
+    	and `name` like #{skuName} 
+    </if>
+    <if test="skuType != null">
+    	and `type` = #{skuType} 
+    </if>
+  </select>
+  
+  <select id="selectCargoBaseSkuTypeList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_base_sku_type
+  </select>
+</mapper>

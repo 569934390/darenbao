@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.module.dao.extend.VersionExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.module.dao.base.po.Version" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="effect" property="effect" jdbcType="INTEGER" />
+    <result column="download_way" property="downloadWay" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.module.dao.base.po.Version" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, `name`, modifier, creater, update_time, url, platform, `status`, effect,download_way
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="findLastVersion" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from version
+    where effect = 1 and platform = #{platform} order by code desc,id desc limit 0,1
+  </select>
+  <select id="queryTotalByMap" resultType="int">
+    select count(1) from version where 1=1
+    <if test="name!=null">
+    	and name like #{name}
+    </if>
+    <if test="platform!=null">
+    	and platform = #{platform}
+    </if>
+    <if test="code!=null">
+    	and code like #{code}
+    </if>
+    order by effect desc,code desc,id desc
+  </select>
+  <select id="queryPoByMap" resultMap="ResultMapWithBLOBs">
+  	select 
+	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+ 	from version where 1=1
+    <if test="name!=null">
+    	and name like #{name}
+    </if>
+    <if test="platform!=null">
+    	and platform = #{platform}
+    </if>
+    <if test="code!=null">
+    	and code like #{code}
+    </if>
+     order by effect desc,code desc,id desc limit #{startIndex},#{pageSize} 
+  </select>
+  
+  <select id="findListByIds" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from version
+    where id in 
+	 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+	  #{item}  
+	 </foreach>  
+	 order by id desc
+  </select>
+  <select id="findAllAble" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from version where effect = 1 and platform = #{platform} order by id desc
+  </select>
+  <select id="findByCode" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from version
+    where code = #{code,jdbcType=VARCHAR} order by code desc,id desc limit 0,1
+  </select>
+</mapper>

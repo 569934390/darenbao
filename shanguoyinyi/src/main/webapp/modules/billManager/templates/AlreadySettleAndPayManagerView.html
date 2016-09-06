@@ -1,0 +1,40 @@
+<div class="row AlreadySettleAndPay-info-main-btngroup" >
+    <div class="col-md-12 emgceval-main-view">
+        <div class="row">
+            <div class="container-fluid">
+            	<div class="collapse navbar-collapse">
+            		<div class="navbar-form navbar-left" role="search">
+            			<div class="form-group">
+            				支付时间：
+            				<div class="input-group">
+            					<input type="text" field="datetime" class="form-control" name="startTimeByAlreadyPay" data-rule="match[lt, endTime, date]">
+            				</div>
+            				至
+            				<div class="input-group">
+            					<input type="text" field="datetime" class="form-control" name="endTimeByAlreadyPay">
+            				</div>
+            				&nbsp;&nbsp;店铺名称：
+            				<select class="combobox form-control" name="shopByAlreadyPay" field="combobox">
+                          		<option value="0" selected="selected">全部店铺</option>
+                        	</select>    
+		          			&nbsp;&nbsp;<input type="text" name="orderIdByAlreadyPay" placeholder="按订单号搜索...">
+                     	</div>
+                    	<button class="btn btn-info" action="search">搜索</button>
+                    	<button class="btn btn-info" action="refresh">刷新</button>
+                    	<!-- <button class="btn btn-info" action="pay">付款</button>
+                        <button class="btn btn-info" action="cancel">取消结算</button> -->
+                        <button class="btn btn-info" action="export">导出付款单</button>
+                   </div>
+                </div>
+           	</div>
+        </div>
+        <div class="row" style="margin-left:10px;">
+        	支付总金额：<label id="payTotalAmountByAlreadyPay"></label>&nbsp;&nbsp;
+        	结算总金额：<label id="settlementTotalAmountByAlreadyPay"></label>
+        </div>
+        <div class="row" style="margin-right:10px;">
+            <div class="col-md-12 emgceval-content-div" id="AlreadySettleAndPay-info-content-div">
+            </div>
+        </div>
+    </div>
+</div>

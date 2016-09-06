@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.message.dao.extend.MessageExtendMapper" >
+  <resultMap id="MessagePageVo" type="com.club.web.message.vo.MessagePage">  
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="client_pic" property="clientPic" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="BIGINT" />
+    <result column="client_name" property="clientName" jdbcType="VARCHAR" />   
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="reply_id" property="replyId" jdbcType="VARCHAR" />
+    <result column="reply_status" property="replyStatus" jdbcType="VARCHAR" />
+    <result column="reply_content" property="replyContent" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="MessageNoticePage" type="com.club.web.message.vo.MessageNoticePage">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="content_status" property="contentStatus" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="content_time" property="contentTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="NewsStat" type="com.club.web.message.vo.NewsStat">
+    <result column="news_count" property="newsCount" jdbcType="INTEGER" />
+    <result column="news_time" property="newsTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="NewsVo" type="com.club.web.message.vo.NewsVo">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_pic" property="storePic" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="BIGINT" />
+    <result column="client_name" property="clientName" jdbcType="VARCHAR" />   
+    <result column="client_pic" property="clientPic" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <collection property="contents" ofType="com.club.web.message.vo.NewsContentVo" column="messageId">  
+    	<id column="content_id" property="id" jdbcType="BIGINT" />
+        <result column="message_id" property="messageId" jdbcType="BIGINT" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+	    <result column="content_type" property="type" jdbcType="INTEGER" />
+	    <result column="sender_id" property="senderId" jdbcType="BIGINT" />
+	    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+	    <result column="status" property="status" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
+  <select id="queryNewsVoList" resultMap="NewsVo">
+	select 
+	m.*
+	,(select nickname from weixin_user_info where m.client_id = weixin_user_info.id) as client_name
+	,(select headImgUrl from weixin_user_info where m.client_id = weixin_user_info.id) as client_pic
+	,(select name from store_subbranch where m.store_id = store_subbranch.id) as store_name
+	,(select head_img_url from store_subbranch where m.store_id = store_subbranch.id) as store_pic
+	,mc.id as content_id
+	,mc.type as content_type
+	,mc.content,mc.message_id,mc.sender_id,mc.send_time,mc.`status`
+	from message m LEFT JOIN message_content mc on m.id = mc.message_id where m.type = 1
+	<if test="clientId != null" >
+	     and m.client_id = #{clientId}   
+    </if>
+	<if test="storeId != null" >
+	     and m.store_id = #{storeId}   
+    </if>
+    <if test="messageId != null" >
+	     and m.id = #{messageId}   
+    </if>
+    ;
+  </select>
+  
+  <select id="queryTotalByMap" resultType="int">
+  	select count(1)
+	from message m where 1 = 1
+    <if test="messageType != null and messageType !=''" >
+		and m.type = #{messageType}
+	    <if test="operateType = null and messageType == 1" ><!-- 消息 -->
+			<if test="replyStatus!=null and replyStatus!=''">
+		    	<if test="replyStatus == 0"><!-- 未回复 -->
+		    		and ((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.client_id
+		    			or (select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = '-1')
+		    	</if>
+		    	<if test="replyStatus == 1"><!-- 已回复 -->
+		    		and (select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.store_id
+		    	</if>
+		    </if>
+	    </if>
+	    <if test="operateType = 1" >
+    		and (select mc.sender_id from message_content mc where m.id = mc.message_id and mc.`status` = 0 ORDER BY mc.id desc LIMIT 0, 1) = m.store_id
+	    </if>
+    </if>
+    <if test="clientId !=null">
+    	and m.client_id = #{clientId}
+    </if>
+    <if test="storeId !=null">
+    	and m.store_id = #{storeId}
+    </if>
+	<if test="clientName !=null and clientName !=''">
+    	and m.client_id in (select id from weixin_user_info where nickname like #{clientName})
+    </if>  
+    order by m.id desc
+  </select>
+  <select id="queryListByMap" resultMap="MessagePageVo">
+  	  select m.*
+  	  <if test="messageType != null and messageType !='' and messageType == 1" >
+  	  	,if((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) is null,'暂无消息',
+		if((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.store_id,'已回复','未回复')) as reply_status 
+		,if((select mc.type from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1)=1,'[图片]',(select mc.content from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1)) as reply_content 
+		,if((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) is null ,2
+		,if((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.store_id,1,0)) as reply_status_code
+		,(select mc.send_time from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) as reply_time
+		,(select mc.id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) as reply_id
+		,(select nickname from weixin_user_info where m.client_id = weixin_user_info.id) as client_name
+		,(select headImgUrl from weixin_user_info where m.client_id = weixin_user_info.id) as client_pic
+		,(select name from store_subbranch where m.store_id = store_subbranch.id) as store_name
+      </if>
+  	  from message m where 1 = 1
+      <if test="messageType != null and messageType !=''" >
+		and m.type = #{messageType}
+	    <if test="messageType == 1" ><!-- 消息 -->
+			<if test="replyStatus!=null and replyStatus!=''">
+		    	<if test="replyStatus == 0"><!-- 未回复 -->
+		    		and ((select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.client_id
+		    			or (select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = '-1')
+		    	</if>
+		    	<if test="replyStatus == 1"><!-- 已回复 -->
+		    		and (select mc.sender_id from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0, 1) = m.store_id
+		    	</if>
+		    </if>
+	    </if>
+    </if>
+    <if test="clientId !=null">
+    	and m.client_id = #{clientId}
+    </if>
+    <if test="storeId !=null">
+    	and m.store_id = #{storeId}
+    </if>
+	<if test="clientName !=null and clientName !=''">
+    	and m.client_id in (select id from weixin_user_info where nickname like #{clientName})
+    </if>
+    order by 
+    <if test="messageType != null and messageType !='' and messageType == 1" >
+    reply_status_code,reply_time desc,
+    </if>
+    m.id desc 
+    <if test="startIndex !=null and pageSize != null">
+    	limit #{startIndex},#{pageSize} 
+    </if>
+  </select>
+  
+  <select id="queryNewsStat" resultMap="NewsStat">
+  	  select count(1) as news_count,(select MAX(mc3.send_time) from message_content mc3 where mc3.sender_id = '-1' or mc3.sender_id = m.client_id) as news_time 
+  	  from message m where m.type = 1 
+  	  and m.id in (select mc1.message_id from message_content mc1 where (mc1.sender_id = '-1' or mc1.sender_id = m.client_id) and mc1.id in (select max(mc2.id) from message_content mc2 GROUP BY mc2.message_id))
+  </select>
+  
+  <select id="queryNoticeCount" resultType="java.lang.Integer">
+	select count(1) from (select m.id,m.`status`,m.type
+	,(select mc.`status` from message_content mc where m.id = mc.message_id ORDER BY mc.id desc LIMIT 0,1) as content_status
+	 from message m where m.type = 0) t where 1 = 1
+	 <if test="contentStatus != null">
+	 and t.content_status = 0 
+	 </if>
+  </select>
+  
+  <select id="queryNoticeList" resultMap="MessageNoticePage">
+  	 select t.* from (select m.id,m.`status`,m.type
+	,(select mc.content from message_content mc where m.id = mc.message_id ORDER BY id desc LIMIT 0,1) as content
+	,(select mc.send_time from message_content mc where m.id = mc.message_id ORDER BY id desc LIMIT 0,1) as content_time
+	,(select mc.`status` from message_content mc where m.id = mc.message_id ORDER BY id desc LIMIT 0,1) as content_status
+	 from message m where m.type = 0) t ORDER BY t.content_status , t.id desc
+	 <if test="startIndex !=null and pageSize != null">
+    	limit #{startIndex},#{pageSize} 
+    </if>
+  </select>
+  
+  <select id="queryNoticeCoutByMap" resultType="java.lang.Integer">
+  	 select count(1) as noticeCount from message m 
+	where m.type = 0 
+	<if test="status != null">
+		and m.`status` = #{status} 
+	</if>
+	<if test="clientId != null">
+		and m.client_id = #{clientId} 
+	</if>
+	<if test="storeId != null">
+		and m.store_id = #{storeId} 
+	</if>
+	and m.id in (select mc1.message_id from message_content mc1 
+	where mc1.`status` = 0 and mc1.id in (select max(mc2.id) from message_content mc2 GROUP BY mc2.message_id))
+	  
+  </select>
+  
+  <update id="updateStatusNoticeListByMessageId" parameterType="java.lang.Long" >
+    update message_content mc set mc.`status` = 1
+    where mc.message_id = #{messageId};
+  </update>
+</mapper>

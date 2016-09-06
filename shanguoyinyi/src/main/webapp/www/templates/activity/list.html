@@ -1,0 +1,151 @@
+<style>
+    .activity{
+        background-color: #f5f5f5;
+    }
+    .activity h2, .activity p{
+        padding: 0;
+        margin: 0;
+    }
+    .activity .list{
+        background-color: #ffffff;
+        padding: 0;
+        margin-top: 0.25rem!important;
+        margin-bottom:0rem!important;
+    }
+    .list .activity-list{
+        min-height: 5.4rem;
+        padding: 0.5rem 0.5rem 0.6rem 6.4rem;
+        border: none;
+        border-bottom: solid 2px #f5f5f5;
+        margin: 0;
+        font-size: 0.8rem;
+    }
+    .list .activity-list .logo{
+        top: 0.5rem;
+        left: 0.5rem;
+        max-width:5.4rem !important;
+        max-height: 5.4rem!important;
+        line-height: 5.4rem!important;
+        vertical-align: middle;
+        border-radius: 0.3rem;
+        -webkit-border-radius:  0.3rem;
+        -moz-border-radius:  0.3rem;
+    }
+    .activity-r{
+        min-height: 5.4rem;
+    }
+    .activity-r h2{
+        height: 1.15rem;
+        line-height: 1.15rem;
+        font-size: 0.8rem;
+        color: #ff5555;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .activity-r h2:nth-child(2){
+        margin-bottom: 0.7rem;
+        color: #000000;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+    }
+    .activity-r p{
+        height: 1.2rem;
+        line-height: 1.2rem;
+        font-size: 0.7rem;
+        color: #000000;
+        filter:alpha(opacity=54);
+        -moz-opacity:0.54;
+        -khtml-opacity: 0.54;
+        opacity: 0.54;
+    }
+    .activity-r p img{
+        max-width: 1.2rem;
+        max-height: 1.2rem;
+        vertical-align: bottom;
+    }
+     .activity-m{
+        font-size: 0.7rem;
+        min-height: 1.3rem;
+        line-height: 1.3rem;
+        padding: 0.475rem 0;
+        background-color: #ffffff;
+    }
+    .activity-m .col{
+        border-right: dashed 1px #d6d6d6;
+        padding: 0;
+        text-align:center;
+        height:1.3rem;
+        line-height: 1.3rem;
+    }
+    .activity-m .col:last-child{
+        border: none;
+    }
+    .activity-m .col:last-child em{
+        color: #ff5555;
+    }
+    .activity-m .col img{
+        height:1.3rem;
+        line-height: 1.3rem;
+        vertical-align: bottom;
+    }
+    .acticity-create{
+        width: 15%;
+        display: block;
+        position: fixed;
+        bottom: 1rem;
+        right: 0.8rem;
+        z-index: 888;
+        background-repeat: no-repeat;
+    }
+    .acticity-create img{
+        display: block;
+        width: 100%;
+    }
+</style>
+<ion-view title="活动部落" class="activity">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">活动部落</h1>
+    </ion-header-bar>
+    <ion-content delegate-handle="activity-list" overflow-scroll="false" lazy-scroll>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list" ng-repeat="activity in activitys">
+            <a class="item item-thumbnail-left activity-list"  ui-sref="acticityDetail({shopId:shopId,activityId:activity.id})">
+                <img class="logo" image-lazy-src="{{activity.image[0].picUrl}}-img01" background-img="img/activity-default.jpg" lazy-scroll-resize="true" err-src="img/mrtp_82_62.png" >
+                <div class="activity-r">
+                    <h2>{{activity.sponsorName}}</h2>
+                    <h2>{{activity.title}}</h2>
+                    <p><img src="img/hdbl_dd.png"/>{{activity.activityAddress}}</p>
+                    <p><img src="img/hdbl_sj.png"/>{{activity.beginTime}}</p>
+                </div>
+            </a>
+            <div class="row activity-m">
+                <div class="col col-33" ui-sref="activityComment({shopId:shopId,activityId:activity.id})"> <img src="img/hdbl_ly.png" /><em>{{activity.commentNum}}</em></div>
+                <div class="col col-33" ui-sref="activitySignUp({shopId:shopId,activityId:activity.id,userId:activity.subbranchId})"> <img src="img/hdbl_bmry.png"/><em>{{activity.participation}}</em></div>
+                <div class="col col-33"> <img src="img/hdbl_dz_md.png"/><em>{{activity.pointNum}}</em></div>
+            </div>
+        </div>
+        <div style="margin-top:6rem;width: 100%;text-align: center" ng-show="isShow">
+            <img src="img/activity-kong.png" style="width: 50%;margin: 0;padding: 0"/>
+            <div style="font-size:0.8rem;color: #000000;margin-top: 2rem;opacity: 0.54">暂无活动,快去添加活动吧!</div>
+        </div>
+        <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="loadMore()"
+                immediate-check="false"
+                distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <div class="acticity-create" ui-sref="addActicity({shopId:shopId})">
+      <img src="img/hdbl_tjhd.png">
+    </div>
+</ion-view>

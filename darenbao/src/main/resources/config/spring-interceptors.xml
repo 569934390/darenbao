@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"	
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+	
+	<!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。 -->
+	<mvc:interceptors>
+		<!-- 微信拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**/weixin/**" />
+			<!-- 微信授权 -->
+			<mvc:exclude-mapping path="/weixin/weixinClient/oAuth.do" />
+			<!-- 微信支付回调 -->
+			<mvc:exclude-mapping path="/weixin/weixinPay/wxPayCallBack.do" />
+			<bean
+				class="com.club.web.weixin.interceptors.WeixinInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 计划任务配置，用@Component标注类，用@Scheduled(cron = "0 0 2 * * ?")标注方法 -->
+<!--     <task:executor id="executor" pool-size="10"/>
+    <task:scheduler id="scheduler" pool-size="10"/> -->
+		
+
+</beans>
+
+

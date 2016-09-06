@@ -1,0 +1,38 @@
+<div class="row outbound-manager">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                        	<label class="control-label">状 态：</label>&nbsp;
+                            <select name="outbound_status" id="outbound_status" class="form-control" data-rule="required;">
+                                <option value="0" selected="selected">全部</option>
+                                <option value="1">待申请</option>
+                                <option value="2">待出库</option>
+                                <option value="3">已出库</option>
+                                <option value="4">已取消</option>
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+				          <input type="text" name="outbound_match_param" class="form-control" placeholder="出库单号/出库人">
+                        </div>
+                        &nbsp;&nbsp;<button class="btn btn-info" action="search-outbound">搜索</button>&nbsp;
+                        <button type="button" class="btn btn-info" action="out-bound-refresh" title="刷新">刷新</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <button class="btn btn-info" action="outbound-sure-rule-all">确认出库</button>
+                        <button class="btn btn-info" action="outbound-apply-rule-all">申请出库</button>
+                        <button class="btn btn-info" action="outbound-cancle-rule-all">取消出库</button>
+                        <button class="btn btn-info" action="outbound-delete-rule-all">删除</button>
+                        <button class="btn btn-info" action="outbound-add-rule">新增出库</button>
+                      </div>
+                    </div>
+                </div>
+            </div>           
+	        <div class="row" style="margin-right:10px;">
+	            <div class="col-md-12 emgceval-content-div" id="outbound-rule-content-div">
+	            </div>
+	        </div>               
+</div>

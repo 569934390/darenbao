@@ -1,0 +1,414 @@
+<style>
+    .good-list{
+        background-color: #f5f5f5;
+    }
+    .good-list .sort-banner{
+        position: absolute;
+        display: block;
+        width:100%;
+        height: 2rem;
+        top:44px;
+        background-color: #ffffff ;
+    }
+    .good-list .sort-50{
+        display: block;
+        width: 50%;
+        float: left;
+        font-size: .8rem;
+        color: #000000;
+        background-color: #ffffff;
+    }
+    .good-list .sort-50 .sort-right-dashed{
+        border-right: dashed 1px #e0e0e0;
+    }
+    .good-list .sort-50 .sort-text{
+        width: 100%;
+        text-align: center;
+        font-size: .8rem;
+        margin: 0.3rem 0;
+    }
+    .good-list .sort-50 .sort-text div{
+        width: 100%;
+        text-align: center;
+        font-size: .8rem;
+        line-height: .8rem;
+        padding: .25rem 0 ;
+    }
+    .good-list .sort-50 .sort-text .sort-text-active{
+        color: #ff5555 !important;
+    }
+    .good-list .sort-50 .sort-bottom-active{
+        border-bottom: 1px solid #ff5555!important;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+
+    .good-list .good-list-content{
+        margin-top: 2rem;
+        bottom:2.4rem!important;
+        width: auto;
+        height: auto;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+    }
+    .good-list .good-footer{
+        padding:0;
+        height:2.4rem!important;
+        font-size: .75rem;
+        line-height: 2.4rem;
+        text-align: center;
+    }
+    .good-list .footer-text{
+        min-height: 2rem;
+    }
+    .good-list .footer-text span{
+        margin-left: .2rem;
+    }
+    .good-list .footer-text img {
+        display: inline-block;
+        height: 1.4rem;
+        width: 1.4rem;
+        background-size: 100% 100%;
+        vertical-align: middle;
+    }
+    .topButton {
+        position: absolute;
+        z-index: 1000;
+        bottom: 3rem;
+        width: 2.4rem;
+        right: .5rem;
+        opacity: .9;
+        -webkit-transition: right 1s,opacity  1s;
+        -moz-transition: right 1s,opacity  1s;
+        -ms-transition: right 1s,opacity  1s;
+        -o-transition: right 1s,opacity  1s;
+        transition: right 1s,opacity  1s;
+    }
+    .topButton img{
+        width: 2rem;
+        height: 2rem;
+    }
+    .topButton.ng-hide {
+        display: block !important;
+        right: -2.4rem;
+        opacity: 0;
+    }
+
+
+    .good-price{
+        float: left;
+        position: relative;
+        width: 100%;
+        height: 30%;
+        font-size: .85rem;
+        line-height: 1.4rem;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        color: #cccccc;
+    }
+    .good-price .good-salePrice{
+        color: red;
+    }
+
+    .good-price .good-marketPrice{
+        text-decoration: line-through;
+        color: #cccccc;
+        margin-left: .5rem;
+        font-size: .65rem;
+    }
+    .good-price .good-supplyPrice{
+        /*text-decoration: line-through;*/
+        color: #818181;
+        margin-left: .5rem;
+        font-size: .65rem;
+    }
+    .good-list .good-infolist-content{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin-top: 0.5rem;
+        border-left: solid 0.25rem #f5f5f5;
+        border-right: solid 0.25rem #f5f5f5;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        /*border-top: 2px solid #f4f4f4;*/
+        border-bottom: 2px solid #f4f4f4;
+        font-size: 0;
+    }
+    .good-list .good-infolist-content .good-info-list{
+        position: relative;
+        width: 50%;
+        /*display: inline-block;*/
+        float: left;
+        margin-bottom: 0.3rem;
+        border-left: solid 0.25rem #f5f5f5;
+        border-right: solid 0.25rem #f5f5f5;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        background: #ffffff;
+        /*padding: .5rem .75rem .5rem .5rem;*/
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .good-list .good-info-list .good-list-img{
+        position: relative;
+        width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        float: left;
+    }
+    .good-list .good-info-list .good-list-img img{
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+        vertical-align: middle;
+    }
+    .good-list .good-info-list .good-list-text {
+        position: relative;
+        padding-left: .5rem;
+        width: 100%;
+        height: 100%;
+        float: left
+    }
+    .good-list .good-info-list .good-list-name{
+        position: relative;
+        float: left;
+        width: 100%;
+        text-align: left;
+        line-height: 1.2rem;
+        font-size: .85rem;
+        height: 30%;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        color:#333333;
+        /*font-weight: bold;*/
+    }
+    .good-activity-status{
+        display: inline-block;
+        -webkit-border-radius:.2rem;
+        -moz-border-radius:.2rem;
+        border-radius:.2rem;
+        background-color: #ff5555;
+        position: relative;
+        float: right;
+        min-width: 0;
+        font-size: .6rem;
+        color:#ffffff;
+        text-align: center;
+        padding:0 .5rem;
+        margin-right: .5rem;
+    }
+    .good_num{
+        position: relative;
+        float: left;
+        width: 100%;
+        text-align: left;
+        line-height: 1rem;
+        font-size: .65rem;
+        height: 20%;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        color:#b2b2b2;
+    }
+    .good-activity{
+        position: relative;
+        float: left;
+        width: 100%;
+        text-align: left;
+        line-height: 1rem;
+        font-size: .6rem;
+        height: 20%;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        color:#ff8282;
+    }
+    .good-activity-start{
+        color:#ffbf45!important;
+    }
+    .good-activity-process{
+        color:#ff8282!important;
+    }
+    .good-activity-end{
+        color:#c5c5c5!important;
+    }
+    .good-activity-date{
+        position: relative;
+        float: right;
+        min-width: 0;
+        font-size: .6rem;
+        color:#000000;
+    }
+    .count-down {
+        /*color:red;*/
+    }
+    .count-down .un-start{
+        color:#ffbf45;
+    }
+    .count-down .un-start .date-block{
+        border:1px solid #c5c5c5;
+        border-radius: .2rem;
+        margin: 0 .3rem;
+        padding:0 .2rem;
+        color:black;
+    }
+    .count-down .un-start .date-text{
+        font-size: .65rem;
+        padding-right: .5rem;
+    }
+    .count-down .un-start .date-split{
+        color:black;
+    }
+    .count-down .on-sales{
+        color:red;
+    }
+    .count-down .on-sales .date-block{
+        border:1px solid #c5c5c5;
+        border-radius: .2rem;
+        margin: 0 .3rem;
+        padding:0 .2rem;
+        color:black;
+    }
+    .count-down .on-sales .date-text{
+        font-size: .65rem;
+        padding-right: .5rem;
+    }
+    .count-down .on-sales .date-split{
+        color:black;
+    }
+    .count-down .end-sales{
+        font-size: .65rem;
+    }
+    .ym-search {
+        position: absolute;
+        right: 0;
+    }
+    .good-list-null-content{
+        position: absolute;
+        top: 4.4rem!important;
+        bottom:2rem!important;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+    .good-list-null-content .list-center{
+        top: 20%;
+        position: absolute;
+        width: 50%;
+        left: 25%;
+        text-align: center;
+    }
+    .good-list-null-content .list-center img{
+        width: 100%;
+        background-size: 100% 100%;
+    }
+
+    .good-list-content .scroll-refresher{
+        top:-70px!important;
+    }
+    .good-list .good-infolist-content .changelistactive{
+        width: 100%;
+    }
+    .good-list .good-infolist-content .changelistactive .good-list-img{
+        width: 30%;
+    }
+    .good-list .good-infolist-content .changelistactive .good-list-text{
+        width: 70%;
+    }
+    .good-list .bar-default .title .lb{
+        background: url("img/lb.png") no-repeat center;
+        background-size: contain;
+    }
+    .good-list .bar-default .title .zk{
+        background: url("img/zk.png") no-repeat center;
+        background-size: contain;
+    }
+</style>
+<ion-view class="good-list" view-title="店铺管理">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title"><!--<div class="{{changelisticon}}" ng-click="shopgoodchange()"  style="width:17%; position: absolute;right: 0;">&nbsp;</div>-->{{goodListTitle}}</h1>
+        <ym-search data="searchData" class="ym-search1"></ym-search>
+    </ion-header-bar>
+
+    <div class="sort-banner">
+        <div class="sort-50" ng-click="sortSell()">
+            <div class="sort-text sort-right-dashed">
+                <div ng-class="{'sort-text-active':  sortType==0}">出售中</div>
+            </div>
+            <div ng-class="{'sort-bottom-active':  sortType==0}"></div>
+        </div>
+        <div class="sort-50" ng-click="sortSoldOut()">
+            <div class="sort-text">
+                <div ng-class="{'sort-text-active':  sortType==1}">已下架</div>
+            </div>
+            <div ng-class="{'sort-bottom-active':  sortType==1}"></div>
+        </div>
+    </div>
+    <ion-content ng-show="listFlag" overflow-scroll="false" class="good-list-content" lazy-scroll delegate-handle="goodListScroll">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="good-infolist-content">
+            <div class="good-info-list {{changelistactive}}" ng-repeat="good in goodList" ng-click="goShopGoodInfo(good.id)">
+                <div class="good-list-img">
+                    <img image-lazy-src="{{good.showPicture}}-img01" lazy-scroll-resize="true"/>
+                </div>
+                <div class="good-list-text">
+                    <div class="good-list-name">
+                        {{good.goodName}}
+                    </div>
+                    <div class="good_num">
+                        供货价：{{good.supplyPrice |currency:'￥'}}
+                    </div>
+                    <div class="good-price">
+                        <span class="good-activity-status" ng-show="good.startDate && good.endDate">{{good.columnName}}</span>
+                        <span class="good-salePrice">{{good.salePrice |currency:'￥'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p ng-if="!firstFlag&&!showScroll" style="text-align: center;font-size: .76rem;color: #999;margin-top: .5rem;">已显示全部商品</p>
+        <p ng-if="showScroll&&isInLoad" style="text-align: center;font-size: .75rem;color: #999;margin-top: .5rem;">上拉加载更多商品</p>
+        <ion-infinite-scroll ng-if="showScroll" on-infinite="loadMore()" immediate-check="false" distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <div class="topButton ng-hide" ng-click="goTopPos()" ng-show="topDistance">
+        <img src="img/top.png">
+    </div>
+    <div class="bar bar-footer good-footer row">
+        <!--<div class="col-33 footer-text">-->
+            <!--<img src="img/show_shop.png"/>-->
+            <!--<span>预览店铺</span>-->
+        <!--</div>-->
+        <!--<div class="col-50 footer-text" ng-click="goShopQrCode()">-->
+            <!--<img src="img/qrcode.png"/>-->
+            <!--<span>店铺二维码</span>-->
+        <!--</div>-->
+        <div class="col footer-text" style=" float: right; text-align: right" ng-click="goShopGoodManage()">
+            <img src="img/batch-manage.png"/>
+            <span>批量管理</span>
+        </div>
+    </div>
+    <div ng-if="!listFlag" class="good-list-null-content">
+        <div class="list-center">
+            <img ng-show="goodName==''" src="img/null-list.png"/>
+            <img ng-show="goodName!=''" src="img/no-search.png"/>
+            <div ng-show="goodName==''" >{{sortType == 0?"暂无出售中商品！":"暂无已下架商品！";}}</div>
+            <div ng-show="goodName!=''" >无搜索结果！<br/>换个关键词试试吧！</div>
+        </div>
+    </div>
+</ion-view>

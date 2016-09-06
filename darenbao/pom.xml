@@ -1,0 +1,280 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yaoming</groupId>
+		<artifactId>yaoming-parent</artifactId>
+		<version>0.2.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>darenbao</artifactId>
+	<packaging>war</packaging>
+	<version>${yaoming.shanguoyinyi.version}</version>
+	<name>${project.artifactId}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.yaoming</groupId>
+			<artifactId>yaoming-mall-common</artifactId>
+			<version>${yaoming.mall.common.version}</version>
+		</dependency>
+		<!-- POI -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+	</dependencies>
+	<repositories>
+		<!--<repository>
+			<id>Yaoming Release</id>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>Yaoming Snapshots</id>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/snapshots</url>
+		</repository>-->
+	</repositories>
+	<build>
+		<finalName>${finalName}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+	 		</resource>
+	    	<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.p12</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.p12</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp</directory>
+							<includes>  
+					           <include>www/js/services.js</include>  
+					           <include>weixinfront/js/common/common.js</include>  
+					        </includes> 
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<username>tomcat</username>
+					<password>tomcat</password>
+					<path>/darenbao</path>
+					<server>admin</server>
+				</configuration>
+			</plugin>
+			<!-- jrebel插件，自动生成rebel.xml -->
+			<!--<plugin>
+				<groupId>org.zeroturnaround</groupId>
+				<artifactId>jrebel-maven-plugin</artifactId>
+				<version>1.1.5</version>
+				<executions>
+					<execution>
+						<id>generate-rebel-xml</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
+
+			<!-- jetty插件 -->
+			<!--<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.5</version>
+				<configuration>
+					&lt;!&ndash; 添加这行 &ndash;&gt;<webDefaultXml>src/main/resources/jetty/webdefault.xml</webDefaultXml>
+					<webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+					<scanIntervalSeconds>3</scanIntervalSeconds>
+					<contextPath>/</contextPath>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8080</port>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin>-->
+		</plugins>
+	</build>
+	<profiles>
+	    <profile>
+			<id>develop204</id>
+			<properties>
+				<server.address>http://test.cha2u.com/${project.artifactId}</server.address>
+				<db.ip>119.90.136.204</db.ip>
+				<db.port>3306</db.port>
+				<db.dbname>darenbao</db.dbname>
+				<db.username>root</db.username>
+				<db.password>shanguo2016</db.password>
+				<db.type>mysql</db.type>
+				<db.auto_flush_tables_cache>false</db.auto_flush_tables_cache>
+				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
+				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
+				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
+				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
+				
+				<!-- 微信公众号信息 -->
+				<token>shanguoyinyi</token>
+				<appid>wx13ea47ddb8c2bb7e</appid>
+				<appsecret>a8cb69741bde10326edfbf192d95c8e0</appsecret>
+				<partner>1340223201</partner>
+				<partnerkey>06v61gf8BeRumV0uKFd6REhXNLGHVBra</partnerkey>
+				<weixincerPath>/config/weixincertest/apiclient_cert.p12</weixincerPath>
+				<!-- 微信公众号信息 -->
+				
+				<u8.url>http://110.80.34.146:995/U8EAI/import.asp</u8.url>
+				<u8.sender>999</u8.sender>
+				<upload.path>E:/upload/</upload.path>
+				<uploadExcel.path>D:/upload/</uploadExcel.path>
+				<finalName>${project.artifactId}</finalName>
+				<log.level>DEBUG</log.level>
+				<log.path>/logs/${project.artifactId}/</log.path>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>profile</name>
+					<value>develop204</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<server.address>http://sp.xiangshanzx.com/${project.artifactId}</server.address>
+				<db.ip>115.159.25.170</db.ip>
+				<db.port>3306</db.port>
+				<db.dbname>darenbao</db.dbname>
+				<db.username>root</db.username>
+				<db.password>82We0BD7zZ1ux4Yza7pC</db.password>
+				<db.type>mysql</db.type>
+				<db.auto_flush_tables_cache>false</db.auto_flush_tables_cache>
+				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
+				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
+				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
+				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
+				
+				<!-- 微信公众号信息 -->
+				<token>shanguoyinyi</token>
+				<appid>wx13ea47ddb8c2bb7e</appid>
+				<appsecret>a8cb69741bde10326edfbf192d95c8e0</appsecret>
+				<partner>1340223201</partner>
+				<partnerkey>06v61gf8BeRumV0uKFd6REhXNLGHVBra</partnerkey>
+				<weixincerPath>/config/weixincertest/apiclient_cert.p12</weixincerPath>
+				<!-- 微信公众号信息 -->
+				
+				<u8.url>http://110.80.34.146:995/U8EAI/import.asp</u8.url>
+				<u8.sender>999</u8.sender>
+				<upload.path>E:/upload/</upload.path>
+				<uploadExcel.path>D:/upload/</uploadExcel.path>
+				<finalName>${project.artifactId}</finalName>
+				<log.level>DEBUG</log.level>
+				<log.path>/logs/${project.artifactId}/</log.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>shanguoyinyiDeploy</id>
+			<properties>
+				<server.address>http://www.cha2u.com/${project.artifactId}</server.address>
+				<db.ip>114.67.53.97</db.ip>
+				<db.port>3306</db.port>
+				<db.dbname>shanguo</db.dbname>
+				<db.username>root</db.username>
+				<db.password>shanguo2016</db.password>
+				<db.type>mysql</db.type>
+				<db.auto_flush_tables_cache>false</db.auto_flush_tables_cache>
+				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
+				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
+				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
+				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
+				
+				<!-- 微信公众号信息 -->
+				<token>shanguoyinyi</token>
+				<appid>wxce11f51c18127ded</appid>
+				<appsecret>9c1d6941d8880bafe1f1a1528ae4da7c</appsecret>
+				<partner>1366290002</partner>
+				<partnerkey>f14F4vcsaj3j9fhf47ium78gio5cerhg</partnerkey>
+				<weixincerPath>/config/weixincer/apiclient_cert.p12</weixincerPath>
+				<!-- 微信公众号信息 -->
+				
+				<u8.url>http://110.80.34.146:1004/U8EAI/import.asp</u8.url>
+				<!--<u8.url>http://110.80.34.146:995/U8EAI/import.asp</u8.url>-->
+				<u8.sender>999</u8.sender>
+				<upload.path>upload/</upload.path>
+				<uploadExcel.path>upload/</uploadExcel.path>
+				<finalName>${project.artifactId}</finalName>
+				<log.level>INFO</log.level>
+				<log.path>/mnt/logs/${project.artifactId}/</log.path>
+			</properties>
+			<activation>
+				<property>
+					<name>profile</name>
+					<value>shanguoyinyiDeploy</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+</project>

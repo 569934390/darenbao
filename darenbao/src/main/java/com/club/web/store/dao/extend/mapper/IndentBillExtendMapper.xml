@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.IndentBillExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.IndentBillVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="indent_id" property="indentId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, indent_id, `status`, create_time
+  </sql>
+  
+  <update id="updateStatusByIndentId" parameterType="com.club.web.store.dao.base.po.IndentBill" >
+    update indent_bill
+    <set >
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getShopIdAndSkuId" resultType="map">
+        select COALESCE(s.supply_price,0) as supplyPrice
+		FROM store_subbranch ssub 
+		LEFT JOIN store_supply_price s ON s.good_sku_id = #{skuId} AND ssub.level_id = s.store_level_id
+		where ssub.id=#{shopId}
+  </select>
+</mapper>

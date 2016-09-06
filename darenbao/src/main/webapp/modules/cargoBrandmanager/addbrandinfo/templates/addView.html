@@ -1,0 +1,76 @@
+<div class="ui-dialog dialog-md cargoBrandManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建品牌信息</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="cargoBrand-form">
+                    <input type="hidden" name="id">
+                    <input type="hidden" name="createTime">
+                    <input type="hidden" name="createBy">
+                    <input type="hidden" name="updateTime">
+                    <input type="hidden" name="updateBy">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">logo：</label>
+                      <!--       <div class="input-group col-md-8">
+                                <span class="btn fileinput-button">
+                                    <img src="./image/add.png" class="addBrandLogo">
+                                    <input class="logo-fileupload-select" type="file" accept=".gif,.jpg,.jpeg,.png">
+                                    <input type="hidden" name="logo">
+                                </span>
+                            </div> -->
+                             <div class="btn-group" >
+						       <div class="flex-container" id="logo_img_container"></div>
+						       <input type="hidden" name="logo">
+						       <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为140*140</span>
+					         </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">品牌名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control editBrandName" name="name" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">网址：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="url" data-rule="url;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">生产商名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="supplierName" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">品牌推荐：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="brandRecommendation" class="form-control" data-rule="required">
+	                                    <option value="1" selected="selected">是</option>
+	                                    <option value="0">否</option>
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

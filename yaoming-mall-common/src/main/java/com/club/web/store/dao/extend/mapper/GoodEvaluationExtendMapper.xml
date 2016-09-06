@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.GoodEvaluationExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.GoodEvaluationVo">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_SKUID" property="goodSkuid" jdbcType="BIGINT" />
+    <result column="user" property="user" jdbcType="BIGINT" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="evaluate_time" property="evaluateTime" jdbcType="TIMESTAMP" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <select id="selectEvaluationByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select *
+    from good_evaluation where good_Skuid in (select id from trade_good_sku
+    where trade_good_sku.good_id = #{goodId});
+  </select>
+  
+  <delete id="deleteBySkuId" parameterType="java.lang.Long" >
+    delete from good_evaluation
+    where good_skuid = #{goodSkuId}
+  </delete>
+  
+  <delete id="deleteByGoodId" parameterType="java.lang.Long" >
+    delete from good_evaluation
+    where good_skuid in (select id from trade_good_sku
+    where trade_good_sku.good_id = #{goodId});
+  </delete>
+  
+</mapper>

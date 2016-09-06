@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.GoodsColumnExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.store.vo.GoodsColumnVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="shop_ID" property="shopId" jdbcType="BIGINT" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
+		<result column="rule_source_ID" property="ruleSourceId" jdbcType="BIGINT" />
+		<result column="order_by" property="orderBy" jdbcType="INTEGER" />
+		<result column="statue" property="statue" jdbcType="INTEGER" />
+		<result column="showYn" property="showyn" jdbcType="CHAR" />
+		<result column="showPicture" property="showpicture" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="rule_ID" property="ruleId" jdbcType="BIGINT" />
+		<result column="valueId" property="valueId" jdbcType="BIGINT" />
+		<result column="rule_val" property="ruleVal" jdbcType="VARCHAR" />
+		<result column="rule_ID2" property="ruleId2" jdbcType="BIGINT" />
+		<result column="rule_startTime" property="ruleStarttime" jdbcType="TIMESTAMP" />
+		<result column="rule_endTime" property="ruleEndtime" jdbcType="TIMESTAMP" />
+		<result column="sourceId" property="sourceId" jdbcType="BIGINT" />
+		<result column="rule_number" property="ruleNumber" jdbcType="INTEGER" />
+		<result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
+		<result column="showPictureId" property="showpictureId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ColumnsGoodMap" type="com.club.web.store.vo.GoodListVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
+		<result column="column_id" property="columnId" jdbcType="BIGINT" />
+		<result column="score" property="score" jdbcType="INTEGER" />
+		<result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+		<result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+		<result column="showPicture" property="showPicture" jdbcType="VARCHAR" />
+		<result column="columnPicture" property="columnPicture" jdbcType="VARCHAR" />
+		<result column="img_square" property="imgSquare" jdbcType="VARCHAR" />
+		<result column="img_rectangle" property="imgRectangle" jdbcType="VARCHAR" />
+		<result column="img_large" property="imgLarge" jdbcType="VARCHAR" />
+		<result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="IndexResultMap" type="com.club.web.store.vo.GoodsColumnIndexVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="column_name" property="columnName" jdbcType="VARCHAR" />
+		<result column="show_picture" property="showpicture" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, shop_ID, `column_name`, rule_source_ID, order_by,
+		status, showYn,
+		(select i.pic_url from image i where
+		i.id=showPicture)
+		as showPicture,
+		create_by, create_time, update_by, update_time,
+		showPicture
+		showPictureId,
+		r.rule_ID,
+		r.rule_val, r.valueId, r.sourceId,
+		r.rule_name, r.rule_number,
+		r.rule_startTime, r.rule_endTime,
+		r.rule_ID2
+	</sql>
+	<sql id="Good_Column_List">
+		tg.id,tg.name,gc.column_name,gc.id
+		column_id,ge.score,tgs.market_price,tgs.sale_price,ifnull(tg.sale_num,0) as sale_num,
+		(select i.pic_url from image i where i.id=cargo.small_image_id) as showPicture,
+		(select i.pic_url from image i where i.id=gc.showPicture) as columnPicture,
+		(select i.pic_url from image i where i.id=tg.img_square) as img_square,
+		(select i.pic_url from image i where i.id=tg.img_large) as img_large,
+		(select i.pic_url from image i where i.id=tg.img_rectangle) as img_rectangle
+	</sql>
+
+	<select id="selectGoodsColumnByColumnName" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from goods_column as gc LEFT JOIN (select rv.ID
+		valueId,rv.rule_ID,rv.rule_val,rv.rule_ID2,rv.rule_startTime,
+		rv.rule_endTime,rs.rule_number,rs.rule_name,rs.ID sourceId from
+		rule_value rv left join rule_source rs on rv.rule_ID =
+		rs.ID) r on
+		gc.rule_source_ID = r.valueId
+		where 1=1
+		<if test="columnName != null">
+			and column_name like #{columnName}
+		</if>
+		<if test="shopYn != null">
+			and (shop_ID = #{shopYn} or shop_ID is null)
+		</if>
+		order by order_by desc, create_time desc
+		limit #{start},#{limit}
+	</select>
+
+	<select id="queryGoodsColumnCountPage" resultType="java.lang.Long" parameterType="map">
+		select
+		count(1) as count
+		from goods_column
+		where 1=1
+		<if test="columnName != null">
+			and column_name like #{columnName}
+		</if>
+		<if test="shopYn != null">
+			and (shop_ID = #{shopYn} or shop_ID is null)
+		</if>
+	</select>
+
+	<update id="updateStatusForGoodsColumnById" parameterType="com.club.web.store.dao.base.po.GoodsColumn">
+		update goods_column
+		<set>
+			<if test="status != null">
+				`status` = #{status},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<select id="selectColumnAllGoods" resultMap="ColumnsGoodMap" parameterType="map">
+		SELECT
+		<include refid="Good_Column_List" />
+		from(select t1.*,(select count(1) from trade_good where
+		category=t1.category and create_time &lt; t1.create_time AND
+		status =
+		1) as group_id,
+		(SELECT count(1) from trade_good where `status` = 1 and
+		t1.category =
+		trade_good.category) as
+		total
+		from trade_good t1) tg
+		LEFT
+		JOIN goods_column gc ON tg.category = gc.id
+		LEFT JOIN cargo ON
+		tg.cargo_id = cargo.id
+		<if test="classifyIds != null">
+			and cargo.classify_id in
+			<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		LEFT JOIN (select id,good_id,max(market_price)
+		market_price,min(sale_price) sale_price from trade_good_sku group by
+		good_id) tgs ON tg.id = tgs.good_id
+		LEFT JOIN good_evaluation ge ON
+		ge.id = tgs.id
+		where tg.category in (SELECT id FROM
+		goods_column ORDER
+		BY create_time
+		DESC) AND tg.status = 1 AND tg.group_id BETWEEN
+		tg.total-6 and
+		tg.total
+		ORDER BY group_id
+		DESC
+	</select>
+
+	<select id="selectGoodsByColumnId" resultMap="ColumnsGoodMap" parameterType="map">
+		SELECT
+		<include refid="Good_Column_List" />
+		FROM goods_column gc
+		LEFT JOIN trade_good tg ON tg.category = gc.id AND tg.status = 1
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id
+		<if test="classifyIds != null">
+			and cargo.classify_id in
+			<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		LEFT JOIN (select id,good_id,max(market_price) market_price,min(sale_price) sale_price
+		from trade_good_sku group by good_id) tgs ON tg.id = tgs.good_id
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id
+		where gc.id = #{columnId}
+		ORDER BY gc.id,tg.sort DESC,tg.create_time DESC limit #{start},#{limit}
+	</select>
+
+	<select id="selectColumnsGood" resultMap="ColumnsGoodMap" parameterType="map">
+		SELECT
+		<include refid="Good_Column_List" />
+		from goods_column gc LEFT JOIN
+		(select d.`name`, d.category, d.sort, d.create_time, (
+		select
+		count(1) from (
+		select a.id, a.category, @rownum_a:=@rownum_a+1 as
+		rownum
+		from trade_good a, (select @rownum_a:=0) b
+		where a.status=1
+		order
+		by a.category, a.sort desc, a.create_time desc
+		) c
+		where
+		c.category=d.category and d.rownum>c.rownum) as
+		group_id,d.`status`,d.cargo_id,d.sale_num,
+		d.id,d.img_rectangle,d.img_large,d.img_square
+		from (
+		select a.id, a.name,
+		a.category, a.sort,
+		a.`status`,a.cargo_id,a.img_rectangle,a.img_square,a.img_large,a.sale_num,
+		a.create_time, @rownum_d:=@rownum_d+1 as
+		rownum
+		from trade_good a,
+		(select @rownum_d:=0) b
+		where a.status=1
+		order by a.category, a.sort
+		desc, a.create_time desc
+		) d
+		ORDER BY d.category, d.sort desc,
+		d.create_time desc) tg ON tg.category = gc.id AND tg.status = 1 AND tg.group_id &lt;
+		6
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id
+		<if test="classifyIds != null">
+			and cargo.classify_id in
+			<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		LEFT JOIN (select id,good_id,max(market_price)
+		market_price,min(sale_price) sale_price from trade_good_sku group by
+		good_id) tgs ON tg.id = tgs.good_id
+		LEFT JOIN good_evaluation ge ON
+		ge.id = tgs.id
+		where gc.id in (SELECT id FROM
+		goods_column ORDER
+		BY create_time
+		DESC)
+		ORDER BY
+		gc.id DESC
+	</select>
+
+	<select id="selectNoRuleGoodsColumn" resultMap="IndexResultMap">
+		SELECT
+		g.id,g.column_name,
+		(select i.pic_url from image i where
+		i.id=g.showPicture) as
+		show_picture
+		from goods_column g
+		where
+		g.status=1 and (g.showYn is null or g.showYn='')
+		and not
+		exists(select * from rule_value
+		r where r.id=g.rule_source_ID and
+		(r.rule_ID is not null or r.rule_ID2
+		is not null)) order by g.order_by desc
+	</select>
+	<select id="selectRuleGoodsColumn" resultMap="IndexResultMap">
+		SELECT
+		g.id,g.column_name,
+		(select i.pic_url from image i where i.id=g.showPicture) as
+		show_picture
+		from goods_column g
+		where
+		g.status=1 and
+		(g.showYn is null or g.showYn='')
+		and not exists(select * from rule_value
+		r where r.id=g.rule_source_ID and
+		(r.rule_ID is
+		null and r.rule_ID2 is
+		null))
+		order by g.order_by desc
+	</select>
+	<select id="selectAllGoodsColumn" resultMap="BaseResultMap">
+	  select * from goods_column
+	</select>
+</mapper>

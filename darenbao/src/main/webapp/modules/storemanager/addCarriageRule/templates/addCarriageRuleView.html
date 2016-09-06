@@ -1,0 +1,69 @@
+<div class="ui-dialog dialog-md carriageRuleWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建模板</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default" style="margin-bottom: 0">
+			<div class="panel-body">
+				<input type="hidden" name="carriageRuleId"/>
+				<div class="col-md-12">
+					<div class="form-group required">
+						<label class="col-md-2 control-label">模板名称：</label>
+						<div class="input-group col-md-10">
+							<div class="col-md-6">
+								<input class="form-control" name="templateName" data-rule="required">
+							</div>
+							<div class="col-md-6">
+								<span style="font-size:10px;color: #B0B0B0">备注：建议不超过20个字</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group required">
+						<label class="col-md-2 control-label">默认运费：</label>
+						<div class="input-group col-md-10">
+							<div class="col-md-1">运费</div>
+							<div class="col-md-2">
+								<input class="form-control" name="carriage" data-rule="required;integer+;">
+							</div>
+							<div class="col-md-1">元</div>
+							<div class="col-md-8">
+								<span style="font-size:10px;color: #B0B0B0">
+									备注：以下配送区域除外的地区，运费为默认运费金额。
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label class="col-md-2 control-label">配送区域：</label>
+						<div class="input-group col-md-10">
+							<div style="overflow: auto;height: 280px;">
+								<!-- <form class="form-horizontal" name="carriageRuleForm"> -->
+								<table class="gridtable" >
+									<tr align="center col-md-12">
+										<th class="col-md-2" style="text-align: center;">订单满额(元)</th>
+										<th class="col-md-2" style="text-align: center;">满额运费</th>
+										<th class="col-md-2" style="text-align: center;">未满运费</th>
+										<th class="col-md-4">可配送区域</th>
+										<th class="col-md-2" style="text-align: center;"></th>
+									</tr>
+								</table>
+								<!-- </form> -->
+							</div>
+							<div>
+								<a href="javaScript:void(0)" class="btn" action="add">新增配送区域</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" action="save-button">保存</button>
+				<button type="button" class="btn btn-default" action="cancel-button">返回</button>
+			</div>
+		</div>
+	</div>
+</div>

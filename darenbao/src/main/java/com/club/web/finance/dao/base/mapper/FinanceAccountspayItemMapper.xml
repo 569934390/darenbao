@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.finance.dao.base.FinanceAccountspayItemMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.finance.dao.base.po.FinanceAccountspayItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="mainid" property="mainid" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="customerid" property="customerid" jdbcType="BIGINT" />
+    <result column="customercode" property="customercode" jdbcType="VARCHAR" />
+    <result column="customername" property="customername" jdbcType="VARCHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="originalamount" property="originalamount" jdbcType="DECIMAL" />
+    <result column="itemcode" property="itemcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mainid, `type`, customerid, customercode, customername, departmentcode, amount, 
+    originalamount, itemcode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from finance_accountspay_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspayItem" >
+    insert into finance_accountspay_item (id, mainid, `type`, 
+      customerid, customercode, customername, 
+      departmentcode, amount, originalamount, 
+      itemcode)
+    values (#{id,jdbcType=BIGINT}, #{mainid,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{customerid,jdbcType=BIGINT}, #{customercode,jdbcType=VARCHAR}, #{customername,jdbcType=VARCHAR}, 
+      #{departmentcode,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{originalamount,jdbcType=DECIMAL}, 
+      #{itemcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspayItem" >
+    insert into finance_accountspay_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mainid != null" >
+        mainid,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="customerid != null" >
+        customerid,
+      </if>
+      <if test="customercode != null" >
+        customercode,
+      </if>
+      <if test="customername != null" >
+        customername,
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="originalamount != null" >
+        originalamount,
+      </if>
+      <if test="itemcode != null" >
+        itemcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mainid != null" >
+        #{mainid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null" >
+        #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null" >
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentcode != null" >
+        #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="originalamount != null" >
+        #{originalamount,jdbcType=DECIMAL},
+      </if>
+      <if test="itemcode != null" >
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspayItem" >
+    update finance_accountspay_item
+    <set >
+      <if test="mainid != null" >
+        mainid = #{mainid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null" >
+        customercode = #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null" >
+        customername = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="originalamount != null" >
+        originalamount = #{originalamount,jdbcType=DECIMAL},
+      </if>
+      <if test="itemcode != null" >
+        itemcode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspayItem" >
+    update finance_accountspay_item
+    set mainid = #{mainid,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=INTEGER},
+      customerid = #{customerid,jdbcType=BIGINT},
+      customercode = #{customercode,jdbcType=VARCHAR},
+      customername = #{customername,jdbcType=VARCHAR},
+      departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      originalamount = #{originalamount,jdbcType=DECIMAL},
+      itemcode = #{itemcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

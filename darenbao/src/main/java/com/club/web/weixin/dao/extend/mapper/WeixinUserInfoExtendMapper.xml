@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.weixin.dao.extend.WeixinUserInfoExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.weixin.vo.WeixinUserInfoVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="openId" property="openid" jdbcType="VARCHAR" />
+		<result column="subscribe" property="subscribe" jdbcType="BIGINT" />
+		<result column="subscribeTime" property="subscribetime" jdbcType="TIMESTAMP" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="BIGINT" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="headImgUrl" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="weixin_num" property="weixinNum" jdbcType="VARCHAR" />
+		<result column="person_sign" property="personSign" jdbcType="VARCHAR" />
+		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, openId, subscribe, subscribeTime, nickname, sex,
+		country,province ,
+		city, `language`,
+		headImgUrl,
+		user_name, tel,
+		birthday, weixin_num, person_sign, last_login_time,
+		create_time
+	</sql>
+
+	<select id="findByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from weixin_user_info
+		where openId = #{openId}
+	</select>
+
+	<select id="queryWeixinFansPage" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from weixin_user_info
+		where 1=1
+		<if test="name != null">
+			and(
+			(user_name like #{name})
+			or
+			(nickname like #{name})
+			)
+		</if>
+		<if test="address != null">
+			and(
+			(country like #{address})
+			or
+			(province like #{address})
+			or
+			(city like #{address})
+			)
+		</if>
+		<if test="startTime != null and endTime !=null and startTime != '' and endTime !=''">
+			and(
+			date_format(create_time,'%Y-%m-%d') between #{startTime} and #{endTime}
+			)
+		</if>
+		limit #{start},#{limit}
+	</select>
+	<select id="queryWeixinFansCountPage" resultType="java.lang.Long" parameterType="map">
+		select
+		count(1) as count
+		from weixin_user_info
+		where 1=1
+		<if test="name != null">
+			and(
+			(user_name like #{name})
+			or
+			(nickname like #{name})
+			)
+		</if>
+		<if test="address != null">
+			and(
+			(country like #{address})
+			or
+			(province like #{address})
+			or
+			(city like #{address})
+			)
+		</if>
+		<if test="startTime != null and endTime !=null and startTime != '' and endTime !=''">
+			and(
+			date_format(create_time,'%Y-%m-%d') between #{startTime} and #{endTime}
+			)
+		</if>
+	</select>
+	<resultMap id="FansBaseMap" type="com.club.web.weixin.vo.FansMsgVo">
+		<result column="nickname" property="nickName" />
+		<result column="headImgUrl" property="picUrl" />
+	</resultMap>
+	<select id="getFansList" resultMap="FansBaseMap">
+		select u.nickname,u.headImgUrl from weixin_store_weixinuser w left join
+		weixin_user_info u on w.weixinuser_id=u.id
+		where w.store_id=#{shopId}
+		limit #{startIndex},#{pageSize}
+	</select>
+</mapper>

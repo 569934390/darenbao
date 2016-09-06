@@ -1,0 +1,129 @@
+<style>
+    .vouch-datail{
+        background: #F8F8F8;
+    }
+    .vouch-datail .scroll-content{
+        margin-top: 2rem;
+    }
+    .vouch-datail h2, .vouch-datail p{
+        padding: 0;
+        margin: 0;
+    }
+    .vouch-datail .sort-banner{
+        width:100%;
+        height: 2rem;
+        display: block;
+        background-color: #ffffff ;
+        right: 0;
+        left: 0;
+        margin-top:44px;
+        position: absolute;
+        z-index: 1000;
+    }
+    .vouch-datail .sort-50{
+        color: black;
+        background-color: #ffffff;
+        display: inline-block;
+        font-size: .8rem;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 49%;
+        height:1.4rem;
+        margin: 0.3rem 0;
+    }
+    .vouch-datail .sort-50:first-child{
+        border-right: dashed 1px #e0e0e0;
+    }
+    .vouch-datail .sort-bottom-active{
+        border-bottom: 1px solid #ff5555!important;
+        width: 50%;
+        margin: 0 auto;
+    }
+    .vouch-datail .sort-text-active-act-person{
+        color: #ff5555 !important;
+    }
+    .vouch-datail .sort-text{
+        width: 100%;
+        text-align: center;
+    }
+    .vouch-datail .sort-text span.vouch-text-bg{
+        display: inline-block;
+        padding:.3rem .85rem;
+        border-bottom: 1px solid #ff5555;
+        font-size:.8rem;
+        line-height: .8rem;
+        font-weight: normal;
+    }
+    .vouch-datail .sort-text span{
+        display: inline-block;
+        padding:.3rem .85rem;
+        font-size:.8rem;
+        line-height: .8rem;
+        font-weight: normal;
+    }
+    .vouch-datail .item h3{
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
+</style>
+<ion-view title="卡券兑换" class="vouch-datail">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">卡券兑换</div>
+       <div class="head-right-btn" style="margin-right: 0.5rem;" ui-sref="searchVouchList({shopId:'{{shopId}}'})">
+            <img src="img/search.png">
+        </div>
+    </ion-header-bar>
+    <div class="sort-banner">
+        <div class="sort-50" ng-click="getTabVouchDetailList(1)">
+            <div class="sort-text sort-right-dashed">
+                <div ng-class="{'sort-text-active-vouch':  vouchDetailT==true}"><span ng-class="{'vouch-text-bg':  vouchDetailT==true}">未兑换</span></div>
+            </div>
+        </div>
+        <div class="sort-50" ng-click="getTabVouchDetailList(2)">
+            <div class="sort-text">
+                <div ng-class="{'sort-text-active-vouch':  vouchDetailT==false}"><span ng-class="{'vouch-text-bg':  vouchDetailT==false}">已兑换</sapn></div>
+            </div>
+        </div>
+    </div>
+ <ion-content  overflow-scroll="false" class="good-list-content" lazy-scroll delegate-handle="mainScroll-vouch">
+     <ion-refresher
+            pulling-text="下拉刷新..."
+            on-refresh="doRefresh()">
+    </ion-refresher>   
+    <div class="list" ng-if="vouchDataT">
+		     <div class="item" style="margin: 0.4rem; padding: 0; border-radius: 4px" ng-if="vouchDetailT" ng-repeat="vouch in vouchDetails">
+			      <h3 style="background:url({{vouch.status!=1?'img/group_bg.png':'img/vouch_bg.png'}});background-size: 100% 100%; margin: 0;padding: 0 0.5rem; font-size: 0.8rem;height: 2.25rem; line-height:2.25rem;color: #FFFFFF" >
+			      	<span>{{vouch.code}}</span>
+			      	<span style="float: right;margin-right: 0.5rem">{{vouch.statusName}}</span>
+			      </h3>
+			      <!--<h3>每个用户限用一张</h3>-->
+			      <h3 style="padding-bottom: 0.4rem">有效期:&nbsp;&nbsp;{{vouch.beginDate}} 至  {{vouch.endDate}}
+			      	 <img style="width:1.2rem;position: relative;float: right;margin-right: 0.5rem;display: {{vouch.status==1?'':'none'}};" ng-click="setVoucherStatus(vouch.id)" src="img/forbiden.png"/>
+			      </h3>
+   			 </div>
+		     <div class="item" style="margin: 0.4rem; padding: 0; border-radius: 4px" ng-if="vouchDetailF" ng-repeat="vouch in vouchDetails">
+			      <h3 style="background:url('img/group_bg_l.png');background-size: 100% 100%; margin: 0;padding: 0 0.5rem; font-size: 0.8rem;height: 2.25rem; line-height:2.25rem;color: #FFFFFF" >
+			      	<span>{{vouch.code}}</span>
+			      	<span style="float: right;margin-right: 0.5rem">已兑换</span>
+			      </h3>
+			      <!--<h3>每个用户限用一张</h3>-->
+			      <h3 style="padding-bottom: 0.4rem">有效期:&nbsp;&nbsp;{{vouch.beginDate}} 至  {{vouch.endDate}}</h3>
+   			 </div>
+		</div >
+		<div  ng-if="vouchDataF" style="text-align: center;margin-top: 30%;">
+		      <img src="img/vouch.png" style="width: 9rem;">
+		      <h3 style="font-size: 0.8rem;color: #989898;font-weight: bold;">暂无卡券信息</h3>
+		      <!-- <h3 style="font-size: 0.8rem;color: #989898;font-weight: bold;">快去添加吧!</h3> -->
+		</div >
+		 <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="loadMore()"
+                immediate-check="false"
+                distance=10%">
+        </ion-infinite-scroll>		
+    </ion-content>
+</ion-view>

@@ -1,0 +1,101 @@
+<div class="ui-dialog dialog-md billWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建账单</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="bill-form">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <input type="hidden" name="bizId">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">账号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="accountId" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">科目：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="itemId" data-rule="required;" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">类型：</label>
+                            <div class="input-group col-md-8">
+                                <select name="type" class="form-control" data-rule="required;">
+                                    <option value="1" selected="selected">应收</option>
+                                    <option value="2">应付</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">收款方：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="inClient" data-rule="required;" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">付款方式：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="outClient" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">单据号：</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" class="form-control" name="orderId" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">金额：</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" class="form-control" name="money" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">付款日期：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="createDate" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">状态：</label>
+                            <div class="input-group col-md-8">
+                                <select name="state" class="form-control" data-rule="required;">
+                                    <option value="00B" selected="selected">待审核</option>
+                                    <option value="00C">审核失败</option>
+                                    <option value="00X">删除</option>
+                                    <option value="00A">审核通过</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

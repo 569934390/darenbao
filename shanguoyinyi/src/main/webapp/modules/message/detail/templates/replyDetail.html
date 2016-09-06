@@ -1,0 +1,33 @@
+<div class="ui-dialog dialog-md replyWindow">
+	<style type="text/css">
+	.replyWindow .outputImg{
+		float: right;
+		max-width: 200px;
+		background: 100% 100%;
+	}
+	.replyWindow .inputDiv img{
+		float: left;
+		max-width: 200px;
+		background: 100% 100%;
+	}
+	</style>
+	<div class="modal-header">
+		<h4 class="modal-title">回复</h4>
+	</div>
+	<div class="modal-body" style="height: 100%;padding:10px">
+		<a id="loadDate" href="javascript:;">查看更多消息</a>
+		<div class="form-group col-md-12" id="outputContent"
+			style="height: 55%;overflow-y: scroll;">
+			</div>
+		<div class="form-group col-md-12" id="inputContent">
+			<form class="form-horizontal" name="reply-form">
+				<input type="hidden" name="messageId" /> 
+				<input type="hidden" name="senderId" />
+				<textarea rows="3" style="width: 100%; resize: none" id="messageContent"></textarea>
+				<div class="flex-container" id="small_img_container" style="float: left;"></div>
+				<button class="btn btn-info" action="send" style="float: right;">发送</button>
+				<label style="float: right;margin-right:10px">可按Ctrl+Enter发送消息</label>
+			</form>
+		</div>
+	</div>
+</div>

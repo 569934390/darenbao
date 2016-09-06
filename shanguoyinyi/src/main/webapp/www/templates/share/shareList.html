@@ -1,0 +1,134 @@
+<style>
+    .title{
+        font-size:0.8rem;
+        color: #000000;
+        padding: 0 !important;
+        text-align: center;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+    }
+    .title div img{
+        width: 1.4rem;
+        vertical-align: bottom;
+    }
+    .item-thumbnail-right{
+        border: none!important;
+        border-top: solid #f5f5f5 2px !important;
+        padding: 0.65rem 0.75rem !important;
+        margin: 0 !important;
+    }
+    .item-thumbnail-right img.yx_rimg{
+        max-width: 5.6rem;
+        max-height:4.05rem;
+        min-width: 5.6rem;
+        min-height: 4.05rem;
+    }
+    .item-thumbnail-right > img:first-child{
+       top:0.65rem !important;
+        right: 0.75rem !important;
+    }
+    .yx_max {
+        width: 60%;
+        position: relative;
+        height: 4.05rem;
+    }
+    .yx_max h2.name {
+        width: 100%;
+        overflow : hidden !important;
+        text-overflow: ellipsis !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space:normal;
+        font-size:0.8rem;
+        color: #000000;
+        margin: 0;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+    }
+    .yx_lm{
+        position: absolute;
+        bottom: 0;
+        padding: 0;
+    }
+    .yx_lm div{
+        padding: 0;
+        font-size: 0.7rem;
+        color: #000000;
+        filter:alpha(opacity=54);
+        -moz-opacity:0.54;
+        -khtml-opacity: 0.54;
+        opacity: 0.54;
+    }
+    .yx_lm div:nth-child(2){
+        text-align: right;
+        padding-right:0.6rem
+    }
+    .spreadInfo {
+        max-width: 1.4rem;
+        max-height:1.4rem;
+        vertical-align:bottom;
+    }
+    .ym-search1 {
+        position: absolute;
+        right:0;
+    }
+    .spread_list_marg .scroll-content {
+        margin-top:1.7rem;
+    }
+    @media(min-width: 401px) {
+        .ym-tab-menu {
+            margin-top: 1.65rem;
+        }
+    }
+    @media(max-width: 400px) {
+        .ym-tab-menu {
+            margin-top: 2.1rem;
+        }
+    }
+</style>
+<ion-view title="营销推广" class="spread_img spread_list_marg">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">营销推广</h1>
+        <ym-search data="searchData" class="ym-search1"></ym-search>
+    </ion-header-bar>
+    <ym-tab-menu data="tabMenuData" onselect="select"></ym-tab-menu>
+    <ion-content>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+
+        <ion-list  ng-repeat="spread in spreadList">
+            <ion-item class=" item-thumbnail-right " ng-click="goSpreadDetail($index)">
+                <img class="yx_rimg" image-lazy-src="{{spread.url+'-img01'}}" background-img="img/mrtp_82_62.png" lazy-scroll-resize="true" err-src="img/mrtp_82_62.png" >
+                <div class="yx_max">
+                    <h2 class="name">{{spread.name}}</h2>
+                    <div class="row yx_lm">
+                        <div class="col col-50">
+                        <img src="img/yxtg_sj.png" class="spreadInfo">
+                        {{spread.updateTime1}}
+                        </div>
+                        <div class="col col-50">
+                            <img src="img/yxtg_ll.png" class="spreadInfo" style="margin-left: 20px">
+                            {{spread.readNum}}
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="loadMore()"
+                immediate-check="false"
+                distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

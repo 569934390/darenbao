@@ -1,0 +1,47 @@
+<div class="row opinion-manager">
+	<div id="tabs" class="ui-tabs-panel">
+		<div class="row">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<div class="navbar-form navbar-left" role="search">
+						<div class="form-group col-md-12">
+							版本名称：<input type="text" name="iversionName" class="form-control">
+							反馈类型：<select name="iopinionType" class="form-control">
+								<option value="" selected="selected">全部</option>
+								<option value="1">BUG</option>
+								<option value="2">建议</option>
+							</select>
+							平台：<select name="iplatform" class="form-control">
+								<option value="" selected="selected">全部</option>
+								<option value="0">安卓</option>
+								<option value="1">苹果</option>
+							</select>
+							反馈时间：
+							<div class="input-group">
+								<input type="text" field="datetime" class="form-control"
+									name="istartTime" data-rule="match[lt, endTime, date]">
+							</div>
+							到
+							<div class="input-group">
+								<input type="text" name="iendTime" field="datetime"
+									class="form-control">
+							</div>
+							<button class="btn btn-info" action="search" title="搜索">
+								搜索<i class="fa fa-search"></i>
+							</button>
+							<button class="btn btn-info" action="refresh" title="刷新">
+								<i class="glyphicon glyphicon-refresh"></i>
+							</button>
+							<button class="btn btn-info" action="show" title="查看">查看</button>
+							<button class="btn btn-info" action="del" title="删除">删除</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="width: 99%">
+			<div class="col-md-12" id="opinion-manager-content-div"></div>
+		</div>
+	</div>
+</div>

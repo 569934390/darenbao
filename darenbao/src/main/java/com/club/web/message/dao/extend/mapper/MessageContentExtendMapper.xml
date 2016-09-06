@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.message.dao.extend.MessageContentExtendMapper" >
+  <resultMap id="MessageContentPageVo" type="com.club.web.message.vo.MessageContentPage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="message_id" property="messageId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="sender_id" property="senderId" jdbcType="BIGINT" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="MessageContentPageColumn" >
+    id, message_id, content, `type`, sender_id, send_time, `status`
+  </sql>
+  <select id="queryListByMap" resultMap="MessageContentPageVo">
+  	select 
+    	<include refid="MessageContentPageColumn" />
+  	from message_content where message_id = #{messageId}
+    order by id desc
+    <if test="startIndex != null and limit != null">
+    limit #{startIndex},#{limit}
+    </if>
+  </select>
+  <delete id="deleteByBeforeTime">
+    delete from message_content mc
+    where mc.message_id in (select id from message m where m.type = 1) and mc.send_time &lt;= #{beforeTime}
+  </delete>
+     	
+   <update id="updateContentStatus">  
+  	  	update message_content mc set mc.`status` = 1 where mc.message_id 
+		in (select m.id from message m where m.type=1 
+		<if test="clientId != null and storeId != null" ><!-- 用户 -->
+	  	  	and m.client_id = #{clientId} and m.store_id = #{storeId}
+	    </if>
+	    <if test="operateType == 'client'" ><!-- 修改客服消息已读状态 -->
+	  	  	and (mc.sender_id = m.store_id or mc.sender_id = -1)
+	    </if>
+	    <if test="messageId != null" ><!-- 客服 -->
+	  	  	and m.id = #{messageId}
+	    </if>
+	    <if test="operateType == 'store'" ><!-- 修改用户消息已读状态 -->
+	  	  	and mc.sender_id = m.client_id
+	    </if>
+		);
+    </update>
+    <update id="updateNewsReplay">  
+  	  	update message_content mc set mc.sender_id = IFNULL((select m.store_id from message m where m.id = mc.message_id),'-1')
+  	  	where mc.id in 
+  	  	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+    </update>
+</mapper>

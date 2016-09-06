@@ -1,0 +1,60 @@
+<div class="ui-dialog dialog-md add-inbound-detail-manager" style="width: 70%">
+    <div class="modal-header">
+        <h4 id="add-title" class="modal-title">新增入库单</h4>
+    </div>
+    <div class="modal-body">
+         <div class="panel panel-default">
+                <div  id="add-head" class="panel-body">
+                     <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">来源单号：</label>
+                            <div class="input-group col-md-4">
+                                <input class="form-control" id="source_code" data-rule="required" onkeyup="this.value=this.value.replace(/[^u4e00-u9fa5w]/g,'')">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">添加备注：</label>
+                            <div class="input-group col-md-10">
+                                <input class="form-control" id="remk" data-rule="required;" onkeyup="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left: 20px;"><span><b>添加入库明细</b></span></div>
+		            <div class="row">
+		                <div class="container-fluid">
+		                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+		                      <div class="navbar-form navbar-left" role="search">
+		                        <div class="form-group">
+		                        	<label class="control-label">分类：</label>&nbsp;
+									<div class="input-group col-md-4" style="z-index: 1000;">
+										<input type="text" class="form-control" style="padding-left: 8px;" id="inbound_add_classify_name" name="inbound_add_classify_name" readonly="readonly" placeholder="请选择分类" data-rule="required;">
+										<input type="text" id="inbound_add_classify" name="inbound_add_classify" hidden="true" value="0">
+										<span class="input-group-addon">
+											<a href="javascript:void(0);" id="inbound-add-menuBtn" class="inforeport-add-triangle">
+												<span class="glyphicon glyphicon-triangle-bottom"></span>
+											</a>
+										</span>
+										<div class="menuContent" style="position: fixed;background-color:#00BFFF;width: 200px; max-height: 350px; overflow-y: auto;" id="tree_select_menu_html_inbound_add">
+											<ul id="treeDemoInboundAdd" class="ztree" style="width:auto;overflow: auto;z-index: 1000"></ul>
+										</div>
+									</div>&nbsp;&nbsp;&nbsp;&nbsp;
+						          <input type="text" name="matchParam" class="form-control" placeholder="货品名称 /货品编码">
+		                        </div>
+		                        &nbsp;&nbsp;<button class="btn btn-info" action="search-inbound-add">搜索</button>
+		                      </div>
+		                    </div>
+		                </div>
+		            </div>           
+			        <div class="row" style="margin-right:20px;">
+			            <div class="col-md-12 emgceval-content-div" id="add-inbound-rule-content-div">
+			            </div>
+			        </div>               
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="next-button">下一步</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>
+

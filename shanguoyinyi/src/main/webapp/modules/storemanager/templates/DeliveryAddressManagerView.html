@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-md-12 deliveryAddress-manager-main-view">
+		<div>
+			<div class="modal-body">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form class="form-horizontal" name="deliveryAddress-form">
+							<input type="hidden" name="id" /> <input type="hidden"
+								name="createTime" />
+							<div class="col-md-12 form-group area">
+								<div class="col-md-3 form-group required">
+									<label class="col-md-6 control-label">收货地址</label>
+									<div class="input-group col-md-6">
+										<select name="province" id="province" class="form-control provice" />
+									</div>
+								</div>
+								<div class="col-md-2 form-group">
+									<div class="input-group col-md-12">
+										<select name="city" id="city" class="form-control city" />
+									</div>
+								</div>
+								<div class="col-md-2 form-group">
+									<div class="input-group col-md-12">
+										<select name="county" id="county" class="form-control county" />
+									</div>
+								</div>
+								<div class="col-md-4 form-group">
+									<div class="input-group col-md-11">
+										<input class="form-control" placeholder="详细地址" name="address"
+											data-rule="required">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 form-group">
+								<div class="col-md-3 form-group required">
+									<label class="col-md-6 control-label">收货人</label>
+									<div class="input-group col-md-6">
+										<input class="form-control" name="name" data-rule="required">
+									</div>
+								</div>
+								<div class="col-md-2 form-group required">
+									<label class="col-md-12 control-label">电话</label>
+								</div>
+								<div class="col-md-2 form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" name="mobile" data-rule="required">
+									</div>
+								</div>
+								<div class="col-md-5 form-group">
+									<label class="col-md-3 control-label">邮编</label>
+									<div class="input-group col-md-5">
+										<input class="form-control" name="postcode">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 form-group">
+								<div class="col-md-9 form-group">
+									<label class="col-md-2 control-label">备注</label>
+									<div class="input-group col-md-9">
+										<textarea class="form-control" id="note" name="note"
+											style="height: 140px; word-break: normal; resize: none"></textarea>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" action="save">保存</button>
+				<button type="button" class="btn btn-default" action="clear">重置</button>
+			</div>
+		</div>
+	</div>
+</div>

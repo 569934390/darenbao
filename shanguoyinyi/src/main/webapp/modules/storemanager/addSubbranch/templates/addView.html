@@ -1,0 +1,157 @@
+<div class="ui-dialog dialog-md subbranchManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增分店</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="subbranch-form">
+					<input type="hidden" name="createBy"/> 
+					<input type="hidden" name="createTime"/>
+					<input type="hidden" name="storeId"/>
+					<input type="hidden" name="id"/>
+					<input type="hidden" name="updateTime"/> 
+					<input type="hidden" name="headImgUrl"/>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">店铺名称</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="name" maxlength="10">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">茶掌柜</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="userName">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">部门编号</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="departmentNum" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">店铺编号</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="number" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">手机账号</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" id="mobile" name="mobile" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">密码</label>
+							<div class="input-group col-md-8">
+								<input type="password" class="form-control" name="password" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">等级</label>
+							<div class="btn-group subbranchLevel-group"></div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">状态：</label>
+							<div class="input-group col-md-8">
+								<select name="state" class="form-control" data-rule="required;">
+									<option value="0" selected="selected">启用</option>
+									<option value="1">禁用</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">门店电话</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" id="phone" name="phone">
+							</div>
+						</div>
+					</div>
+				<!-- 	<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">邮箱</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="email" data-rule="required;">
+							</div>
+						</div>
+					</div> -->
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">微信号</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="weixin">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">店铺描述</label>
+							<div class="input-group col-md-8">
+								<textarea class="form-control" rows="5" cols="4"
+									id="description" name="description"
+									style="height: 140px; word-break: normal;"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+					<div class="form-group">
+						<label class="col-md-2 control-label">门店地址：</label>
+						<div class="area col-md-4">
+							<div class="form-group">
+								<select name="province" id="province" class="form-control provice" />
+							</div>
+							<div class="form-group">
+								<select name="city" id="city" class="form-control city" />
+							</div>
+							<div class="form-group">
+								<select name="country" id="country" class="form-control country" />
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">详细地址</label>
+							<div class="btn-group">
+								<input class="form-control" placeholder="详细地址" name="address"
+									style="width: 600px">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group ">
+							<label class="col-md-4 control-label">店铺图标</label>
+							<div class="btn-group">
+								<div class="flex-container" id="headImgUrl_img_container"></div>
+								<span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为160*160</span>
+							</div>
+						</div>
+					</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

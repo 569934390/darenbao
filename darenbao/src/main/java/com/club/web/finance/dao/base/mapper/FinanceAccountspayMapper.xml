@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.finance.dao.base.FinanceAccountspayMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.finance.dao.base.po.FinanceAccountspay" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderid" jdbcType="BIGINT" />
+    <result column="statue" property="statue" jdbcType="INTEGER" />
+    <result column="vouchtype" property="vouchtype" jdbcType="VARCHAR" />
+    <result column="vouchdate" property="vouchdate" jdbcType="DATE" />
+    <result column="customerid" property="customerid" jdbcType="BIGINT" />
+    <result column="customercode" property="customercode" jdbcType="VARCHAR" />
+    <result column="customername" property="customername" jdbcType="VARCHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="digest" property="digest" jdbcType="VARCHAR" />
+    <result column="balancecode" property="balancecode" jdbcType="VARCHAR" />
+    <result column="balanceitemcode" property="balanceitemcode" jdbcType="VARCHAR" />
+    <result column="foreigncurrency" property="foreigncurrency" jdbcType="VARCHAR" />
+    <result column="currencyrate" property="currencyrate" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="originalamount" property="originalamount" jdbcType="DECIMAL" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="U8OrderId" property="u8orderid" jdbcType="VARCHAR" />
+    <result column="U8AccountsId" property="u8accountsid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, orderId, statue, vouchtype, vouchdate, customerid, customercode, customername, 
+    departmentcode, digest, balancecode, balanceitemcode, foreigncurrency, currencyrate, 
+    amount, originalamount, `operator`, flag, note, U8OrderId, U8AccountsId, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from finance_accountspay
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspay" >
+    insert into finance_accountspay (id, code, orderId, statue, 
+      vouchtype, vouchdate, customerid, 
+      customercode, customername, departmentcode, 
+      digest, balancecode, balanceitemcode, 
+      foreigncurrency, currencyrate, amount, 
+      originalamount, `operator`, flag, 
+      note, U8OrderId, U8AccountsId, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{orderid,jdbcType=BIGINT}, #{statue,jdbcType=INTEGER}, 
+      #{vouchtype,jdbcType=VARCHAR}, #{vouchdate,jdbcType=DATE}, #{customerid,jdbcType=BIGINT}, 
+      #{customercode,jdbcType=VARCHAR}, #{customername,jdbcType=VARCHAR}, #{departmentcode,jdbcType=VARCHAR}, 
+      #{digest,jdbcType=VARCHAR}, #{balancecode,jdbcType=VARCHAR}, #{balanceitemcode,jdbcType=VARCHAR}, 
+      #{foreigncurrency,jdbcType=VARCHAR}, #{currencyrate,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, 
+      #{originalamount,jdbcType=DECIMAL}, #{operator,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{u8orderid,jdbcType=VARCHAR}, #{u8accountsid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspay" >
+    insert into finance_accountspay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="statue != null" >
+        statue,
+      </if>
+      <if test="vouchtype != null" >
+        vouchtype,
+      </if>
+      <if test="vouchdate != null" >
+        vouchdate,
+      </if>
+      <if test="customerid != null" >
+        customerid,
+      </if>
+      <if test="customercode != null" >
+        customercode,
+      </if>
+      <if test="customername != null" >
+        customername,
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode,
+      </if>
+      <if test="digest != null" >
+        digest,
+      </if>
+      <if test="balancecode != null" >
+        balancecode,
+      </if>
+      <if test="balanceitemcode != null" >
+        balanceitemcode,
+      </if>
+      <if test="foreigncurrency != null" >
+        foreigncurrency,
+      </if>
+      <if test="currencyrate != null" >
+        currencyrate,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="originalamount != null" >
+        originalamount,
+      </if>
+      <if test="operator != null" >
+        `operator`,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="u8orderid != null" >
+        U8OrderId,
+      </if>
+      <if test="u8accountsid != null" >
+        U8AccountsId,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="statue != null" >
+        #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="vouchtype != null" >
+        #{vouchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="vouchdate != null" >
+        #{vouchdate,jdbcType=DATE},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null" >
+        #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null" >
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentcode != null" >
+        #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="digest != null" >
+        #{digest,jdbcType=VARCHAR},
+      </if>
+      <if test="balancecode != null" >
+        #{balancecode,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceitemcode != null" >
+        #{balanceitemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="foreigncurrency != null" >
+        #{foreigncurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyrate != null" >
+        #{currencyrate,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="originalamount != null" >
+        #{originalamount,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="u8orderid != null" >
+        #{u8orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="u8accountsid != null" >
+        #{u8accountsid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspay" >
+    update finance_accountspay
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="statue != null" >
+        statue = #{statue,jdbcType=INTEGER},
+      </if>
+      <if test="vouchtype != null" >
+        vouchtype = #{vouchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="vouchdate != null" >
+        vouchdate = #{vouchdate,jdbcType=DATE},
+      </if>
+      <if test="customerid != null" >
+        customerid = #{customerid,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null" >
+        customercode = #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null" >
+        customername = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentcode != null" >
+        departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="digest != null" >
+        digest = #{digest,jdbcType=VARCHAR},
+      </if>
+      <if test="balancecode != null" >
+        balancecode = #{balancecode,jdbcType=VARCHAR},
+      </if>
+      <if test="balanceitemcode != null" >
+        balanceitemcode = #{balanceitemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="foreigncurrency != null" >
+        foreigncurrency = #{foreigncurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyrate != null" >
+        currencyrate = #{currencyrate,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="originalamount != null" >
+        originalamount = #{originalamount,jdbcType=DECIMAL},
+      </if>
+      <if test="operator != null" >
+        `operator` = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="u8orderid != null" >
+        U8OrderId = #{u8orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="u8accountsid != null" >
+        U8AccountsId = #{u8accountsid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.finance.dao.base.po.FinanceAccountspay" >
+    update finance_accountspay
+    set code = #{code,jdbcType=VARCHAR}, 
+      orderId = #{orderid,jdbcType=BIGINT},
+      statue = #{statue,jdbcType=INTEGER},
+      vouchtype = #{vouchtype,jdbcType=VARCHAR},
+      vouchdate = #{vouchdate,jdbcType=DATE},
+      customerid = #{customerid,jdbcType=BIGINT},
+      customercode = #{customercode,jdbcType=VARCHAR},
+      customername = #{customername,jdbcType=VARCHAR},
+      departmentcode = #{departmentcode,jdbcType=VARCHAR},
+      digest = #{digest,jdbcType=VARCHAR},
+      balancecode = #{balancecode,jdbcType=VARCHAR},
+      balanceitemcode = #{balanceitemcode,jdbcType=VARCHAR},
+      foreigncurrency = #{foreigncurrency,jdbcType=VARCHAR},
+      currencyrate = #{currencyrate,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      originalamount = #{originalamount,jdbcType=DECIMAL},
+      `operator` = #{operator,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      U8OrderId = #{u8orderid,jdbcType=VARCHAR},
+      U8AccountsId = #{u8accountsid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

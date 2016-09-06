@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.StoreLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.StoreLevel" >
+    <id column="level_Id" property="levelId" jdbcType="BIGINT" />
+    <result column="tra_ID" property="traId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="statue" property="statue" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.store.dao.base.po.StoreLevel" extends="BaseResultMap" >
+    <result column="store_pro" property="storePro" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    level_Id, tra_ID, `name`, statue, create_time, create_by, update_time, update_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    store_pro
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from store_level
+    where level_Id = #{levelId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from store_level
+    where level_Id = #{levelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.StoreLevel" >
+    insert into store_level (level_Id, tra_ID, `name`, 
+      statue, create_time, create_by, 
+      update_time, update_by, store_pro
+      )
+    values (#{levelId,jdbcType=BIGINT}, #{traId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{statue,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, #{storePro,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.StoreLevel" >
+    insert into store_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="levelId != null" >
+        level_Id,
+      </if>
+      <if test="traId != null" >
+        tra_ID,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="statue != null" >
+        statue,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="storePro != null" >
+        store_pro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="levelId != null" >
+        #{levelId,jdbcType=BIGINT},
+      </if>
+      <if test="traId != null" >
+        #{traId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="statue != null" >
+        #{statue,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="storePro != null" >
+        #{storePro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.StoreLevel" >
+    update store_level
+    <set >
+      <if test="traId != null" >
+        tra_ID = #{traId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="statue != null" >
+        statue = #{statue,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="storePro != null" >
+        store_pro = #{storePro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where level_Id = #{levelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.store.dao.base.po.StoreLevel" >
+    update store_level
+    set tra_ID = #{traId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      statue = #{statue,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      store_pro = #{storePro,jdbcType=LONGVARCHAR}
+    where level_Id = #{levelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.StoreLevel" >
+    update store_level
+    set tra_ID = #{traId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      statue = #{statue,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where level_Id = #{levelId,jdbcType=BIGINT}
+  </update>
+</mapper>

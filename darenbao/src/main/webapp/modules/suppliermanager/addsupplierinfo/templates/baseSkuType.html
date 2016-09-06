@@ -1,0 +1,34 @@
+<div class="ui-dialog dialog-md memberInfoWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新增规格</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="skuType-form">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                	<div hidden=""><input name="id"></div>
+	                <div class="form-group required">
+	                    <label class="col-md-4 control-label">规格类型：</label>
+	                    <div class="input-group col-md-6">
+	                        <select name="type" class="form-control editType" data-rule="required;">
+	                            <option value="1" selected="selected">文本</option>
+	                            <option value="2">值</option>
+	                            <option value="3">图</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="form-group required">
+	                    <label class="col-md-4 control-label">规格名称：</label>
+	                    <div class="input-group col-md-6">
+	                        <input class="form-control" name="name" data-rule="required;" >
+	                    </div>
+	                </div>
+                </div>
+            </div>
+    	</form>
+   	</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

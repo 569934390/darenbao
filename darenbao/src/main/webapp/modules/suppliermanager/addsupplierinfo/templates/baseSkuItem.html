@@ -1,0 +1,39 @@
+<div class="ui-dialog dialog-md baseSkuItemWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">查看规格值</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="skuType-form">
+            <div class="panel panel-default">
+                <div class="panel-body">
+	                <div class="row">
+	                	<input type="hidden" name="baseSkuTypeId" data-rule="required;">
+	                    <label>规格类型：</label>
+	                    <input type="hidden" name="type" data-rule="required;">
+	                    <input name="typeName" data-rule="required;" disabled="disabled">
+	                    &nbsp;&nbsp;
+	                    <label>规格名称：</label>
+                        <input name="name" data-rule="required;" disabled="disabled">
+	                </div>
+                </div>
+                <div>
+		    	<input name="skuName" data-rule="required;" placeholder="规格名称">
+		    	<input name="skuValue" data-rule="required;" placeholder="规格值" 
+		    	onkeyup="this.value=this.value.replace(new RegExp('~','g'),'')">(不能输入特殊符号~)
+			  	<div class="btn-group baseSkuItem">
+			       <div class="flex-container" id="logo_img_container"></div>
+			       <input type="hidden" name="logo">
+		        </div>
+        	</div>
+            </div>
+            <div class="row" style="margin-right:10px;">
+	            <div class="col-md-12 emgceval-content-div" id="baseSkuItem-info-content-div">
+	            </div>
+        	</div>
+    	</form>
+   	</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">新增规格</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

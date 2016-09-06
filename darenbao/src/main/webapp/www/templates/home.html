@@ -1,0 +1,153 @@
+<style>
+    .content-div{
+        position: absolute;
+        top: 44px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        margin-top: -1px;
+        padding-top: 1px;
+        margin-bottom: -1px;
+        width: auto;
+        height: auto;
+    }
+    .div-backgroud{
+        background: url("img/home_bj.png") no-repeat;
+        background-size: 100%;
+        height: 100%!important;
+        min-height: 100%!important;
+    }
+    .home-head{
+        position: relative;
+        margin: 1.5rem 1rem .5rem 1rem;
+        border: 1px solid #fff;
+        background-color: #fff;
+        border-radius: .75rem;
+        -webkit-border-radius: .75rem;
+        text-align: center;
+        box-shadow: 2px 2px 2px #888888;
+        padding: 3.5rem 0 1rem 0;
+    }
+    .head-photo{
+        position: absolute;
+        width: 100%;
+        top: -1rem;
+    }
+    .head-photo img{
+        width:4rem;
+        height: 4rem;
+        text-align: center;
+        border-radius: 100%;
+        border: 0.2rem solid #eeeeee!important;
+    }
+    .left-div-demo{
+        border-left: 1px dashed #bbb;
+    }
+    .head-footer{
+        margin-top:1rem;
+        padding: 0 1rem 0 1rem;
+    }
+    .footer-div-img img{
+        width:3rem;
+    }
+    .text-right{
+        text-align: right;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .text-left{
+        text-align: left;
+    }
+    .footer-div-img div{
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        color: #000;
+    }
+    .gray-title{
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        color: #999999;
+    }
+    .shop-name {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0 1rem;
+    }
+</style>
+<ion-view title="中国茶商">
+    <ion-header-bar class="bar-default">
+        <h1 class="title">中国茶商</h1>
+    </ion-header-bar>
+    <div class="content-div div-backgroud">
+        <div class="home-head">
+            <div class="head-photo">
+                <img image-lazy-src="{{shopInfo.headImgUrl+'-head'}}" background-img="img/mrtx_80.png" lazy-scroll-resize="true" err-src="img/mrtx_80.png" >
+            </div>
+            <div class="shop-name">{{shopInfo.name}}</div>
+            <div class="row">
+                <div class="col-50 gray-title">今日订单数</div>
+                <div class="col-50 left-div-demo gray-title">昨日交易额</div>
+            </div>
+            <div class="row">
+                <div class="col-50 ff5555">{{totalOrder.todayNumTotal}}</div>
+                <div class="col-50 left-div-demo ff5555">{{totalOrder.tomorowAmtTotal}}</div>
+            </div>
+            <div class="row">
+                <div class="col-50 gray-title">累计订单数</div>
+                <div class="col-50 left-div-demo gray-title">累计交易额</div>
+            </div>
+            <div class="row">
+                <div class="col-50 ff5555">{{totalOrder.historyNumTotal}}</div>
+                <div class="col-50 left-div-demo ff5555">{{totalOrder.hostoryAmtTotal}}</div>
+            </div>
+        </div>
+        <div class="head-footer">
+               <div class="row">
+                    <div class="col-33 " >
+                        <div class="footer-div-img text-left" ng-click="goShopClassify()">
+                            <img src="img/home_dpgl.png">
+                            <div>店铺管理</div>
+                        </div>
+                    </div>
+                   <div class="col-33  " >
+                       <div class="footer-div-img text-center" ng-click="goActivity()">
+                           <img src="img/home_hdbl.png">
+                           <div>活动部落</div>
+                       </div>
+                   </div>
+                   <div class="col-33 " ng-click="goShareList()">
+                       <div class="footer-div-img text-right">
+                           <img src="img/home_yxtg.png">
+                           <div>营销推广</div>
+                       </div>
+                   </div>
+               </div>
+            <div class="row" style="margin-top:.5rem;">
+                <div class="col-33 " ng-click="goStudyList()" >
+                    <div class="footer-div-img text-left">
+                        <img src="img/home_xxly.png">
+                        <div>学习乐园</div>
+                    </div>
+                </div>
+                <div class="col-33" ng-click="personal()">
+                    <div class="footer-div-img text-center">
+                        <img src="img/home_grzx.png">
+                        <div>个人中心</div>
+                    </div>
+                </div>
+                <div class="col-33" ng-click="goCompanyShow()">
+                    <div class="footer-div-img text-right">
+                        <img src="img/home_gd.png">
+                        <div> 更多&nbsp&nbsp&nbsp&nbsp</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.StoreLevelExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.store.vo.StoreLevelVo">
+		<id column="level_Id" property="levelId" jdbcType="BIGINT" />
+		<result column="tra_ID" property="traId" jdbcType="BIGINT" />
+		<result column="headStoreName" property="headStoreName"
+			jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="statue" property="statue" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.club.web.store.vo.StoreLevelVo"
+		extends="BaseResultMap">
+		<result column="store_pro" property="storePro" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		level_Id, tra_ID, `name`, statue, create_time, create_by, update_time,
+		update_by
+	</sql>
+	<sql id="Blob_Column_List">
+		store_pro
+	</sql>
+	<select id="querystoreLevelPage" resultMap="ResultMapWithBLOBs"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Blob_Column_List" />
+		from store_level
+		limit #{start},#{limit}
+	</select>
+
+	<select id="querystoreLevelCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select
+		count(1) as count
+		from store_level
+	</select>
+
+	<!-- 根据名字查询 -->
+	<select id="queryStoreLevelByName" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Blob_Column_List" />
+		from store_level where name = #{name}
+	</select>
+
+	<!-- 获取当前用户绑定总店有效的店铺等级 -->
+	<select id="findAllStoreLevel" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />,
+		<include refid="Blob_Column_List" />
+		from store_level
+		where statue=1
+	</select>
+</mapper>

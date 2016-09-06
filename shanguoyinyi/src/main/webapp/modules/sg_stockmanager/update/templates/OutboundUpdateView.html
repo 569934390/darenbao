@@ -1,0 +1,46 @@
+<div class="ui-dialog dialog-md outbound-update-manager" style="width: 70%">
+    <div class="modal-header">
+        <h4 class="modal-title">编辑出库单明细</h4>
+    </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                        	<label class="control-label">分类：</label>&nbsp;
+							<div class="input-group col-md-3" style="z-index: 1000">
+								<input type="text" style="padding-left: 8px;" class="form-control" id="outbound-update-classify_name" name="outbound-update-classify_name" readonly="readonly" placeholder="请选择分类" data-rule="required;">
+								<input type="text" id="outbound-update-classify" name="outbound-update-classify" hidden="true" value="0">
+								<span class="input-group-addon">
+									<a href="javascript:void(0);" id="outbound-update-menuBtn" class="inforeport-add-triangle">
+										<span class="glyphicon glyphicon-triangle-bottom"></span>
+									</a>
+								</span>
+								<div class="menuContent" style="position: absolute;background-color:#00BFFF;overflow: auto;" id="tree_select_menu_html_outbound_update">
+									<ul id="treeDemoOutboundUpdate" class="ztree" style="width:auto;overflow: auto;z-index: 1000"></ul>
+								</div>
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        	<label class="control-label">品  牌：</label>&nbsp;
+                            <select id="out-update_brand" name="out-update_brand" class="form-control" data-rule="required;">
+                                <option value="0" selected="selected">全部</option>
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+				          <input type="text" name="out-update_param" class="form-control" placeholder="SKU/货品名称 /货品编码">
+                        </div>
+                        &nbsp;&nbsp;<button class="btn btn-info" action="search-outbound-update">搜索</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <button class="btn btn-info" action="out-delete-edt-all">删除</button>
+                        <button class="btn btn-info" action="out-add-edt-detail">添加明细</button>
+                      </div>
+                    </div>
+                </div>
+            </div>           
+	        <div class="row" style="margin-right:10px;">
+	            <div class="col-md-12 emgceval-content-div" id="outbound-update-rule-content-div">
+	            </div>
+	        </div>               
+</div>

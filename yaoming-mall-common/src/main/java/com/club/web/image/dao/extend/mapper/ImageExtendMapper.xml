@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.image.dao.extend.ImageExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.image.dao.base.po.Image" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="groupId" property="groupid" jdbcType="BIGINT" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+  </resultMap>
+   <resultMap id="selectMoreColumnImgResult" type="com.club.web.image.service.vo.HomePageImgVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="groupId" property="groupid" jdbcType="BIGINT" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+    id, groupId, pic_url, create_time, create_by
+  </sql>
+   
+  <select id="selectMoreColumnImg" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where groupId = #{groupId,jdbcType=BIGINT}
+   limit #{start},#{end}
+    
+  </select>
+  <select id="selectImagesByGroupId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where groupId = #{groupId,jdbcType=BIGINT} order by id asc,create_time asc
+  </select>
+  
+   <select id="selectImageByUrl" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where pic_url = #{picUrl,jdbcType=VARCHAR}
+  </select>
+  
+   <delete id="deleteByGroupId" parameterType="java.lang.Long" >
+    delete from image
+    where groupId = #{groupId,jdbcType=BIGINT}
+  </delete>
+  
+</mapper>

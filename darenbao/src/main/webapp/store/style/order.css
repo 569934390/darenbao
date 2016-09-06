@@ -1,0 +1,107 @@
+span,em,b,label{display: inline-block;}
+input:focus{border: none;outline: none;}
+-webkit-placeholder-input{color: #999;}
+
+dd{float: left;}
+dt{float: left;}
+html{height: 100%;}
+body{
+	font-size: 14px;
+	width: 100%;
+	min-height: 100%;
+	font-family:'黑体';
+	color: #333;
+}
+.order_data{
+	width: 100%;
+	height:1rem;
+	padding: 0.2rem 0.16rem 0;
+	box-sizing:border-box;
+
+}
+
+.ding{height: 0.5rem;background: #ffa900;line-height: 0.5rem;text-align: center;font-size: 0.2rem; position: relative; }
+.goback {position: absolute; left: 0.2rem; top: 0.03rem;}
+.goback img{height:0.22rem; }
+.order_data {border-bottom: 1px solid #ccc;}
+.order_data .top{height: 0.16rem;margin-bottom: 0.1rem;}
+.order_data .top li{float: left;margin-right: 0.32rem;font-size: 0.15rem;}
+.order_data .top li:nth-of-type(1) span{display: inline-block;background: url(../images/order_image/name.png)no-repeat;background-size: 100% auto;width: 0.14rem;height: 0.16rem;vertical-align: middle;margin-right: 0.08rem;margin-top: -3px;}
+.order_data .top li em{display: inline-block;vertical-align: middle;font-size: 0.15rem;color: #333;}
+.order_data .top li:nth-of-type(2) span{display: inline-block;background: url(../images/order_image/telephone.png)no-repeat;background-size: 100% auto;width: 0.11rem;height: 0.15rem;vertical-align: middle;margin-right: 0.08rem;margin-top: -3px;}
+.order_data .position{height: 0.37rem;}
+.order_data .position span {width: 0.14rem;height: 0.19rem;background: url(../images/order_image/location.png)no-repeat;background-size: 100% auto;vertical-align: middle;float: left;margin-right: 0.08rem;}
+.order_data .position em{width: 2.86rem;float: left;overflow: hidden;font-size: 0.13rem;color: #999;}
+.shop_list{height: 1.25rem;width: 100%;padding:0.09rem 0.16rem 0;height: 1.25rem;border-bottom: 1px solid #ccc;box-sizing:border-box;}
+.shop_list>div{float: left;}
+.shop_list .img_show{width: 1.05rem;height: 1.05rem;margin-right: 0.1rem;}
+.shop_list .img_show img{width: 100%;}
+.shop_item{padding-top: 0.02rem;width: 2.25rem;}
+.shop_item>h3{font-size: 0.17rem;margin-bottom:0.1rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.shop_item .color{color: #999;height: 0.44rem;}
+.color dl{float: left;margin-right: 0.08rem;font-size: 0.13rem;overflow: hidden;}
+.color dl dt{float: left;}
+.color dl dd{float: left;}
+.shop_item .bottom{height: 0.32rem;width: 100%;}
+.require dl{height: 0.44rem;line-height: 0.44rem;border-bottom: 1px solid #ccc;padding-left: 0.2rem;font-size:0.15rem;}
+.require dl dd{float: right;height: 0.44rem;width: 2.35rem;padding-right: 0.17rem;text-align: right;color: #999;font-size: 0.15rem;}
+.require dl dd input{border: none;height: 100%;width: 100%;color: #999;}
+.require dl dd span{width:0.06rem;height:0.12rem;background: url(../images/order_image/arrow_little.png)no-repeat;background-size: 100% auto;margin-left: 0.09rem;vertical-align: middle;margin-top: -0.02rem;}
+.caculate{width:1rem;height: 0.32rem;border: 1px solid #979797;float: right;margin-top: -0.1rem;border-radius: 0.02rem;}
+.bottom span{color: #f94f62;font-size: 0.17rem;}
+.caculate li{float: left;line-height: 0.32rem;text-align:center;position: relative;}
+.caculate li:nth-of-type(1){height: 100%;width: 0.3rem;border-right:1px solid #979797}
+.caculate li:nth-of-type(2){height: 100%;width: 0.36rem;border-right:1px solid #979797 }
+.caculate li:nth-of-type(3){height: 100%;width: 0.31rem;}
+.sure_price{position: fixed;bottom: 0;left: 0;width: 100%;box-sizing:border-box;padding-left: 0.2rem;border-top:1px solid #ccc;background: #fff;}
+.sure_price .total{color: #999;float: right;height: 100%;line-height: 0.56rem;float: left;}
+.sure_price .total span{float: left;height:0.56rem;}
+.sure_price .total em{color:#f94f62;float: left;margin-right: 0.1rem;height:0.56rem;font-size: 0.17rem;}
+.sure_price .sure{font-size:0.17rem; width: 1.06rem; height: 0.56rem; background: #ffa900;line-height: 0.56rem;text-align:center;color: #fff;display: inline-block;float: right;}
+.sure_price .total .freight{margin-right: 0.1rem;}
+.caculate li:nth-of-type(3) span{background: url(../images/order_image/add.png)no-repeat;background-size: 100% auto;width: 0.12rem;height: 0.12rem;}
+.caculate li:nth-of-type(1) span{width: 0.12rem;height:0.022rem;background: #505050;position: absolute;top:50%;left: 50%;margin-left: -0.06rem;margin-top: -0.011rem;}
+.caculate li:nth-of-type(1) span.active{background:#CFCFCF}
+.invoice_mask{position: fixed;top:0;left: 0;height: 100%;background: rgba(0,0,0,0.8);width: 100%;display: none;}
+.invoice{height:0;background: #eee;position: absolute;bottom: 0;left: 0;width: 100%;}
+.invoice .top{height: 0.47rem;line-height: 0.47rem;text-align: center;font-size: 0.17rem;border-bottom: 1px solid #ccc;margin-bottom: 0.13rem;}
+.invoive_box{padding-left: 0.16rem;padding-right: 0.16rem;margin-bottom: 0.16rem;}
+.invoive_box h3{font-size: 0.15rem;color: #333;margin-bottom: 0.1rem;}
+.invoice_type{overflow: hidden;margin-bottom: 0.15rem;}
+.invoice_type li{float: left;width: 0.9rem;height: 0.34rem;border: 1px solid #999;border-radius: 0.04rem;margin-right: 0.19rem;line-height: 0.32rem;text-align: center;}
+.invoice_type li.active{float: left;width: 0.9rem;height: 0.34rem;border: 1px solid #ffa900;border-radius: 0.04rem;margin-right: 0.19rem;color: #ffc95e;}
+.taitou{margin-bottom: 0.16rem;}
+.taitou h3{text-align:left;}
+.taitou .kuang{width: 100%;height: 0.36rem;border: 1px solid #ccc;box-sizing:border-box;line-height: 0.36rem;padding-left: 0.1rem;font-size: 0.13rem;}
+.invoice_content ul{overflow: hidden;}
+.invoice_content ul li{float: left;width: 50%;height: 0.3rem;font-size: 0.13rem;margin-bottom: 0.09rem;position: relative;box-sizing:border-box;}
+.invoice_content ul li label{vertical-align: middle;}
+.invoice_content ul li input{vertical-align: middle;opacity: 0;position: absolute;width: 0.3rem;height: 0.3rem;left: -0.05rem;top:-0.05rem;}
+.invoice_mask .sure{
+	width: 100%;
+	height: 0.56rem;
+	background: #ffa900;
+	line-height: 0.56rem;
+	text-align: center;
+	color: #fff;
+	font-size: 0.2rem;
+	position: absolute;
+	bottom: 0;
+}
+.invoice_content ul li em{background: url(../images/order_image/unselect.png)no-repeat;width:0.25rem;height: 0.25rem;border-radius: 50%;background-size: 100% auto;vertical-align: middle;}
+.invoice_content ul li.active em{width:0.25rem;height: 0.25rem;border-radius: 50%;background: url(../images/order_image/select.png)no-repeat;background-size: 100% auto;}
+/*支付方式*/
+.pay_mask{position: fixed;top:0;bottom:0;width: 100%;background: rgba(0,0,0,0.8);display: none;}
+.pay_ways{width: 100%;height:0;position: absolute;left: 0;bottom:0;background: #eee;}
+.pay_ways p{height: 0.5rem;box-sizing:border-box;border-bottom: 1px solid #ccc;line-height: 0.5rem;text-align: center;font-size: 0.17rem;}
+.pay_ways .alipay{height: 0.96rem;border-bottom: 1px solid #ccc;padding-top: 0.18rem;box-sizing:border-box;}
+.alipay ul {overflow: hidden;}
+.pay_ways .alipay ul li{float: left;height: 0.6rem;line-height: 0.6rem;position: relative;margin-right: 0.16rem;width: 0.3rem;}
+.pay_ways .alipay ul li.zhi{width: 0.5rem;}
+.pay_ways .alipay ul li.pay_li{margin-right: 0;padding-left: 0.18rem;}
+.alipay ul li span{width:0.23rem;height: 0.23rem;background:url(../images/order_image/unselect.png)no-repeat;background-size: 100% auto;float: left;margin-top: 0.18rem;}
+.alipay ul li.active span{background:url(../images/order_image/select.png)no-repeat;background-size: 100% auto;}
+.alipay ul li input{position: absolute;opacity: 0;left:50%;width: 0.4rem;height: 0.6rem;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);top:50%;-moz-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);}
+.zhifubao ul li:nth-of-type(2){width: 0.6rem;height: 0.6rem;background: url(../images/order_image/zhifubao.png)no-repeat;background-size: 100% auto;}
+.weixin ul li:nth-of-type(2){width: 0.6rem;height: 0.6rem;background: url(../images/order_image/weixin.png)no-repeat;background-size: 100% auto;}
+.pay_ways .sure_pay{width:100%;height: 0.56rem;line-height: 0.56rem;text-align: center;color: #fff;background: #ffa900;position: absolute;bottom: 0;font-size: 0.2rem;}

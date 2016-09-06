@@ -1,0 +1,102 @@
+<div class="ui-dialog dialog-md cargo-info-window">
+    <div class="modal-header">
+        <h4 class="modal-title">标题</h4>
+    </div>
+<!-- 	<form class="form-horizontal" name="client-form"> -->
+		<div class="modal-body">
+            <div class="panel panel-default">
+            	<div class="panel-body">
+					<div class='hidden' id='position-cargo-manager-window-begin'>&nbsp;</div>
+	       			<input type="hidden" name="cargoId" />
+	                <div class="form-group required">
+	                    <label class="col-md-2 control-label">货品编号：</label>
+	                    <div class="input-group col-md-4">
+	                        <input class="form-control" name="cargoNo" data-rule="required">
+	                    </div>
+	                </div>
+	                <div class="form-group required">
+	                    <label class="col-md-2 control-label">货品名称：</label>
+	                    <div class="input-group col-md-4">
+	                        <input class="form-control" name="cargoName" data-rule="required">
+	                    </div>
+	                </div>
+	                <div class="form-group required">
+	                    <label class="col-md-2 control-label">分类：</label>
+	                    <div class="classify-group">
+<!-- 	                   		<a class="btn btn-link">新建分类</a> -->
+	                   	</div>
+	                    
+	                </div>
+	                <div class="form-group required">
+	                    <label class="col-md-2 control-label">品牌：</label>
+	                    <div class="btn-group brand-group"></div>
+<!-- 	                   	<a class="btn btn-link">新建品牌</a> -->
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-md-2 control-label">供应商：</label>
+	                    <div class="btn-group supplier-group"></div>
+<!-- 	                   	<a class="btn btn-link">新建供应商</a> -->
+	                </div>
+					<div class="form-group required">
+					    <label class="col-md-2 control-label">缩略图：<br><font size="2">{{SMALL_IMAGE_SIZE}}</font></label>
+					    <div class="btn-group" >
+						    <div class="flex-container" id="small_img_container"></div>
+						    <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为372*372</span>
+					    </div>
+					</div>
+					<div class="form-group required">
+					    <label class="col-md-2 control-label">展示图：<br><font size="2">{{SHOW_IMAGE_SIZE}}</font></label>
+					    <div class="btn-group" >
+						    <div class="flex-container" id="show_img_container"></div>
+						    <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为500*500</span>
+					    </div>
+					</div>
+					<div class="form-group required">
+					    <label class="col-md-2 control-label">货品详情：<br><font size="2">{{DETAIL_IMAGE_SIZE}}</font></label>
+					    <div class="btn-group" >
+						    <div class="flex-container" id="detail_img_container" style="height: 160px;overflow: auto;"></div>
+						    <span style="font-size:10px;color: #B0B0B0">建议大小为750*任意</span>
+					    </div>
+					</div>
+					<div class='hidden' id='position-cargo-manager-sku-type'>&nbsp;</div>
+					<div class="form-group required">
+					    <label class="col-md-2 control-label">货品规格：</label>
+					    <div class='col-md-10'>
+		                    <div class="btn-group btn-cargo-sku-type-add">
+		                    	<button type="button" class="btn btn-default" title="新建" >
+		                    		&nbsp;新建&nbsp;<span class="glyphicon glyphicon-plus"></span>
+		                    	</button>
+		                    	<span class="label label-warning hidden" style='font-size: 12px; font-weight: normal;'>更改货品规格前，请删除所有SKU</span>
+		                    </div>
+					    </div>
+					</div>
+					<div class='hidden' id='position-cargo-manager-sku-container'>&nbsp;</div>
+					<div class="panel-body cargo-manager-sku-container">
+						<div class="panel panel-default col-md-4">
+							<div class="panel-body cargo-manager-sku-generate-list">
+							</div>
+						</div>
+					    <div class="col-md-8 emgceval-main-view cargo-manager-sku-list">
+					        <div class="row">
+					            <div class="col-md-12">
+			                        <button type="button" class="btn btn-sm btn-default btn-cargo-manager-sku-list-delete" title="删除">
+			                            <span class="glyphicon glyphicon-trash"></span>
+			                        </button>
+					            </div>
+					        </div>
+					        <div class="row">
+					        	<div>
+						            <div class="col-md-12 emgceval-content-div cargo-manager-sku-list-content-div">
+						            </div>
+					        	</div>
+					        </div>
+					    </div>
+					</div>
+                </div>
+            </div>
+		</div>
+<!-- 	</form> -->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default">事件</button>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.base.CargoOutboundOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.stock.dao.base.po.CargoOutboundOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="outbound_type" property="outboundType" jdbcType="INTEGER" />
+    <result column="source_no" property="sourceNo" jdbcType="VARCHAR" />
+    <result column="outbound_time" property="outboundTime" jdbcType="TIMESTAMP" />
+    <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="apply_desc" property="applyDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `status`, outbound_type, source_no, outbound_time, sub_time, remarks, create_time, 
+    create_by, apply_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_outbound_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cargo_outbound_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.stock.dao.base.po.CargoOutboundOrder" >
+    insert into cargo_outbound_order (id, `status`, outbound_type, 
+      source_no, outbound_time, sub_time, 
+      remarks, create_time, create_by, 
+      apply_desc)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{outboundType,jdbcType=INTEGER}, 
+      #{sourceNo,jdbcType=VARCHAR}, #{outboundTime,jdbcType=TIMESTAMP}, #{subTime,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{applyDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.stock.dao.base.po.CargoOutboundOrder" >
+    insert into cargo_outbound_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="outboundType != null" >
+        outbound_type,
+      </if>
+      <if test="sourceNo != null" >
+        source_no,
+      </if>
+      <if test="outboundTime != null" >
+        outbound_time,
+      </if>
+      <if test="subTime != null" >
+        sub_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="applyDesc != null" >
+        apply_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="outboundType != null" >
+        #{outboundType,jdbcType=INTEGER},
+      </if>
+      <if test="sourceNo != null" >
+        #{sourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundTime != null" >
+        #{outboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subTime != null" >
+        #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="applyDesc != null" >
+        #{applyDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.stock.dao.base.po.CargoOutboundOrder" >
+    update cargo_outbound_order
+    <set >
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="outboundType != null" >
+        outbound_type = #{outboundType,jdbcType=INTEGER},
+      </if>
+      <if test="sourceNo != null" >
+        source_no = #{sourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundTime != null" >
+        outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subTime != null" >
+        sub_time = #{subTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="applyDesc != null" >
+        apply_desc = #{applyDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.stock.dao.base.po.CargoOutboundOrder" >
+    update cargo_outbound_order
+    set `status` = #{status,jdbcType=INTEGER},
+      outbound_type = #{outboundType,jdbcType=INTEGER},
+      source_no = #{sourceNo,jdbcType=VARCHAR},
+      outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
+      sub_time = #{subTime,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      apply_desc = #{applyDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

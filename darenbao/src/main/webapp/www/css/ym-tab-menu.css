@@ -1,0 +1,23 @@
+.ym-tab-menu {
+    width: 100%;
+    display: -webkit-box;
+    font-size: 0.7rem;
+    line-height: 1.9rem;
+    height: 1.9rem;
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.2);*/
+}
+
+.ym-tab-menu .ytm-item {
+    -webkit-box-flex: 1;
+    text-align: center;
+}
+.ym-tab-menu .ytm-name {
+    display: inline-block;
+}
+.ym-tab-menu .ytm-icon {
+    display: inline-block;
+}
+.ym-tab-menu .ytm-icon img {
+    height: 1.3rem;
+    margin: -0.4rem -0.2rem;
+}

@@ -1,0 +1,113 @@
+<style>
+    .context-div{
+        display: -webkit-box;
+        padding: 0.5rem .5rem .5rem .5rem;
+        width: 100%;;
+    }
+    .context-div .left-div{
+        width:1.5rem;
+    }
+    .context-div .center-div{
+        -webkit-box-flex: 1.0;
+        text-align: left;
+        line-height: 1.5rem;
+        padding: 0rem 0rem 0rem .5rem;
+    }
+    .context-div .center-div1{
+        text-align: center;
+        line-height: 1.5rem;
+        padding: 0.2rem;
+        background: #333333;
+        color: #ffffff;
+        width: 100%;
+    }
+    .context-div .right-div{
+        width:1.5rem;
+    }
+    .context-div .left-div img ,.context-div .right-div img{
+        width:100%;
+        text-align: center;
+    }
+</style>
+<ion-view title="编辑">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">设置</div>
+        <div class="head-right-btn" ></div>
+    </ion-header-bar>
+    <ion-content>
+        <div>
+            <!--<div class="context-div">
+                <div class="left-div">
+                    <img src="img/me_sz_xxts.png">
+                </div>
+                <div class="center-div">消息推送设置</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>-->
+            <div class="context-div" ng-click="updatePassword()">
+                <div class="left-div">
+                    <img src="img/me_sz_xgmm.png">
+                </div>
+                <div class="center-div">修改密码</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-div" ng-click="opinion()">
+                <div class="left-div">
+                    <img src="img/me_dz_yjfk.png">
+                </div>
+                <div class="center-div">意见反馈</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-div" ng-click="aboutUs()">
+                <div class="left-div">
+                    <img src="img/me_sz_gywm.png">
+                </div>
+                <div class="center-div">关于我们</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-div" ng-click="serviceAgreement()">
+                <div class="left-div">
+                    <img src="img/me_sz_fwxy.png">
+                </div>
+                <div class="center-div">服务协议</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <!--<div class="context-div" ng-click="checkApkUpdate()">
+                <div class="left-div">
+                    <img src="img/me_sz_jcbb.png">
+                </div>
+                <div class="center-div">检查版本更新</div>
+                <div>{{versionName}}</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>-->
+            <div class="context-div" ng-click="cleanCache()">
+                <div class="left-div">
+                    <img src="img/me_sz_qchc.png">
+                </div>
+                <div class="center-div">清除缓存</div>
+                <div>{{romSize}}</div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-div"  style="padding: 2rem 1rem .5rem 1rem;" ng-click="loginOut()">
+                <div class="center-div1">退出</div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

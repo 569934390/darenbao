@@ -1,0 +1,52 @@
+<style>
+
+    .modal-backdrop-bg {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    ion-modal-view.share-modal {
+        text-align: center;
+        min-height: initial;
+        top: initial;
+        height: 9rem;
+        bottom: 0;
+    }
+    ion-modal-view.share-modal .title {
+        margin-top: 0.9rem;
+        font-size: 0.7rem;
+        display: block;
+    }
+    ion-modal-view.share-modal .content {
+        margin-top: 1.25rem;
+        display: block;
+    }
+    ion-modal-view.share-modal .content .item {
+        margin-left: 1.75rem;
+        border: none;
+        display: inline-block;
+        padding: initial;
+        float: left;
+        width: 3rem;
+    }
+    ion-modal-view.share-modal .content .item .img {
+        height: 2rem;
+        line-height: 2rem;
+    }
+    ion-modal-view.share-modal .content .item .img img {
+        height: 2rem;
+        line-height: 2rem;
+    }
+    ion-modal-view.share-modal .content .item .name {
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+        margin: 0.25rem;
+    }
+</style>
+<ion-modal-view class="share-modal">
+    <div class="title">分享到</div>
+    <div class="content">
+        <div class="item" ng-repeat="share in _sharelist" ng-click="_share(share)">
+            <div class="img"><img ng-src="{{share.img}}" /></div>
+            <div class="name">{{share.name}}</div>
+        </div>
+    </div>
+</ion-modal-view>

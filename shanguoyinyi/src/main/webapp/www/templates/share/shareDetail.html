@@ -1,0 +1,148 @@
+<style>
+    .spread_detail_padding{
+        padding: 1rem;
+    }
+    .spread_detail_padding h3.name{
+        padding-bottom: 0.9rem;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.1rem;
+        color: #000000;
+        /*filter:alpha(opacity=87);*/
+        /*-moz-opacity:0.87;*/
+        /*-khtml-opacity: 0.87;*/
+        /*opacity: 0.87;*/
+        text-align: left;
+    }
+    .spread_detail_row{
+        padding: 0;
+        padding-bottom: 0.9rem;
+        font-size: 0.7rem;
+        color: #999999;
+    }
+    .spread_detail_row div{
+        padding: 0;
+        height: 1.4rem;
+        line-height: 1.4rem;
+        font-size: 0.7rem;
+        color: #999999;
+    }
+    .spreadInfo {
+        max-width: 1.4rem;
+        max-height:1.4rem;
+        vertical-align:bottom;
+    }
+    .spread_detail_content, .spread_detail_content p{
+        font-size: 0.8rem !important;
+        color: rgba(0,0,0,0.87);
+    }
+    .spread_detail_content p{
+        padding: 0;
+        margin: 0;
+        -webkit-margin-after: 0 !important;
+        -webkit-margin-before: 0 !important;
+    }
+    .spread_detail_content img{
+        max-width:100%;
+        height: auto;
+        margin: 0.9rem 0 0.75rem;
+    }
+    blockquote{
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    /*微信推广详情*/
+    .shareline-borbt{
+        border-bottom: solid 0.05rem #f5f5f5;
+    }
+    .shareline{
+        min-height: 2.2rem;
+        line-height: 2.2rem;
+        font-size: 0.8rem;
+        color: #212121;
+        padding: 0 0.5rem;
+        background: #ffffff;
+    }
+    .shareline img{
+        width: 1.4rem;
+        height: 1.4rem;
+        vertical-align: middle;
+    }
+    .shareline a{
+        display: block;
+        text-decoration: none;
+        color: #212121;
+    }
+    .share-wechat{
+        width: 100%;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    .content-qr-bj{
+        width: 8rem;
+        height: 8rem;
+        padding: 1rem;
+        margin: 0 auto;
+        background: #f5f5f5;
+    }
+    .content-img, #qrcanvas, canvas{
+        width: 6rem;
+        height: 6rem;
+        text-align: center;
+        background: #ffffff;
+    }
+    .content-text{
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+        text-align: center;
+        color: #ff5555;
+    }
+</style>
+<ion-view title="底部有惊喜" class="spread_img">
+    <ion-content>
+        <div class="spread_detail_padding">
+            <h3 class="name">{{spread.name}}</h3>
+            <div class="row spread_detail_row">
+                <div class="col col-50">
+                    <img src="img/yxtg_sj.png" class="spreadInfo">
+                    {{spread.updateTime1}}
+                </div>
+                <div class="col col-50">
+                    <span style="float: right;margin-right: 20px">{{spread.readNum}}</span>
+                    <img src="img/yxtg_ll.png" class="spreadInfo" style="float: right;">
+
+                </div>
+            </div>
+            <div ng-bind-html="spread.content" class="spread_detail_content"></div>
+        </div>
+        <div class="shareline shareline-borbt"style="border-top: solid 0.1rem #f5f5f5">
+            <img src="img/wzxq_lxr.png"/>
+            <span style="margin-left: 0.2rem">店铺名称:{{shopInfo.name}}</span>
+        </div>
+        <div class="shareline shareline-borbt">
+            <a href="tel:{{shopInfo.phone}}">
+                <img src="img/wzxq_lxfs.png"/>
+                <span style="margin-left: 0.2rem">门店电话:{{shopInfo.phone}}</span>
+                <i class="icon ion-ios-arrow-right" style="float: right; font-size:1.2rem; color: #bdbdbd "></i>
+            </a>
+        </div>
+        <div class="shareline shareline-borbt">
+            <img src="img/wzxq_mddz.png"/>
+            <span style="margin-left: 0.2rem">门店地址:{{shopInfo.provinceName+shopInfo.cityName+shopInfo.address}}</span>
+        </div>
+        <div class="share-wechat">
+                <div class="content-qr-bj">
+                    <div class="content-img">
+                        <wm-pic size="5" infostr='{{qrcodeInfo}}' color="#000000"></wm-pic>
+                    </div>
+                </div>
+                <div class="content-text" >
+                    轻松扫一扫，带您领略万千茶韵~
+                </div>
+            </div>
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="dialect" value="MySql"/>
+	</properties>
+	<!-- - - - - - - - 物理分页拦截器- - - - - - - -->
+	<plugins>
+		<plugin interceptor="com.club.core.db.plugin.PaginationInterceptor">
+			<property name="dialect" value="com.club.core.db.plugin.MySqlDialect"/>
+		</plugin>
+	</plugins>
+	<!-- - - - - - - -映射文件路径：改到spring-service里面配置目录了，以后不需要手动增加xml- - - - - - -->
+	
+</configuration>

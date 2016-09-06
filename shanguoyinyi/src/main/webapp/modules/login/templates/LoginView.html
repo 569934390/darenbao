@@ -1,0 +1,40 @@
+<div class="login-content clearfix">
+    <div class="login-logo-left pull-left">
+        <div class="login-logo-content">
+            <img src="image/login-left-main.png">
+        </div>
+        <img src="image/login-left-bg.png" class="login-logo-left pull-left">
+    </div>
+    <div class="login-form pull-left">
+        <img src="image/login_logo.png" class="login-logo">
+        <p class="error-msg" id="errorMessageSpan"></p>
+        <form class="form-horizontal" id="loginForm" autocomplete="off" novalidate="novalidate">
+            <div class="input-group login-form__input-group">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <input class="form-control jstoggleFocus n-valid" id="inputUserName" name="loginName" placeholder="{{LOGIN_USERNAME}}" autocomplete="off" aria-required="true">
+            </div>
+            <div class="input-group login-form__input-group">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <input type="password" class="form-control jstoggleFocus" name="password" id="inputPassword" placeholder="{{LOGIN_PASSWORD}}" autocomplete="off" aria-required="true">
+            </div>
+            <div class="margin-top_s">
+                <!--<a class="pull-right link_primary">Forgot password ?</a>-->
+                <div class="col-md-6 login-remember">
+                    <input type="checkbox" id="checkRememberMe" checked="true">{{LOGIN_REMEMBER}}
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-10 pull-right login-language-div">
+                            <select id="selectLanguage" class="form-control login-language">
+                                <option value="zh">中文</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="btnLogin" type="button" class="btn btn-info btn_minwidth btn-block margin-top_s">{{LOGIN_SIGN_IN}}
+            </button>
+        </form>
+    </div>
+</div>

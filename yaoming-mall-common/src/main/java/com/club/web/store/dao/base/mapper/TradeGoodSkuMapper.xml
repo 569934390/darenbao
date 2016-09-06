@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.TradeGoodSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.TradeGoodSku" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_name" property="cargoSkuName" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, good_id, cargo_sku_id, cargo_sku_name, nums, market_price, retail_price, start_time, 
+    end_time, limit_num, sale_price, sale_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_good_sku
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trade_good_sku
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.TradeGoodSku" >
+    insert into trade_good_sku (id, good_id, cargo_sku_id, 
+      cargo_sku_name, nums, market_price, 
+      retail_price, start_time, end_time, 
+      limit_num, sale_price, sale_num
+      )
+    values (#{id,jdbcType=BIGINT}, #{goodId,jdbcType=BIGINT}, #{cargoSkuId,jdbcType=BIGINT}, 
+      #{cargoSkuName,jdbcType=VARCHAR}, #{nums,jdbcType=BIGINT}, #{marketPrice,jdbcType=DOUBLE}, 
+      #{retailPrice,jdbcType=DOUBLE}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{limitNum,jdbcType=INTEGER}, #{salePrice,jdbcType=DOUBLE}, #{saleNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.TradeGoodSku" >
+    insert into trade_good_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="cargoSkuId != null" >
+        cargo_sku_id,
+      </if>
+      <if test="cargoSkuName != null" >
+        cargo_sku_name,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="retailPrice != null" >
+        retail_price,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="limitNum != null" >
+        limit_num,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoSkuId != null" >
+        #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoSkuName != null" >
+        #{cargoSkuName,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=BIGINT},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="retailPrice != null" >
+        #{retailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitNum != null" >
+        #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.TradeGoodSku" >
+    update trade_good_sku
+    <set >
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoSkuId != null" >
+        cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoSkuName != null" >
+        cargo_sku_name = #{cargoSkuName,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=BIGINT},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="retailPrice != null" >
+        retail_price = #{retailPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitNum != null" >
+        limit_num = #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.TradeGoodSku" >
+    update trade_good_sku
+    set good_id = #{goodId,jdbcType=BIGINT},
+      cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT},
+      cargo_sku_name = #{cargoSkuName,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=BIGINT},
+      market_price = #{marketPrice,jdbcType=DOUBLE},
+      retail_price = #{retailPrice,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      limit_num = #{limitNum,jdbcType=INTEGER},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      sale_num = #{saleNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

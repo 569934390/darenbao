@@ -1,0 +1,7 @@
+执行命令：
+
+tomcat6:run
+
+执行参数：
+
+-XX:PermSize=128M -XX:MaxPermSize=256m -Dcfg_file=/Users/lyhcn/just_do_it/iframe_config

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.ShoppingCartExtendMapper" >
+   <resultMap id="ShoppingCartDoResultMap" type="com.club.web.store.domain.ShoppingCartDo" >
+	    <id column="id" property="id" jdbcType="BIGINT" />
+	    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+	    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+	    <result column="user_id" property="userId" jdbcType="BIGINT" />
+	    <result column="goods_count" property="goodsCount" jdbcType="INTEGER" />
+	    <result column="goods_prize" property="goodsPrize" jdbcType="DECIMAL" />
+	    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	    <result column="opertion_type" property="opertionType" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="queryCartObjByCondition"  resultMap="ShoppingCartDoResultMap">
+	  select id, goods_id, shop_id, user_id, goods_count, goods_prize, create_date, update_date,opertion_type from shopping_cart
+	  where user_id=#{userId} and goods_id=#{goodsId} and opertion_type=#{optionType}
+	  <if test="status==1">
+	 	and shop_id=#{storeId}
+	 </if>
+  </select>
+  <delete id="deleteShoppingCartGoods">
+  	delete from shopping_cart where user_id=#{userId} and opertion_type=#{optionType} and goods_id in
+  	<foreach item="item" index="index" collection="goodsIds" open="(" separator="," close=")">  
+	  		#{item}  
+	</foreach> 
+	<if test="status==1">
+	 	and shop_id=#{shopId}
+	 </if>
+  </delete>
+  <resultMap id="CartUnionResultMap" type="com.club.web.store.vo.ShoppingCartVo" >
+  	 <result column="id" property="id"/>
+  	 <result column="goods_count" property="goodCount"/>
+  	 <result column="good_id" property="goodId"/>
+  	 <result column="shop_id" property="shopId"/>
+  	 <result column="market_price" property="marketPrice"/>
+  	 <result column="retail_price" property="retailPrice"/>
+  	 <result column="sale_price" property="salePrice"/>
+  	 <result column="name" property="goodTitle"/>
+  	 <result column="describe" property="goodDesc"/>
+  	 <result column="pic_url" property="goodImgUrl"/>
+  	 <result column="cargo_sku_id" property="skuId"/>
+  	 <result column="sale_num" property="saleNum"/>
+  	 <result column="sale_price" property="salePrice"/>
+  	 <result column="goods_id" property="goodsId"/>
+  </resultMap>
+  <select id="queryShoppingCartByUserId" resultMap="CartUnionResultMap">
+  	select c.id,c.goods_count,c.shop_id,q.good_id,q.market_price,q.retail_price,q.sale_price,q.name,q.describe,q.pic_url,q.cargo_sku_id,q.goods_id from shopping_cart c left join 
+	(select k.id good_id,k.market_price,k.retail_price,k.sale_price,g.name,g.describe,m.pic_url,k.cargo_sku_id,g.id goods_id
+	from trade_good g,trade_good_sku k,cargo a,image m where a.small_image_id=m.id and a.id=g.cargo_id and g.id=k.good_id) q on c.goods_id=q.good_id 
+	where c.user_id=#{userId} and c.opertion_type=0 and (q.good_id is not null or q.good_id!='')
+	<if test="status==1">
+	 	and c.shop_id=#{shopId}
+	 </if>
+  </select>
+  <select id="queryShoppingStoreByUserId" resultMap="CartUnionResultMap">
+  	select c.id,q.id good_id,q.name,q.describe,q.pic_url,q.market_price,q.sale_price,q.sale_num from shopping_cart c left join 
+	(select g.name,g.describe,m.pic_url,g.id,y.market_price,y.sale_price,g.sale_num
+	from trade_good g,cargo a,image m,(select min(market_price) market_price,min(sale_price) sale_price,good_id from trade_good_sku group by good_id) y where y.good_id=g.id and a.small_image_id=m.id and a.id=g.cargo_id) q 
+	on c.goods_id=q.id
+	where c.user_id=#{userId} and c.opertion_type=1 and (q.id is not null or q.id!='') 
+	<if test="status==1">
+	 	and c.shop_id=#{shopId}
+	 </if>
+  </select>
+  <select id="getCartCount" resultType="int">
+  	select count(1) from shopping_cart c where c.user_id=#{userId} and c.opertion_type=#{optionType} and c.shop_id=#{shopId}
+  </select>
+</mapper>

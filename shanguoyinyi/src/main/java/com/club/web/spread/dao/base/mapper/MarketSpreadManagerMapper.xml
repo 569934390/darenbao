@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.spread.dao.base.MarketSpreadManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="classify_id" property="classifyId" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="read_num" property="readNum" jdbcType="BIGINT" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="spread_content_type" property="spreadContentType" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="share_num" property="shareNum" jdbcType="BIGINT" />
+    <result column="collect_num" property="collectNum" jdbcType="BIGINT" />
+    <result column="headShop_id" property="headshopId" jdbcType="BIGINT" />
+    <result column="logo" property="logo" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.spread.dao.base.po.MarketSpreadManager" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `name`, classify_id, create_by, update_time, update_by, read_num, author, spread_content_type, 
+    content_type, good_id, share_num, collect_num, headShop_id, logo
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from market_spread_manager
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from market_spread_manager
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    insert into market_spread_manager (id, `name`, classify_id, 
+      create_by, update_time, update_by, 
+      read_num, author, spread_content_type, 
+      content_type, good_id, share_num, 
+      collect_num, headShop_id, logo, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{classifyId,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}, 
+      #{readNum,jdbcType=BIGINT}, #{author,jdbcType=VARCHAR}, #{spreadContentType,jdbcType=INTEGER}, 
+      #{contentType,jdbcType=INTEGER}, #{goodId,jdbcType=BIGINT}, #{shareNum,jdbcType=BIGINT}, 
+      #{collectNum,jdbcType=BIGINT}, #{headshopId,jdbcType=BIGINT}, #{logo,jdbcType=BIGINT}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    insert into market_spread_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="classifyId != null" >
+        classify_id,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="readNum != null" >
+        read_num,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="spreadContentType != null" >
+        spread_content_type,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="shareNum != null" >
+        share_num,
+      </if>
+      <if test="collectNum != null" >
+        collect_num,
+      </if>
+      <if test="headshopId != null" >
+        headShop_id,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyId != null" >
+        #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="readNum != null" >
+        #{readNum,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="spreadContentType != null" >
+        #{spreadContentType,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="shareNum != null" >
+        #{shareNum,jdbcType=BIGINT},
+      </if>
+      <if test="collectNum != null" >
+        #{collectNum,jdbcType=BIGINT},
+      </if>
+      <if test="headshopId != null" >
+        #{headshopId,jdbcType=BIGINT},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    update market_spread_manager
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyId != null" >
+        classify_id = #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="readNum != null" >
+        read_num = #{readNum,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="spreadContentType != null" >
+        spread_content_type = #{spreadContentType,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="goodId != null" >
+        good_id = #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="shareNum != null" >
+        share_num = #{shareNum,jdbcType=BIGINT},
+      </if>
+      <if test="collectNum != null" >
+        collect_num = #{collectNum,jdbcType=BIGINT},
+      </if>
+      <if test="headshopId != null" >
+        headShop_id = #{headshopId,jdbcType=BIGINT},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    update market_spread_manager
+    set `name` = #{name,jdbcType=VARCHAR},
+      classify_id = #{classifyId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      read_num = #{readNum,jdbcType=BIGINT},
+      author = #{author,jdbcType=VARCHAR},
+      spread_content_type = #{spreadContentType,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=INTEGER},
+      good_id = #{goodId,jdbcType=BIGINT},
+      share_num = #{shareNum,jdbcType=BIGINT},
+      collect_num = #{collectNum,jdbcType=BIGINT},
+      headShop_id = #{headshopId,jdbcType=BIGINT},
+      logo = #{logo,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.spread.dao.base.po.MarketSpreadManager" >
+    update market_spread_manager
+    set `name` = #{name,jdbcType=VARCHAR},
+      classify_id = #{classifyId,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      read_num = #{readNum,jdbcType=BIGINT},
+      author = #{author,jdbcType=VARCHAR},
+      spread_content_type = #{spreadContentType,jdbcType=INTEGER},
+      content_type = #{contentType,jdbcType=INTEGER},
+      good_id = #{goodId,jdbcType=BIGINT},
+      share_num = #{shareNum,jdbcType=BIGINT},
+      collect_num = #{collectNum,jdbcType=BIGINT},
+      headShop_id = #{headshopId,jdbcType=BIGINT},
+      logo = #{logo,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,169 @@
+<div class="ui-dialog dialog-md AddActivityWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增活动部落信息</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="activity-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id"/>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">所属分店：</label>
+							<div class="input-group col-md-8">
+							    <select class="form-control" name="subbranchId">
+							    </select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">类型：</label>
+							<div class="input-group col-md-8">
+							    <select class="form-control" name=type data-rule="required;">
+							    </select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动主题：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="title" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动类型：</label>
+							<div class="input-group col-md-8">
+							    <select class="form-control" name=activityTypeId data-rule="required;">
+							    </select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">主办方：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="sponsorName" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">手机号码：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="sponsorTel" data-rule="required;mobile;">
+								<span class="input-group-addon clear-input-icon-right"><span class="glyphicon glyphicon-earphone"></span></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">开始时间：</label>
+							<div class="input-group col-md-8">
+							    <input type="text" field="datetime" class="form-control" name="beginTime" data-rule="required;datetime;match[lt, endTime, date]">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">截止时间：</label>
+							<div class="input-group col-md-8">
+							    <input type="text" field="datetime" class="form-control" name="endTime" data-rule="required;datetime;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">报名开始时间：</label>
+							<div class="input-group col-md-8">
+							    <input type="text" field="datetime" class="form-control" name="regStartTime" data-rule="required;datetime;match[lt, regEndTime,date];">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required"> 
+							<label class="col-md-4 control-label">报名截止时间：</label>
+							<div class="input-group col-md-8">
+							    <input type="text" field="datetime" class="form-control" name="regEndTime" data-rule="required;datetime">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">人数限制：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="numberLimit" data-rule="required;integer+;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动地址：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="activityAddress" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动经纬度：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="activityLoLa" data-rule="required;">
+							</div>
+							<p><a style="color: red;font-size:12px;" href="http://lbs.amap.com/console/show/picker" target="_Blank">点击获取高德地图经纬度</a></p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="input-group col-md-12">
+								<span style="color: red;font-size:12px;font-weight: bold;">(注：经纬度用","隔开 ; 经度在前纬度在后)</span>
+							</div>
+						</div>
+					</div>
+				<!-- 	<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动经度：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="activityLongitude" data-rule="required;digits">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">活动纬度：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="activityLatitude" data-rule="required;digits">
+							</div>
+						</div>
+					</div> -->
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">活动图片：</label>
+							<div class="input-group col-md-9">
+								 <div class="flex-container" id="activityPic_img_container"></div>
+								 <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小640*640</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">活动介绍：</label>
+							<div class="input-group col-md-9">
+								<div id="editorContent" name="content" style="width: 100%; height: 200px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

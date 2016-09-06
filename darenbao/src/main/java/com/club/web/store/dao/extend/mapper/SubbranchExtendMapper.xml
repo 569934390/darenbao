@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.SubbranchExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.Subbranch">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="level_id" property="levelId" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="weixin" property="weixin" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="store_id" property="storeId" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="levelName" property="levelName" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+        <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+        <result column="department_num" property="departmentNum" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BaseResultVoMap" type="com.club.web.store.vo.SubbranchVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="level_id" property="levelId" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="weixin" property="weixin" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="store_id" property="storeId" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="levelName" property="levelName" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		
+	</resultMap>
+	<resultMap id="BaseResultMapDo" type="com.club.web.store.domain.SubbranchDo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="level_id" property="levelId" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="weixin" property="weixin" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="store_id" property="storeId" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+        <result column="country_name" property="countryName" jdbcType="VARCHAR" />
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getSubbranchById" resultMap="BaseResultMapDo">
+		select id,name,user_name,mobile,level_id,state,head_img_url,email,weixin,description,number,create_by,create_time,store_id,update_time,province,city,country,address,phone, province_name, country_name,department_num, city_name
+		from store_subbranch where id=#{shopId}
+	</select>
+	<sql id="Base_Column_List">
+		s.id, s.name, s.user_name, s.mobile, s.level_id, s.state, s.password,
+		s.head_img_url, s.email, s.weixin,
+		s.description, s.number, s.create_by, s.create_time, s.store_id, s.update_time,
+		s.province, s.city, s.country, s.address, s.phone,s.department_num
+	</sql>
+	<select id="selectByPage" resultMap="BaseResultMap">
+		select
+		ss.id,ss.name,ss.user_name,ss.mobile,ss.level_id,ss.state,ss.password,ss.head_img_url,ss.email,ss.weixin,
+		ss.description,ss.number,ss.create_by,ss.create_time,ss.store_id,ss.update_time,ss.phone,
+		ss.province,ss.city,ss.country,ss.address,ss.department_num,sl.name as levelName
+		from store_subbranch ss
+		left join store_level sl on sl.level_Id = ss.level_id
+		where 1=1
+		<if test="loginName!=null and loginName!=''">  
+            <![CDATA[  
+              and ss.mobile like concat('%', #{loginName}, '%')  
+            ]]>
+		</if>
+		<if test="condition!=null and condition!=''">  
+            <![CDATA[  
+              and ss.name like concat('%', #{condition}, '%')  or ss.number like concat('%',#{condition},'%')
+            ]]>
+		</if>
+		limit #{start},#{limit}
+	</select>
+
+
+
+	<select id="getSubbranchName" resultMap="BaseResultMap">
+		select
+		id, name,number
+		from store_subbranch
+		where 1=1 and state=0
+		<if test="condition!=null and condition!=''">  
+            <![CDATA[  
+              and name like concat('%', #{condition}, '%')  or number like concat('%',#{condition},'%')
+            ]]>
+		</if>
+		limit #{start},#{limit}
+	</select>
+
+
+	<select id="selectByPageCount" resultType="int">
+		select
+		count(*)
+		from store_subbranch
+		where 1=1
+		<if test="loginName!=null and loginName!=''">  
+            <![CDATA[  
+              and mobile like concat('%', #{loginName}, '%')  
+            ]]>
+		</if>
+		<if test="condition!=null and condition!=''">  
+            <![CDATA[  
+              and name like concat('%', #{condition}, '%')  or number like concat('%',#{condition},'%')
+            ]]>
+		</if>
+	</select>
+	<select id="checkNumber" resultType="int">
+		select
+		count(*)
+		from store_subbranch
+		where number = #{number} 
+	</select>
+	<select id="checkLoginName" resultType="int">
+		select
+		count(*)
+		from store_subbranch
+		where mobile = #{loginName}
+	</select>
+	<select id="getShopProtocol" resultType="java.lang.String">
+		select store_pro from store_level s left join store_subbranch b on
+		s.level_Id=b.level_id where
+		b.id=#{shopId}
+	</select>
+
+	<select id="selectByNumber" resultMap="BaseResultMap">
+		select ss.*
+		from store_subbranch ss
+		where ss.number = #{number}
+
+	</select>
+	<select id="findByLoginNameAndPass" resultMap="BaseResultVoMap">
+		select
+		<include refid="Base_Column_List"/>
+		from store_subbranch s
+		left join store_level sl on sl.level_Id = s.level_id
+		where s.mobile = #{loginName} and s.password = #{password} and s.state=0
+	</select>
+	<select id="selectByMobile" resultMap="BaseResultVoMap">
+		select
+		<include refid="Base_Column_List"/>
+		from store_subbranch s
+		left join store_level sl on sl.level_Id = s.level_id
+		where s.mobile = #{mobile} and s.state=0
+	</select>
+	<select id="getSubbranchListForActivity" resultMap="BaseResultVoMap">
+		select
+		<include refid="Base_Column_List"/>
+		from store_subbranch s
+		left join store_level sl on sl.level_Id = s.level_id
+		where s.state=0
+	</select>
+</mapper>

@@ -1,0 +1,41 @@
+<div class="ui-dialog dialog-md spreadClassifyManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">添加推广分类</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="spreadClassify-form">
+					<input type="hidden" name="id"/> 
+					<input type="hidden" name="createTime">
+				    <input type="hidden" name="createBy"> 
+				    <input type="hidden" name="updateTime">
+					<input type="hidden" name="updateBy">
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">推广分类名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="name" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 headStoreNameDiv">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">状态：</label>
+							<div class="input-group col-md-8">
+							    <select name="status" class="form-control " data-rule="required">
+									<option value="1" selected="selected">启用</option>
+									<option value="0">禁用</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoOutboundDetailExtendMapper" >
+ 	<resultMap id="OutGoodsResultMap" type="com.club.web.stock.vo.StockGoodsOutboundMsgVo" >
+		<result column="sku_id" property="skuId"/>
+		<result column="sku_code" property="skuCode"/>
+		<result column="goods_code" property="goodsCode"/>
+		<result column="goods_name" property="goodsName"/>
+		<result column="brand_name" property="brandName"/>
+		<result column="classify_name" property="classifyName"/>
+		<result column="good_count" property="goodCount"/>
+		<result column="id" property="id"/>
+		<result column="sku_count" property="skuCount"/>
+	</resultMap>
+	<select id="queryOutboundDetail" resultMap="OutGoodsResultMap">
+		select s.code sku_code,s.id sku_id,c.name goods_name,c.cargo_no goods_code,b.name brand_name,a.name classify_name,d.count good_count,d.id id
+		from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_outbound_detail d
+		where c.classify_id=a.id and c.brand_id=b.id and s.cargo_id=c.id and d.sku_id=s.id and d.outbound_id=#{outboundId}
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or s.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>
+   		 limit #{startIndex},#{pageSize}
+	</select>	
+	<select id="queryOutboundDetailTotal" resultType="int">
+		select count(1) from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_outbound_detail d
+		where c.classify_id=a.id and c.brand_id=b.id and s.cargo_id=c.id and d.sku_id=s.id and d.outbound_id=#{outboundId}
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or s.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>
+	</select>
+	<select id="selectBySkuAndOutId" resultMap="com.club.web.stock.dao.base.CargoOutboundDetailMapper.BaseResultMap" parameterType="java.lang.Long">
+		select id, outbound_id, sku_id, `count` from cargo_outbound_detail where
+		sku_id = #{skuId,jdbcType=BIGINT} and outbound_id=#{outboundId}
+	</select>
+	<select id="queryOutboundSkuMsg" resultMap="OutGoodsResultMap">
+		select s.id sku_id,s.code sku_code,c.id id,c.cargo_no goods_code,c.name goods_name,b.name brand_name,a.name classify_name,k.out_shelves_no sku_count from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_sku_stock k
+		where s.cargo_id=c.id and c.brand_id=b.id and c.classify_id=a.id and s.id=k.cargo_sku_id
+    	and c.id in
+    	<foreach item="item" index="index" collection="goodsIdList" open="(" separator="," close=")">  
+			 #{item}  
+		 </foreach>  
+   		  limit #{startIndex},#{pageSize}
+  </select>
+  <select id="queryOutboundSkuMsgTotal" resultType="int">
+  		select count(1) from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_sku_stock k
+		where s.cargo_id=c.id and c.brand_id=b.id and c.classify_id=a.id and s.id=k.cargo_sku_id
+    	and c.id in
+    	<foreach item="item" index="index" collection="goodsIdList" open="(" separator="," close=")">  
+			 #{item}  
+		 </foreach>  
+  </select>	
+  <delete id="deleteOutboundDetailByIds">
+  	delete from cargo_outbound_detail where id in
+  	 <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	  	#{item}  
+	 </foreach>  
+  </delete>
+  <delete id="delOutboundDetailByOutIds">
+  	delete from cargo_outbound_detail where outbound_id in
+  	 <foreach item="item" index="index" collection="outboundIds" open="(" separator="," close=")">  
+	  	#{item}  
+	 </foreach>  
+  </delete>
+   <resultMap id="StockCountResultMap" type="com.club.web.stock.vo.StockGoodsOutboundMsgVo" >
+		<result column="good_count" property="goodCount"/>
+		<result column="sku_count" property="skuCount"/>
+	</resultMap>
+  <select id="getStockCountByOutIds" resultMap="StockCountResultMap">
+  	select d.count good_count,s.out_shelves_no sku_count from cargo_outbound_order c,cargo_outbound_detail d,cargo_sku_stock s
+  	where c.id=d.outbound_id and d.sku_id=s.cargo_sku_id and c.id in
+  	<foreach item="item" index="index" collection="outboundIds" open="(" separator="," close=")">  
+	  	#{item}  
+	 </foreach>  
+  </select>
+   	<resultMap id="OutDetailResultMap" type="com.club.web.stock.domain.CargoOutboundDetailDo" >
+		<result column="id" property="id"/>
+		<result column="outbound_id" property="outboundId"/>
+		<result column="sku_id" property="skuId"/>
+		<result column="count" property="count"/>
+	</resultMap>
+  <select id="queryOutDetailByOutboundId" resultMap="OutDetailResultMap">
+  	 select id, outbound_id, sku_id, `count` from cargo_outbound_detail where outbound_id=#{outboundId}
+  </select>
+</mapper>

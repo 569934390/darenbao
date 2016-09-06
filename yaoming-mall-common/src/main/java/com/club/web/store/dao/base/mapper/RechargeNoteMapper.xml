@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.RechargeNoteMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.RechargeNote" >
+    <id column="indent_id" property="indentId" jdbcType="BIGINT" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="item_code" property="itemCode" jdbcType="INTEGER" />
+    <result column="buyer_client" property="buyerClient" jdbcType="VARCHAR" />
+    <result column="buyer_account" property="buyerAccount" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    indent_id, payment_amount, pay_type, item_code, buyer_client, buyer_account, create_date, 
+    `state`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge_note
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from recharge_note
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.RechargeNote" >
+    insert into recharge_note (indent_id, payment_amount, pay_type, 
+      item_code, buyer_client, buyer_account, 
+      create_date, `state`)
+    values (#{indentId,jdbcType=BIGINT}, #{paymentAmount,jdbcType=DECIMAL}, #{payType,jdbcType=INTEGER}, 
+      #{itemCode,jdbcType=INTEGER}, #{buyerClient,jdbcType=VARCHAR}, #{buyerAccount,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.RechargeNote" >
+    insert into recharge_note
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indentId != null" >
+        indent_id,
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="itemCode != null" >
+        item_code,
+      </if>
+      <if test="buyerClient != null" >
+        buyer_client,
+      </if>
+      <if test="buyerAccount != null" >
+        buyer_account,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="state != null" >
+        `state`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indentId != null" >
+        #{indentId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=INTEGER},
+      </if>
+      <if test="buyerClient != null" >
+        #{buyerClient,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null" >
+        #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.RechargeNote" >
+    update recharge_note
+    <set >
+      <if test="paymentAmount != null" >
+        payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="itemCode != null" >
+        item_code = #{itemCode,jdbcType=INTEGER},
+      </if>
+      <if test="buyerClient != null" >
+        buyer_client = #{buyerClient,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null" >
+        buyer_account = #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.RechargeNote" >
+    update recharge_note
+    set payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      pay_type = #{payType,jdbcType=INTEGER},
+      item_code = #{itemCode,jdbcType=INTEGER},
+      buyer_client = #{buyerClient,jdbcType=VARCHAR},
+      buyer_account = #{buyerAccount,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      `state` = #{state,jdbcType=VARCHAR}
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </update>
+</mapper>

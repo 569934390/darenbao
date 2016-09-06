@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12 emgceval-main-view">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group btn-group pull-right member-info-main-btngroup">
+                    <input type="text" name="member-conditions" class="form-control" placeholder="按会员名，会员等级搜索...">
+                    <span class="input-group-btn">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="stateBtn">全部</span><span class="caret"></span>
+                          </button>
+                          <ul id="stateFilter" class="dropdown-menu">
+                            <li><a href="##" filter="">全部</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="##" filter="00C">待审核</a></li>
+                            <li><a href="##" filter="00A">已审核</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="##" filter="00D">禁言</a></li>
+                            <li><a href="##" filter="00B">待充值</a></li>
+                            <li><a href="##" filter="00X">已失效</a></li>
+                          </ul>
+                        </div>
+                        <button type="submit" name="search"class="btn btn-info" action="search" ><i class="fa fa-search"></i>
+                        </button>
+                        <button type="button" class="btn btn-info" action="refresh" title="刷新">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="add" title="新建会员">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="edit" title="修改会员">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="del" title="删除会员">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="tree" title="团队"> 团队
+                            <span class="fa fa-sitemap"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="jinGou" title="禁购"> 禁购
+                        </button>
+                        <button type="button" class="btn btn-info" action="jinYan" title="禁言"> 禁言
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="check" title="批量审核"> 审核
+                            <span class="glyphicon glyphicon-check"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-right:10px;">
+            <div class="col-md-12 emgceval-content-div" id="member-info-content-div">
+            </div>
+        </div>
+    </div>
+</div>

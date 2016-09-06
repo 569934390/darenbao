@@ -1,0 +1,86 @@
+<style>
+    .sortBanner{
+        width:100%;
+        display: block;
+        background-color: #282828 ;
+        height: 2rem;
+        /*position: absolute;*/
+        /*right: 0;*/
+        /*left: 0;*/
+        /*padding: 0.5rem;*/
+    }
+    .sortBanner .active{
+        color: #FDD000;
+        border-color: #FDD000;
+    }
+    .sortBanner .active div{
+        color: #FDD000;
+    }
+    .box_33{
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 50%;
+        text-align: center;
+        line-height: 2rem;
+        float: left;
+        color:#B7A9A9;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+    }
+    .fitter-title{
+        float: left;
+        width: 60%;
+        text-align: right;
+        color:  #989DB4;
+    }
+    .fitter-sort img{
+        width:0.70rem;
+    }
+    .triangle img{
+        width:.3rem;
+    }
+    .lanmu-good2 img{
+        width: 4.4rem;
+        height: 4.4rem;
+        float: left;
+    }
+    .opinion_button{
+        background: #FDD000;
+        margin: 1px;
+        display: block;
+        overflow: hidden;
+        border:1px solid #FDD000;
+        color: white;
+        text-align: center;
+        width: 4.5rem;
+        height:1.5rem;
+        line-height: 1.5rem;
+        float: right;
+    }
+</style>
+<ion-view view-title="意见反馈">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">意见反馈</div>
+        <div class="head-right-btn" ></div>
+    </ion-header-bar>
+    <ion-content overflow-scroll="false" style="top: 44px">
+        <div class="sortBanner" style="top: 0em;">
+            <div class="box_33 " ng-class="{'active':  opinion.type==2}" ng-click="changeType(2)">
+                <div class="fitter-title">建议</div>
+            </div>
+            <div class="box_33" ng-class="{'active':  opinion.type==1}" ng-click="changeType(1)">
+                <div class="fitter-title">问题</div>
+            </div>
+        </div>
+        <div class="item item-input">
+            <textarea ng-model="opinion.description" placeholder="请输入您的意见反馈..." rows="10" style="width: 100%"></textarea>
+        </div>
+        <div class="col-50 opinion_button" ng-click="addOpinion(opinion)">发送</div>
+        <!--<div>{{versionName}}</div>-->
+    </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.MsgPushLogExtendMapper" >
+  <resultMap id="BaseResultMapVo" type="com.club.web.store.vo.MsgPushLogVo" >
+    <result column="ID" property="id"  />
+    <result column="MSG_TYPE" property="msgType" jdbcType="CHAR" />
+    <result column="TRADE_TIME" property="tradeTime" jdbcType="TIMESTAMP" />
+    <result column="MSG_TITLE" property="msgTitle" jdbcType="LONGVARCHAR" />
+    <result column="MSG_CONTENT" property="msgContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <select id="getMsgPushList" resultMap="BaseResultMapVo">
+  	select ID, MSG_TYPE,TRADE_TIME,MSG_TITLE, MSG_CONTENT from msg_push_log where (DEVICE_TYPE=${deviceType} or DEVICE_TYPE is null)
+  	and (DEVICE_ID=(select PHONE from client where biz_id=${userId}) or DEVICE_ID is null or DEVICE_ID='') and RESULT_CODE='OK'
+  	limit #{start},#{pageSize} 
+  </select>
+  
+</mapper>

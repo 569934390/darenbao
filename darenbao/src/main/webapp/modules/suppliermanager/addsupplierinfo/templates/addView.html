@@ -1,0 +1,65 @@
+<div class="ui-dialog dialog-md supplierManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建供应商信息</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="supplier-form">
+                    <input type="hidden" name="id">
+                    <input type="hidden" name="createTime">
+                    <input type="hidden" name="createBy">
+                    <input type="hidden" name="updateTime">
+                    <input type="hidden" name="updateBy">
+                    <div class="col-md-6 required">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">供应商编号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control editSupplierCode" name="code" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">供应商名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control editSupplierName" name="name" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">联系人：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="contacts">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">联系电话：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="tel">
+                                <span class="input-group-addon clear-input-icon-right"><span class="glyphicon glyphicon-earphone"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">联系地址：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="addr">
+                            </div>
+                        </div>
+                    </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

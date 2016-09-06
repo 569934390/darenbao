@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.MsgPushLogMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.MsgPushLog" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="MSG_TYPE" property="msgType" jdbcType="CHAR" />
+    <result column="PUSH_TYPE" property="pushType" jdbcType="CHAR" />
+    <result column="CUSTOMER_ORDER" property="customerOrder" jdbcType="VARCHAR" />
+    <result column="TRADE_TIME" property="tradeTime" jdbcType="TIMESTAMP" />
+    <result column="PUSH_CHANNEL" property="pushChannel" jdbcType="CHAR" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="CHAR" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+    <result column="RESULT_CODE" property="resultCode" jdbcType="VARCHAR" />
+    <result column="PUSH_COUNT" property="pushCount" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.store.dao.base.po.MsgPushLogWithBLOBs" extends="BaseResultMap" >
+    <result column="MSG_TITLE" property="msgTitle" jdbcType="LONGVARCHAR" />
+    <result column="MSG_CONTENT" property="msgContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MSG_TYPE, PUSH_TYPE, CUSTOMER_ORDER, TRADE_TIME, PUSH_CHANNEL, MSG_ID, `STATUS`, 
+    DEVICE_TYPE, DEVICE_ID, RESULT_CODE, PUSH_COUNT, USER_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    MSG_TITLE, MSG_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_push_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from msg_push_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.MsgPushLogWithBLOBs" >
+    insert into msg_push_log (ID, MSG_TYPE, PUSH_TYPE, 
+      CUSTOMER_ORDER, TRADE_TIME, PUSH_CHANNEL, 
+      MSG_ID, `STATUS`, DEVICE_TYPE, 
+      DEVICE_ID, RESULT_CODE, PUSH_COUNT, 
+      USER_ID, MSG_TITLE, MSG_CONTENT
+      )
+    values (#{id,jdbcType=BIGINT}, #{msgType,jdbcType=CHAR}, #{pushType,jdbcType=CHAR}, 
+      #{customerOrder,jdbcType=VARCHAR}, #{tradeTime,jdbcType=TIMESTAMP}, #{pushChannel,jdbcType=CHAR}, 
+      #{msgId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{deviceType,jdbcType=CHAR}, 
+      #{deviceId,jdbcType=VARCHAR}, #{resultCode,jdbcType=VARCHAR}, #{pushCount,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{msgTitle,jdbcType=LONGVARCHAR}, #{msgContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.MsgPushLogWithBLOBs" >
+    insert into msg_push_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="msgType != null" >
+        MSG_TYPE,
+      </if>
+      <if test="pushType != null" >
+        PUSH_TYPE,
+      </if>
+      <if test="customerOrder != null" >
+        CUSTOMER_ORDER,
+      </if>
+      <if test="tradeTime != null" >
+        TRADE_TIME,
+      </if>
+      <if test="pushChannel != null" >
+        PUSH_CHANNEL,
+      </if>
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="status != null" >
+        `STATUS`,
+      </if>
+      <if test="deviceType != null" >
+        DEVICE_TYPE,
+      </if>
+      <if test="deviceId != null" >
+        DEVICE_ID,
+      </if>
+      <if test="resultCode != null" >
+        RESULT_CODE,
+      </if>
+      <if test="pushCount != null" >
+        PUSH_COUNT,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="msgTitle != null" >
+        MSG_TITLE,
+      </if>
+      <if test="msgContent != null" >
+        MSG_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=CHAR},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=CHAR},
+      </if>
+      <if test="customerOrder != null" >
+        #{customerOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null" >
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushChannel != null" >
+        #{pushChannel,jdbcType=CHAR},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null" >
+        #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushCount != null" >
+        #{pushCount,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="msgTitle != null" >
+        #{msgTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="msgContent != null" >
+        #{msgContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.MsgPushLogWithBLOBs" >
+    update msg_push_log
+    <set >
+      <if test="msgType != null" >
+        MSG_TYPE = #{msgType,jdbcType=CHAR},
+      </if>
+      <if test="pushType != null" >
+        PUSH_TYPE = #{pushType,jdbcType=CHAR},
+      </if>
+      <if test="customerOrder != null" >
+        CUSTOMER_ORDER = #{customerOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null" >
+        TRADE_TIME = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushChannel != null" >
+        PUSH_CHANNEL = #{pushChannel,jdbcType=CHAR},
+      </if>
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `STATUS` = #{status,jdbcType=CHAR},
+      </if>
+      <if test="deviceType != null" >
+        DEVICE_TYPE = #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceId != null" >
+        DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null" >
+        RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pushCount != null" >
+        PUSH_COUNT = #{pushCount,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="msgTitle != null" >
+        MSG_TITLE = #{msgTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="msgContent != null" >
+        MSG_CONTENT = #{msgContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.store.dao.base.po.MsgPushLogWithBLOBs" >
+    update msg_push_log
+    set MSG_TYPE = #{msgType,jdbcType=CHAR},
+      PUSH_TYPE = #{pushType,jdbcType=CHAR},
+      CUSTOMER_ORDER = #{customerOrder,jdbcType=VARCHAR},
+      TRADE_TIME = #{tradeTime,jdbcType=TIMESTAMP},
+      PUSH_CHANNEL = #{pushChannel,jdbcType=CHAR},
+      MSG_ID = #{msgId,jdbcType=VARCHAR},
+      `STATUS` = #{status,jdbcType=CHAR},
+      DEVICE_TYPE = #{deviceType,jdbcType=CHAR},
+      DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+      PUSH_COUNT = #{pushCount,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=BIGINT},
+      MSG_TITLE = #{msgTitle,jdbcType=LONGVARCHAR},
+      MSG_CONTENT = #{msgContent,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.MsgPushLog" >
+    update msg_push_log
+    set MSG_TYPE = #{msgType,jdbcType=CHAR},
+      PUSH_TYPE = #{pushType,jdbcType=CHAR},
+      CUSTOMER_ORDER = #{customerOrder,jdbcType=VARCHAR},
+      TRADE_TIME = #{tradeTime,jdbcType=TIMESTAMP},
+      PUSH_CHANNEL = #{pushChannel,jdbcType=CHAR},
+      MSG_ID = #{msgId,jdbcType=VARCHAR},
+      `STATUS` = #{status,jdbcType=CHAR},
+      DEVICE_TYPE = #{deviceType,jdbcType=CHAR},
+      DEVICE_ID = #{deviceId,jdbcType=VARCHAR},
+      RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+      PUSH_COUNT = #{pushCount,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,213 @@
+<div class="ui-dialog dialog-md ruleInfoWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">瑙勫垯鏄庣粏</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="client-form">
+                    <input type="hidden" name="bizId">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">绉垎绫诲瀷锛�</label>
+                            <div class="input-group col-md-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ruleType" value="ruleType1" data-rule="checked" checked="true">鍗曠瑪娑堣垂绉垎</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ruleType" value="ruleType1">閿�鍞崟绗旂Н鍒�</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ruleType" value="ruleType3">閿�鍞笟缁╁鍔�</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">瑙勫垯鍚嶇О锛�</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="ruleName" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="control-label col-md-4">瑙勫垯浼樺厛绾э細</label>
+                            <select class="input-group col-md-8" name="ruleLevel" field="combobox">
+                                <option value="1">楂�</option>
+                                <option value="2">涓�</option>
+                                <option value="3">浣�</option>
+                                <option value="" selected="selected">鍏ㄩ儴</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">鏈夋晥鏈燂細</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="datetime" class="form-control" name="aruleStartTime" data-rule="match[lt, aruleEndTime, date]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">鍒帮細</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" name="aruleEndTime" field="datetime" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">杩旂Н鍒嗚绠楁柟寮忥細</label>
+                            <div class="input-group col-md-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="excType" value="excType1" data-rule="checked" checked="true">娑堣垂閲戦</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="excType" value="excType2">鎸夊崟绗旇繑姣旂巼</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1 excTypes excType1">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">瑙勫垯绫诲瀷锛�</label>
+                            <div class="input-group col-md-10">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="countType" value="option1" data-rule="checked" checked="true">娑堣垂澶氬皯閫佸灏�</label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="countType" value="option2">鍥哄畾</label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="countType" value="option3">娑堣垂閲戦/2</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType1 excTypes excType1">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">娑堣垂閲戦锛�</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" class="form-control" name="moneyUp" data-rule="match[lt, moneyDown, int]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType1 excTypes excType1">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">鍒帮細</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1 excTypes excType1">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">绉垎锛�</label>
+                            <div class="input-group col-md-4">
+                                <input class="form-control" name="ruleName" data-rule="required">
+                                 <span class="input-group-addon">涓�</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1 excTypes excType2" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">鏈�浣庢秷璐癸細</label>
+                            <div class="input-group col-md-4">
+                                <input class="form-control" name="ruleName" data-rule="required">
+                                 <span class="input-group-addon">锟�</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1 excTypes excType2" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">姣旂巼锛�</label>
+                            <div class="input-group col-md-4">
+                                <input class="form-control" name="ruleName" data-rule="required">
+                                 <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">澶囨敞锛�</label>
+                            <div class="input-group col-md-10">
+                                <textarea id="remarks" name="remarks" class="form-control" data-rule="required;length[10~, true]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">浼氬憳绛夌骇</label>
+                            <div class="input-group col-md-10">
+                                <select name="clientLevels" class="ui-multiselect form-control" data-placeholder="閫夋嫨浼氬憳绛夌骇锛屽姞鍏ヤ笟缁╁鍔�..." data-rule="required" multiple>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">缁熻缁村害锛�</label>
+                            <div class="input-group col-md-10">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="countType" value="option1" data-rule="checked" checked="true">妯悜</label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="countType" value="option2">绾靛悜</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">涓氱哗璁＄畻灞傜骇锛�</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">璁＄畻鍛ㄦ湡锛�</label>
+                            <div class="input-group col-md-10">
+                                <label class="radio-inline">
+                                    <input type="radio" name="countType" value="option1" data-rule="checked" checked="true">鎸夋湀</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="countType" value="option2">鎸夊懆</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">涓汉淇濆簳涓氱哗锛�</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">濂栧姳姣旂巼锛�</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">涓氱哗瑙勬ā锛�</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ruleTypes ruleType3" style="display:none;">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">鍒帮細</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" field="spinner" name="moneyDown" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">纭畾</button>
+        <button type="button" class="btn btn-default" action="clear-button">閲嶇疆</button>
+        <button type="button" class="btn btn-default" action="cancel-button">鍙栨秷</button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<style>
+    .context-txt{
+        /*display: -webkit-box;*/
+        padding: 0.5rem .5rem .5rem .5rem;
+        max-width: 100%;;
+    }
+</style>
+<ion-view view-title="服务协议(我的设置)">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">服务协议</div>
+        <div class="head-right-btn" ></div>
+    </ion-header-bar>
+    <ion-content>
+        <div ng-bind-html="myText.content" class="context-txt"></div>
+    </ion-content>
+</ion-view>

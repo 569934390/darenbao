@@ -1,0 +1,46 @@
+<style>
+.scroll-content{
+	background: #F8F8F8;
+}
+.list,.item{
+	margin: 0px;
+	padding: 0px;
+	border-radius: 4px;
+}
+.item h3{
+	padding-left: 0.5rem;
+	padding-top: 0.5rem;
+}
+</style>
+<ion-view title="卡券兑换">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">卡券兑换</div>
+    </ion-header-bar>
+    <ion-content lazy-scroll delegate-handle="vouch-list-content-con">
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="doRefresh()">
+        </ion-refresher>
+		<div  class="list" ng-if="vouchDataT">
+		     <div class="item" style="margin: 0.4rem;" ng-repeat="vouch in vouchs" ui-sref="vouchDetailList({shopId:'{{shopId}}',vocherId:vouch.id,statu:1})">
+			      <h3 style="background:url('img/vouch_bg.png'); background-size: 100% 100%; margin: 0;padding: 0 0.5rem; font-size: 0.8rem;height: 2.25rem; line-height:2.25rem; color: #FFFFFF" >{{vouch.name}}</h3>
+			      <h3>{{vouch.nums}}张</h3>
+			      <h3 style="padding-bottom: 0.4rem">有效期:&nbsp;&nbsp;{{vouch.beginDate}} 至  {{vouch.endDate}}</h3>
+   			 </div>
+		</div >
+		<div  ng-if="vouchDataF" style="text-align: center;margin-top: 30%;">
+		      <img src="img/vouch.png" style="width: 9rem;">
+		      <h3 style="font-size: 0.8rem;color: #989898;font-weight: bold;">还没有可用卡券</h3>
+		      <h3 style="font-size: 0.8rem;color: #989898;font-weight: bold;">快去添加吧!</h3>
+		</div >
+		 <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="loadMore()"
+                immediate-check="false"
+                distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

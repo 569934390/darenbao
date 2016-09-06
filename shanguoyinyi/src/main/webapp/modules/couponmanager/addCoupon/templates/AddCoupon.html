@@ -1,0 +1,56 @@
+<div class="ui-dialog dialog-md selectCargoWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">兑换券</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row" >
+					<div class="col-md-12">
+						<div
+							class="input-group btn-group pull-left good-info-main-btngroup">
+							<div class="col-md-4">
+								<input type="text" name="good-select-conditions"
+									class="form-control" placeholder="根据商品名称或者货品编号搜索">
+							</div>
+							<span class="input-group-btn">
+								<button type="submit" name="search" class="btn btn-info" action="search">
+									<i class="fa fa-search"></i>
+								</button>
+							</span>
+
+						</div>
+						<div class="row" style="margin-right: 10px;">
+							<div class="col-md-12 emgceval-content-div"
+								id="selectgood-info-content-div"></div>
+						</div>
+	
+                     
+					</div>
+					 <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group required">
+                            <input type="hidden" name="id"> 
+                            <input type="hidden" name="nums"> 
+                                                       兑换券名称：<input type="text" name="name" class="form-control" data-rule="required"> 
+						       有效日期：
+							<div class="input-group">
+								<input type="text" field="datetime" class="form-control"
+									name="beginTime" data-rule="required">
+							</div>
+							-
+							<div class="input-group">
+								<input type="text" name="endTime" field="datetime"
+									class="form-control" data-rule="required">
+							</div>
+						</div>
+					</div>				
+					
+				</div>						
+			</div>
+		</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" action="save-button">确定</button>
+			<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+		</div>
+	</div>

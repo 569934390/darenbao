@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.module.dao.extend.OpinionExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.module.dao.base.po.Opinion" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="client_id" property="clientId" jdbcType="BIGINT" />
+    <result column="version_name" property="versionName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="client_name" property="clientName" jdbcType="VARCHAR" />
+    <result column="client_phone" property="clientPhone" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.module.dao.base.po.Opinion" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, client_id, version_name, `type`, create_time, client_name, client_phone, platform
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <resultMap id="ClientResultMap" type="com.club.web.module.vo.ClientVo" >
+    <id column="biz_id" property="id" jdbcType="BIGINT" />
+    <result column="client_name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ClientWeixinResultMap" type="com.club.web.module.vo.ClientVo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="nickname" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findClientVoById" resultMap="ClientResultMap" parameterType="java.lang.Long" >
+    select 
+    biz_id,client_name,phone
+    from client
+    where biz_id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="findWeixinClientVoById" resultMap="ClientWeixinResultMap" parameterType="java.lang.Long" >
+    select 
+    ID,nickname
+    from weixin_user_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="queryTotalByMap" resultType="int">
+  	SELECT count(1) FROM opinion o where 1 = 1 
+    <if test="versionName!=null and versionName!=''">
+    	and o.version_name like #{versionName}
+    </if>
+    <if test="platform != null and platform!=''" >
+        and o.platform = #{platform}
+    </if>
+    <if test="opinionType!=null and opinionType!=''">
+    	and o.type = #{opinionType}
+    </if>
+    <if test="startTime!=null and startTime!=''">
+    	and o.create_time &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+    	and o.create_time &lt;= #{endTime}
+    </if>
+    order by o.id desc
+  </select>
+  <select id="queryOpinionPoByMap" resultMap="ResultMapWithBLOBs">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+	FROM opinion o where 1=1 
+    <if test="versionName!=null and versionName!=''">
+    	and o.version_name like #{versionName}
+    </if>
+    <if test="platform != null and platform!=''" >
+        and o.platform = #{platform}
+    </if>
+    <if test="opinionType!=null and opinionType!=''">
+    	and o.type = #{opinionType}
+    </if>
+    <if test="startTime!=null and startTime!=''">
+    	and o.create_time &gt;= #{startTime}
+    </if>
+    <if test="endTime!=null and endTime!=''">
+    	and o.create_time &lt;= #{endTime}
+    </if>
+    order by o.id desc limit #{startIndex},#{pageSize} 
+  </select>
+  
+  <delete id="deleteByIds">
+    delete from opinion
+    where id in 
+	 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+	  #{item}  
+	 </foreach>  
+  </delete>
+</mapper>

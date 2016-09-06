@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.TradeGoodMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.TradeGood" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="headStore_id" property="headstoreId" jdbcType="BIGINT" />
+    <result column="cargo_id" property="cargoId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="BIGINT" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="post_fee" property="postFee" jdbcType="DOUBLE" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="img_square" property="imgSquare" jdbcType="BIGINT" />
+    <result column="img_rectangle" property="imgRectangle" jdbcType="BIGINT" />
+    <result column="img_large" property="imgLarge" jdbcType="BIGINT" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="postid" property="postid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, headStore_id, cargo_id, `name`, `describe`, sort, `type`, category, post, post_fee, 
+    creator, create_time, `status`, sale_num, img_square, img_rectangle, img_large, begin_time, 
+    end_time, postid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_good
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trade_good
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.TradeGood" >
+    insert into trade_good (id, headStore_id, cargo_id, 
+      `name`, `describe`, sort, 
+      `type`, category, post, 
+      post_fee, creator, create_time, 
+      `status`, sale_num, img_square, 
+      img_rectangle, img_large, begin_time, 
+      end_time, postid)
+    values (#{id,jdbcType=BIGINT}, #{headstoreId,jdbcType=BIGINT}, #{cargoId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{sort,jdbcType=BIGINT}, 
+      #{type,jdbcType=INTEGER}, #{category,jdbcType=BIGINT}, #{post,jdbcType=VARCHAR}, 
+      #{postFee,jdbcType=DOUBLE}, #{creator,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{saleNum,jdbcType=INTEGER}, #{imgSquare,jdbcType=BIGINT}, 
+      #{imgRectangle,jdbcType=BIGINT}, #{imgLarge,jdbcType=BIGINT}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{postid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.TradeGood" >
+    insert into trade_good
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="headstoreId != null" >
+        headStore_id,
+      </if>
+      <if test="cargoId != null" >
+        cargo_id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="describe != null" >
+        `describe`,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="postFee != null" >
+        post_fee,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="imgSquare != null" >
+        img_square,
+      </if>
+      <if test="imgRectangle != null" >
+        img_rectangle,
+      </if>
+      <if test="imgLarge != null" >
+        img_large,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="postid != null" >
+        postid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="headstoreId != null" >
+        #{headstoreId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoId != null" >
+        #{cargoId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=BIGINT},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=DOUBLE},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="imgSquare != null" >
+        #{imgSquare,jdbcType=BIGINT},
+      </if>
+      <if test="imgRectangle != null" >
+        #{imgRectangle,jdbcType=BIGINT},
+      </if>
+      <if test="imgLarge != null" >
+        #{imgLarge,jdbcType=BIGINT},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postid != null" >
+        #{postid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.TradeGood" >
+    update trade_good
+    <set >
+      <if test="headstoreId != null" >
+        headStore_id = #{headstoreId,jdbcType=BIGINT},
+      </if>
+      <if test="cargoId != null" >
+        cargo_id = #{cargoId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=BIGINT},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        post_fee = #{postFee,jdbcType=DOUBLE},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="imgSquare != null" >
+        img_square = #{imgSquare,jdbcType=BIGINT},
+      </if>
+      <if test="imgRectangle != null" >
+        img_rectangle = #{imgRectangle,jdbcType=BIGINT},
+      </if>
+      <if test="imgLarge != null" >
+        img_large = #{imgLarge,jdbcType=BIGINT},
+      </if>
+      <if test="beginTime != null" >
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postid != null" >
+        postid = #{postid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.TradeGood" >
+    update trade_good
+    set headStore_id = #{headstoreId,jdbcType=BIGINT},
+      cargo_id = #{cargoId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      `describe` = #{describe,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=INTEGER},
+      category = #{category,jdbcType=BIGINT},
+      post = #{post,jdbcType=VARCHAR},
+      post_fee = #{postFee,jdbcType=DOUBLE},
+      creator = #{creator,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=INTEGER},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      img_square = #{imgSquare,jdbcType=BIGINT},
+      img_rectangle = #{imgRectangle,jdbcType=BIGINT},
+      img_large = #{imgLarge,jdbcType=BIGINT},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      postid = #{postid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

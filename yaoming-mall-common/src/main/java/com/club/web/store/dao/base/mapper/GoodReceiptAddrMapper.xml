@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.GoodReceiptAddrMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.GoodReceiptAddr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="receipt_name" property="receiptName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="fiexd_phone" property="fiexdPhone" jdbcType="VARCHAR" />
+    <result column="receipt_email" property="receiptEmail" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mailbox" property="mailbox" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, receipt_name, mobile, fiexd_phone, receipt_email, `status`, province_code, 
+    province_name, city_code, city_name, area_code, area_name, detail_addr, update_time, 
+    create_time, mailbox
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from good_receipt_addr
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from good_receipt_addr
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.GoodReceiptAddr" >
+    insert into good_receipt_addr (id, user_id, receipt_name, 
+      mobile, fiexd_phone, receipt_email, 
+      `status`, province_code, province_name, 
+      city_code, city_name, area_code, 
+      area_name, detail_addr, update_time, 
+      create_time, mailbox)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{receiptName,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{fiexdPhone,jdbcType=VARCHAR}, #{receiptEmail,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR}, 
+      #{areaName,jdbcType=VARCHAR}, #{detailAddr,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{mailbox,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.GoodReceiptAddr" >
+    insert into good_receipt_addr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="receiptName != null" >
+        receipt_name,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="fiexdPhone != null" >
+        fiexd_phone,
+      </if>
+      <if test="receiptEmail != null" >
+        receipt_email,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="mailbox != null" >
+        mailbox,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="receiptName != null" >
+        #{receiptName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="fiexdPhone != null" >
+        #{fiexdPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptEmail != null" >
+        #{receiptEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailbox != null" >
+        #{mailbox,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.GoodReceiptAddr" >
+    update good_receipt_addr
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="receiptName != null" >
+        receipt_name = #{receiptName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="fiexdPhone != null" >
+        fiexd_phone = #{fiexdPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptEmail != null" >
+        receipt_email = #{receiptEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddr != null" >
+        detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailbox != null" >
+        mailbox = #{mailbox,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.GoodReceiptAddr" >
+    update good_receipt_addr
+    set user_id = #{userId,jdbcType=BIGINT},
+      receipt_name = #{receiptName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      fiexd_phone = #{fiexdPhone,jdbcType=VARCHAR},
+      receipt_email = #{receiptEmail,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      detail_addr = #{detailAddr,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mailbox = #{mailbox,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

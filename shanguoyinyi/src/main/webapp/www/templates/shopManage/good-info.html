@@ -1,0 +1,341 @@
+<style>
+    .good-info-content{
+        top: 2.2rem!important;
+        bottom:2rem!important;
+        width: auto;
+        height: auto;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+    }
+    .slide-box-pic img{
+        width:100%;
+        vertical-align: middle;
+    }
+    .good-info-detail{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+    }
+    .good-info-title{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+        height: 4rem;
+        float: left;
+        padding: .75rem;
+    }
+    .good-info-name{
+        width: 85%;
+        float: left;
+        position: relative;
+        display: -webkit-box;
+        font-size: .85rem;
+        font-weight: bold;
+        height: 100%;
+        line-height: 1.3rem;
+        padding:0 .5rem 0 0;
+        text-overflow:ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .good-info-share{
+        position: relative;
+        float: left;
+        height: 100%;
+        width: 15%;
+        border-left:2px dotted #555555;
+        text-align: center;
+    }
+    .good-info-share img{
+        position: relative;
+        display:block;
+        margin:0 auto;
+        width: 50%;
+        background-size: 100% 100%;
+    }
+    .good-info-share p{
+        position: relative;
+        display:block;
+        font-size: .6rem;
+        line-height: .8rem;
+    }
+    .good-info-money{
+        position: relative;
+        width: 100%;
+        height: 1.5rem;
+        font-size: .85rem;
+        line-height: 1rem;
+        padding: .3rem .75rem;
+        display: inline-block;
+    }
+    .good-info-money .good-info-sale{
+        position: relative;
+        color: red;
+        height: 1.5rem;
+        font-size: 1rem;
+        display: inline-block;
+    }
+    .good-info-money .good-info-market{
+        position: relative;
+        color: #cccccc;
+        height: 1.5rem;
+        font-size: .75rem;
+        display: inline-block;
+        text-decoration: line-through;
+        margin-left: .5rem;
+    }
+    .good-info-money .good-info-supply{
+        position: relative;
+        color: #818181;
+        height: 1.5rem;
+        font-size: .75rem;
+        display: inline-block;
+        margin-left: .5rem;
+    }
+    .good-info-num{
+        position: relative;
+        width: 100%;
+        color: #cccccc;
+        height: 1.5rem;
+        font-size: .75rem;
+        display: inline-block;
+        padding: 0 .75rem;
+        line-height: 1.2rem;
+    }
+    .good-info-num .good-info-saleNum{
+        display: inline-block;
+        margin-left: 1rem;
+    }
+    .good-info-num .good-info-stockNum{
+        display: inline-block;
+        margin-left: 1rem;
+    }
+
+    .good-info-num .good-info-column{
+        -webkit-border-radius:.3rem;
+        -moz-border-radius:.3rem;
+        border-radius:.3rem;
+        background-color: #fccf62;
+        position: relative;
+        display: inline-block;
+        min-width: 0;
+        font-size: .65rem;
+        color:#ffffff;
+        text-align: center;
+        padding:0 .5rem;
+        /*margin-left: .8rem;*/
+    }
+    .good-info-num .good-info-carriage{
+        -webkit-border-radius:.3rem;
+        -moz-border-radius:.3rem;
+        border-radius:.3rem;
+        background-color: #ff5555;
+        position: relative;
+        display: inline-block;
+        min-width: 0;
+        font-size: .65rem;
+        color:#ffffff;
+        text-align: center;
+        padding:0 .5rem;
+        margin-left: .8rem;
+    }
+    .good-info-type{
+        padding:.5rem .75rem;
+        position: relative;
+    }
+    .good-info-recommend{
+        border-top: .2rem solid #c5c5c5;
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+    .good-info-recommend .good-info-recommend-title{
+        position: relative;
+        width:100%;
+        margin: .5rem 0;
+    }
+    .good-info-recommend img{
+        display: block;
+        width:100%;
+    }
+    .shopgoodinfo .good-footer{
+        padding:0;
+        height:2.4rem!important;
+        font-size: .75rem;
+        line-height: 2.4rem;
+        text-align: center;
+    }
+    .shopgoodinfo .footer-text-info{
+        min-height: 2rem;
+        margin: 0 auto;
+    }
+    .shopgoodinfo .footer-text-info span{
+        margin-left: .2rem;
+    }
+    .shopgoodinfo .footer-text-info img {
+        display: inline-block;
+        height: 1.4rem;
+        width: 1.4rem;
+        background-size: 100% 100%;
+        vertical-align: middle;
+    }
+    .slide-in-right {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(100%);
+    }
+    .slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+        -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    }
+    .slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    .slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+        -webkit-transition: all ease-in-out 250ms;
+        transition: all ease-in-out 250ms;
+    }
+    .slide-in-left {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(100%);
+    }
+    .slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+        -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+        transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    }
+    .slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    .slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+        -webkit-transition: all ease-in-out 250ms;
+        transition: all ease-in-out 250ms;
+    }
+
+    .activity-time {
+        width: 100%;
+        background-color: #000000;
+        top: 2.2rem;
+        z-index: 1000;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        opacity: 0.5;
+        position: absolute;
+    }
+    .activity-time .un-start{
+        position: relative;
+        color: #ffffff;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 1.2rem;
+        padding: .5rem 0;
+    }
+    .activity-time .un-start .date-block{
+        border:1px solid #c5c5c5;
+        border-radius: .2rem;
+        margin: 0 .3rem;
+        padding:0 .2rem;
+        color:#ffffff;
+    }
+    .activity-time .un-start .date-text{
+        font-size: .65rem;
+    }
+    .activity-time .un-start .date-split{
+        color:#ffffff;
+    }
+    .activity-time .on-sales{
+        position: relative;
+        color: #ffffff;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 1.2rem;
+        padding:.5rem 0
+    }
+    .activity-time .on-sales .date-block{
+        border:1px solid #c5c5c5;
+        border-radius: .2rem;
+        margin: 0 .3rem;
+        padding:0 .2rem;
+        color:#ffffff;
+    }
+    .activity-time .on-sales .date-text{
+        font-size: .85rem;
+    }
+    .activity-time .on-sales .date-split{
+        color:#ffffff;
+    }
+    .activity-time .end-sales{
+        color: red;
+        position: relative;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 1.2rem;
+        padding: .5rem 0;
+    }
+</style>
+<ion-view view-title="商品详情" class="shopgoodinfo">
+    <ion-header-bar class="bar-default">
+        <div class="button button-icon icon" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">商品详情</h1>
+    </ion-header-bar>
+    <countdown  ng-if="good && good.startDate && good.endDate" start-date="{{good.startDate}}" end-date="{{good.endDate}}" template-class="activity-time"></countdown>
+    <ion-content overflow-scroll="false" class="good-info-content" lazy-scroll>
+        <div class="good-info-silder">
+            <ion-slide-box delegate-handle="goodInfoSlider">
+                <ion-slide ng-repeat="goodImage in good.showImages.images">
+                    <div class="slide-box-pic">
+                        <img image-lazy-src="{{goodImage.url}}-img01" lazy-scroll-resize="true">
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+        </div>
+        <div class="good-info-detail">
+            <div class="good-info-title">
+                <div class="good-info-name">
+                    {{good.name}}
+                </div>
+                <div class="good-info-share" ng-click="openShareModal(good.name,shareUrl,goodContent,good.smallImage)">
+                    <img src="img/share_black.png"/>
+                    <p>分享</p>
+                </div>
+            </div>
+            <div class="good-info-money">
+                <div class="good-info-sale">{{good.salePrice|currency:'￥'}}</div>
+                <div class="good-info-supply">供货价：{{good.supplyPrice|currency:'￥'}}</div>
+            </div>
+            <!--<div class="good-info-money">-->
+
+            <!--</div>-->
+            <div class="good-info-num">
+                <div class="good-info-column">{{good.columnName}}</div>
+                <div class="good-info-carriage">{{good.post}}</div>
+                <!--<div class="good-info-saleNum">销量&nbsp;&nbsp;{{good.saleNum || 0}}</div>-->
+                <div class="good-info-stockNum">库存&nbsp;&nbsp;{{good.kucun || 0}}</div>
+
+            </div>
+            <div class="item item-icon-right good-info-type"  ng-click="typeModel.show()">
+                查看规格
+                <i class="icon ion-chevron-right" style="font-size: .75rem;"></i>
+            </div>
+            <div class="item item-icon-right good-info-type"  ng-click="evaluationModel.show()">
+                买家评价
+                <i class="icon ion-chevron-right" style="font-size: .75rem;"></i>
+            </div>
+            <div class="good-info-recommend">
+                <div class="good-info-recommend-title">————&nbsp;&nbsp;&nbsp;图文详情&nbsp;&nbsp;&nbsp;————</div>
+                <img image-lazy-src="{{detailImg.url}}-img01" ng-repeat="detailImg in good.detailImages.images" lazy-scroll-resize="true">
+            </div>
+        </div>
+    </ion-content>
+    <div class="bar bar-footer good-footer">
+        <div class="footer-text-info" ng-click="operateGood()">
+            <img ng-show="sortType == 0" src="img/sold-out.png"/>
+            <img ng-show="sortType == 1" src="img/putaway.png"/>
+            <span>{{operate}}</span>
+        </div>
+    </div>
+ </ion-view>

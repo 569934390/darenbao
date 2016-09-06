@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<base href="../../../" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5,maximum-scale=1.0 , user-scalable=0">
+	<link rel="stylesheet" href="css/common/jquery.mobile-1.4.5.min.css"/>
+	<link rel="stylesheet" href="css/style-final.css" />
+	<link rel="stylesheet" href="css/common/scrollbar.css" />
+	<link rel="stylesheet" href="css/customer/search/search-result.css" />
+	<style>
+		#good-grid-id-special{
+			position:absolute;
+			z-index:1;
+			top:140px;
+			left:1px;
+			width:100%;
+			overflow:auto;
+			bottom: 0;
+		}
+		 .good-grid-info{
+			 position: relative;
+			 width: 100%;
+			 overflow: hidden;
+		 }
+		.good-grid-info .good-grid-a{
+			width: 10rem!important;
+			height: 10rem!important;
+			position: relative;
+		}
+		.good-grid-info .good-grid-a img{
+			width: 100%!important;
+		}
+		.good-grid-info .search-spr{
+			-webkit-box-flex: 1;
+			flex:1;
+			height:10rem!important;
+			padding-left:0.6rem;
+		}
+		.good-info-detail{
+			background-color:#ffffff;
+			padding:.5rem .5rem;
+			margin-bottom: .8rem;
+		}
+		.search-spr .good-title-div{
+			height: 2.2rem;
+			font-size: 1.8rem;
+			line-height: 2.2rem;
+			white-space:nowrap;
+			overflow:hidden;
+			text-overflow:ellipsis;
+		}
+		.search-spr .good-grid-b{
+			height: 2.2rem;
+			font-size: 1.6rem;
+			line-height: 2.2rem;
+			display: -webkit-box;
+		}
+		.search-spr .good-grid-b b{
+			font-weight: normal;
+		}
+		.search-spr .good-grid-b .first-div{
+			-webkit-box-flex: 1;
+		}
+		.search-spr .good-grid-b .scend-div{
+			-webkit-box-flex: 1;
+			color: red;
+			text-align: center;
+		}
+		.search-spr .good-grid-b .third-div{
+			-webkit-box-flex: 1;
+			font-size: 1.2rem;
+			text-decoration: line-through;
+		}
+		.img-bottom-div{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			background: black;
+			opacity: .6;
+			font-size: 1.5rem;
+			color: #ffffff;
+			height: 2rem;
+			line-height: 2rem;
+		}
+	</style>
+</head>
+<body>
+<div data-role="page">
+	<section data-role="header" data-theme="b" class="my-header" id="my-header">
+		<a href="html/customer/index.html" target="_top" id="back" data-role="none" class="my-header-back-btn"></a>
+		<h2 id="pageTitle">特价专区</h2>
+		<a href="#" class="my-header-right-btn-ad" data-role="none"><span>.</span><span>.</span><span>.</span></a>
+	</section>
+	<div data-role="main" class="search-result-main">
+		<div class="my-ui-search">
+			<table width="100%">
+				<tr>
+					<td>
+						<div class="my-ui-input my-ui-search-input">
+							<span class="img-user-name">1</span>
+							<input name="userName" id="goodSearchId" type="text" data-role="none" placeholder="请输入商品名称"
+								   value="" onfocus="customer.search.searchEven()">
+							<a href="#" data-role="none" class="clear-a-text"></a>
+						</div>
+					</td>
+					<td>
+						<a href="html/customer/goods/shopping-cart.html" target="_top" class="my-goods-cart-search-a">
+
+						</a>
+					</td>
+				<tr>
+			</table>
+		</div>
+		<div data-role="navbar" id="my-navbarId">
+			<ul>
+				<li>
+					<a href="#"  data-icon="splb-fl"  onclick="customer.search.showClassify(this)" id="classifyId" classify="" style="width: 84px;">茶叶</a>
+				</li>
+				<li><a href="#" data-icon="splb-xx" data-sort-field="saleNumSort" onclick="customer.search.changeToAsc(this)" value="1" class="saleSort">销量</a></li>
+				<li><a href="#" data-icon="splb-xs" data-sort-field="priceSort" onclick="customer.search.changeToAsc(this)" value="2" class="priceSort">价格</a></li>
+				<li>
+					<a  href="#" data-icon="splb-sx" onclick="customer.search.showSearchFilter(this)" id="searchFilterId">筛选</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+		<!--分类菜单弹出框-->
+		<input type="hidden" id="selectClassifyId" value="">
+		<div id="teaNavbarPopup" class="menu-div">
+			<!--分类菜单弹出框模板代码-->
+			<div class="ui-block-a ui-grid-a">
+				<ul data-role="listview" class="ui-listview"  id="menu-a" style="margin: 0;">
+				</ul>
+			</div>
+			<div class="ui-block-b" id="menu-b">
+			</div>
+			<div class="ui-block-c" id="menu-c">
+			</div>
+		</div>
+		<!--筛选菜单弹出框-->
+		<div id="searchFilterPopup" class="menu-div">
+			<form>
+				<fieldset data-role="controlgroup" id="priceGroupId">
+					<span>价格区间:</span>
+					<input type="text" name="minPrice" data-role="none" id="minPrice">
+					<span class="cbbb">—</span>
+					<input type="text" name="maxPrice" data-role="none" id="maxPrice">
+				</fieldset>
+				<div class="filter-title-c">用途:</div>
+				<fieldset data-role="controlgroup">
+					<div class="ui-grid-c" id="purpose-select">
+					</div>
+				</fieldset>
+				<div class="filter-title-c">品牌:</div>
+				<fieldset data-role="controlgroup">
+					<div class="ui-grid-c" id="brand-select">
+					</div>
+				</fieldset>
+				<div id="bottom-btn">
+					<input type="reset" data-role="none" value="重置" class="del-order-btn" onclick="customer.search.btnReset();">
+					<input type="button" data-role="none" value="确定"class="ok-order-btn" onclick="customer.search.sureBtnFilter();">
+				</div>
+			</form>
+		</div>
+		<!--列表部分-->
+		<div data-role="main" class="ui-content" style="overflow-x: visible;!important;">
+			<div id="good-grid-id-special">
+				<div id="scroller" style="position: relative;top: 0px;">
+					<div id="pullDown">
+						<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+					</div>
+					<div id="thelist">
+					</div>
+					<div id="pullUp" style="clear:both;">
+						<span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+					</div>
+					<div class="empty-list" style="display: none;margin:0 auto;text-align: center;clear:both;">
+						<span style="text-decoration:line-through;float: left;;color: #B1ACAC;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<span style="font-size: 1.2rem;color: #B1ACAC;">没有更多了</span>
+						<span style="text-decoration:line-through;float: right;;color: #B1ACAC;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+</div>
+</body>
+</html>
+<script src="js/common/jquery.min.js"></script>
+<script src="js/common/common.js"></script>
+<script src="js/slider/iscroll.js"></script>
+<script src="js/common/jquery.tmpl.min.js" ></script>
+<script src="js/common/jquery.mobile-1.4.5.min.js" ></script>
+<script src="js/customer/search/search-special.js" ></script>
+
+<!--以下是模板文件,模板文件命名以加T结尾,如xxxx_t.xxxx最好以绑定元素ID相同-->
+<!--第一级商品分类-->
+<script type="text/x-jquery-tmpl" id="search_classify_a_t">
+	{{if columnName != "无"}}
+	<li class="ui-li-static ui-body-inherit" title=${columnName} classify=${id} onclick="customer.search.changeClassify(this);">${columnName}</li>
+	{{/if}}
+</script>
+<!--第二级商品分类-->
+<script type="text/x-jquery-tmpl" id="search_classify_b_t">
+			<ul data-role="listview" class="ui-listview">
+				{{each(i,classify) datas}}
+					<li class="ui-li-static ui-body-inherit" onclick="customer.search.lastClassify(this,'${classify.id}','${classify.name}')">${classify.name}</li>
+				{{/each}}
+			</ul>
+</script>
+<!--第三级商品分类-->
+<script type="text/x-jquery-tmpl" id="search_classify_c_t">
+			<ul data-role="listview" class="ui-listview">
+				{{each(i,classify) datas}}
+					<li class="ui-li-static ui-body-inherit" onclick="customer.search.getClassify(this,'${classify.id}','${classify.name}')">${classify.name}</li>
+				{{/each}}
+			</ul>
+</script>
+
+<!--商品列表-->
+<script type="text/x-jquery-tmpl" id="search_goodlist_t">
+	<div class="good-info-detail">
+		<input type="hidden" name="goodImgUrl" value="${showPicture}">
+   	 	<input type="hidden" name="goodName" value="${goodName}">
+   	 	<input type="hidden" name="salePrice" value="${salePrice}">
+    	<input type="hidden" name="goodCount" value="1">
+    	<input type="hidden" name="skuItem" value="">
+    	<input type="hidden" name="skuId" value="${id}">
+		<a href="html/customer/details/details.html?id=${id}" target="_top" class="ui-link">
+			<div class="good-grid-info">
+				<div class="good-grid-a">
+					<div>
+						<img src="${showPicture}">
+					</div>
+					<div class="img-bottom-div">已抢完</div>
+				</div>
+				<div class="search-spr">
+					<div class="good-title-div">${goodName}</div>
+					<div class="good-grid-b">
+					<b class="first-div">限时特价:</b>
+					<b class="scend-div">￥${salePrice}</b>
+					<b class="third-div">￥${marketPrice}</b>
+				</div>
+				<div class="timers" style="margin:0;padding:0;margin-bottom:1rem;display: -webkit-box;overflow: hidden;">
+					<input type="hidden" class="startTimer" value="${starttimer}"/>
+					<input type="hidden" class="endTimer" value="${endtimer}"/>
+					<div style="margin-top:.2rem;width:5.5rem;height:2rem;line-height: 2rem;font-size: 1.4rem;" class="timer-title">${timeTitle}</div>
+					{{if hour > 0 || min > 0 || sec > 0}}
+					<div class="timer-show" style="-webkit-flex:1;line-height: 1.9rem;">
+						<span style="float:left;border:1px solid #ccc;padding:0 0.2rem;margin:0 0.2rem;text-align:center;border-radius: 10px;font-size: 1.4rem;" class="hour">${hour}</span>
+						<span style="float:left;">:</span>
+						<span style="float:left;border:1px solid #ccc;padding:0 0.2rem;margin:0 0.2rem;text-align:center;border-radius: 10px;font-size: 1.4rem;" class="min">${min}</span>
+						<span style="float:left;">:</span>
+						<span style="float:left;border:1px solid #ccc;padding:0 0.2rem;margin:0 0.2rem;text-align:center;border-radius: 10px;font-size: 1.4rem;" class="sec">${sec}</span>
+					</div>
+					{{/if}}
+					<div class="sales-num-show" style="-webkit-flex:1;line-height: 1.9rem;display: none;">
+						<span style="float:left;border:1px solid #ccc;padding:0 0.2rem;margin:0 0.2rem;text-align:center;font-size: 1.4rem;" class="saleNum">${saleNum}件</span>
+					</div>
+				</div>
+				<div style="border-top:1px solid #ccc;margin:0;padding:0;">
+				{{if timeTitle.indexOf('距结束') > -1 }}
+					<span style="display:block;line-height: 2rem;text-align:right;font-size: 1.6rem;">立即购买</span>
+				{{/if}}
+				{{if timeTitle.indexOf('距开始') > -1 }}
+					<span style="display:block;line-height: 2rem;text-align:right;font-size: 1.6rem;">未开始</span>
+				{{/if}}
+				{{if timeTitle.indexOf('已被抢') > -1 }}
+					<span style="display:block;line-height: 2rem;text-align:right;font-size: 1.6rem;color: #bdbdbd;">已抢完</span>
+				{{/if}}
+				</div>
+			</div>
+			</div>
+		</a>
+	</div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="purpose-select_t">
+<div class="ui-block-d">
+						<input name="purpose" id="purpose8" type="radio" value="" class="ext-box-btn" data-role="none"/>
+						<label for="purpose8">不限</label>
+		</div>
+{{each(i,purpose) datas}}
+		<div class="ui-block-d">
+						<input name="purpose" id="purpose${i}" type="radio" value="${purpose.id}" class="ext-box-btn" data-role="none"/>
+						<label for="purpose${i}">${purpose.labelName}</label>
+		</div>
+{{/each}}
+</script>
+
+<script type="text/x-jquery-tmpl" id="brand-select_t">
+<div class="ui-block-d">
+						<input name="brand" id="brand8" type="radio" value="" class="ext-box-btn" data-role="none"/>
+						<label for="brand8">全部品牌</label>
+					</div>
+{{each(i,brand) datas}}
+<div class="ui-block-d">
+						<input name="brand" id="brand${i}" type="radio" value="${brand.id}" class="ext-box-btn" data-role="none"/>
+						<label for="brand${i}">${brand.name}</label>
+					</div>
+{{/each}}
+</script>

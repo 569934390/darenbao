@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.RuleValueMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.RuleValue" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="rule_ID" property="ruleId" jdbcType="BIGINT" />
+    <result column="rule_val" property="ruleVal" jdbcType="VARCHAR" />
+    <result column="rule_ID2" property="ruleId2" jdbcType="BIGINT" />
+    <result column="rule_startTime" property="ruleStarttime" jdbcType="TIMESTAMP" />
+    <result column="rule_endTime" property="ruleEndtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, rule_ID, rule_val, rule_ID2, rule_startTime, rule_endTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from rule_value
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from rule_value
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.RuleValue" >
+    insert into rule_value (ID, rule_ID, rule_val, 
+      rule_ID2, rule_startTime, rule_endTime
+      )
+    values (#{id,jdbcType=BIGINT}, #{ruleId,jdbcType=BIGINT}, #{ruleVal,jdbcType=VARCHAR}, 
+      #{ruleId2,jdbcType=BIGINT}, #{ruleStarttime,jdbcType=TIMESTAMP}, #{ruleEndtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.RuleValue" >
+    insert into rule_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ruleId != null" >
+        rule_ID,
+      </if>
+      <if test="ruleVal != null" >
+        rule_val,
+      </if>
+      <if test="ruleId2 != null" >
+        rule_ID2,
+      </if>
+      <if test="ruleStarttime != null" >
+        rule_startTime,
+      </if>
+      <if test="ruleEndtime != null" >
+        rule_endTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleVal != null" >
+        #{ruleVal,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId2 != null" >
+        #{ruleId2,jdbcType=BIGINT},
+      </if>
+      <if test="ruleStarttime != null" >
+        #{ruleStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleEndtime != null" >
+        #{ruleEndtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.RuleValue" >
+    update rule_value
+    <set >
+      <if test="ruleId != null" >
+        rule_ID = #{ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="ruleVal != null" >
+        rule_val = #{ruleVal,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleId2 != null" >
+        rule_ID2 = #{ruleId2,jdbcType=BIGINT},
+      </if>
+      <if test="ruleStarttime != null" >
+        rule_startTime = #{ruleStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ruleEndtime != null" >
+        rule_endTime = #{ruleEndtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.RuleValue" >
+    update rule_value
+    set rule_ID = #{ruleId,jdbcType=BIGINT},
+      rule_val = #{ruleVal,jdbcType=VARCHAR},
+      rule_ID2 = #{ruleId2,jdbcType=BIGINT},
+      rule_startTime = #{ruleStarttime,jdbcType=TIMESTAMP},
+      rule_endTime = #{ruleEndtime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

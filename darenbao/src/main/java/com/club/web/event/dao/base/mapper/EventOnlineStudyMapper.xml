@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.event.dao.base.EventOnlineStudyMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="study_type" property="studyType" jdbcType="BIGINT" />
+    <result column="study_child_type" property="studyChildType" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+    <result column="read_num" property="readNum" jdbcType="BIGINT" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="file" property="file" jdbcType="VARCHAR" />
+    <result column="cove_pic" property="covePic" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.event.dao.base.po.EventOnlineStudy" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, title, study_type, study_child_type, `type`, read_num, author, video_url,file, cove_pic, 
+    create_time, create_by, update_time, update_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from event_online_study
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from event_online_study
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    insert into event_online_study (ID, title, study_type, 
+      study_child_type, `type`, read_num, 
+      author, video_url,file, cove_pic, 
+      create_time, create_by, update_time, 
+      update_by, content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{studyType,jdbcType=BIGINT}, 
+      #{studyChildType,jdbcType=BIGINT}, #{type,jdbcType=BIGINT}, #{readNum,jdbcType=BIGINT}, 
+      #{author,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, #{file,jdbcType=VARCHAR}, #{covePic,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    insert into event_online_study
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="studyType != null" >
+        study_type,
+      </if>
+      <if test="studyChildType != null" >
+        study_child_type,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="readNum != null" >
+        read_num,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="file != null" >
+        file,
+      </if>
+      <if test="covePic != null" >
+        cove_pic,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="studyType != null" >
+        #{studyType,jdbcType=BIGINT},
+      </if>
+      <if test="studyChildType != null" >
+        #{studyChildType,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIGINT},
+      </if>
+      <if test="readNum != null" >
+        #{readNum,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="covePic != null" >
+        #{covePic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    update event_online_study
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="studyType != null" >
+        study_type = #{studyType,jdbcType=BIGINT},
+      </if>
+      <if test="studyChildType != null" >
+        study_child_type = #{studyChildType,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=BIGINT},
+      </if>
+      <if test="readNum != null" >
+        read_num = #{readNum,jdbcType=BIGINT},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        file = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="covePic != null" >
+        cove_pic = #{covePic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    update event_online_study
+    set title = #{title,jdbcType=VARCHAR},
+      study_type = #{studyType,jdbcType=BIGINT},
+      study_child_type = #{studyChildType,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=BIGINT},
+      read_num = #{readNum,jdbcType=BIGINT},
+      author = #{author,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      cove_pic = #{covePic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.event.dao.base.po.EventOnlineStudy" >
+    update event_online_study
+    set title = #{title,jdbcType=VARCHAR},
+      study_type = #{studyType,jdbcType=BIGINT},
+      study_child_type = #{studyChildType,jdbcType=BIGINT},
+      `type` = #{type,jdbcType=BIGINT},
+      read_num = #{readNum,jdbcType=BIGINT},
+      author = #{author,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      cove_pic = #{covePic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

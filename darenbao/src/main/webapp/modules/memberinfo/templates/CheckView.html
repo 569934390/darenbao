@@ -1,0 +1,41 @@
+<div class="ui-dialog dialog-md memberCheckWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">会员审核</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="check-form">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">状态：</label>
+                            <div class="input-group col-md-8">
+                                <select name="action" class="form-control" data-rule="required;">
+                                    <option value="00A">已审核</option>
+                                    <option value="00B" selected="selected">待充值</option>
+                                    <option value="00C">待审核</option>
+                                    <option value="00D">禁言</option>
+                                    <option value="00E">审核失败</option>
+                                    <option value="00X">已删除</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ruleTypes ruleType1">
+                        <div class="form-group required">
+                            <label class="col-md-2 control-label">备注：</label>
+                            <div class="input-group col-md-10">
+                                <textarea id="context" name="context" class="form-control" data-rule="required;" style="height:50px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="check-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

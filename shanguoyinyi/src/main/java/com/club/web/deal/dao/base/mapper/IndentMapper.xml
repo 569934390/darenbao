@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.deal.dao.base.IndentMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.deal.dao.base.po.Indent" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="trade_head_store_id" property="tradeHeadStoreId" jdbcType="BIGINT" />
+    <result column="subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="referrer_id" property="referrerId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="buyer_remark" property="buyerRemark" jdbcType="VARCHAR" />
+    <result column="express_number" property="expressNumber" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="carriage" property="carriage" jdbcType="DECIMAL" />
+    <result column="buyer_carriage" property="buyerCarriage" jdbcType="DECIMAL" />
+    <result column="shipper" property="shipper" jdbcType="VARCHAR" />
+    <result column="ship_time" property="shipTime" jdbcType="TIMESTAMP" />
+    <result column="ship_notice" property="shipNotice" jdbcType="BIGINT" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+    <result column="need_invoice" property="needInvoice" jdbcType="BIT" />
+    <result column="invoice_name" property="invoiceName" jdbcType="VARCHAR" />
+    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="deal_status" property="dealStatus" jdbcType="INTEGER" />
+    <result column="refund_id" property="refundId" jdbcType="BIGINT" />
+    <result column="return_id" property="returnId" jdbcType="BIGINT" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="BIT" />
+    <result column="ticket_num" property="ticketNum" jdbcType="VARCHAR" />
+    <result column="buy_type" property="buyType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.deal.dao.base.po.Indent" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="refund_remark" property="refundRemark" jdbcType="LONGVARCHAR" />
+    <result column="return_remark" property="returnRemark" jdbcType="LONGVARCHAR" />
+    <result column="reject_refund" property="rejectRefund" jdbcType="LONGVARCHAR" />
+    <result column="reject_return" property="rejectReturn" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `name`, trade_head_store_id, subbranch_id, buyer_id, referrer_id, create_time, 
+    total_amount, payment_amount, pay_time, `number`, `type`, province, city, town, address, 
+    receiver_phone, buyer_remark, express_number, express_company, weight, carriage, 
+    shipper, ship_time, receiver, `status`, pay_type, pay_account, need_invoice, invoice_name, 
+    invoice_content, finish_time, delete_flag, deal_status, refund_id, return_id,ticket_num,buyer_carriage, buy_type,ship_notice
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark, refund_remark, return_remark, reject_refund, reject_return
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from indent
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from indent
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.deal.dao.base.po.Indent" >
+    insert into indent (id, `name`, trade_head_store_id, 
+      subbranch_id, buyer_id, referrer_id, 
+      create_time, total_amount, payment_amount, 
+      pay_time, `number`, `type`, 
+      province, city, town, 
+      address, receiver_phone, buyer_remark, 
+      express_number, express_company, weight, 
+      carriage, shipper, ship_time, 
+      receiver, `status`, pay_type, 
+      pay_account, need_invoice, invoice_name, 
+      invoice_content, finish_time, delete_flag, 
+      deal_status, refund_id, return_id, 
+      remark, refund_remark, return_remark, 
+      reject_refund, reject_return,ticket_num,buyer_carriage,buy_type,ship_notice)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{tradeHeadStoreId,jdbcType=BIGINT}, 
+      #{subbranchId,jdbcType=BIGINT}, #{buyerId,jdbcType=BIGINT}, #{referrerId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{totalAmount,jdbcType=DECIMAL}, #{paymentAmount,jdbcType=DECIMAL}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{number,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, #{buyerRemark,jdbcType=VARCHAR}, 
+      #{expressNumber,jdbcType=VARCHAR}, #{expressCompany,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, 
+      #{carriage,jdbcType=DECIMAL}, #{shipper,jdbcType=VARCHAR}, #{shipTime,jdbcType=TIMESTAMP}, 
+      #{receiver,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
+      #{payAccount,jdbcType=VARCHAR}, #{needInvoice,jdbcType=BIT}, #{invoiceName,jdbcType=VARCHAR}, 
+      #{invoiceContent,jdbcType=VARCHAR}, #{finishTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=BIT}, 
+      #{dealStatus,jdbcType=INTEGER}, #{refundId,jdbcType=BIGINT}, #{returnId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{refundRemark,jdbcType=LONGVARCHAR}, #{returnRemark,jdbcType=LONGVARCHAR}, 
+      #{rejectRefund,jdbcType=LONGVARCHAR}, #{rejectReturn,jdbcType=LONGVARCHAR},#{ticketNum,jdbcType=VARCHAR},
+      #{buyerCarriage,jdbcType=DECIMAL},#{buyType,jdbcType=VARCHAR}, #{shipNotice,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.deal.dao.base.po.Indent" >
+    insert into indent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="tradeHeadStoreId != null" >
+        trade_head_store_id,
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="referrerId != null" >
+        referrer_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="number != null" >
+        `number`,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone,
+      </if>
+      <if test="buyerRemark != null" >
+        buyer_remark,
+      </if>
+      <if test="expressNumber != null" >
+        express_number,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="carriage != null" >
+        carriage,
+      </if>
+      <if test="shipper != null" >
+        shipper,
+      </if>
+      <if test="shipTime != null" >
+        ship_time,
+      </if>
+      <if test="receiver != null" >
+        receiver,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payAccount != null" >
+        pay_account,
+      </if>
+      <if test="needInvoice != null" >
+        need_invoice,
+      </if>
+      <if test="invoiceName != null" >
+        invoice_name,
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="dealStatus != null" >
+        deal_status,
+      </if>
+      <if test="refundId != null" >
+        refund_id,
+      </if>
+      <if test="returnId != null" >
+        return_id,
+      </if>
+      <if test="ticketNum != null" >
+        ticket_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="refundRemark != null" >
+        refund_remark,
+      </if>
+      <if test="returnRemark != null" >
+        return_remark,
+      </if>
+      <if test="rejectRefund != null" >
+        reject_refund,
+      </if>
+      <if test="rejectReturn != null" >
+        reject_return,
+      </if>
+      <if test="buyerCarriage != null" >
+      	buyer_carriage,
+      </if>
+      <if test="buyType != null" >
+        buy_type,
+      </if>
+      <if test="shipNotice != null" >
+        ship_notice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeHeadStoreId != null" >
+        #{tradeHeadStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchId != null" >
+        #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="referrerId != null" >
+        #{referrerId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRemark != null" >
+        #{buyerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null" >
+        #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="carriage != null" >
+        #{carriage,jdbcType=DECIMAL},
+      </if>
+      <if test="shipper != null" >
+        #{shipper,jdbcType=VARCHAR},
+      </if>
+      <if test="shipTime != null" >
+        #{shipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiver != null" >
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="payAccount != null" >
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="needInvoice != null" >
+        #{needInvoice,jdbcType=BIT},
+      </if>
+      <if test="invoiceName != null" >
+        #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null" >
+        #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="dealStatus != null" >
+        #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refundId != null" >
+        #{refundId,jdbcType=BIGINT},
+      </if>
+      <if test="returnId != null" >
+        #{returnId,jdbcType=BIGINT},
+      </if>
+      <if test="ticketNum != null" >
+      	#{ticketNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="refundRemark != null" >
+        #{refundRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="returnRemark != null" >
+        #{returnRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rejectRefund != null" >
+        #{rejectRefund,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rejectReturn != null" >
+        #{rejectReturn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buyerCarriage != null" >
+      	#{buyerCarriage,jdbcType=DECIMAL},
+      </if>
+      <if test="buyType != null" >
+        #{buyType,jdbcType=VARCHAR},
+      </if>
+      <if test="shipNotice != null" >
+      	#{shipNotice,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.deal.dao.base.po.Indent" >
+    update indent
+    <set >
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeHeadStoreId != null" >
+        trade_head_store_id = #{tradeHeadStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="subbranchId != null" >
+        subbranch_id = #{subbranchId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="referrerId != null" >
+        referrer_id = #{referrerId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null" >
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRemark != null" >
+        buyer_remark = #{buyerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null" >
+        express_number = #{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="carriage != null" >
+        carriage = #{carriage,jdbcType=DECIMAL},
+      </if>
+      <if test="shipper != null" >
+        shipper = #{shipper,jdbcType=VARCHAR},
+      </if>
+      <if test="shipTime != null" >
+        ship_time = #{shipTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiver != null" >
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="payAccount != null" >
+        pay_account = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="needInvoice != null" >
+        need_invoice = #{needInvoice,jdbcType=BIT},
+      </if>
+      <if test="invoiceName != null" >
+        invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="dealStatus != null" >
+        deal_status = #{dealStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refundId != null" >
+        refund_id = #{refundId,jdbcType=BIGINT},
+      </if>
+      <if test="returnId != null" >
+        return_id = #{returnId,jdbcType=BIGINT},
+      </if>
+      <if test="ticketNum != null" >
+      	ticket_num = #{ticketNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="refundRemark != null" >
+        refund_remark = #{refundRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="returnRemark != null" >
+        return_remark = #{returnRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rejectRefund != null" >
+        reject_refund = #{rejectRefund,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rejectReturn != null" >
+        reject_return = #{rejectReturn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buyerCarriage != null" >
+      	buyer_carriage = #{buyerCarriage,jdbcType=DECIMAL},
+      </if>
+      <if test="buyType != null" >
+        buy_type = #{buyType,jdbcType=VARCHAR},
+      </if>
+      <if test="shipNotice != null" >
+        ship_notice = #{shipNotice,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.deal.dao.base.po.Indent" >
+    update indent
+    set `name` = #{name,jdbcType=VARCHAR},
+      trade_head_store_id = #{tradeHeadStoreId,jdbcType=BIGINT},
+      subbranch_id = #{subbranchId,jdbcType=BIGINT},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      referrer_id = #{referrerId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      `number` = #{number,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      buyer_remark = #{buyerRemark,jdbcType=VARCHAR},
+      express_number = #{expressNumber,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      carriage = #{carriage,jdbcType=DECIMAL},
+      shipper = #{shipper,jdbcType=VARCHAR},
+      ship_time = #{shipTime,jdbcType=TIMESTAMP},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      pay_account = #{payAccount,jdbcType=VARCHAR},
+      need_invoice = #{needInvoice,jdbcType=BIT},
+      invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      deal_status = #{dealStatus,jdbcType=INTEGER},
+      refund_id = #{refundId,jdbcType=BIGINT},
+      return_id = #{returnId,jdbcType=BIGINT},
+   	  ticket_num = #{ticketNum,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      refund_remark = #{refundRemark,jdbcType=LONGVARCHAR},
+      return_remark = #{returnRemark,jdbcType=LONGVARCHAR},
+      reject_refund = #{rejectRefund,jdbcType=LONGVARCHAR},
+      reject_return = #{rejectReturn,jdbcType=LONGVARCHAR},
+      buy_type = #{buyType,jdbcType=VARCHAR},
+      buyer_carriage = #{buyerCarriage,jdbcType=DECIMAL},
+      ship_notice = #{shipNotice,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.deal.dao.base.po.Indent" >
+    update indent
+    set `name` = #{name,jdbcType=VARCHAR},
+      trade_head_store_id = #{tradeHeadStoreId,jdbcType=BIGINT},
+      subbranch_id = #{subbranchId,jdbcType=BIGINT},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      referrer_id = #{referrerId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      `number` = #{number,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      buyer_remark = #{buyerRemark,jdbcType=VARCHAR},
+      express_number = #{expressNumber,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      carriage = #{carriage,jdbcType=DECIMAL},
+      shipper = #{shipper,jdbcType=VARCHAR},
+      ship_time = #{shipTime,jdbcType=TIMESTAMP},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      pay_account = #{payAccount,jdbcType=VARCHAR},
+      need_invoice = #{needInvoice,jdbcType=BIT},
+      invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      deal_status = #{dealStatus,jdbcType=INTEGER},
+      refund_id = #{refundId,jdbcType=BIGINT},
+      return_id = #{returnId,jdbcType=BIGINT},
+      ticket_num = #{ticketNum,jdbcType=VARCHAR},
+      buy_type = #{buyType,jdbcType=VARCHAR},
+      buyer_carriage = #{buyerCarriage,jdbcType=DECIMAL},
+      ship_notice = #{shipNotice,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

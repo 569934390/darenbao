@@ -1,0 +1,50 @@
+<div class="ui-dialog dialog-md cargoClassifyWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增货品分类</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="cargo-classify-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id">
+					<input type="hidden" name="imgUrl">
+					<input type="hidden" name="parentId">
+					<div class="col-md-12">
+						<div id="parent-div" class="form-group" style="display: none">
+							<label class="col-md-4 control-label">父级分类：</label>
+							<div class="input-group col-md-7">
+								<input class="form-control" name="parentName" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-md-4 control-label">分类名称：</label>
+							<div class="input-group col-md-7">
+								<input class="form-control" name="name" data-rule="required;">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-md-4 control-label">排序：</label>
+							<div class="input-group col-md-7">
+								<input field="spinner" class="form-control" name="orderIndex" value="0" data-rule="required;">
+								<span style="font-size:10px;color: #B0B0B0">提示：数字越大,排序越前</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">图片：</label>
+							<div class="btn-group col-md-7" >
+							    <div class="flex-container" id="small_img_container"></div>
+							    <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为88*88</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<style>
+<!--
+	.menu-manager-view li > ul.height-0 {
+		height: 0px;
+		opacity: 0;
+	}
+	.menu-manager-view {
+		overflow-y: scroll;
+		cursor: default;
+		padding-left:10px;
+	}
+	.menu-manager-view ul {
+		padding-left: 30px;
+	}
+	.menu-manager-view li > ul {
+		transition: all 0.6s;
+		overflow: hidden;
+		height: auto;
+	}
+	.menu-manager-view li {
+	}
+	.menu-manager-view li > a[expan] {
+		color: black;
+	}
+	.menu-manager-view li > a[expan]:hover {
+		color: red;
+	}
+	.menu-manager-view li > a[edit] {
+		opacity: 0;
+		margin-left: 5px;
+	}
+	.menu-manager-view li:hover > a[edit] {
+		opacity: 0.4;
+		transition: all 0.6s;
+	}
+	.menu-manager-view li > a[edit]:hover {
+		opacity: 0.6;
+ 		color: red;
+	}
+-->
+</style>
+<div class="row">
+    <div class="col-md-12 menu-manager-view">
+    	<div class="row">
+    		<div class="col-md-12 menu-tree-view"></div>
+    	</div>
+    </div>
+</div>

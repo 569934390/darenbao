@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.club.web.event.dao.extend.EventActivityUserinfoExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.event.vo.EventActivityUserinfoVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="openId" property="openid" jdbcType="VARCHAR" />
+		<result column="subscribe" property="subscribe" jdbcType="BIGINT" />
+		<result column="subscribeTime" property="subscribetime"
+			jdbcType="TIMESTAMP" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="BIGINT" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="headImgUrl" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="last_login_time" property="lastLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, openId, subscribe, subscribeTime, nickname, sex, country, province,
+		city, `language`,
+		headImgUrl, last_login_time, create_time
+	</sql>
+
+	<select id="findByOpenId"  resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from event_activity_userinfo
+		where openId = #{openid}
+	</select>
+
+</mapper>

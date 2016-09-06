@@ -1,0 +1,111 @@
+<style>
+.bank-mag .content-div-account{
+	margin-top: 1.8rem;
+	border-bottom: inset 0.2rem #F9F5F5;
+	width: 100%;
+	overflow: hidden;
+}
+.bank-mag .account-settled{
+	height:6.5rem;
+    background-color:#FFC24E;
+	text-align: center;
+	border-bottom: inset 0.05rem #fff;
+}
+.bank-mag .account-settled .canSettled{
+	padding-top: 1rem;
+	color: #FBF5F5;
+}
+.bank-mag .finsh-titl{
+	color: #938181;
+}
+.bank-mag .noSettled{
+	border-right: dashed 0.05rem red;
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+}
+.bank-mag .settled{
+	text-align: center;
+}
+.bank-mag .account-bank{
+	width: 100%;
+	overflow: hidden;
+}
+.bank-mag .content-div .row{
+	text-align: center;
+}
+.bank-mag .account-bank .bank-mag-tlt{
+	border-bottom: dashed 0.05rem #F4DADA; 
+	padding-left:  1rem;
+	padding-top: 0.5rem;
+}
+.bank-mag .account-update-btn{
+	width: 10rem;
+	height:1.8rem;
+	margin-top: 1rem;
+}
+.bank-mag .account-add-div{
+	width: 100%;
+	text-align: center;
+}
+.bank-mag .account-add-btn{
+	width: 10rem;
+	height:1.8rem;
+	margin-top: 4rem;
+}
+</style>
+<ion-view title="我的账户" class="bank-mag">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+       <div class="title">我的账户</div>
+       <div class="head-account-bank-btn" style="margin-right: 0.5rem;" ui-sref="getShopProtol({shopId:'{{shopId}}'})">
+            <span>店铺协议</span>
+        </div>
+    </ion-header-bar>
+    <div class="content-div-account">
+            <div class="account-settled">
+                <div class="canSettled">可结算</div>
+                <div class="finsh-titl">已完成的交易</div>
+                <div style="color: #FBF5F5;font-size: 1.5rem">¥{{account.canSettled}}</div>
+			</div>
+			<div class="row">
+                <div class="col-50 noSettled">未结算</div>
+                <div class="col-50 settled">已结算</div>
+            </div>
+            <div class="row">
+                <div class="col-50 noSettled" style="color: red">¥{{account.noSettled}}</div>
+                <div class="col-50 settled" style="color: red;">¥{{account.settled}}</div>
+            </div>
+    </div>
+    <div class="account-bank" ng-show="bankShow==false">
+		<div class="bank-mag-tlt">
+          	<div class=""><b>用户信息</b></div>
+          </div>
+          <div class="bank-mag-tlt">
+          	<div class="">开户人:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{bank.name}}</span></div>
+          </div>
+        <div class="bank-mag-tlt">
+            <div class="">身份证:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{bank.cardShow}}</span></div>
+        </div>
+          <div class="bank-mag-tlt">
+          	<div class="">银行卡号:&nbsp;&nbsp;&nbsp;<span>{{bank.bankCard}}</span></div>
+          </div>
+        <div class="bank-mag-tlt">
+            <div class="">银行全称:&nbsp;&nbsp;&nbsp;<span>{{bank.bankName}}</span></div>
+        </div>
+          <div class="bank-mag-tlt">
+          	<div class="">开户行:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{bank.bankAddress}}</span></div>
+          </div>
+          <div class="bank-mag-tlt">
+          	<div class="">手机号码:&nbsp;&nbsp;<span>{{bank.mobile}}</span></div>
+          </div>
+          <div style="width: 100%;text-align: center;">
+	          <div class="button button-assertive account-update-btn" ui-sref="buildBankMsg({shopId:shopId,bankId:bank.id})">修改</div>
+          </div>
+    </div>
+    <div ng-show="bankShow==true" class="account-add-div">
+    	<div class="button button-assertive account-add-btn" ui-sref="buildBankMsg({shopId:shopId,bankId:''})">添加银行卡</div>
+    </div>
+</ion-view>

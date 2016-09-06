@@ -1,0 +1,66 @@
+<div class="ui-dialog dialog-md expressageManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增快递公司</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="expressage-form">
+					<input type="hidden" name="id"> <input type="hidden"
+						name="creator"> <input type="hidden" name="createTime">
+					<input type="hidden" name="updateTime"> <input
+						type="hidden" name="logoUrl">
+					<div class="col-md-12">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">快递公司名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="name" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label">公司编号：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="number">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label">官网地址：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="officialWebsiteUrl">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">状态：</label>
+							<div class="input-group col-md-8">
+								<select name="state" class="form-control" data-rule="required;">
+									<option value="0">启用</option>
+									<option value="1">禁用</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label">公司logo:</label>
+							<div class="btn-group">
+								<div class="flex-container" id="logoUrl_img_container"></div>
+								<span style="font-size: 10px; color: #B0B0B0">提示：建议上传图片大小为160*160</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

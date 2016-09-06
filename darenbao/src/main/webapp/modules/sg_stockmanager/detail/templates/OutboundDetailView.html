@@ -1,0 +1,39 @@
+<div class="ui-dialog dialog-md outbound-manager-detail" style="width: 70%">
+    <div class="modal-header">
+        <h4 class="modal-title">出库单明细</h4>
+    </div>
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                        	<label class="control-label">分类：</label>&nbsp;
+							<div class="input-group col-md-3" style="z-index: 1000">
+								<input type="text" class="form-control" style="padding-left: 8px;" id="outbound_detail_classify_name" name="outbound_detail_classify_name" readonly="readonly" placeholder="请选择分类" data-rule="required;">
+								<input type="text" id="outbound_detail_classify" name="outbound_detail_classify" hidden="true" value="0">
+								<span class="input-group-addon">
+									<a href="javascript:void(0);" id="outbound-detail-menuBtn" class="inforeport-add-triangle">
+										<span class="glyphicon glyphicon-triangle-bottom"></span>
+									</a>
+								</span>
+								<div class="menuContent" style="position: absolute;background-color:#00BFFF;overflow: auto;" id="tree_select_menu_html_outbound_detail">
+									<ul id="treeDemoOutboundDetail" class="ztree" style="width:auto;overflow: auto;z-index: 1000"></ul>
+								</div>
+							</div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        	<label class="control-label">品  牌：</label>&nbsp;
+                            <select id="outbound_detail_brand" name="outbound_detail_brand" class="form-control" data-rule="required;">
+                                <option value="0" selected="selected">全部</option>
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+				          <input type="text" name="outbound_match_param" class="form-control" placeholder="SKU/货品名称 /货品编码">
+                        </div>
+                        &nbsp;&nbsp;<button class="btn btn-info" action="search-detail-outbound">搜索</button>
+                      </div>
+                    </div>
+                </div>
+            </div>           
+	        <div class="row" style="margin-right:10px;">
+	            <div class="col-md-12 emgceval-content-div" id="outbound-detail-rule-content-div">
+	            </div>
+	            <div id="out-cancle-why" style="padding-top: 15px;margin-left: 15px;"><span>取消出库原因:&nbsp;<span id='out-canale-item' style="font-size: 13px;"></span></span></div>
+	        </div>               
+</div>

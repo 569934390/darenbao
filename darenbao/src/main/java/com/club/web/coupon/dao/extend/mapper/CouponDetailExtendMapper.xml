@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.coupon.dao.extend.CouponDetailExtendMapper" >
+  <resultMap id="CouponDetailVo" type="com.club.web.coupon.vo.CouponDetailVo" >
+     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_code" property="shopCode" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime"  />
+    <result column="end_time" property="endTime"  />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultDo" type="com.club.web.coupon.domain.CouponDetailDo" >
+  	 <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_code" property="shopCode" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="getVoucherDetail" resultMap="BaseResultDo">
+  	select id, code, password, coupon_id, `status`, shop_id, shop_code from coupon_detail where id=#{id};
+  </select>
+   
+    <!-- 根据名称查询分页结果 -->
+	<select id="queryCouponDetailPage" resultMap="CouponDetailVo"
+		parameterType="map">
+		select d.* from  coupon_detail d left join coupon c
+		on d.coupon_id=c.id
+		where
+		<if test="couponId != null and couponId !=''">
+			d.coupon_id=#{couponId}
+		</if>
+		<if test="conditions != null and conditions !=''">
+			and (d.code like #{conditions} or d.shop_code like #{conditions})
+		</if>
+		<if test="statusConditions != null and statusConditions !='' and statusConditions !='-1'">
+			and d.status=#{statusConditions}
+		</if>
+		order by d.id 
+		limit #{start},#{limit}
+	</select>
+    <!-- 根据名称查询分页结果 -->
+	<select id="getVoucherDetailList" resultMap="CouponDetailVo"
+		parameterType="map">
+		select d.id,d.code,c.begin_time,c.end_time,d.status from coupon_detail d left join coupon c 
+		on c.id=d.coupon_id where d.coupon_id=#{id} 
+		<if test="status==2">
+			and d.status=#{status}
+		</if>
+		<if test="status==1">
+			and d.status!=2 and d.status!=0
+		</if>
+		order by d.status asc,c.updateTime desc
+		limit #{startIndex},#{pageSize}
+	</select>
+	<select id="serachVoucherDetailList" resultMap="CouponDetailVo"
+		parameterType="map">
+		select d.id,d.code,c.begin_time,c.end_time,d.status,d.shop_id from coupon_detail d left join coupon c 
+		on c.id=d.coupon_id where 1=1 and d.status!=0
+		<if test="code!=null and code!=''">
+			and d.code like CONCAT('%',#{code},'%' )
+		</if>
+		order by  d.status asc,c.updateTime desc
+		limit #{startIndex},#{pageSize}
+	</select>
+	
+ <!-- 根据名字查询分页条数 -->
+	<select id="queryCouponDetailCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select count(1) from  coupon_detail d left join coupon c
+		on d.coupon_id=c.id
+		where
+		<if test="couponId != null and couponId !=''">
+			d.coupon_id=#{couponId}
+		</if>
+		<if test="conditions != null and conditions !=''">
+			and (d.code like #{conditions} or d.shop_code like #{conditions})
+		</if>
+	
+		<if test="statusConditions != null and statusConditions !='' and statusConditions !='-1'">
+			and d.status=#{statusConditions}
+		</if>
+	</select>
+	
+	 <!-- 根据兑换券id查询所有的兑换券编号 -->
+	<select id="queryBycouponId" resultMap="CouponDetailVo"
+		parameterType="map">
+		select d.* from  coupon_detail d left join coupon c
+		on d.coupon_id=c.id
+		where
+		<if test="couponId != null and couponId !=''">
+			d.coupon_id=#{couponId}
+		</if>
+
+	</select>
+	
+	
+	 <!-- 根据卡券id查询所有编码 -->
+	<select id="queryAllCouponDetailCount" resultType="java.lang.Long"
+		parameterType="map">
+		select count(1) from  coupon_detail d left join coupon c
+		on d.coupon_id=c.id
+		where	d.coupon_id=#{couponId}
+	</select>
+	
+	<!-- 根据卡券编码和密码判断此卡券编码和密码是否正确 -->
+	<select id="validateCoupon" resultMap="CouponDetailVo"
+		parameterType="map">
+		select d.*,c.begin_time,c.end_time from  coupon_detail d 
+		left join coupon c on d.coupon_id=c.id 
+		where d.code=#{code} and d.password=#{password} and c.good_id = #{goodId}
+	</select>
+	
+	 <!-- 根据卡券id查询所有编码 -->
+	<select id="selectBycode" resultMap="BaseResultDo"
+		parameterType="map">
+		select * from  coupon_detail  
+		where code=#{code}
+	</select>
+	
+</mapper>

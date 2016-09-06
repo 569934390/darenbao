@@ -1,0 +1,203 @@
+<style>
+    .addActivity{
+        background-color: #f5f5f5;
+        font-size: 0.8rem;
+    }
+    .addActivity .rigth-head-title{
+        width: auto!important;
+        color: #ffffff!important;
+    }
+    .addActivity .list{
+        margin-top: 0.25rem !important;
+        margin-bottom:0rem!important;
+        padding: 0;
+        background-color: #ffffff;
+    }
+    .item{
+        border: none;
+    }
+   .item-input .addtitle{
+        font-size: 0.8rem;
+        /*color: #bdbdbd;*/
+       padding: 0.2rem 0;
+       margin: 0;
+       height: 1.7rem;
+       line-height: 1.7rem;
+        border: none;
+    }
+    .item-input{
+        padding: 0.475rem 0.75rem;
+    }
+    .addActivity .activityPic{
+        background:#ffffff;
+        padding: 1.05rem 0.75rem 0.5rem;
+    }
+    .addActivity .activityPic img{
+        display: block;
+        width: 4.5rem;
+        height:4.5rem;
+    }
+    /*删除添加图片*/
+    .addActivity .activityPic .activity-pic{
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        position: relative;
+        float: left;
+        width: 4.5rem;
+        height: 4.5rem
+    }
+    .addActivity .activityPic .activity-pic  .upload-close {
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        line-height: 1rem;
+        left:3.5rem;
+        top: -0.5rem;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background-color: #999;
+        color: #d2d6de;
+        text-align: center;
+        opacity: 0.7;
+        filter: alpha(opacity=70);
+    }
+    .additem_box .item-input{
+        height: 2.2rem;
+        line-height: 2.2rem;
+        padding: 0 0.75rem;
+        margin: 0;
+    }
+    .additem_box .item-input span, .additem_box .item-input input{
+        float: left;
+        font-size: 0.8rem;
+        height: 2.2rem;
+        line-height: 2.2rem;
+        padding: 0;
+    }
+    .additem_box .item-input:first-child{
+        border-bottom: solid 0.05rem #f5f5f5;
+    }
+    .addActivity .list span.input-label{
+        padding: 0;
+        width: 30%;
+        color: #000000;
+        opacity: 0.87;
+        font-size: 0.8rem !important;
+    }
+    .addActivity .item-input .icon {
+        font-size: 1.5rem;
+        color: #bdbdbd;
+    }
+    /*活动分类*/
+    .addActivity .list .item-input .divright{
+        float: right;
+        padding-left: 30%;
+    }
+    .addActivity .list .item-input .divright .buttondiv{
+        float: left;
+        margin-right: 0.45rem;
+        margin-bottom: 0.6rem;
+        padding:0.325rem 0.375rem;
+        background-color: #000000;
+        opacity: 0.54;
+        border: 0;
+        border-radius: 0.2rem;
+        color: #ffffff;
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+    }
+    .addActivity .list .item-input .divright .buttondivactive{
+        float: left;
+        margin-right: 0.45rem;
+        margin-bottom: 0.6rem;
+        padding:0.325rem 0.375rem;
+        background-color: #ff5555;
+        border: 0;
+        border-radius: 0.2rem;
+        color: #ffffff;
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+    }
+    .addActivity .list textarea{
+        width: 100%;
+        height: 5rem;
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+    }
+</style>
+<ion-view title="创建活动" class="addActivity">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">创建活动</div>
+        <div class="head-right-btn" ng-click="saveActivity();" style=" width: 1.65rem;line-height: 33px; font-size: 0.8rem">
+            发布
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" class="addtitle" ng-model="activityInfo.title"  placeholder="请输入活动主题:(4-25字)"/>
+            </label>
+        </div>
+        <div class="activityPic" >
+            <div class="activity-pic" ng-repeat="pic in activityInfo.activityPic">
+                <div class="upload-close" ng-click="closeImage($index)">X</div>
+                <img src="{{pic.url}}-img01" />
+            </div>
+            <div>
+                <img src="img/hdbl_tjzp.png" ng-click="choosePic();"/>
+            </div>
+        </div>
+        <div class="list additem_box">
+            <label class="item item-input">
+                <span class="input-label">开始时间</span>
+                <input  type="datetime-local" style="text-align: right"  ng-model="activityInfo.beginTime" />
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">结束时间</span>
+                <input  type="datetime-local" style="text-align: right"  ng-model="activityInfo.endTime"/>
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+        </div>
+        <div class="list additem_box">
+            <label class="item item-input">
+                <span class="input-label">联系方式</span>
+                <input type="tel" ng-model="activityInfo.sponsorTel" placeholder="请输入联系方式"/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">活动地址</span>
+                <input type="text"  ng-model="activityInfo.activityAddress"  placeholder="请输入活动地址"/>
+            </label>
+        </div>
+        <div class="list additem_box">
+            <label class="item item-input">
+                <span class="input-label">人数限制</span>
+                <input type="number"  ng-model="activityInfo.numberLimit"  placeholder="请输入人数"/>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">报名截止时间</span>
+                <input  type="datetime-local" style="text-align: right" ng-model="activityInfo.regEndTime"/>
+                <i class="icon ion-ios-arrow-right"></i>
+            </label>
+        </div>
+        <div class="list">
+            <div class="item item-input" style="position: relative">
+                <span class="input-label" style="position: absolute; width: 30%;top: 0.475rem">活动分类</span>
+                <div class="divright">
+                    <div ng-repeat="obj in activitytypes"   ng-class="{true: 'buttondivactive', false: 'buttondiv'}[obj.isActive]"  ng-click="selectType(obj.id);">{{obj.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <label class="item item-input">
+                <textarea ng-model="activityInfo.content" placeholder="请输入活动介绍:(300字)">
+
+                </textarea>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>

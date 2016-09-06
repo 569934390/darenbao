@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/img/body_bg.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/complete_register/from_info.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/complete_register/from_pass.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/complete_register/from_phone.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/download/Android.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/download/app_phone.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/download/ios.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/register/Personal_head.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/register/ellipse-1.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/img/register/ellipse-2.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/jquery-2.1.4.min.js" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.event.dao.extend.EventActivityExtendMapper">
+	<resultMap id="BaseSimpleResultMap" type="com.club.web.event.vo.EventActivitySimpleVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="store_subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+		<result column="store_subbranch_name" property="subbranchName" jdbcType="VARCHAR" />
+		<result column="activity_type_id" property="activityTypeId" jdbcType="BIGINT" />
+		<result column="activity_type_name" property="activityTypeName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="sponsor_name" property="sponsorName" jdbcType="VARCHAR" />
+		<result column="sponsor_tel" property="sponsorTel" jdbcType="VARCHAR" />
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="number_limit" property="numberLimit" jdbcType="BIGINT" />
+		<result column="reg_start_time" property="regStartTime" jdbcType="TIMESTAMP" />
+		<result column="reg_end_time" property="regEndTime" jdbcType="TIMESTAMP" />
+		<result column="activity_status" property="activityStatus" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="BIGINT" />
+		<result column="activity_pic" property="activityPic" jdbcType="VARCHAR" />
+		<result column="point_num" property="pointNum" jdbcType="BIGINT" />
+		<result column="activity_address" property="activityAddress" jdbcType="VARCHAR" />
+		<result column="activity_longitude" property="activityLongitude" jdbcType="DOUBLE" />
+		<result column="activity_latitude" property="activityLatitude" jdbcType="DOUBLE" />
+		<result column="create_address" property="createAddress" jdbcType="VARCHAR" />
+		<result column="create_longitude" property="createLongitude" jdbcType="DOUBLE" />
+		<result column="create_latitude" property="createLatitude" jdbcType="DOUBLE" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="failure" property="failure" jdbcType="VARCHAR" />
+		<result column="participation" property="participation" jdbcType="BIGINT" />
+	</resultMap>
+
+	<resultMap id="EventActivityDetailsVo" type="com.club.web.event.vo.EventActivityDetailsVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="store_subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+		<result column="store_subbranch_name" property="subbranchName" jdbcType="VARCHAR" />
+		<result column="activity_type_id" property="activityTypeId" jdbcType="BIGINT" />
+		<result column="activity_type_name" property="activityTypeName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="BIGINT" />
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="sponsor_name" property="sponsorName" jdbcType="VARCHAR" />
+		<result column="sponsor_tel" property="sponsorTel" jdbcType="VARCHAR" />
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="reg_start_time" property="regStartTime" jdbcType="TIMESTAMP" />
+		<result column="reg_end_time" property="regEndTime" jdbcType="TIMESTAMP" />
+		<result column="number_limit" property="numberLimit" jdbcType="BIGINT" />
+		<result column="activity_status" property="activityStatus" jdbcType="BIGINT" />
+		<result column="activity_status_name" property="activityStatusName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="BIGINT" />
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+		<result column="activity_pic" property="activityPic" jdbcType="VARCHAR" />
+		<result column="point_num" property="pointNum" jdbcType="BIGINT" />
+		<result column="activity_address" property="activityAddress" jdbcType="VARCHAR" />
+		<result column="activity_longitude" property="activityLongitude" jdbcType="DOUBLE" />
+		<result column="activity_latitude" property="activityLatitude" jdbcType="DOUBLE" />
+		<result column="create_address" property="createAddress" jdbcType="VARCHAR" />
+		<result column="create_longitude" property="createLongitude" jdbcType="DOUBLE" />
+		<result column="create_latitude" property="createLatitude" jdbcType="DOUBLE" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="failure" property="failure" jdbcType="VARCHAR" />
+		<result column="participation" property="participation" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+	</resultMap>
+
+	<resultMap id="EventActivityMobileVo" type="com.club.web.event.vo.EventActivityMobileVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="store_subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+		<result column="store_subbranch_name" property="subbranchName" jdbcType="VARCHAR" />
+		<result column="activity_type_id" property="activityTypeId" jdbcType="BIGINT" />
+		<result column="activity_type_name" property="activityTypeName" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="BIGINT" />
+		<result column="type_name" property="typeName" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="sponsor_name" property="sponsorName" jdbcType="VARCHAR" />
+		<result column="sponsor_tel" property="sponsorTel" jdbcType="VARCHAR" />
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="reg_start_time" property="regStartTime" jdbcType="TIMESTAMP" />
+		<result column="reg_end_time" property="regEndTime" jdbcType="TIMESTAMP" />
+		<result column="number_limit" property="numberLimit" jdbcType="BIGINT" />
+		<result column="activity_status" property="activityStatus" jdbcType="BIGINT" />
+		<result column="activity_status_name" property="activityStatusName" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="BIGINT" />
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+		<result column="activity_pic" property="activityPic" jdbcType="VARCHAR" />
+		<result column="point_num" property="pointNum" jdbcType="BIGINT" />
+		<result column="ispoint" property="ispoint" jdbcType="BIGINT" />
+		<result column="comment_num" property="commentNum" jdbcType="BIGINT" />
+		<result column="activity_address" property="activityAddress" jdbcType="VARCHAR" />
+		<result column="activity_longitude" property="activityLongitude" jdbcType="DOUBLE" />
+		<result column="activity_latitude" property="activityLatitude" jdbcType="DOUBLE" />
+		<result column="create_address" property="createAddress" jdbcType="VARCHAR" />
+		<result column="create_longitude" property="createLongitude" jdbcType="DOUBLE" />
+		<result column="create_latitude" property="createLatitude" jdbcType="DOUBLE" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="failure" property="failure" jdbcType="VARCHAR" />
+		<result column="participation" property="participation" jdbcType="BIGINT" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+		<collection property="image" resultMap="EventActivityMobileVoImage" />
+	</resultMap>
+
+	<resultMap id="EventActivityMobileVoImage" type="com.club.web.image.service.vo.ImageVo">
+		<id column="image_id" property="id" jdbcType="BIGINT" />
+		<result column="image_groupId" property="groupid" jdbcType="BIGINT" />
+		<result column="image_pic_url" property="picUrl" jdbcType="VARCHAR" />
+		<result column="image_create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="image_create_by" property="createBy" jdbcType="BIGINT" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID,
+		store_subbranch_id,
+		(select name from store_subbranch where id=event_activity.store_subbranch_id) as
+		store_subbranch_name,
+		activity_type_id,
+		(select name from event_activity_type
+		where id=event_activity.activity_type_id)
+		as
+		activity_type_name,
+		type,
+		title,
+		sponsor_name, sponsor_tel, begin_time, end_time, number_limit,
+		reg_start_time,
+		reg_end_time,
+		activity_status,
+		`status`, activity_pic,
+		(select count(1) from event_activity_point where
+		event_activity.id=event_activity_id) as
+		point_num,
+		(select count(1) from
+		event_activity_sign_up where
+		event_activity_id=event_activity.id) as
+		participation,
+		activity_address,
+		activity_longitude, activity_latitude,
+		create_address,
+		create_longitude,
+		create_latitude,content,failure,
+		create_time,
+		create_by, update_time, update_by
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+
+	<sql id="EventActivityDetailsVo_Column">
+		a.ID,
+		a.store_subbranch_id,
+		(select name from store_subbranch where id=a.store_subbranch_id) as
+		store_subbranch_name,
+		a.activity_type_id,
+		(select
+		name from
+		event_activity_type where id=a.activity_type_id) as
+		activity_type_name,
+		a.type,
+		case
+		when a.type='1' then '户外'
+		when a.type='2' then '室内'
+		end
+		as type_name,
+		a.title,
+		a.sponsor_name,
+		a.sponsor_tel,
+		a.begin_time,
+		a.end_time,
+		a.reg_start_time,
+		a.reg_end_time,
+		a.number_limit,
+		a.activity_status,
+		case
+		when a.activity_status='0' then '待审核'
+		when
+		a.activity_status='1' then '进行中'
+		when
+		a.activity_status='2' then '结束'
+		when a.activity_status='3' then '禁止'
+		end
+		as
+		activity_status_name,
+		a.status,
+		case
+		when
+		a.status='1' then '启用'
+		when a.status='0' then '禁用'
+		end
+		as status_name,
+		a.activity_pic,
+		(select count(1) from
+		event_activity_point p where p.event_activity_id=a.id)
+		as point_num,
+		a.activity_address,
+		a.activity_longitude,
+		a.activity_latitude,
+		a.create_address,
+		a.create_longitude,
+		a.create_latitude,
+		a.content,
+		a.failure,
+		(select count(1) from
+		event_activity_sign_up s where s.event_activity_id=a.id) as
+		participation,
+		a.create_time,
+		a.create_by,
+		a.update_time,
+		a.update_by
+	</sql>
+
+	<sql id="EventActivityMobileVo_Column">
+		a.ID,
+		a.store_subbranch_id,
+		(select name from store_subbranch where id=a.store_subbranch_id) as
+		store_subbranch_name,
+		a.activity_type_id,
+		(select name from
+		event_activity_type where id=a.activity_type_id) as
+		activity_type_name,
+		a.type,
+		case
+		when a.type='1' then '户外'
+		when a.type='2' then '室内'
+		end
+		as type_name,
+		a.title,
+		a.sponsor_name,
+		a.sponsor_tel,
+		a.begin_time,
+		a.end_time,
+		a.reg_start_time,
+		a.reg_end_time,
+		a.number_limit,
+		a.activity_status,
+		case
+		when a.activity_status='0' then '待审核'
+		when a.activity_status='1' then '进行中'
+		when
+		a.activity_status='2' then '结束'
+		when a.activity_status='3' then '禁止'
+		end
+		as activity_status_name,
+		a.status,
+		case
+		when
+		a.status='1' then '启用'
+		when a.status='0' then '禁用'
+		end
+		as status_name,
+		a.activity_pic,
+		b.id as image_id,
+		b.groupId as
+		image_groupId,
+		b.pic_url as image_pic_url,
+		(select count(1) from event_activity_point p where
+		p.event_activity_id=a.id)
+		as point_num,
+		a.activity_address,
+		a.activity_longitude,
+		a.activity_latitude,
+		a.create_address,
+		a.create_longitude,
+		a.create_latitude,
+		a.content,
+		a.failure,
+		(select count(1) from event_activity_sign_up s
+		where s.event_activity_id=a.id) as
+		participation,
+		(select count(1) from event_activity_comment c
+		where c.event_activity_id=a.id) as comment_num,
+		a.create_time,
+		a.create_by,
+		a.update_time,
+		a.update_by
+	</sql>
+
+	<!-- 根据名称查询分页结果 -->
+	<select id="queryEventActivityPage" resultMap="BaseSimpleResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from event_activity
+		where 1=1
+		<if test="title!=null">
+			and (title like #{title} or sponsor_name like #{title} )
+		</if>
+		<if test="activityTypeId!=null and activityTypeId!=0">
+			and activity_type_id = #{activityTypeId}
+		</if>
+		<if test="beginTime!=null and beginTime!=''">
+			and date_format(begin_time,'%Y-%m-%d') = #{beginTime}
+		</if>
+		<choose>
+			<when test="activityStatus==0">
+				and activity_status=0
+			</when>
+			<otherwise>
+				and activity_status>0
+			</otherwise>
+		</choose>
+		order by begin_time desc
+		limit #{start},#{limit}
+	</select>
+
+	<!-- 根据名字查询分页条数 -->
+	<select id="queryEventActivityCountPage" resultType="java.lang.Long" parameterType="map">
+		select
+		count(1) as count
+		from event_activity
+		where 1=1
+		<if test="title!=null">
+			and (title like #{title} or sponsor_name like #{title} )
+		</if>
+		<if test="activityTypeId!=null and activityTypeId!=0">
+			and activity_type_id = #{activityTypeId}
+		</if>
+		<if test="beginTime!=null and beginTime!=''">
+			and date_format(begin_time,'%Y-%m-%d') = #{beginTime}
+		</if>
+		<choose>
+			<when test="activityStatus==0">
+				and activity_status=0
+			</when>
+			<otherwise>
+				and activity_status>0
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findEventActivityDetailVoById" resultMap="EventActivityDetailsVo" parameterType="java.lang.String">
+		select
+		<include refid="EventActivityDetailsVo_Column" />
+		from event_activity a
+		where a.id=#{id}
+	</select>
+
+	<select id="queryEventActivityByTypeIds" resultType="java.lang.Long">
+		select
+		count(1) as count
+		from event_activity a
+		where a.activity_type_id in
+		<foreach collection="activityTypeIds" item="id" index="index" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
+	<update id="updateActivityStatusByTime">
+		update event_activity
+		set activity_status=2
+		where now()>=end_time and activity_status=1
+	</update>
+
+	<!-- 手机端获取活动部落信息 -->
+	<!-- <select id="findEventActivityForMobile" resultMap="EventActivityMobileVo"> select <include refid="EventActivityMobileVo_Column" 
+		/> from event_activity a LEFT JOIN image b ON b.groupId = a.activity_pic </select> -->
+
+	<!-- 手机端获取活动部落详情 -->
+	<select id="findEventActivityByIdForMobile" resultMap="EventActivityMobileVo">
+		select
+		<include refid="EventActivityMobileVo_Column" />
+		<if test="userId!=null and userId != ''">
+			,(
+			select count(1) from event_activity_point p
+			where p.event_activity_userinfo=#{userId} and
+			p.event_activity_id=a.id
+			)
+			as ispoint
+		</if>
+		from event_activity a
+		LEFT JOIN image b ON b.groupId = a.activity_pic
+		where a.id=#{id}
+	</select>
+
+	<!-- 根据手机端分页结果 -->
+	<select id="queryEventActivityFromMobilePage" resultMap="EventActivityMobileVo" parameterType="map">
+		select
+		<include refid="EventActivityMobileVo_Column" />
+		<if test="userId!=null and userId != ''">
+			,(
+			select count(1) from event_activity_point p
+			where p.event_activity_userinfo=#{userId} and
+			p.event_activity_id=a.id
+			)
+			as ispoint
+		</if>
+		from (
+		select t.* from event_activity t
+			where 1=1
+			<if test="subbranchId!=null and subbranchId!=''">
+				and t.store_subbranch_id=#{subbranchId}
+			</if>
+			 <if  test="personal==null or personal=='' or personal=='0' or personal==0">
+				and t.status=1
+			</if>
+			<choose>
+				<when test="activityStatus!=null and activityStatus!=''">
+					and t.activity_status=#{activityStatus}
+				</when>
+				<otherwise>
+					and (t.activity_status=1 or t.activity_status=2)
+				</otherwise>
+			</choose>
+			order by
+			t.begin_time desc
+			limit
+			#{start},#{limit}
+		) a 
+		LEFT JOIN image b ON b.groupId = a.activity_pic
+		ORDER BY a.begin_time DESC
+	</select>
+
+	<!-- 根据手机端分页条数 -->
+	<select id="queryEventActivityCountFromMobilePage" resultType="java.lang.Long" parameterType="map">
+		select
+		count(1) as
+		count
+		from event_activity a
+		where 1=1
+		<if test="subbranchId!=null and subbranchId!=''">
+			and a.store_subbranch_id=#{subbranchId}
+		</if>
+        <if  test="personal==null or personal=='' or personal=='0' or personal==0">
+			and a.status=1
+		</if>
+		<choose>
+			<when test="activityStatus!=null and activityStatus!=''">
+				and a.activity_status=#{activityStatus}
+			</when>
+			<otherwise>
+				and (a.activity_status=1 or a.activity_status=2)
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 根据ID查询限制人数 -->
+	<select id="findRemainingNumberById" resultType="java.lang.Long" parameterType="java.lang.Long">
+		select
+		a.number_limit-(select
+		count(1) from
+		event_activity_sign_up b where a.id=b.event_activity_id) as
+		remainingNumber
+		from event_activity a
+		where
+		a.id=#{id}
+	</select>
+
+</mapper>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.CarouselImgMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.CarouselImg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="line_status" property="lineStatus" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="BIGINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="remk" property="remk" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.store.dao.base.po.CarouselImg" extends="BaseResultMap" >
+    <result column="rich_text" property="richText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, `status`, line_status, category, sort, remk, pic_url, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    rich_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from carousel_img
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from carousel_img
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.CarouselImg" >
+    insert into carousel_img (id, `status`, line_status, 
+      category, sort, remk, 
+      pic_url, update_time, create_time, 
+      rich_text)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{lineStatus,jdbcType=INTEGER}, 
+      #{category,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, #{remk,jdbcType=VARCHAR}, 
+      #{picUrl,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{richText,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.CarouselImg" >
+    insert into carousel_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="lineStatus != null" >
+        line_status,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="remk != null" >
+        remk,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="richText != null" >
+        rich_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lineStatus != null" >
+        #{lineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remk != null" >
+        #{remk,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="richText != null" >
+        #{richText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.CarouselImg" >
+    update carousel_img
+    <set >
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lineStatus != null" >
+        line_status = #{lineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remk != null" >
+        remk = #{remk,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="richText != null" >
+        rich_text = #{richText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.store.dao.base.po.CarouselImg" >
+    update carousel_img
+    set `status` = #{status,jdbcType=INTEGER},
+      line_status = #{lineStatus,jdbcType=INTEGER},
+      category = #{category,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=INTEGER},
+      remk = #{remk,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      rich_text = #{richText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.CarouselImg" >
+    update carousel_img
+    set `status` = #{status,jdbcType=INTEGER},
+      line_status = #{lineStatus,jdbcType=INTEGER},
+      category = #{category,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=INTEGER},
+      remk = #{remk,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

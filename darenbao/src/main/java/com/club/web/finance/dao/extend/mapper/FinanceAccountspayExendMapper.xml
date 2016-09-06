@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.finance.dao.extend.FinanceAccountspayExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.finance.vo.FinanceAccountspayVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderid" jdbcType="BIGINT" />
+    <result column="statue" property="statue" jdbcType="INTEGER" />
+    <result column="vouchtype" property="vouchtype" jdbcType="VARCHAR" />
+    <result column="vouchdate" property="vouchdate" jdbcType="DATE" />
+    <result column="customerid" property="customerid" jdbcType="BIGINT" />
+    <result column="customercode" property="customercode" jdbcType="VARCHAR" />
+    <result column="customername" property="customername" jdbcType="VARCHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="digest" property="digest" jdbcType="VARCHAR" />
+    <result column="balancecode" property="balancecode" jdbcType="VARCHAR" />
+    <result column="balanceitemcode" property="balanceitemcode" jdbcType="VARCHAR" />
+    <result column="foreigncurrency" property="foreigncurrency" jdbcType="VARCHAR" />
+    <result column="currencyrate" property="currencyrate" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="originalamount" property="originalamount" jdbcType="DECIMAL" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <resultMap id="FinanceAbnormal" type="com.club.web.finance.vo.FinanceAbnormal" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="orderId" property="orderId" jdbcType="BIGINT" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="statue" property="status" jdbcType="INTEGER" />
+    <result column="U8OrderId" property="u8orderid" jdbcType="BIGINT" />
+    <result column="U8AccountsId" property="u8accountsid" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id,code, orderId, statue, vouchtype, vouchdate, customerid, customercode, customername, departmentcode, 
+    digest, balancecode, balanceitemcode, foreigncurrency, currencyrate, amount, originalamount, 
+    `operator`, flag, note
+  </sql>
+  
+  <select id="getVoByOrderId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay
+    where orderid = #{orderid}
+  </select>
+   <select id="selectByU8OrderNull" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay
+    where U8OrderId is NULL and statue = 0
+  </select>
+  <select id="selectByU8AccountsNull" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay
+    where U8AccountsId is NULL and statue = 0 
+  </select>
+  
+  <select id="queryTotalByMap" resultType="int">
+	select count(1) from finance_accountspay fa where 1 = 1
+	<if test="orderType == null">
+		and (fa.U8OrderId is null or fa.U8OrderId='' or fa.U8AccountsId is null or fa.U8AccountsId='')
+	</if>
+	<if test="orderType == 0">
+		and (fa.U8OrderId is null or fa.U8OrderId='')
+	</if>
+	<if test="orderType == 1">
+		and (fa.U8AccountsId is null or fa.U8AccountsId='')
+	</if>
+	<if test="status!=null">
+		and fa.statue = #{status}
+	</if>
+	order by fa.id desc
+  </select>
+  <select id="queryListByMap" resultMap="FinanceAbnormal">
+	select *,(select i.`name` from indent i where i.id = fa.orderId) as order_name
+	from finance_accountspay fa where 1 = 1
+	<if test="orderType == null">
+		and (fa.U8OrderId is null or fa.U8OrderId='' or fa.U8AccountsId is null or fa.U8AccountsId='')
+	</if>
+	<if test="orderType == 0">
+		and (fa.U8OrderId is null or fa.U8OrderId='')
+	</if>
+	<if test="orderType == 1">
+		and (fa.U8AccountsId is null or fa.U8AccountsId='')
+	</if>
+	<if test="status!=null">
+		and fa.statue = #{status}
+	</if>
+	order by fa.id desc
+	<if test="startIndex!=null and startIndex!='' and pageSize!=null and pageSize!=''">
+		limit #{startIndex},#{pageSize}
+	</if>
+  </select>  
+</mapper>

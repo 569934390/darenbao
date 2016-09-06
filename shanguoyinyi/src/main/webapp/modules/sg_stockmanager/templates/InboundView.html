@@ -1,0 +1,37 @@
+<div class="row inbound-manager">
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                        	<label class="control-label">状 态：</label>&nbsp;
+                            <select name="inbound_status" id="first-sta" class="form-control" data-rule="required;">
+                                <option value="0" selected="selected">全部</option>
+                                <option value="1">未审核</option>
+                                <option value="2">待入库</option>
+                                <option value="3">已入库</option>
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+				          <input type="text" name="inboundName" class="form-control" placeholder="入库单号/入库人">
+                        </div>
+                        &nbsp;&nbsp;<button class="btn btn-info" action="search-inbound">搜索</button>
+                      				<button type="button" class="btn btn-info" action="in-bound-refresh" title="刷新">刷新</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <button class="btn btn-info" action="sure-rule-all">确认入库</button>
+                        <!-- <button class="btn btn-info" action="apply-rule-all">申请入库</button>
+                        <button class="btn btn-info" action="cancle-rule-all">取消入库</button> -->
+                        <button class="btn btn-info" action="delete-rule-all">删除</button>
+                        <button class="btn btn-info" action="add-rule">新增入库</button>
+                      </div>
+                    </div>
+                </div>
+            </div>           
+	        <div class="row" style="margin-right:10px;">
+	            <div class="col-md-12 emgceval-content-div" id="inbound-rule-content-div">
+	            </div>
+	        </div>               
+</div>

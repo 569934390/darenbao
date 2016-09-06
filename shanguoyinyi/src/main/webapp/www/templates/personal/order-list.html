@@ -1,0 +1,286 @@
+<style>
+    .orderlist{
+        background-color: #f5f5f5;
+    }
+    .orderlist .scroll-content {
+        margin-top:2rem;
+    }
+    .orderlist h2, .orderlist p{
+        padding: 0;
+        margin: 0;
+    }
+    .orderlist .sortBanner{
+        width:100%;
+        display: block;
+        background-color: #ffffff;
+        height: 2rem;
+        position: absolute;
+        margin-top: 44px;
+    }
+    .orderlist .sortBanner .active  span{
+        color: #ff5555 !important;
+        border-bottom: solid 1px #ff5555;
+    }
+    .orderlist .box_25{
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        width: 33.3%;
+        height: 1.4rem;
+        margin: 0.3rem 0rem;
+        text-align: center;
+        font-size: 0.8rem;
+        float: left;
+        color:#B7A9A9;
+        border: 0;
+        border-right: dashed 1px #e0e0e0;
+    }
+    .orderlist .box_25:last-child{
+        border-right: none;
+    }
+    .orderlist .box_25 span{
+        text-align: center;
+        color:  #757575;
+        display: inline-block;
+        padding:.3rem .85rem;
+        font-size:.8rem;
+        line-height: .8rem;
+        font-weight: normal;
+    }
+    .orderlist .list{
+        background-color: #ffffff;
+        padding: 0;
+        margin-top: 0.25rem!important;
+        margin-bottom:0rem!important;
+    }
+    .list .orderlist-list{
+        min-height: 5.4rem;
+        padding: 0.5rem 0.5rem 0.6rem 6.4rem;
+        border: none;
+        border-bottom: solid 2px #f5f5f5;
+        margin: 0;
+        font-size: 0.8rem;
+    }
+    .list .orderlist-list .logo{
+        top: 0.5rem;
+        left: 0.5rem;
+        max-width:5.4rem !important;
+        max-height: 5.4rem!important;
+        line-height: 5.4rem!important;
+        vertical-align: middle;
+        border-radius: 0.3rem;
+        -webkit-border-radius:  0.3rem;
+        -moz-border-radius:  0.3rem;
+    }
+    .orderlist-r{
+        min-height: 5.4rem;
+    }
+    .orderlist-r h2{
+        height: 1.15rem;
+        line-height: 1.15rem;
+        font-size: 0.8rem;
+        color: #000000;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .orderlist-r h2:nth-child(2){
+        margin-bottom: 0.7rem;
+    }
+    .orderlist-r .total_img{
+        position: absolute;
+        top: 2.325rem;
+        right: 0.5rem;
+    }
+    .orderlist-r p{
+        /*position: absolute;*/
+        /*bottom: 0.5rem;*/
+        height: 1.2rem;
+        line-height: 1.2rem;
+        font-size: 0.7rem;
+        color: #000000;
+        filter:alpha(opacity=54);
+        -moz-opacity:0.54;
+        -khtml-opacity: 0.54;
+        opacity: 0.54;
+    }
+    .orderlist-m{
+        height: 2.175rem;
+        font-size: 0.65rem;
+        line-height:  2.175rem;
+        padding: 0rem 0.5rem;
+        color: #000000;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+        background-color: #ffffff;
+    }
+</style>
+<ion-view view-title="我的订单" class="orderlist">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">我的订单</div>
+        <div class="head-right-btn"></div>
+    </ion-header-bar>
+    <div class="sortBanner">
+        <div class="box_25" ng-class="{'active': showTabView=='all'}" ng-click="showTab('all')">
+            <span>全部</span>
+        </div>
+        <div class="box_25" ng-class="{'active': showTabView=='onPay'}" ng-click="showTab('onPay')">
+            <span>待付款</span>
+        </div>
+        <div class="box_25" ng-class="{'active': showTabView=='alPay'}" ng-click="showTab('alPay')">
+            <span>已付款</span>
+        </div>
+    </div>
+    <ion-content ng-class="{'ios-has-content-bar':platform == 'ios'}" delegate-handle="mainScroll">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="showTab(showTabView)">
+        </ion-refresher>
+        <!--全部-->
+        <div class="tab-content" ng-show="showTabView=='all'" >
+            <div class="list" ng-repeat="bill in recommendGoods">
+                <a class="item item-thumbnail-left orderlist-list" ng-click="getOrderInfo(bill.id)">
+                    <img class="logo" image-lazy-src="{{bill.picUrl}}" background-img="img/mrtp_90.png" lazy-scroll-resize="true" err-src="img/mrtp_90.png">
+                    <div class="orderlist-r">
+                        <h2>订单号：{{bill.name}}</h2>
+                        <h2>收货人：{{bill.receiver}}</h2>
+                        <div class="total_img" ng-if="bill.status == 1">
+                            待付款
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 2">
+                            待发货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 3">
+                            申请退款中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 5">
+                            待收货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 6">
+                            退货申请中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 7">
+                            退货中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 8">
+                            已退款
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 9">
+                            已退货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 10">
+                            已收货
+                        </div>
+                        <div class="total_img" ng-if="bill.status==11">
+                            已取消
+                        </div>
+                        <div class="total_img" ng-if="bill.status==12">
+                            待评价
+                        </div>
+                        <div class="total_img" ng-if="bill.status==13">
+                            已完成
+                        </div>
+                        <p>{{bill.createTime}}</p>
+                    </div>
+                </a>
+                <div class="orderlist-m">共{{bill.count}}件商品&nbsp;合计：{{bill.paymentAmount | currency : '￥'}}&nbsp;(含运费{{bill.buyerCarriage}}元)</div>
+            </div>
+            <div style="margin-top:6rem;width: 100%;text-align: center" ng-show="isShow">
+                <img src="img/activitySignUp-kong.png" style="width: 50%;margin: 0;padding: 0"/>
+                <div style="font-size:0.8rem;color: #000000;margin-top: 2rem;opacity: 0.54"还没有可用订单,快去下一单吧!></div>
+            </div>
+        </div>
+
+        <!--待付款-->
+        <div class="tab-content" ng-show="showTabView=='onPay'" >
+            <div class="list" ng-repeat="bill in onPayBill">
+                <a class="item item-thumbnail-left orderlist-list"  ng-click="getOrderInfo(bill.id)">
+                    <img class="logo" image-lazy-src="{{bill.picUrl}}" background-img="img/mrtp_90.png" lazy-scroll-resize="true" err-src="img/mrtp_90.png">
+                    <div class="orderlist-r">
+                        <h2>订单号：{{bill.name}}</h2>
+                        <h2>收货人：{{bill.receiver}}</h2>
+                        <div class="total_img">
+                            待付款
+                        </div>
+                        <p>{{bill.createTime}}</p>
+                    </div>
+                </a>
+                <div class="orderlist-m">共{{bill.count}}件商品&nbsp;合计：{{bill.paymentAmount | currency : '￥'}}&nbsp;(含运费{{bill.buyerCarriage}}元)</div>
+            </div>
+            <div style="margin-top:6rem;width: 100%;text-align: center" ng-show="isShow">
+                <img src="img/activitySignUp-kong.png" style="width: 50%;margin: 0;padding: 0"/>
+                <div style="font-size:0.8rem;color: #000000;margin-top: 2rem;opacity: 0.54"还没有可用订单,快去下一单吧!></div>
+            </div>
+        </div>
+        <!--已付款-->
+        <div class="tab-content" ng-show="showTabView=='alPay'" >
+            <div class="list" ng-repeat="bill in alPayBill">
+                <a class="item item-thumbnail-left orderlist-list"  ng-click="getOrderInfo(bill.id)">
+                    <img class="logo" image-lazy-src="{{bill.picUrl}}" background-img="img/mrtp_90.png" lazy-scroll-resize="true" err-src="img/mrtp_90.png">
+                    <div class="orderlist-r">
+                        <h2>订单号：{{bill.name}}</h2>
+                        <h2>收货人：{{bill.receiver}}</h2>
+                        <div class="total_img" ng-if="bill.status == 1">
+                            待付款
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 2">
+                            待发货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 3">
+                            申请退款中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 5">
+                            待收货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 6">
+                            退货申请中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 7">
+                            退货中
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 8">
+                            已退款
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 9">
+                            已退货
+                        </div>
+                        <div class="total_img" ng-if="bill.status == 10">
+                            已收货
+                        </div>
+                        <div class="total_img" ng-if="bill.status==11">
+                            已取消
+                        </div>
+                        <div class="total_img" ng-if="bill.status==12">
+                            待评价
+                        </div>
+                        <div class="total_img" ng-if="bill.status==13">
+                            已完成
+                        </div>
+                        <p>{{bill.createTime}}</p>
+                    </div>
+                </a>
+                <div class="orderlist-m">共{{bill.count}}件商品&nbsp;合计：{{bill.paymentAmount | currency : '￥'}}&nbsp;(含运费{{bill.buyerCarriage}}元)</div>
+            </div>
+            <div style="margin-top:6rem;width: 100%;text-align: center" ng-show="isShow">
+                <img src="img/activitySignUp-kong.png" style="width: 50%;margin: 0;padding: 0"/>
+                <div style="font-size:0.8rem;color: #000000;margin-top: 2rem;opacity: 0.54"还没有可用订单,快去下一单吧!></div>
+            </div>
+        </div>
+        <p ng-if="!showScroll" style="text-align: center;font-size: .75rem;color: #999;margin-top: 1rem;">已显示全部订单</p>
+        <p ng-if="showScroll&&isInLoad" style="text-align: center;font-size: .75rem;color: #999;margin-top: 1rem;">上拉加载更多订单</p>
+        <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="nextPage()"
+                immediate-check="false"
+                distance="0.5%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

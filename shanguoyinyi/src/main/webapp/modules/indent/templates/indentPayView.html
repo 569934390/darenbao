@@ -1,0 +1,50 @@
+<div class="row pay-indent" style='position: relative; '>
+	<div id="tabs" class="ui-tabs-panel">
+		<div class="row">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<div class="navbar-form navbar-left" role="search">
+						<div class="form-group col-md-12">
+							订单号：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="iindentName" class="form-control">
+							店铺名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="text" name="istoreName" class="form-control">
+							创建时间：
+							<div class="input-group">
+								<input type="text" field="datetime" class="form-control"
+									name="istartTime" data-rule="match[lt, endTime, date]">
+							</div>
+							到
+							<div class="input-group">
+								<input type="text" name="iendTime" field="datetime"
+									class="form-control">
+							</div>									
+						</div>
+						<div class="form-group col-md-12">
+							买家昵称：<input type="text" name="ibuyerName" class="form-control">
+							收货人手机号：<input type="text" name="ireceiverPhone" class="form-control">		
+							<button class="btn btn-info" action="search" title="搜索">
+								搜索<i class="fa fa-search"></i>
+							</button>
+							<button class="btn btn-info" action="refresh" title="刷新">
+								<i class="glyphicon glyphicon-refresh"></i>
+							</button>
+							<button class="btn btn-info" action="show" title="查看">查看</button>
+							<button class="btn btn-info" action="cancel" title="批量取消订单">批量取消订单</button>
+						</div>
+						<!-- <div class="form-group col-md-12">
+							订单总金额：<span class="indentTotalAmount" style="color: red"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							实际总支付金额：<span class="indentPaymentAmount" style="color: red"></span>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="width: 99%">
+			<div class="col-md-12" id="indet-pay-content-div"></div>
+		</div>
+	</div>
+	<div class='loading' style='margin: -5px 0 0 5px; position: absolute; left:0; right:0; top: 0; bottom: 0; background-color: rgba(60,141,188,0.4); z-index: 1000;'>
+		<img src="./image/loading.gif" style='margin: left: -25px; vertical-align: middle; position: absolute;left: 50%; width: 50px; top: 50%; margin-top: -25px;' />
+	</div>
+</div>

@@ -1,0 +1,35 @@
+<style>
+.scroll-content{
+	background: #F8F8F8;
+}
+.more img{
+  max-width: 100%;
+}
+</style>
+<ion-view title="更多栏目" >
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">更多</h1>
+    </ion-header-bar>
+    <ion-content class="more">
+	        <ion-refresher
+	                pulling-text="下拉刷新..."
+	                on-refresh="doRefresh()">
+	        </ion-refresher>
+	        <div  class="list" style="margin: 0.5rem;margin-top: 0.1rem;text-align: center;" ng-repeat="obj in companyList">
+				     <img src="{{obj.picUrl}}">
+			</div >
+			  <div  ng-if="companyDataT" style="text-align: center;width: 100%;height: 100%;font-size: 0.8rem;font-weight: bold;padding-top: 5rem">
+				 暂无信息
+			</div >
+			 <ion-infinite-scroll
+	                ng-if="showScroll"
+	                on-infinite="loadMore()"
+	                immediate-check="false"
+	                distance="10%">
+	        </ion-infinite-scroll>    
+    </ion-content>
+  
+</ion-view>

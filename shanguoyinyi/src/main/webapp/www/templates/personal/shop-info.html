@@ -1,0 +1,193 @@
+<style>
+    .center_list{
+        display: -webkit-box;
+        width: 100%;
+        padding:0 .5rem 0rem 2rem;
+        border-bottom: 1px solid #f5f5f5;
+        line-height: 2.5rem;
+    }
+    .center_list .left_part{
+        width:4rem;
+        text-align: left;
+        display: inline-block;
+    }
+    .center_list .center_part{
+        -webkit-box-flex: 1;
+        text-align: left;
+        color:#757575;
+        display: inline-block;
+    }
+    .center_list .right_part{
+        width:1.5rem;
+        text-align: center;
+    }
+    .center_list .right_part img{
+        width:100%;
+        text-align: center;
+        vertical-align: middle;
+        margin-top: -0.4rem;
+    }
+    .shopHead-div {
+        position: relative;
+        height: 4rem;
+        width: 4rem;
+        margin: 0 auto;
+    }
+    .shopHead-photo1Img{
+        width: inherit;
+        height: inherit;
+        border-radius: 100%;
+        position: absolute;
+        left: 0;
+    }
+    .shopHead-photo2Img{
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 -0.35rem -0.35rem 0rem;
+    }
+    .input1{
+        border : 0rem;
+        width: 100%;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .context-btn{
+        display: -webkit-box;
+        padding: 0.5rem .5rem .5rem .5rem;
+        width: 100%;;
+    }
+    .context-btn .center-btn{
+        -webkit-box-flex: 1.0;
+        text-align: center;
+        line-height: 2rem;
+        padding: 3rem 0rem 0rem 0rem;
+    }
+    .context-btn .center-btn input{
+        border: 0;
+        text-align: center;
+        padding: 0.5rem 2rem 0.5rem 2rem;
+        width: 70%;
+        background-color: red;
+        color: white;
+    }
+    .padding-div{
+        /*-webkit-box-flex: 1;*/
+        text-align: left;
+        color:#757575;
+        display: inline-block;
+        /*padding:.2rem .5rem .2rem .5rem;*/
+    }
+    .head-div2{
+        height: 1rem;
+        width:33px;
+    }
+    .head-div2 img{
+        width:100%;
+        border:none;
+        text-align: center;
+    }
+</style>
+<ion-view title="店铺信息">
+    <ion-content>
+        <div style="margin-top: 3rem" ng-show="pageShow">
+            <div style="text-align: center;margin-bottom: 1rem;font-weight: bold">请完善店铺信息</div>
+            <div class="text-center" ng-click="choosePic()">
+                <div class="shopHead-div">
+                    <img class="shopHead-photo1Img" image-lazy-src="{{shopInfo.headImgUrl}}" background-img="img/mrtx_80.png" lazy-scroll-resize="true" err-src="img/mrtx_80.png" >
+                    <img src="img/me_bj.png" class="shopHead-photo2Img">
+                </div>
+                <div class="font-size16">请上传门店照片</div>
+            </div>
+            <div class="center_list">
+                <div class="left_part">店铺名称:</div>
+                <div class="center_part">
+                    <input class="input1" placeholder="请输入店铺名称" ng-model="shopInfo.name"/>
+                </div>
+            </div>
+            <div class="center_list">
+                <div class="left_part">地区:</div>
+                <div class="padding-div" style="background-color: #ffffff">
+                    <ionic-city-picker placeholder="请选择地区" tag="-" backdrop=true backdrop-click-to-close=true css-class="cus-addr" hand-name="addr"
+                                       ok-text="确定" citydata="city.citydata"  citynum="city.cityNum" button-clicked="cb(provinceName,cityName,areaName)">
+                    </ionic-city-picker>
+                </div>
+            </div>
+            <div class="center_list">
+                <div class="left_part">门店地址:</div>
+                <div class="center_part">
+                    <input class="input1" placeholder="请输入门店地址" ng-model="city.address"/>
+                </div>
+            </div>
+            <div class="center_list">
+                <div class="left_part">门店电话:</div>
+                <div class="center_part">
+                    <input class="input1" placeholder="请输入门店电话" ng-model="shopInfo.phone"/>
+                </div>
+            </div>
+            <div>
+                <div style="color: red;margin-left: 1rem;font-size: 0.7rem">以上信息均为必填项，完成后可在个人中心修改</div>
+            </div>
+            <div class="context-btn">
+                <div class="center-btn"><input type="button" value="下一步" ng-click="getNext()"/></div>
+            </div>
+        </div>
+        <div style="margin-top: 0rem" ng-show="!pageShow">
+            <div class="head-div2" ng-click="goBack();">
+                <img src="img/fh.png">
+            </div>
+            <div style="margin-top: 2rem">
+                <div style="text-align: center;margin-bottom: 1rem;font-weight: bold">请完善银行卡信息</div>
+                <div>
+                    <div style="color: #ef473a;margin-left: 1rem;font-size: 0.7rem">* 该银行卡将用于平台与商家结算，请正确填写银行卡信息，否则将导致无法结算。</div>
+                </div>
+                <div class="center_list">
+                    <div class="left_part">开户人:</div>
+                    <div class="center_part">
+                        <input class="input1" placeholder="请输入您的真实姓名" ng-model="bank.name"/>
+                    </div>
+                </div>
+                <div class="center_list">
+                    <div class="left_part">身份证:</div>
+                    <div class="center_part">
+                        <input class="input1" placeholder="请输入持卡人身份证号" ng-model="bank.card"/>
+                    </div>
+                </div>
+                <div class="center_list">
+                    <div class="left_part">银行卡号:</div>
+                    <div class="center_part">
+                        <input class="input1" placeholder="请输入银行卡号" ng-model="bank.bankCard"/>
+                    </div>
+                </div>
+                <div class="center_list">
+                    <div class="left_part">银行全称:</div>
+                    <div class="center_part">
+                        <input class="input1" placeholder="请填写完整银行名称" ng-model="bank.bankName"/>
+                    </div>
+                </div>
+                <div class="center_list" style="display: block;">
+                    <div style="width: 100%">
+                        <div class="left_part" style="-webkit-box-flex:1;">开户行:</div>
+                        <div class="center_part">
+                            <input class="input1" placeholder="请输入正确开户行信息" ng-model="bank.bankAddress"/>
+                        </div>
+                    </div>
+                    <div style="display:block;color: #ef473a;font-size: 0.7rem">举例：成都建设路支行（城市名+支行名）</div>
+                </div>
+                <div class="center_list">
+                    <div class="left_part">手机号码:</div>
+                    <div class="center_part">
+                        <input class="input1" placeholder="银行预留手机号码" ng-model="bank.mobile"/>
+                    </div>
+                </div>
+                <div class="context-btn">
+                    <div class="center-btn"><input type="button" value="完成" ng-click="saveShopInfo()"/></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

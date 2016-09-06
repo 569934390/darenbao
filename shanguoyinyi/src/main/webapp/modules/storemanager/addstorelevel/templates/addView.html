@@ -1,0 +1,50 @@
+<div class="ui-dialog dialog-md storeLevelManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建店铺等级信息</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="storeLevel-form">
+					<input type="hidden" name="levelId"> 
+					<input type="hidden" name="traId"> 
+					<input name="statue" type="hidden" /> 
+					<input type="hidden" name="createTime">
+				    <input type="hidden" name="createBy"> 
+				    <input type="hidden" name="updateTime">
+					<input type="hidden" name="updateBy">
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">店铺等级名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="name" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 headStoreNameDiv" style="display:none">
+						<div class="form-group">
+							<label class="col-md-4 control-label">总店名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="headStoreName" readonly="true" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">店铺协议：</label>
+							<div class="input-group col-md-9">
+								<div id="editorstorePro" name="storePro" style="width: 100%; height: 200px;"></div>
+							</div>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

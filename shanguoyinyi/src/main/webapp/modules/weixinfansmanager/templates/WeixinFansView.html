@@ -1,0 +1,32 @@
+<div class="row weixin-fans-main-btngroup">
+    <div class="col-md-12 weixin-fans-main-view">
+         <div class="row">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+							名称：<input type="text" name="name" class="form-control"> 
+							地区：<input type="text" name="address" class="form-control"> 
+							注册时间：
+							<div class="input-group">
+								<input type="text" field="datetime" class="form-control"
+									name="istartTime" data-rule="match[lt, endTime, date]">
+							</div>
+							-
+							<div class="input-group">
+								<input type="text" name="iendTime" field="datetime"
+									class="form-control">
+							</div>
+						</div>
+                        <button class="btn btn-info" action="search">搜索</button>
+                        <button class="btn btn-info" action="refresh">重置</button>
+                      </div>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+        </div>
+        <div class="row" style="margin-right:10px;">
+            <div class="col-md-12 weixin-fans-content-div" id="weixin-fans-content-div">
+            </div>
+        </div>
+    </div>
+</div>

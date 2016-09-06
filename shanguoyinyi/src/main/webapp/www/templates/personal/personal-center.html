@@ -1,0 +1,158 @@
+<style>
+    .content-div1{
+        position: absolute;
+        top: 44px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        margin-top: -1px;
+        padding-top: 1px;
+        margin-bottom: -1px;
+        width: auto;
+        height: auto;
+    }
+    .home-head1{
+        background: url("img/me_grzx_bj.jpg") no-repeat;
+        background-size: 100% 100%;
+        height: 45%!important;
+        min-height: 45%!important;
+        padding-top:2rem;
+        width: 100%;
+        overflow: hidden;
+        display: block;
+    }
+    .head-div {
+        position: relative;
+        height: 4rem;
+        width: 4rem;
+        margin: 0 auto;
+    }
+    .head-photo1Img{
+        width: inherit;
+        height: inherit;
+        border-radius: 100%;
+        position: absolute;
+        left: 0;
+        /*border: 0.2rem solid #eeeeee!important;*/
+    }
+    .head-photo2Img{
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 -0.35rem -0.35rem 0rem;
+    }
+    .head-footer1 {
+        text-align: center;
+        padding: 1.5rem 0rem 0rem 0rem;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .font-size16{
+        font-size: 0.8rem;
+        color: #ffffff;
+        padding: 0.5rem 0rem 0rem 0rem;
+    }
+    .context-size{
+        display: -webkit-box;
+        padding: 0.2rem 3rem .2rem 3rem;
+        width: 100%;;
+    }
+    .context-size .left-div{
+        width:1.5rem;
+    }
+    .context-size .center-div{
+        -webkit-box-flex: 1.0;
+        text-align: center;
+        line-height: 1.5rem;
+    }
+    .context-size .right-div{
+        width:1.5rem;
+    }
+    .context-size .left-div img ,.context-size .right-div img{
+        width:100%;
+        text-align: center;
+    }
+</style>
+<ion-view title="个人中心">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">个人中心</div>
+        <div class="head-right-btn" ng-click="setting()">
+            <img src="img/setting.png">
+        </div>
+    </ion-header-bar>
+    <div class="content-div1">
+        <div class="home-head1 text-center" ng-click="personalInfo()">
+            <div class="head-div">
+                <img class="head-photo1Img" image-lazy-src="{{shopInfo.headImgUrl}}" background-img="img/mrtx_80.png" lazy-scroll-resize="true" err-src="img/mrtx_80.png" >
+                <img src="img/me_bj.png" class="head-photo2Img">
+            </div>
+            <div class="font-size16">{{shopInfo.name}}</div>
+        </div>
+        <div class="head-footer1 text-center">
+            <div class="context-size" ng-click="orderList()">
+                <div class="left-div">
+                    <img src="img/me_wddd.png">
+                </div>
+                <div class="center-div">
+                    我的订单
+                </div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-size" ng-click="goAccountMsg()">
+                <div class="left-div">
+                    <img src="img/me_wdzh.png">
+                </div>
+                <div class="center-div">
+                    我的账户
+                </div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-size" ng-click="goVouchList()">
+                <div class="left-div">
+                    <img src="img/me_kjdh.png">
+                </div>
+                <div class="center-div">
+                    卡券兑换
+                </div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-size" ng-click="goActivityPersonList()">
+                <div class="left-div">
+                    <img src="img/me_cjhd.png">
+                </div>
+                <div class="center-div">
+                    创建的活动
+                </div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+            <div class="context-size" ng-click="goFansList()">
+                <div class="left-div">
+                    <img src="img/me_fsgl.png">
+                </div>
+                <div class="center-div">
+                    粉丝管理
+                </div>
+                <div class="right-div">
+                    <img src="img/dpgl_spxq_jt.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ion-view>

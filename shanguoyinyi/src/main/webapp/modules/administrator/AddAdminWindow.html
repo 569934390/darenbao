@@ -1,0 +1,73 @@
+<div class="ui-dialog dialog-md add-admin-window">
+	<style>
+	<!--
+		.add-admin-window .modal-body .role-list {
+			padding-left: 0px;
+			font-size: 12px;
+			list-style: none;
+		}
+		
+		.add-admin-window .modal-body .role-list input[type='checkbox'] {
+			margin: 0;
+		}
+		
+		.add-admin-window .modal-body .role-list a {
+			padding: 0 0 0 3px;
+			color: black;
+			transition: all 0.3s;
+		}
+		
+		.add-admin-window .modal-body .role-list a:hover {
+			text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+		}
+		
+		.add-admin-window .modal-body .role-list input[type='checkbox'],
+		.add-admin-window .modal-body .role-list li, 
+		.add-admin-window .modal-body .role-list a {
+			height: 22px;
+			line-height: 22px;
+			vertical-align: middle;
+			cursor: pointer;
+		}
+	-->
+	</style>
+    <div class="modal-header">
+        <h4 class="modal-title">新增后台管理员</h4>
+    </div>
+	<div class="modal-body">
+           <div class="panel panel-default">
+           	<div class="panel-body">
+				<div class='hidden' id='position-cargo-manager-window-begin'>&nbsp;</div>
+       			<input type="hidden" name="cargoId" />
+                <div class="form-group required">
+                    <label class="col-md-4 control-label">登录名：</label>
+                    <div class="input-group col-md-8">
+                        <input class="form-control" name="a_loginName" data-rule="required">
+                    </div>
+                </div>
+                <div class="form-group required password-control">
+                    <label class="col-md-4 control-label">登录密码：</label>
+                    <div class="input-group col-md-8">
+                        <input class="form-control" name="a_password" data-rule="required">
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-md-4 control-label">备注：</label>
+                    <div class="input-group col-md-8">
+                        <input class="form-control" name="staffName" data-rule="required">
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-md-4 control-label">角色：</label>
+                    <div class="input-group col-md-8">
+                    	<ul class='role-list'></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info commit">确定</button>
+        <button type="button" class="btn btn-default cancel">取消</button>
+    </div>
+</div>

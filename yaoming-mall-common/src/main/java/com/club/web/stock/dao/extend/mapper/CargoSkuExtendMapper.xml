@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoSkuExtendMapper" >
+<!-- com.club.web.stock.dao.base.CargoSkuMapper.BaseResultMap -->
+  
+  <resultMap id="CargoSkuSimpleVo" type="com.club.web.stock.vo.CargoSkuSimpleVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cargo_id" property="cargoId" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="sku" property="sku" jdbcType="VARCHAR" />
+    <result column="sku_long" property="skuLong" jdbcType="VARCHAR" />
+    <result column="sku_value" property="skuValue" jdbcType="VARCHAR" />
+<!--     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" /> -->
+<!--     <result column="create_by" property="createBy" jdbcType="BIGINT" /> -->
+<!--     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" /> -->
+<!--     <result column="update_by" property="updateBy" jdbcType="BIGINT" /> -->
+  </resultMap>
+  
+	<select id="getListByCargoId" parameterType="_long" resultMap="com.club.web.stock.dao.base.CargoSkuMapper.BaseResultMap">
+		SELECT * FROM `cargo_sku` where cargo_id=#{cargoId};
+	</select>
+
+	<select id="getSkuList" parameterType="_long" resultMap="CargoSkuSimpleVo">
+		SELECT 
+			a.*, 
+			b.sku,
+			b.sku_long,
+			b.sku_value
+		FROM `cargo_sku` a
+		left join (
+			select 
+				b1.cargo_sku_id, 
+				group_concat(b2.cargo_base_sku_item_id) sku_value,
+				group_concat(b2.`name`) sku,
+				group_concat(concat(b3.`name`, ":", b2.`name`)) sku_long
+			from cargo_sku_option b1
+			left join cargo_sku_item b2 on b1.cargo_sku_item_id=b2.id
+			left join cargo_sku_type b3 on b2.cargo_sku_type_id=b3.id
+			group by b1.cargo_sku_id
+			order by b2.id asc
+		) b on a.id=b.cargo_sku_id
+		where a.cargo_id=#{cargoId};
+	</select>	
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.deal.dao.extend.InvoiceExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.deal.vo.InvoiceVo">
+		<result column="name" property="indentName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="receiver" property="receiver" jdbcType="VARCHAR" />
+		<result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+		<result column="invoice_name" property="invoiceName" jdbcType="VARCHAR" />
+		<result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+		<result column="status" property="indentStatus" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		`name`, create_time, `number`,receiver_phone, receiver,
+		invoice_name,invoice_content,status
+	</sql>
+	<select id="queryTotalByMap" resultType="int">
+		select count(1) from indent where indent.need_invoice = 1 and indent.status != 1 and indent.status != 11
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="receiver!=null and receiver!=''">
+			and indent.receiver like #{receiver}
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		order by indent.id desc
+	</select>
+	<select id="queryListByMap" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from indent where indent.need_invoice = 1 and indent.status != 1 and indent.status != 11
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="receiver!=null and receiver!=''">
+			and indent.receiver like #{receiver}
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		order by indent.id desc
+		<if test="startIndex!=null and startIndex!='' and pageSize!=null and pageSize!=''">
+			limit #{startIndex},#{pageSize}
+		</if>
+	</select>
+</mapper>

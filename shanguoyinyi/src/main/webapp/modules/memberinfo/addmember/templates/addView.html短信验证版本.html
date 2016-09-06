@@ -1,0 +1,144 @@
+<div class="ui-dialog dialog-md memberInfoWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建会员</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="client-form">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <input type="hidden" name="bizId">
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">会员名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="clientName" data-rule="required">
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">会员编号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="clientNumber" data-rule="required;" >
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">性别：</label>
+                            <div class="input-group col-md-8">
+                                <select name="sex" class="form-control" data-rule="required;">
+                                    <option value="1" selected="selected">男</option>
+                                    <option value="2">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">年龄：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="age" data-rule="required;" >
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">会员等级：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="levelId" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">会员头像：</label>
+                            <div class="input-group col-md-8">
+                                <span class="btn fileinput-button">
+                                    <img src="./image/add.png" class="addUserFace">
+                                    <input class="fileupload-select" type="file" accept=".gif,.jpg,.jpeg,.png">
+                                    <input type="hidden" name="icon">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">银行卡号：</label>
+                            <div class="input-group col-md-8">
+                                <input type="text" class="form-control" name="bankNumber" data-rule="required;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">初始密码：</label>
+                            <div class="input-group col-md-8">
+                                <input type="password" class="form-control" name="password" data-rule="required;password">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">密码确认：</label>
+                            <div class="input-group col-md-8">
+                                <input type="password" class="form-control" name="password2" data-rule="required;match[password]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">会员电话：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="phone" data-rule="required;">
+                                <span class="input-group-addon clear-input-icon-right"><span class="glyphicon glyphicon-earphone"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="verifyPhoneCol">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">短信验证：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="verifyPhone">
+                                <span class="input-group-addon clear-input-icon-right" id="verifyPhone"> <span id="timer">点击短信验证</span> <span class="glyphicon glyphicon-envelope"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">状态：</label>
+                            <div class="input-group col-md-8">
+                                <select name="state" class="form-control" data-rule="required;">
+                                    <option value="00B" selected="selected">待充值</option>
+                                    <option value="00C">待审核</option>
+                                    <option value="00D">禁言</option>
+                                    <option value="00X">失效</option>
+                                    <option value="00A">正常</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" >
+                            <label class="col-md-4 control-label">上级会员：</label>
+                            <div class="input-group col-md-8">
+                                <input type="hidden" class="form-control" name="parentClientId" value="-1">
+                                <input class="form-control" name="parentClientName" value="顶层节点">
+                                <span class="input-group-addon clear-input-icon-right"><span class="glyphicon glyphicon-search"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">会员地区：</label>
+                            <div class="area col-md-4">
+                                <div class="form-group"><select name="provice" class="form-control provice"/></div>
+                                <div class="form-group"><select name="city" class="form-control city"/></div>
+                                <div class="form-group"><select name="region" class="form-control region"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

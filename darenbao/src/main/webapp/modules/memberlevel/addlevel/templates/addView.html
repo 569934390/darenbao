@@ -1,0 +1,82 @@
+<div class="ui-dialog dialog-md clientLevelInfoWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建会员等级</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">等级信息</div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="client-level-form">
+                    <input type="hidden" name="bizId">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">等级名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="name" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">等级图标：</label>
+                            <div class="input-group col-md-8">
+                                <span class="btn fileinput-button">
+                                    <img src="./image/add.png" class="addLevelFace">
+                                    <input class="level-fileupload-select" type="file" accept=".gif,.jpg,.jpeg,.png">
+                                    <input type="hidden" name="icon">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">横向升级人数：</label>
+                            <div class="input-group col-md-8">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="rateType" value="1" relate="lngNum" aria-label="...">
+                                </span>
+                                <input field="spinner" class="form-control num" name="lngNum" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">纵向升级人数：</label>
+                            <div class="input-group col-md-8">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" name="rateType" relate="latNum" value="2" aria-label="...">
+                                </span>
+                                <input field="spinner" class="form-control num" name="latNum" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">状态：</label>
+                            <div class="input-group col-md-8">
+                                <select name="state" class="form-control" data-rule="required;">
+                                    <option value="00X">失效</option>
+                                    <option value="00A" selected="selected">正常</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">排序：</label>
+                            <div class="input-group col-md-8">
+                                <input field="spinner" class="form-control" name="orderSort" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="ui-dialog dialog-md bankCardManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新增银行卡</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="bankCard-form">
+                    <input type="hidden" name="bankCardIdString">
+                    <input type="hidden" name="storeId">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">姓名：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="name" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">身份证号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="idCard" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">卡号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="bankCard" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">银行卡名：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="bankName" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">开户行地址：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="bankAddress" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">手机号：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="mobile" id="mobile" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

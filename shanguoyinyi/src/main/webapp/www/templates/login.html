@@ -1,0 +1,167 @@
+<style>
+    .login-content{
+        background: url("img/home_bj.png") no-repeat;
+        background-size: 100%;
+        height: 100%!important;
+        min-height: 100%!important;
+    }
+    .login{
+        padding: 0 1rem 0 1rem;
+        display: block;
+        margin-top: 30%;
+    }
+    .login-from{
+        background-color: #ffffff;
+        width: 100%;
+        padding: 1rem .5rem 1rem .5rem;
+        border: 5px solid #ffffff;
+        -moz-border-radius: 15px;      /* Gecko browsers */
+        -webkit-border-radius: 15px;   /* Webkit browsers */
+        border-radius:15px;            /* W3C syntax */
+    }
+    .userName,.password{
+        margin-top:.5rem;
+        background-color: #ededed;
+        display: -webkit-box;
+        padding:.3rem .3rem .3rem .5rem;
+        -moz-border-radius: 5px;      /* Gecko browsers */
+        -webkit-border-radius: 5px;   /* Webkit browsers */
+        border-radius:5px;            /* W3C syntax */
+    }
+    .userName .pic-show,.password .pic-show{
+        width:1.2rem;
+        /*height:1.2rem;*/
+    }
+    .userName .pic-show img,.password .pic-show img{
+        width: 100%;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .userName .login-input input, .password  .login-input input{
+        background-color: #ededed;
+        width: 100%;
+    }
+    .userName .login-input , .password  .login-input {
+        -webkit-box-flex: 1;
+        padding-left:.5rem ;
+    }
+    .login-checkbox{
+        display: -webkit-box;
+        margin-top: .5rem;
+    }
+    .login-checkbox .left-div{
+        /*width: 1rem;*/
+
+    }
+    .login-checkbox .right-div{
+        -webkit-box-flex: 1;
+        padding: 7px 0px;
+        line-height: 1rem;
+        font-size: .65rem;
+    }
+    .login-checkbox .left-div input{
+        width: 1rem;height: 1rem;
+    }
+   .left-div input:checked:before,  .left-div input:checked + .checkbox-icon:before {
+        background: red;
+        border-color: red;
+    }
+    .left-div input:after{
+        -webkit-transition: opacity 0.05s ease-in-out;
+        transition: opacity 0.05s ease-in-out;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        display: table;
+        width: 14px;
+        height: 6px;
+        border: 1px solid #fff;
+        border-top: 0;
+        border-right: 0;
+        content: ' ';
+        opacity: 0;
+    }
+    .left-div input:before {
+        display: table;
+        width: 100%;
+        height: 100%;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 28px;
+        background: #bdbdbd;
+        content: ' ';
+        -webkit-transition: background-color 20ms ease-in-out;
+        transition: background-color 20ms ease-in-out;
+    }
+    .fuwutiaokuan{
+        color:#ff5555;
+    }
+    .submit-div{
+        background-color: #ff8888;
+        width: 100%;
+        height:2rem;
+        line-height:2rem;
+        color: #ffffff;
+        text-align: center;
+        font-size: .8rem;
+        margin-top: .5rem;
+        -moz-border-radius: 5px;      /* Gecko browsers */
+        -webkit-border-radius: 5px;   /* Webkit browsers */
+        border-radius:5px;            /* W3C syntax */
+    }
+</style>
+<ion-view title="登录">
+    <ion-content class="login-content">
+        <div class="login">
+            <div class="login-from">
+                <form  ng-submit="loginUser()">
+                    <div class="userName">
+                            <div class="pic-show">
+                                <img src="img/dl_us.png">
+                            </div>
+                            <div class="login-input">
+                                <input type="text" placeholder="请输入用户名" ng-model="loginInfo.userName">
+                            </div>
+                        </div>
+                    <div class="password">
+                            <div class="pic-show">
+                                <img src="img/dl_ps.png">
+                            </div>
+                            <div class="login-input">
+                                <input type="password" placeholder="请输入密码" ng-model="loginInfo.passWord">
+                            </div>
+                    </div>
+                </form>
+                <div class="login-checkbox">
+                    <div class="checkbox left-div">
+                        <input type="checkbox" ng-model="loginInfo.isReadTK">
+                    </div>
+                    <div class="right-div">
+                        <span>我已经阅读并同意</span>
+                        <span class="fuwutiaokuan" ng-click="goFuWuTk();">《服务条款》</span>
+                    </div>
+                </div>
+                <div class="submit-div" ng-click="loginUser();">
+                    登录
+                </div>
+            </div>
+            <div style="margin-left: 1rem;font-size:.7rem; margin-top:.5rem;" ng-click="goReSetPassword()">忘记密码</div>
+        </div>
+        <!--<div class="login" ng-show="!unlogin">
+            <div class="login-from">
+                <form  ng-submit="setShopName()">
+                    <div class="userName">
+                        <div class="login-input">
+                            <input type="text" placeholder="请输入店铺名" ng-model="shopInfo.name">
+                        </div>
+                    </div>
+                </form>
+                <div class="submit-div" style="margin-top: 2rem;" ng-click="setShopName();">
+                    保存
+                </div>
+            </div>
+        </div>-->
+    </ion-content>
+</ion-view>

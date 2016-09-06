@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.TradeGoodExtendMapper" >
+  <resultMap id="VoResultMap" type="com.club.web.store.vo.GoodVo" >
+    <id column="id" property="tradeGoodId" jdbcType="BIGINT" />
+    <result column="headStore_id" property="headstoreId" jdbcType="BIGINT" />
+    <result column="cargo_id" property="cargoId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="BIGINT" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="post_fee" property="postFee" jdbcType="DOUBLE" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="img_square" property="imgSquare" jdbcType="BIGINT" />
+    <result column="img_rectangle" property="imgRectangle" jdbcType="BIGINT" />
+    <result column="img_large" property="imgLarge" jdbcType="BIGINT" />
+    <result column="squareUrl" property="squareUrl" jdbcType="VARCHAR" />
+    <result column="rectangleUrl" property="rectangleUrl" jdbcType="VARCHAR" />
+    <result column="largeUrl" property="largeUrl" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="timeRule" property="timeRule" jdbcType="TIMESTAMP" />
+    <result column="postid" property="postid" jdbcType="BIGINT" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+ </resultMap>
+ <resultMap id="catetgoryMap" type="com.club.web.store.vo.GoodVo" extends="VoResultMap" >
+ <!--   <id column="id" property="categoryId" jdbcType="BIGINT" /> --> 
+    <result column="shop_ID" property="shopId" jdbcType="BIGINT" />
+    <result column="column_name" property="columnName" jdbcType="VARCHAR" />
+ <!-- <result column="sell_type" property="sellType" jdbcType="INTEGER" />    -->   
+    <result column="order_by" property="orderBy" jdbcType="INTEGER" />
+    <result column="statue" property="statue" jdbcType="INTEGER" />
+    <result column="showYn" property="showyn" jdbcType="CHAR" />
+    <result column="showPicture" property="showpicture" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="cargoBrand" property="cargoBrand" jdbcType="VARCHAR" />
+    <result column="cargoType" property="cargoType" jdbcType="VARCHAR" />
+    <result column="goodColumnId" property="goodColumnId" jdbcType="BIGINT" />
+    <result column="cargoBrandId" property="cargoBrandId" jdbcType="BIGINT" />
+    <result column="cargoClassifyId" property="cargoClassifyId" jdbcType="BIGINT" />
+    <result column="marketPrice" property="firstMarketPrice" jdbcType="DOUBLE" />
+    <result column="salePrice" property="firstSalePrice" jdbcType="DOUBLE" />
+    <result column="postid" property="postid" jdbcType="BIGINT" />
+  </resultMap>
+ <resultMap id="allVoMap" type="com.club.web.store.vo.GoodVo" extends="catetgoryMap">
+    <id column="id" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="good_id" property="tradeGoodId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_name" property="cargoSkuName" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+ 
+  </resultMap>
+  <resultMap id="GoodListVoMap" type="com.club.web.store.vo.GoodListVo">
+    <result column="id" property="id" jdbcType="BIGINT" />
+   	<result column="name" property="name" jdbcType="VARCHAR" />
+   	<result column="showPicture" property="showPicture" jdbcType="VARCHAR" />
+   	<result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    id, headStore_id, cargo_id, `name`, `describe`, sort, `type`, category, post, post_fee, 
+    creator, create_time,`status`
+  </sql>
+  <sql id="sku_List" >
+    id, good_id, cargo_sku_id, cargo_sku_name, nums, market_price, retail_price, start_time, 
+    end_time, limit_num, sale_price
+  </sql>
+  <sql id="good_List" >
+    tg.id,tg.name,ge.score,tgs.market_price,tgs.sale_price,
+	(select i.pic_url from image i where i.id=cargo.small_image_id) as showPicture
+  </sql>
+
+	<!-- 根据名字查询分页条数 -->
+	<select id="queryGoodCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select count(1) as count from
+		trade_good 	
+        left join goods_column on goods_column.id =trade_good.category left join cargo on cargo.id=trade_good.cargo_id
+		left join cargo_brand on cargo.brand_id=cargo_brand.id left join cargo_classify on cargo_classify.id=cargo.classify_id
+		left join image i on i.id=trade_good.img_square
+		left join image q on q.id=trade_good.img_rectangle
+		where 1=1
+		<if test="conditions != null">
+		and	trade_good.name like #{conditions} 
+		</if>
+		<if test="conditions1 != null">
+		and cargo.cargo_no like #{conditions1}
+		</if>
+		<if test="statusConditions != null and statusConditions !=-1">
+		and	trade_good.status =#{statusConditions}
+		</if>
+		<if test="goodColumnId != null and goodColumnId != '' and goodColumnId !='-1'">
+		and	goods_column.id =#{goodColumnId}
+		</if>
+		<if test="cargoBrandId != null and cargoBrandId !='' and cargoBrandId !='-1'">
+		and	cargo_brand.id =#{cargoBrandId}
+		</if>
+		<if test="classifyIds != null and cargoClassifyId !='-1' ">
+		and cargo.classify_id in
+		<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach> 
+	   </if>
+	</select>
+
+	<!-- 根据名称查询分页结果 -->
+	<select id="queryGoodPage" resultMap="catetgoryMap"
+		parameterType="map">
+		select
+		trade_good.*,goods_column.column_name,cargo.name as cargoName,cargo.cargo_no as cargo,cargo_brand.name as cargoBrand,cargo_classify.name as cargoType,
+		cargo_brand.id as cargoBrandId,cargo_classify.id as cargoClassifyId,goods_column.id as goodColumnId,
+		i.pic_url as squareUrl,q.pic_url as rectangleUrl, l.pic_url as largeUrl,rule_value.rule_ID2 as timeRule,k.marketPrice,k.salePrice
+		 from trade_good 	
+        left join goods_column on goods_column.id =trade_good.category 
+        left join cargo on cargo.id=trade_good.cargo_id
+		left join cargo_brand on cargo.brand_id=cargo_brand.id 
+		left join cargo_classify on cargo_classify.id=cargo.classify_id
+		left join image i on i.id=trade_good.img_square
+		left join image q on q.id=trade_good.img_rectangle
+		left join image l on l.id=trade_good.img_large
+		left join rule_value on rule_value.id=goods_column.rule_source_ID
+        left join rule_source on rule_source.id = rule_value.rule_ID2
+         left join (select good_id as goodId,MIN(market_price) as marketPrice,MIN(sale_price) as salePrice from trade_good_sku GROUP BY good_id) 
+         k on k.goodId=trade_good.id
+		where 1=1
+		<if test="conditions != null">
+			and trade_good.name like #{conditions}
+		</if>
+		<if test="conditions1 != null">
+		and cargo.cargo_no like #{conditions1}
+		</if>
+		<if test="statusConditions != null and statusConditions !='-1'">
+		and	trade_good.status =#{statusConditions}
+		</if>
+		<if test="goodColumnId != null and goodColumnId != '' and goodColumnId !='-1'">
+		and	goods_column.id =#{goodColumnId}
+		</if>
+		<if test="cargoBrandId != null and cargoBrandId !='' and cargoBrandId !='-1'">
+		and	cargo_brand.id=#{cargoBrandId}
+		</if>
+		<if test="classifyIds != null and  cargoClassifyId !='-1' ">
+		and cargo.classify_id in
+		<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach> 
+	   </if>
+		order by trade_good.sort desc
+		limit #{start},#{limit}
+	</select>
+	
+	<update id="updateStatus" parameterType="map" >
+    update trade_good
+    set `status` = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateSaleNumById" parameterType="com.club.web.store.domain.GoodUpDo">
+    update trade_good
+    set `sale_num` = #{num} 
+    where trade_good.id  = (select good_id from trade_good_sku where id=#{goodSkuId}) 
+  </update>
+  
+   <!-- 根据货品id查询是否有对应的商品 -->
+	<select id="selectGoodNumsByCargoId" resultType="java.lang.Long"
+		parameterType="java.lang.Long">
+		select
+		id 
+		from trade_good where cargo_id=#{cargoId} and status=1
+	</select>
+	
+	<!-- 查询商品列表  -->
+	<select id="queryGoodList" resultMap="GoodListVoMap" parameterType="map">
+		SELECT 
+		<include refid="good_List"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id 
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,market_price,sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		where tg.status = 1
+		<if test="columnId != null and columnId != ''">
+			and gc.id = #{columnId} 
+		</if>
+		<if test="tradeGoodName != null and tradeGoodName != ''">
+			and tg.name like #{tradeGoodName}
+		</if>
+		<if test="classifyIds != null">
+			and cargo.classify_id in 
+		<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">  
+		  #{item}  
+		 </foreach>  
+		</if>
+		ORDER BY 
+		
+		<if test="saleNumSort != null and saleNumSort != ''">
+			tg.sale_num 
+			<if test="saleNumSort == 'desc'">
+			 	desc
+			</if>
+			,
+		</if>
+		<if test="salePriceSort != null and salePriceSort != ''">
+			tgs.sale_price
+			<if test="salePriceSort == 'desc'">
+			 	 desc
+			</if>
+			,
+		</if>
+		tg.create_time desc LIMIT #{start},#{limit}
+	</select>
+	<select id="selectGoodByCategory" resultMap="VoResultMap"  parameterType="java.lang.Long">
+		select
+		*
+		from trade_good where category=#{category} 
+	</select>
+	<!-- 查询商品列表  -->
+	<resultMap id="ShanguoGoodListVoMap" type="com.club.web.store.vo.ShanguoGoodMsg" >
+		<result column="id" property="id"/>
+		<result column="name" property="goodName"/>
+		<result column="describe" property="goodDesc"/>
+		<result column="market_price" property="marketPrice"/>
+		<result column="sale_price" property="salePrice"/>
+		<result column="create_time" property="createTime"/>
+		<result column="sale_num" property="saleNum"/>
+		<result column="showPicture" property="showPicture"/>
+		<result column="storeNum" property="storeNum"/>
+		<result column="stock" property="stock"/>
+		<result column="begin_time" property="startDate"/>
+		<result column="end_time" property="endDate"/>
+		<result column="column_name" property="columnName"/>
+		<result column="post" property="post"/>
+		<result column="cargo_id" property="cargoId"/>
+		<result column="supply_price" property="supplyPrice"/>
+		<result column="postid" property="postId"/>
+	</resultMap>
+	<sql id="good_List_shanguo" >
+    tg.id,tg.name,tg.describe,tgs.market_price,tgs.sale_price,tg.postid,
+    <!-- (select max(supply_price) from store_supply_price stp where stp.good_id=tg.id) as supply_price, -->
+    <if test="shopId!=null and shopId!=''">
+    	COALESCE(s.supply_price,0) supply_price,
+    </if>
+    tg.create_time,tg.sale_num,k.stock,p.storeNum,tg.begin_time,tg.end_time,gc.column_name,
+	tg.post,tg.cargo_id,(select i.pic_url from image i where i.id=cargo.small_image_id) as showPicture
+  </sql>
+  
+  <select id="getGoodListByMap" resultMap="ShanguoGoodListVoMap" parameterType="map">
+	SELECT 
+	<include refid="good_List_shanguo"/>
+	FROM trade_good tg 
+	LEFT JOIN goods_column gc ON tg.category = gc.id
+	LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+	LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+	LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+	LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+	LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+	LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+	ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id
+	where tg.status = 1 and (gc.showYn is null or gc.showYn='')
+	<if test="shopId!=null and shopId!=''">
+		<if test="sortType!=null and sortType!=''">
+			<if test="sortType == 0">
+				and not exists(select * from store_subbranch_good_soldout where tg.id=good_id and subranch_id=#{shopId})
+			</if>
+			<if test="sortType == 1">
+				and exists(select * from store_subbranch_good_soldout where tg.id=good_id and subranch_id=#{shopId})
+			</if>
+		</if>
+	</if>
+	<if test="classifyIds != null">
+		and cargo.classify_id in
+		<foreach item="item" index="index" collection="classifyIds" open="(" separator="," close=")">  
+		  #{item}  
+		</foreach> 
+	</if>
+	<if test="brandId != null and brandId != ''">
+		and cargo.brand_id = #{brandId}  
+	</if>
+	<if test="goodName!=null and goodName!=''">
+	and tg.name like CONCAT('%',#{goodName},'%' )
+	</if>
+	ORDER BY tg.sort desc,tg.create_time desc LIMIT #{start},#{limit}
+  </select>
+  
+	<select id="getSaleGoodList" resultMap="ShanguoGoodListVoMap" parameterType="map">
+		SELECT 
+		<include refid="good_List_shanguo"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+		LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+		LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+		ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id
+		where tg.status = 1 and (gc.showYn is null or gc.showYn='')
+		and not exists(select * from store_subbranch_good_soldout where tg.id=good_id and subranch_id=#{shopId})
+		ORDER BY tg.sort desc,tg.create_time desc LIMIT #{start},#{limit}
+	</select>
+	<select id="getUnshelveGoodList" resultMap="ShanguoGoodListVoMap" parameterType="map">
+		SELECT 
+		<include refid="good_List_shanguo"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+		LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+		LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+		ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id
+		where tg.status = 1 and (gc.showYn is null or gc.showYn='')
+		and exists(select * from store_subbranch_good_soldout where tg.id=good_id and subranch_id=#{shopId})
+		ORDER BY tg.sort desc,tg.create_time desc LIMIT #{start},#{limit}
+	</select>
+	<select id="getSearchGoodList" resultMap="ShanguoGoodListVoMap" parameterType="map">
+		SELECT 
+		<include refid="good_List_shanguo"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+		LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+		LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+		ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id
+		where tg.status = 1 and (gc.showYn is null or gc.showYn='')
+		<if test="goodsName!=null and goodsName!=''">
+		 and tg.name like CONCAT('%',#{goodsName},'%' )
+		</if>
+		ORDER BY tg.sort desc,tg.create_time desc LIMIT #{start},#{limit}
+	</select>	
+	
+	<select id="getWeixinGoodList" resultMap="ShanguoGoodListVoMap" parameterType="map">
+		SELECT 
+		<include refid="good_List_shanguo"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+		LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+		LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+		ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id
+		<if test="labelId!=null and labelId!=''">
+			LEFT JOIN good_labels ON good_labels.good_id=tg.id
+		</if>
+		where tg.status = 1 and (gc.showYn is null or gc.showYn='')
+		<if test="shopId!=null and shopId!=''">
+			and not exists(select * from store_subbranch_good_soldout where tg.id=good_id and subranch_id=#{shopId})
+		</if>
+		<if test="classify!=null">
+			and cargo.classify_id in
+			<foreach item="item" index="index" collection="classify" open="(" separator="," close=")">  
+			  #{item}  
+			 </foreach>  
+		</if>
+		<if test="startPrice!=null and startPrice!=''">
+			and tgs.sale_price&gt;=#{startPrice}
+		</if>
+		<if test="endPrice!=null and endPrice!=''">
+			and tgs.sale_price&lt;=#{endPrice}
+		</if>
+		<if test="brandId!=null and brandId!=''">
+			and cargo.brand_id=#{brandId}
+		</if>
+		<if test="labelId!=null and labelId!=''">
+			and good_labels.good_base_label_id=#{labelId}
+		</if>
+		<if test="goodName!=null and goodName!=''">
+			and tg.name like CONCAT('%',#{goodName},'%' )
+		</if>
+		<if test="columnId!=null and columnId!=''">
+			and gc.id =#{columnId}
+		</if>
+		ORDER BY 
+		<if test="saleNumSort!=null and saleNumSort!=''">
+			<if test="saleNumSort==0">
+				tg.sale_num desc,
+			</if>
+			<if test="saleNumSort==1">
+				tg.sale_num asc,
+			</if>
+		</if>
+		<if test="priceSort!=null and priceSort!=''">
+			<if test="priceSort==0">
+				tgs.sale_price desc,
+			</if>
+			<if test="priceSort==1">
+				tgs.sale_price asc,
+			</if>
+		</if>
+		tg.sort desc,tg.create_time desc LIMIT #{start},#{limit}
+	</select>	
+	<select id="getWeixinGoodObj" resultMap="ShanguoGoodListVoMap">
+		SELECT 
+		<include refid="good_List_shanguo"/>
+		FROM trade_good tg 
+		LEFT JOIN goods_column gc ON tg.category = gc.id 
+		LEFT JOIN cargo ON tg.cargo_id = cargo.id 
+		LEFT JOIN (SELECT id,good_id,max(market_price) market_price,min(sale_price) sale_price from trade_good_sku GROUP BY good_id) tgs ON tg.id = tgs.good_id 
+		LEFT JOIN good_evaluation ge ON ge.id = tgs.id 
+		LEFT JOIN (select sum(nums) stock,good_id from trade_good_sku group by good_id) k ON k.good_id=tg.id
+		LEFT JOIN (select count(*) storeNum,goods_id from shopping_cart where opertion_type=1 group by goods_id) p ON p.goods_id=tg.id
+		<if test="shopId!=null and shopId!=''">
+			LEFT JOIN (SELECT ss.id,ssp.good_sku_id,ssp.supply_price from store_subbranch ss LEFT JOIN store_supply_price ssp 
+			ON ss.level_id = ssp.store_level_id WHERE ss.id = #{shopId}) s ON s.good_sku_id = tgs.id		
+		</if>
+		where tg.id=#{goodId}
+	</select>
+	
+	<select id="findGoodBySkuId" resultMap="allVoMap">
+		select * from trade_good where id = (select good_id from trade_good_sku where id = #{skuId})
+	</select>
+		
+</mapper>

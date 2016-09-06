@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.event.dao.extend.EventActivityCommentExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.event.vo.EventActivityCommentVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="event_activity_id" property="eventActivityId"
+			jdbcType="BIGINT" />
+		<result column="event_activity_userinfo" property="eventActivityUserinfo"
+			jdbcType="BIGINT" />
+		<result column="openId" property="openid" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="BIGINT" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR" />
+		<result column="headImgUrl" property="headimgurl" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		c.ID,
+		c.event_activity_id,
+		c.event_activity_userinfo,
+		u.openId,
+		u.nickname,
+		u.sex,
+		u.country,
+		u.province,
+		u.city,
+		u.language,
+		u.headImgUrl,
+		c.content,
+		c.create_time
+	</sql>
+
+	<sql id="userJoins">
+		LEFT JOIN event_activity_userinfo u ON u.id =
+		c.event_activity_userinfo
+	</sql>
+
+	<select id="queryActivityCommentPage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from event_activity_Comment c
+		<include refid="userJoins" />
+		where
+		c.event_activity_id=#{eventActivityId}
+		order by c.create_time desc
+		limit #{start},#{limit}
+	</select>
+
+	<select id="queryActivityCommentCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select
+		count(1) as count
+		from event_activity_Comment c
+		where
+		event_activity_id=#{eventActivityId}
+	</select>
+	
+	<select id="findEventActivityCommentVoByUserInfoAndEventActivityId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from event_activity_Comment c
+		<include refid="userJoins" />
+		where
+		    c.event_activity_id=#{eventActivityId}
+		and c.event_activity_userinfo=#{userId}
+	</select>
+	<select id="findByActivityId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from event_activity_Comment c
+		<include refid="userJoins" />
+		where
+		    c.event_activity_id=#{eventActivityId}
+	</select>
+
+</mapper>

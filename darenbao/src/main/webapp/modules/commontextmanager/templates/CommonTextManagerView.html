@@ -1,0 +1,97 @@
+<div class="row common-text-manager">
+    <div id="tabs-text" class="ui-tabs">
+        <ul class="ui-tabs-nav">
+            <li>
+                <a class="changeType" type="our" href="#tabs-our">关于我们</a>
+            </li>
+            <li>
+                <a class="changeType" type="my">服务协议（C端）</a>
+            </li>
+            <li>
+                <a class="changeType" type="register">服务协议（B端）</a>
+            </li>
+        </ul>
+        <div id="tabs-text-our" class="ui-tabs-panel" style="display:none">
+		    <form class="form-horizontal" name="our-common-text-form">
+			    <input type="hidden" name="id"/>
+			    <input type="hidden" name="type" value="1"/>
+			    <input type="hidden" name="fileUrl"/>
+			    <div class="row rule-info col-md-12">
+			    	<div class="form-group">
+				        <div class="form-group required">
+						    <label class="col-md-2 control-label">Logo：</label>
+						    <div class="btn-group col-md-9" >
+							    <div class="flex-container" id="small_img_container"></div>
+							    <span style="font-size:10px;color: #B0B0B0">比例1:1，建议大小为400*400</span>
+						    </div>
+						</div>
+					</div>
+			    	<div class="form-group required">
+						<label class="col-md-2 control-label">描述：</label>
+				    	<div class="col-md-9">
+				            <div id="ourContent" name="content"
+										style="width: 100%; height: 150px;"></div>
+				        </div>
+					</div>			        
+			    </div>
+		    </form>
+		    <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-info" action="save-button" title="确认修改">确认修改
+                    <span class="fa fa-floppy-o"></span>
+                </button>
+                <button type="button" class="btn btn-info" action="clear-button" title="重置">重置
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+	        </div>
+	    </div>
+	    <div id="tabs-text-my" class="ui-tabs-panel" style="display:none">
+		    <form class="form-horizontal" name="my-common-text-form">
+   			    <label class="col-md-12 text-center">服务协议内容(C端)</label>
+			    <input type="hidden" name="id"/>
+			    <input type="hidden" name="type" value="2"/>
+			    <div class="row rule-info col-md-12">
+			    	<div class="form-group required">
+ 						<label class="col-md-1 control-label"></label>
+				    	<div class="col-md-10">
+				            <div id="myContent" name="content"
+										style="width: 100%; height: 200px;"></div>
+				        </div>
+					</div>			        
+			    </div>
+		    </form>
+		    <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-info" action="save-button" title="确认修改">确认修改
+                    <span class="fa fa-floppy-o"></span>
+                </button>
+                <button type="button" class="btn btn-info" action="clear-button" title="重置">重置
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+	        </div>
+	    </div>
+	    
+	    <div id="tabs-text-register" class="ui-tabs-panel" style="display: none">
+		    <form class="form-horizontal" name="register-common-text-form">
+			    <label class="col-md-12 text-center">服务协议内容(B端)</label>
+			    <input type="hidden" name="id"/>
+			    <input type="hidden" name="type" value="3"/>
+			    <div class="row rule-info col-md-12">
+			    	<div class="form-group required">
+			    	 	<label class="col-md-1 control-label"></label>
+				    	<div class="col-md-10">
+				            <div id="registerContent" name="content"
+										style="width: 100%; height: 200px;"></div>
+				        </div>
+					</div>			        
+			    </div>
+		    </form>
+		    <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-info" action="save-button" title="确认修改">确认修改
+                    <span class="fa fa-floppy-o"></span>
+                </button>
+                <button type="button" class="btn btn-info" action="clear-button" title="重置">重置
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+	        </div>
+	    </div>
+    </div>
+</div>

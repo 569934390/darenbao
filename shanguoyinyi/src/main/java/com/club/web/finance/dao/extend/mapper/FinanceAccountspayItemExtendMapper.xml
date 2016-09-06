@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.finance.dao.extend.FinanceAccountspayItemExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.finance.vo.FinanceAccountspayItemVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="mainid" property="mainid" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="customerid" property="customerid" jdbcType="BIGINT" />
+    <result column="customercode" property="customercode" jdbcType="VARCHAR" />
+    <result column="customername" property="customername" jdbcType="VARCHAR" />
+    <result column="departmentcode" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="originalamount" property="originalamount" jdbcType="DECIMAL" />
+    <result column="itemcode" property="itemcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mainid, `type`, customerid, customercode, customername, departmentcode, amount, 
+    originalamount, itemcode
+  </sql>
+  <select id="selectByMainId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from finance_accountspay_item
+    where mainid = #{mainid,jdbcType=BIGINT}
+  </select>
+</mapper>

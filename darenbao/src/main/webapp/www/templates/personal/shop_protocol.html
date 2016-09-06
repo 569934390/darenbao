@@ -1,0 +1,23 @@
+<style>
+.shop-protocol-context{
+    display: -webkit-box;
+    padding :0;
+    width: 100%;
+    background-color: #FAF0F0;
+}
+.shop-protocol-context-txt{
+	margin: 0.5rem;
+	max-width: 100%;
+} 
+</style>
+<ion-view view-title="店铺协议">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">店铺协议</div>
+    </ion-header-bar>
+    <ion-content class="shop-protocol-context">
+        <div ng-bind-html="stroPro" class="shop-protocol-context-txt"></div>
+    </ion-content>
+</ion-view>

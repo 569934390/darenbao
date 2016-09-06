@@ -1,0 +1,188 @@
+<div class="ui-dialog dialog-md goodManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建商品</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="good-form">
+					<input type="hidden" name="tradeGoodId"> 
+					<input type="hidden" name="goodSkuId">
+					<input type="hidden" name="cargoId">
+					
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">货品编号：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control editBrandName" name="cargo" readOnly=true
+									data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">货品名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control editBrandName" name="cargoName" readOnly=true
+									data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">分类：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control editBrandName" name="cargoType" readOnly=true
+									>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">品牌：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control editBrandName" name="cargoBrand" readOnly=true
+									data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">商品名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control editBrandName" name="name"
+									data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">商品简介：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="describe">
+							</div>
+						</div>
+					</div>
+<!--                     <div class="col-md-12"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="col-md-2 control-label">首页图1：</label> -->
+
+<!--                              <div class="input-group col-md-2" > -->
+<!-- 						       <div class="flex-container" id="square_img_container"></div> -->
+<!-- 						       <input type="hidden" name="imgSquare"> -->
+<!-- 					         </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                      <div class="col-md-12"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="col-md-2 control-label">首页图2：</label> -->
+
+<!--                              <div class="input-group col-md-2" > -->
+<!-- 						       <div class="flex-container" id="rectangle_img_container"></div> -->
+<!-- 						       <input type="hidden" name="imgRectangle"> -->
+<!-- 					         </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                      <div class="col-md-12"> -->
+<!--                         <div class="form-group"> -->
+<!--                             <label class="col-md-2 control-label">首页图3：</label> -->
+
+<!--                              <div class="input-group col-md-2" > -->
+<!-- 						       <div class="flex-container" id="large_img_container"></div> -->
+<!-- 						       <input type="hidden" name="imgLarge"> -->
+<!-- 					         </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+					<div class="col-md-12">
+						<div class="form-group">
+							<div class="input-group col-md-12">
+								<label name="labelName" class="col-md-2 control-label" >商品用途：</label> 		
+								<div class="input-group col-md-10 labels">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">商品排序：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="sort" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+								<span style="font-size:10px;color: #B0B0B0">提示：数字越大,排序越前</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">栏目名称：</label>
+							<div class="input-group col-md-8">
+								<select name="category" class="form-control category1" >				
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6 required beginTime">
+						<div class="form-group">
+							<label class="col-md-4 control-label">开始时间：</label>
+							<div class="input-group col-md-8">
+								<input type="text" field="datetime" class="form-control"
+									name="beginTime" >
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 required endTime">
+						<div class="form-group">
+							<label class="col-md-4 control-label">结束时间：</label>
+							<div class="input-group col-md-8">
+								<input type="text" name="endTime" field="datetime"
+									class="form-control" >
+							</div>
+						</div>
+					</div>
+                
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-4 control-label">包邮规则：</label>
+							<div class="input-group col-md-8">
+								<select name="postid" class="form-control postid">
+								</select>
+							</div>
+						</div>
+					</div>
+					
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<div class="input-group col-md-12">
+								<label  class="col-md-2 control-label " >SKU(货品)：</label> 		
+								<div class="input-group col-md-10 cargo"  name="cargoSku">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-15" style="margin-left: 60px" align="center">
+
+						<table class="gridtable" >
+							<tr>
+								<th>SKU</th>
+								<th>原价</th>
+								<th>现价</th>
+								<th>供货价</th>
+							</tr>
+						</table>
+
+
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

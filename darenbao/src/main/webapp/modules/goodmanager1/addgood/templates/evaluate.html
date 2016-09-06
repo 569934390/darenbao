@@ -1,0 +1,72 @@
+<div class="ui-dialog dialog-md goodManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">商品评价</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="good-form">
+                    <input type="hidden" name="tradeGoodId">
+                    <input type="hidden" name="createTime">
+                    <input type="hidden" name="createBy">
+                    <input type="hidden" name="updateTime">
+                    <input type="hidden" name="updateBy">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">评价用户：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control editBrandName" name="username" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">商品规格：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="goodSkuid" class="form-control goodSku" data-rule="required">
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">评价内容：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="content" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">评价等级：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="score" class="form-control" data-rule="required">
+	                                    <option value="5" selected="selected">5</option>
+	                                    <option value="4" >4</option>
+	                                    <option value="3" >3</option>
+	                                    <option value="2" >2</option>
+	                                    <option value="1" >1</option>
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+                       <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">图片上传：</label>
+
+                             <div class="btn-group" >
+						       <div class="flex-container" id="logo_img_container"></div>
+						       <input type="hidden" name="logo">
+					         </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

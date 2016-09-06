@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<base href="../../../" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="css/common/jquery.mobile-1.4.5.min.css"/>
+	<link rel="stylesheet" href="css/style-final.css" />
+	<link rel="stylesheet" type="text/css" href="css/common/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/customer/details/service.css" />
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/common/jquery.min.js"></script>
+	<script src="js/common/jquery.mobile-1.4.5.min.js" ></script>
+</head>
+<body id="bodyContent">
+<div data-role="page">
+	<section data-role="header" data-theme="b" class="my-header" id="my-header">
+		<a href="javascript:history.back();" data-rel="back" target="_top" id="back" data-role="none" class="my-header-back-btn"></a>
+		<h2></h2>
+		<a href="#" class="my-header-right-btn-ad" data-role="none"><span>.</span><span>.</span><span>.</span></a>
+	</section>
+	<div id="goodContent" >
+		
+	</div>
+	<!--<div class="svc_time">今天 15:34</div>-->
+	<div id="msgContent">
+	</div>
+	<div class="svc_fix">
+		<div id="container">
+			<div class="svc_fix_l" id="pickfiles"><img src="images/test-img/details/svc_camera.jpg"/></div>
+		</div>
+		
+		<div class="svc_fix_c"><input class="svc_fix_c_input" type="text" placeholder="输入聊天" valign="" name="" id="inputContent"/></div>
+		<div class="svc_fix_r" id="sendMsgBtn"><div>发送</div></div>
+	</div>
+	<div style="width: 100%;height:4.3rem;" >
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).bind('mobileinit',function(){
+		$.mobile.changePage.defaults.changeHash = false;
+		$.mobile.hashListeningEnabled = false;
+		$.mobile.pushStateEnabled = false;
+	});
+</script>
+<script src="js/common/common.js"></script>
+<script type="text/javascript" src="js/customer/order/qiniu/moxie.js"></script>
+<script type="text/javascript" src="js/customer/order/qiniu/plupload.dev.js"></script>
+<script type="text/javascript" src="js/customer/order/qiniu/zh_CN.js"></script>
+<script type="text/javascript" src="js/customer/order/qiniu/ui.js"></script>
+<script type="text/javascript" src="js/customer/order/qiniu/qiniu.js"></script>
+<script src="js/customer/user/message.js"></script>
+
+
+
+

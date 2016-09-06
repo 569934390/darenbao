@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.weixin.dao.base.WeixinUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.weixin.dao.base.po.WeixinUserInfo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="openId" property="openid" jdbcType="VARCHAR" />
+    <result column="subscribe" property="subscribe" jdbcType="BIGINT" />
+    <result column="subscribeTime" property="subscribetime" jdbcType="TIMESTAMP" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIGINT" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="headImgUrl" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="weixin_num" property="weixinNum" jdbcType="VARCHAR" />
+    <result column="person_sign" property="personSign" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, openId, subscribe, subscribeTime, nickname, sex, country, province, city, `language`, 
+    headImgUrl, user_name, tel, birthday, weixin_num, person_sign, last_login_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from weixin_user_info
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from weixin_user_info
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.weixin.dao.base.po.WeixinUserInfo" >
+    insert into weixin_user_info (ID, openId, subscribe, 
+      subscribeTime, nickname, sex, 
+      country, province, city, 
+      `language`, headImgUrl, user_name, 
+      tel, birthday, weixin_num, 
+      person_sign, last_login_time, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{subscribe,jdbcType=BIGINT}, 
+      #{subscribetime,jdbcType=TIMESTAMP}, #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=BIGINT}, 
+      #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{language,jdbcType=VARCHAR}, #{headimgurl,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{weixinNum,jdbcType=VARCHAR}, 
+      #{personSign,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.weixin.dao.base.po.WeixinUserInfo" >
+    insert into weixin_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="openid != null" >
+        openId,
+      </if>
+      <if test="subscribe != null" >
+        subscribe,
+      </if>
+      <if test="subscribetime != null" >
+        subscribeTime,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="language != null" >
+        `language`,
+      </if>
+      <if test="headimgurl != null" >
+        headImgUrl,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num,
+      </if>
+      <if test="personSign != null" >
+        person_sign,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribe != null" >
+        #{subscribe,jdbcType=BIGINT},
+      </if>
+      <if test="subscribetime != null" >
+        #{subscribetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIGINT},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weixinNum != null" >
+        #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="personSign != null" >
+        #{personSign,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.weixin.dao.base.po.WeixinUserInfo" >
+    update weixin_user_info
+    <set >
+      <if test="openid != null" >
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="subscribe != null" >
+        subscribe = #{subscribe,jdbcType=BIGINT},
+      </if>
+      <if test="subscribetime != null" >
+        subscribeTime = #{subscribetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIGINT},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        `language` = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        headImgUrl = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="personSign != null" >
+        person_sign = #{personSign,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.weixin.dao.base.po.WeixinUserInfo" >
+    update weixin_user_info
+    set openId = #{openid,jdbcType=VARCHAR},
+      subscribe = #{subscribe,jdbcType=BIGINT},
+      subscribeTime = #{subscribetime,jdbcType=TIMESTAMP},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=BIGINT},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      `language` = #{language,jdbcType=VARCHAR},
+      headImgUrl = #{headimgurl,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      person_sign = #{personSign,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoInboundOrderExtendMapper" >
+   <resultMap id="InboundResultMap" type="com.club.web.stock.vo.CargoInboundOrderVo" >
+    <id column="id" property="id" jdbcType="BIGINT" javaType="String"/>
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="source_no" property="sourceNo" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="inbound_time" property="inboundTime" jdbcType="TIMESTAMP" />
+    <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="apply_desc" property="applyDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="InboundDoResultMap" type="com.club.web.stock.domain.CargoInboundOrderDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="source_no" property="sourceNo" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="inbound_time" property="inboundTime" jdbcType="TIMESTAMP" />
+    <result column="sub_time" property="subTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="apply_desc" property="applyDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  	<select id="getInboundObjByIds" resultMap="InboundDoResultMap">
+		select  id, `status`, source_no, remarks, inbound_time, sub_time, create_time, create_by,apply_desc from cargo_inbound_order
+		where id in
+  		  <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	  		#{item}  
+	 	</foreach>  
+	</select>
+  
+  <select id="queryInboundOrderList" resultMap="InboundResultMap">
+    select c.id, c.status, c.source_no, c.remarks, c.inbound_time, c.sub_time, c.create_time,s.STAFF_NAME create_by,c.apply_desc
+    from cargo_inbound_order c left join staff_t s on c.create_by=s.STAFF_ID where 1=1
+    <if test="status!=0 ">
+    	and c.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and (c.id like #{matchParam} or s.STAFF_NAME like #{matchParam})
+    </if>
+     order by c.create_time desc limit #{startIndex},#{pageSize} 
+  </select>
+  <select id="queryInboundOrderTotal" resultType="int">
+    select count(1) from cargo_inbound_order c left join staff_t s on c.create_by=s.STAFF_ID where 1=1
+    <if test="status!=0">
+    	and c.status=#{status}
+    </if>
+    <if test="matchParam!=null and matchParam!='' ">
+    	and (c.id like #{matchParam} or s.STAFF_NAME like #{matchParam})
+    </if>
+  </select>
+	<resultMap id="GoodsMsgResultMap" type="com.club.web.stock.vo.StockGoodsInboundMsgVo" >
+		<result column="sku_id" property="skuId" />
+		<result column="sku_code" property="skuCode" />
+		<result column="goods_no" property="goodsNo"/>
+		<result column="goods_name" property="goodsName"/>
+		<result column="brand_name" property="brandName"/>
+		<result column="type_name" property="typeName"/>
+		<result column="good_count" property="goodCount"/>
+		<result column="id" property="id"/>
+	</resultMap>
+	<select id="queryGoodsSkuMsg" resultMap="GoodsMsgResultMap">
+		select s.id sku_id,s.code sku_code,c.id id,c.cargo_no goods_no,c.name goods_name,b.name brand_name,a.name type_name from cargo c,cargo_brand b,cargo_classify a,cargo_sku s
+		where s.cargo_id=c.id and c.brand_id=b.id and c.classify_id=a.id
+    		and c.id in
+    		  <foreach item="item" index="index" collection="goodsIdList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		  limit #{startIndex},#{pageSize}
+	</select>
+	<select id="queryGoodsSkuMsgTotal"  resultType="int">
+		select count(1) from cargo c,cargo_brand b,cargo_classify a,cargo_sku s
+		where s.cargo_id=c.id and c.brand_id=b.id and c.classify_id=a.id
+    		and c.id in
+    		  <foreach item="item" index="index" collection="goodsIdList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+	</select>
+	<select id="queryGoodsMsg" resultMap="GoodsMsgResultMap">
+		select c.id id,c.cargo_no goods_no,c.name goods_name,b.name brand_name,a.name type_name from cargo c,cargo_brand b,cargo_classify a
+		where c.brand_id=b.id and c.classify_id=a.id
+		<if test="matchParam!=null and matchParam!='' ">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>	
+   		 order by c.create_time desc limit #{startIndex},#{pageSize}
+	</select>
+	<select id="queryGoodsMsgTotal"  resultType="int">
+		select count(1) from cargo c,cargo_brand b,cargo_classify a
+		where c.brand_id=b.id and c.classify_id=a.id
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>	
+	</select>
+	<resultMap id="goodsClassifyResultMap" type="com.club.web.stock.vo.CargoSkuItemVo" >
+		<result column="sku_name" property="skuName"/>
+		<result column="sku_value" property="skuValue"/>
+		<result column="sku_type" property="type"/>
+	</resultMap>
+	<select id="queryGoodsSpecList" resultMap="goodsClassifyResultMap">
+		select k.name sku_name,k.value sku_value,t.name sku_type from cargo_sku_option c,cargo_sku_item k,cargo_sku_type t where c.cargo_sku_item_id=k.id and t.id=k.cargo_sku_type_id and c.cargo_sku_id=#{skuId}
+	</select>
+	<select id="queryInboundorderDetailList" resultMap="GoodsMsgResultMap">
+		select s.id sku_id,s.code sku_code,c.cargo_no goods_no,c.name goods_name,b.name brand_name,a.name type_name,d.count good_count,d.id id from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_inbound_detail d
+		where c.id=s.cargo_id and c.brand_id=b.id and c.classify_id=a.id and d.sku_id=s.id and d.inbound_id=#{inboundId}
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or s.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>
+   		 limit #{startIndex},#{pageSize}
+	</select>
+	<select id="queryInboundOrderDetailTotal" resultType="int">
+		select count(1) from cargo c,cargo_brand b,cargo_classify a,cargo_sku s,cargo_inbound_detail d
+		where c.id=s.cargo_id and c.brand_id=b.id and c.classify_id=a.id and d.sku_id=s.id and d.inbound_id=#{inboundId}
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!='' ">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or s.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>	
+	</select>
+	<delete id="deleteInboundStock">
+		delete from cargo_inbound_order where id in
+		<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	  		#{item}  
+	 	</foreach>  
+	</delete>
+</mapper>

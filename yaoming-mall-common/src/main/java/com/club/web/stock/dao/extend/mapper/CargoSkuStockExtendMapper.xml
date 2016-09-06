@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoSkuStockExtendMapper" >
+  <select id="queryBySkuId" resultMap="com.club.web.stock.dao.base.CargoSkuStockMapper.BaseResultMap" parameterType="java.lang.Long" >
+    select id, cargo_sku_id, out_shelves_no, on_sales_no, on_pay_no, on_send_no, create_time,create_by, update_time, update_by,remain_count from cargo_sku_stock 
+    where cargo_sku_id=#{skuId,jdbcType=BIGINT}
+  </select>
+	<resultMap id="StockMsgResultMap" type="com.club.web.stock.vo.CargoSkuStockVo" >
+			<result column="id" property="id"/>
+			<result column="sku_id" property="skuId"/>
+			<result column="no_shelve" property="noShelve"/>
+			<result column="shelve_noshale" property="shelveNoShale"/>
+			<result column="shelve_nopay" property="shelveNoPay"/>
+			<result column="shelve_nosend" property="shelveNoSend"/>
+			<result column="sku_code" property="skuCode"/>
+			<result column="goods_name" property="goodsName"/>
+			<result column="goods_code" property="goodsCode"/>
+			<result column="classy_name" property="classyName"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="remain_count" property="remainCount"/>
+	</resultMap>
+  <select id="queryStockMsg" resultMap="StockMsgResultMap">
+		select s.id id,s.cargo_sku_id sku_id,s.out_shelves_no no_shelve,s.on_sales_no shelve_noshale,s.on_pay_no shelve_nopay,s.on_send_no shelve_nosend,s.remain_count remain_count,k.code sku_code,c.name goods_name,c.cargo_no goods_code,f.name classy_name,b.name brand_name 
+		from cargo_sku_stock s,cargo_sku k,cargo c,cargo_classify f,cargo_brand b 
+		where s.cargo_sku_id=k.id and k.cargo_id=c.id and c.classify_id=f.id and c.brand_id=b.id
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or k.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>
+   		order by s.create_time desc limit #{startIndex},#{pageSize} 
+	</select>
+  <select id="queryStockMsgTotal" resultType="int">
+		select count(1) from cargo_sku_stock s,cargo_sku k,cargo c,cargo_classify f,cargo_brand b 
+		where s.cargo_sku_id=k.id and k.cargo_id=c.id and c.classify_id=f.id and c.brand_id=b.id
+		<if test="brand>0">
+			and c.brand_id=#{brand}
+   		 </if>
+		<if test="matchParam!=null and matchParam!=''">
+    		and (c.cargo_no like #{matchParam} or c.name like #{matchParam} or k.code like #{matchParam})
+   		 </if>
+		<if test="nodeList!=null">
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="nodeList" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		 </if>
+	</select>
+	
+  <select id="queryNormalStockMsgByIds" resultMap="StockMsgResultMap">
+		select s.id id,s.cargo_sku_id sku_id,s.out_shelves_no no_shelve,s.on_sales_no shelve_noshale,s.on_pay_no shelve_nopay,s.on_send_no shelve_nosend,s.remain_count remain_count,k.code sku_code,c.name goods_name,c.cargo_no goods_code,f.name classy_name,b.name brand_name 
+		from cargo_sku_stock s,cargo_sku k,cargo c,cargo_classify f,cargo_brand b 
+		where s.cargo_sku_id=k.id and k.cargo_id=c.id and c.classify_id=f.id and c.brand_id=b.id
+    		and c.classify_id in
+    		  <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+			  	#{item}  
+			 </foreach>  
+   		order by s.create_time desc limit #{startIndex},#{pageSize} 
+	</select>
+	<select id="queryStockCountBySkuId" resultType="int">
+		select if(isnull(sum(out_shelves_no)),0,out_shelves_no) from cargo_sku_stock where cargo_sku_id=#{skuId}
+	</select>	
+	<select id="queryStockTotalBySkuId" resultType="int">
+		select if(isnull(sum(if(isnull(out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count), 0, out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count))), 0, sum(if(isnull(out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count), 0, out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count)))
+		from cargo_sku_stock where cargo_sku_id=#{skuId};
+	</select>	
+	<select id="queryStockTotalByCargoId" resultType="int">
+		select if(isnull(sum(out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count)), 0, sum(out_shelves_no+on_sales_no+on_pay_no+on_send_no+remain_count)) from cargo_sku_stock s,cargo_sku c where s.cargo_sku_id=c.id and c.cargo_id=#{cargoId}
+	</select>
+	<delete id="deleteStockBySkuId">
+		delete from cargo_sku_stock where cargo_sku_id=#{skuId}
+	</delete>
+	<delete id="deleteStockByCargoId">
+		delete from cargo_sku_stock where cargo_sku_id in (select id from cargo_sku where cargo_id=#{cargoId})
+	</delete>
+</mapper>

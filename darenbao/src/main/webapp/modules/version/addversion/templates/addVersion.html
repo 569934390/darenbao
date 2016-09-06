@@ -1,0 +1,83 @@
+<div class="ui-dialog dialog-md addVersionWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建版本</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="version-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id">
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">版本名称：</label>
+							<div class="input-group col-md-6">
+								<input class="form-control" name="name" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">版本号：</label>
+							<div class="input-group col-md-6">
+								<input class="form-control" name="code" data-rule="required;integer+;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">版本状态：</label>
+							<div class="input-group col-md-6">
+								<select name="status" class="form-control" data-rule="required;">
+									<option value="1" selected="selected">正式版</option>
+									<option value="0">企业版</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">平台：</label>
+							<div class="input-group col-md-6">
+								<select name="platform" class="form-control" data-rule="required;">
+									<option value="0" selected="selected">安卓</option>
+									<option value="1">苹果</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">下载方式：</label>
+							<div class="input-group col-md-6">
+								<select name="downloadWay" class="form-control" data-rule="required;">
+									<option value="0" selected="selected">非强制下载</option>
+									<option value="1">强制下载</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">下载链接：</label>
+							<div class="input-group col-md-9">
+								<input class="form-control" name="url" data-rule="url;" placeholder="请输入完整的下载链接">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">版本描述：</label>
+							<div class="input-group col-md-9">
+								<div id="editorDescription" name="description"
+									style="width: 100%; height: 150px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

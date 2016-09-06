@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.GoodReceiptAddrExtendMapper" >
+  <resultMap id="ReceiptResultMap" type="com.club.web.store.vo.GoodReceiptAddrVo" >
+    <result column="id" property="id" />
+    <result column="receipt_name" property="receiptName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="fiexd_phone" property="fiexdPhone" jdbcType="VARCHAR" />
+    <result column="receipt_email" property="receiptEmail" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    <result column="mailbox" property="mailbox" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="ReceiptBaseResultMap" type="com.club.web.store.domain.GoodReceiptAddrDo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="receipt_name" property="receiptName" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="fiexd_phone" property="fiexdPhone" jdbcType="VARCHAR" />
+    <result column="receipt_email" property="receiptEmail" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mailbox" property="mailbox" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="queryReceiptAddrList" resultMap="ReceiptResultMap">
+  	select id,receipt_name,mobile,fiexd_phone,receipt_email,status,province_code,province_name,city_code,city_name,area_code,area_name,detail_addr,mailbox 
+  	from good_receipt_addr where user_id=#{userId} order by create_time desc
+  </select>
+  <select id="getAddrById" resultMap="ReceiptResultMap">
+  	select id,receipt_name,mobile,fiexd_phone,receipt_email,status,province_code,province_name,city_code,city_name,area_code,area_name,detail_addr,mailbox 
+  	from good_receipt_addr where id=#{id}
+  </select>
+  <select id="queryReceiptAddrByStatus" resultMap="ReceiptBaseResultMap">
+  	select id, user_id, receipt_name, mobile, fiexd_phone, receipt_email, `status`, province_code, 
+    province_name, city_code, city_name, area_code, area_name, detail_addr, update_time, 
+    create_time,mailbox from good_receipt_addr where user_id=#{userId} and status=#{status}
+  </select>
+  <delete id="deleteReceiptAddr">
+  	delete from good_receipt_addr where user_id=#{userId} and id in
+  	<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	  		#{item}  
+	</foreach> 
+  </delete>
+  <select id="queryByCondition" resultMap="ReceiptBaseResultMap">
+  	select id, user_id, receipt_name, mobile, fiexd_phone, receipt_email, `status`, province_code, 
+    province_name, city_code, city_name, area_code, area_name, detail_addr, update_time, 
+    create_time,mailbox from good_receipt_addr where user_id=#{userId} and id=#{id}  
+  </select>
+  <select id="queryAllObj" resultMap="ReceiptBaseResultMap">
+  	select id, user_id, receipt_name, mobile, fiexd_phone, receipt_email, `status`, province_code, 
+    province_name, city_code, city_name, area_code, area_name, detail_addr, update_time, 
+    create_time,mailbox from good_receipt_addr where user_id=#{userId}  
+  </select>
+  <update id="updateNoExists">
+  	update good_receipt_addr set status=0 where id!=#{id}
+  </update>
+</mapper>

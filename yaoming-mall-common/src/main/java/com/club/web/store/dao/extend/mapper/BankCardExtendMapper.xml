@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.BankCardExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.store.vo.BankCardVo">
+		<id column="bank_card_id" property="bankCardId" jdbcType="BIGINT" />
+		<id column="bank_card_string" property="bankCardIdString" jdbcType="BIGINT" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="ID_card" property="idCard" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_card" property="bankCard" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="delet" property="delet" jdbcType="INTEGER" />
+		<result column="connect_Id" property="connectId" jdbcType="BIGINT" />
+		<result column="connect_name" property="connectName" jdbcType="VARCHAR" />
+		<result column="connect_type" property="connectType" jdbcType="INTEGER" />
+		<result column="connect_type_name" property="connectTypeName"
+			jdbcType="VARCHAR" />
+		<result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		bank_card_id,
+		bank_card_id as bank_card_string,
+		state,
+		name,
+		ID_card,
+		bank_name,
+		bank_card,
+		mobile,
+		update_time,
+		create_time,
+		delet,
+		connect_Id,
+		case
+		when connect_type='0' then ''
+		when connect_type='1' then (select name from store_subbranch where id=connect_Id)
+		when connect_type='2' then (select name from trade_head_store where id=connect_Id)
+		end
+		connect_name,
+		connect_type,
+		case
+		when connect_type='0' then '会员'
+		when connect_type='1' then '分店'
+		when connect_type='2' then '总店'
+		end
+		connect_type_name,
+		bank_address
+	</sql>
+	<select id="selectByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from store_bank_card
+		where 1=1
+		<if test="name!=null and name!=''">  
+            <![CDATA[  
+              and name like concat('%', #{name}, '%')  
+            ]]>
+		</if>
+		<if test="connectId!=null and connectId!=''">  
+            <![CDATA[  
+               and connect_Id =#{connectId}
+            ]]>
+		</if>
+		limit #{start},#{limit}
+	</select>
+	<select id="selectByPageCount" resultType="int">
+		select
+		count(*)
+		from store_bank_card
+
+		where 1=1
+		<if test="name!=null and name!=''">  
+            <![CDATA[  
+              and name like concat('%', #{name}, '%')  
+            ]]>
+		</if>
+		<if test="connectId!=null and connectId!=''">  
+            <![CDATA[  
+              and connect_Id =#{connectId}
+            ]]>
+		</if>
+
+	</select>
+	<select id="selectByBanCard" resultType="int">
+		select
+		count(*)
+		from store_bank_card
+		where bank_card like concat('%', #{bankCard}, '%')
+	</select>
+	<delete id="deleteBySubbranchID">
+		delete from store_bank_card
+		where connect_Id = #{connectId,jdbcType=BIGINT}
+	</delete>
+	<resultMap id="ExtentResultMap" type="com.club.web.store.vo.BankCardExtendVo">
+		<result column="bank_card_id" property="id" />
+		<result column="name" property="name" />
+		<result column="ID_card" property="card" />
+		<result column="bank_name" property="bankName" />
+		<result column="bank_address" property="bankAddress" />
+		<result column="bank_card" property="bankCard" />
+		<result column="mobile" property="mobile" />
+		<result column="connect_Id" property="shopId" />
+	</resultMap>
+	<select id="getBankCardList" resultMap="ExtentResultMap">
+		select bank_card_id, name, ID_card, bank_name, bank_address, bank_card, mobile,connect_Id
+		from store_bank_card where connect_Id=#{shopId}
+		limit #{startIndex},#{pageSize}
+	</select>
+	<select id="getBankCardObj" resultMap="ExtentResultMap">
+		select bank_card_id, name, ID_card, bank_name, bank_address, bank_card, mobile,connect_Id
+		from store_bank_card where bank_card_id=#{id}
+	</select>
+</mapper>

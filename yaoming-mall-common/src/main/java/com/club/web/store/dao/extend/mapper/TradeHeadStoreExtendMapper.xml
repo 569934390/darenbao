@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.TradeHeadStoreExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.store.vo.TradeHeadStoreVo">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="statue" property="statue" jdbcType="BIGINT" />
+		<result column="owner" property="owner" jdbcType="BIGINT" />
+		<result column="ownerName" property="ownerName" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, name, tel, statue, owner,
+		(select t.STAFF_NAME from staff_t t where t.STAFF_ID=owner and t.STAFF_STATE='00A') as ownerName,
+		create_time, create_by, update_time, update_by
+	</sql>
+
+	<select id="queryTradeHeadStorePage" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from trade_head_store
+		where name like #{conditions}
+		<if test="statue != null">
+			and statue=#{statue}
+		</if>
+		<if test="staffId != null and staffId != 1">
+			and owner=#{staffId}
+		</if>
+		limit #{start},#{limit}
+	</select>
+
+	<select id="queryTradeHeadStoreCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select
+		count(1) as count
+		from trade_head_store
+		where name like #{conditions}
+		<if test="statue != null">
+			and statue=#{statue}
+		</if>
+		<if test="staffId != null and staffId != 1">
+			and owner=#{staffId}
+		</if>
+	</select>
+
+	<!-- 根据名字查询 -->
+	<select id="queryTradeHeadStoreByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from trade_head_store where name = #{name}
+	</select>
+
+	<!-- 根据总店ID查询 -->
+	<select id="queryTradeHeadStoreByOwner" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from trade_head_store where owner = #{owner}
+	</select>
+
+</mapper>

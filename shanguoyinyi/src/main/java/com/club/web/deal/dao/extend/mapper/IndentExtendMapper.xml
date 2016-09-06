@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.deal.dao.extend.IndentExtendMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.deal.dao.base.po.Indent" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="trade_head_store_id" property="tradeHeadStoreId" jdbcType="BIGINT" />
+    <result column="subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="referrer_id" property="referrerId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="buyer_remark" property="buyerRemark" jdbcType="VARCHAR" />
+    <result column="express_number" property="expressNumber" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="carriage" property="carriage" jdbcType="DECIMAL" />
+    <result column="buyer_carriage" property="buyerCarriage" jdbcType="DECIMAL" />
+    <result column="shipper" property="shipper" jdbcType="VARCHAR" />
+    <result column="ship_time" property="shipTime" jdbcType="TIMESTAMP" />
+    <result column="ship_notice" property="shipNotice" jdbcType="BIGINT" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+    <result column="need_invoice" property="needInvoice" jdbcType="BIT" />
+    <result column="invoice_name" property="invoiceName" jdbcType="VARCHAR" />
+    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+    <result column="deal_status" property="dealStatus" jdbcType="INTEGER" />
+    <result column="refund_id" property="refundId" jdbcType="BIGINT" />
+    <result column="return_id" property="returnId" jdbcType="BIGINT" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="BIT" />
+    <result column="ticket_num" property="ticketNum" jdbcType="VARCHAR" />
+    <result column="buy_type" property="buyType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.deal.dao.base.po.Indent" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="refund_remark" property="refundRemark" jdbcType="LONGVARCHAR" />
+    <result column="return_remark" property="returnRemark" jdbcType="LONGVARCHAR" />
+    <result column="reject_refund" property="rejectRefund" jdbcType="LONGVARCHAR" />
+    <result column="reject_return" property="rejectReturn" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <resultMap id="IndentExport" type="com.club.web.deal.vo.IndentExport">
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="need_invoice" property="needInvoice" jdbcType="BIT" />
+    <result column="invoice_name" property="invoiceName" jdbcType="VARCHAR" />
+    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="buyer_carriage" property="buyerCarriage" jdbcType="DECIMAL" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="buyer_remark" property="buyerRemark" jdbcType="VARCHAR" />
+    <result column="buy_type" property="buyType" jdbcType="VARCHAR" />
+    <collection property="indentList" ofType="com.club.web.deal.vo.IndentListExport" column="indentId">  
+    	<id column="indent_list_id" property="id" jdbcType="BIGINT" />
+        <result column="indent_id" property="indentId" jdbcType="BIGINT" />
+    	<result column="trade_good_name" property="tradeGoodName" jdbcType="VARCHAR" />
+	    <result column="final_amount" property="finalAmount" jdbcType="DECIMAL" />
+	    <result column="number" property="number" jdbcType="INTEGER" />
+	    <result column="trade_good_type" property="tradeGoodType" jdbcType="VARCHAR" />
+	    <result column="cargo_no" property="cargoNo" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <select id="queryIndentExportByMap" resultMap="IndentExport">
+		select
+			`name`,payment_amount, province, city, town, address, receiver,
+		    receiver_phone, need_invoice, invoice_name, invoice_content, buyer_carriage,buy_type,buyer_remark,
+			il.id as indent_list_id,il.indent_id, il.`number`, il.final_amount, il.trade_good_name, il.trade_good_type,
+			(select c.cargo_no FROM cargo c , cargo_sku cs where c.id = cs.cargo_id and il.cargo_sku_id = cs.id) as cargo_no
+		from indent i,indent_list il where i.id = il.indent_id
+		<if test="indentName!=null and indentName!=''">
+			and i.name like #{indentName}
+		</if>
+		<if test="storeName!=null and storeName!='' and storeName!='%%'">
+			and (trade_head_store_id in (select id from trade_head_store where trade_head_store.name like
+			#{storeName})
+			or subbranch_id in (select id from store_subbranch where store_subbranch.name like #{storeName}))
+		</if>
+		<if test="buyerName!=null and buyerName!='' and buyerName!='%%'">
+			and (buyer_id in (select id from weixin_user_info where weixin_user_info.nickname like #{buyerName}))
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and i.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and i.create_time &lt;= #{endTime}
+		</if>
+		<if test="receiverPhone!=null and receiverPhone!=''">
+			and i.receiver_phone like #{receiverPhone}
+		</if>
+		<if test="indentStatus!=null and indentStatus!=''">
+			and i.status = #{indentStatus}
+		</if>
+		order by i.id desc
+	</select>
+  
+  <sql id="Base_Column_List" >
+    id, `name`, trade_head_store_id, subbranch_id, buyer_id, referrer_id, create_time, 
+    total_amount, payment_amount, pay_time, `number`, `type`, province, city, town, address, 
+    receiver_phone, buyer_remark, express_number, express_company, weight, carriage, 
+    shipper, ship_time, receiver, `status`, pay_type, pay_account, need_invoice, invoice_name, 
+    invoice_content, finish_time, type, delete_flag, deal_status, refund_id, return_id,ticket_num,buyer_carriage,buy_type,ship_notice
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark, refund_remark, return_remark, reject_refund, reject_return
+  </sql>
+	<resultMap id="CheckResultMap" type="com.club.web.deal.vo.CargoStockCheckVo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="classify_name" property="classifyName" jdbcType="VARCHAR" />
+		<result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+		<result column="sku_id" property="skuId" jdbcType="VARCHAR" />
+		<result column="indent_number" property="indentNumber" jdbcType="INTEGER" />
+		<result column="indent_status" property="indentStatus" jdbcType="INTEGER" />
+		<result column="sku_code" property="skuCode" jdbcType="VARCHAR" />
+		<result column="shelve_nopay" property="shelveNopay" jdbcType="INTEGER" />
+		<result column="shelve_nosend" property="shelveNosend" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="BillResultMap" type="com.club.web.store.vo.MerchantBillVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+		<result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+		<result column="shopName" property="shopName" jdbcType="VARCHAR" />
+		<result column="name" property="indentName" jdbcType="VARCHAR" />
+		<result column="cycle" property="cycle" jdbcType="VARCHAR" />
+		<result column="settlementTime" property="settlementTime" jdbcType="TIMESTAMP" />
+		<result column="supply_price" property="supplyPrice" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="ExportExcelBillResultMap" type="com.club.web.store.vo.ExportExcelBillVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="shopName" property="shopName" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_card" property="bankCard" jdbcType="VARCHAR" />
+		<result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+		<result column="good_name" property="goodName" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="cycle" property="cycle" jdbcType="VARCHAR" />
+		<result column="settlementTime" property="settlementTime" jdbcType="TIMESTAMP" />
+		<result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+		<result column="buyer_carriage" property="carriage" jdbcType="DECIMAL" />
+		<result column="supply_price" property="supplyPrice" jdbcType="DECIMAL" />
+		<result column="payStatus" property="payStatus" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="IndentPageVo" type="com.club.web.deal.vo.IndentPageVo" >	
+	    <id column="id" property="id" jdbcType="BIGINT" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="trade_head_store_id" property="tradeHeadStoreId" jdbcType="BIGINT" />
+	    <result column="trade_head_store_name" property="tradeHeadStoreName" jdbcType="VARCHAR" />
+	    <result column="subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+	    <result column="subbranch_name" property="subbranchName" jdbcType="VARCHAR" />
+	    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+	    <result column="buyer_name" property="buyerName" jdbcType="VARCHAR" />
+	    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+	    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+	    <result column="number" property="number" jdbcType="INTEGER" />
+	    <result column="province" property="province" jdbcType="VARCHAR" />
+    	<result column="ship_notice" property="shipNotice" jdbcType="BIGINT" />
+	    <result column="city" property="city" jdbcType="VARCHAR" />
+	    <result column="town" property="town" jdbcType="VARCHAR" />
+	    <result column="address" property="address" jdbcType="VARCHAR" />
+	    <result column="type" property="type" jdbcType="INTEGER" />
+	    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+	    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="carriage" property="carriage" jdbcType="DECIMAL" />
+	    <result column="buyer_carriage" property="buyerCarriage" jdbcType="DECIMAL" />
+	    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+	    <result column="status" property="status" jdbcType="INTEGER" />
+	    <result column="need_invoice" property="needInvoice" jdbcType="BIT" />
+	    <result column="invoice_name" property="invoiceName" jdbcType="VARCHAR" />
+	    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+	    <result column="buy_type" property="buyType" jdbcType="VARCHAR" />
+  	</resultMap>
+
+
+
+	<select id="queryTotalByMap" resultType="int">
+		select count(1) from indent where 1 = 1
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="storeName!=null and storeName!='' and storeName!='%%'">
+			and (trade_head_store_id in (select id from trade_head_store where trade_head_store.name like
+			#{storeName})
+			or subbranch_id in (select id from store_subbranch where store_subbranch.name like #{storeName}))
+		</if>
+		<if test="buyerName!=null and buyerName!='' and buyerName!='%%'">
+			and (buyer_id in (select id from weixin_user_info where weixin_user_info.nickname like #{buyerName}))
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		<if test="receiverPhone!=null and receiverPhone!=''">
+			and indent.receiver_phone like #{receiverPhone}
+		</if>
+		<if test="indentStatus!=null and indentStatus!=''">
+			and indent.status = #{indentStatus}
+		</if>
+		order by indent.id desc
+	</select>
+	<select id="queryIndentPoByMap" resultMap="IndentPageVo">
+		select
+		id, `name`, trade_head_store_id, subbranch_id, buyer_id, create_time, buy_type, 
+	    total_amount, payment_amount, `number`, `type`, province, city, town, address, 
+	    receiver_phone, carriage, receiver, `status`, need_invoice, invoice_name, invoice_content, buyer_carriage,ship_notice,
+	    (select name from store_subbranch where id = indent.subbranch_id) as subbranch_name,
+		(select nickname from weixin_user_info where id = indent.buyer_id) as buyer_name,
+		(select name from trade_head_store where id = indent.trade_head_store_id) as trade_head_store_name
+		from indent where 1 = 1
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="storeName!=null and storeName!='' and storeName!='%%'">
+			and (trade_head_store_id in (select id from trade_head_store where trade_head_store.name like
+			#{storeName})
+			or subbranch_id in (select id from store_subbranch where store_subbranch.name like #{storeName}))
+		</if>
+		<if test="buyerName!=null and buyerName!='' and buyerName!='%%'">
+			and (buyer_id in (select id from weixin_user_info where weixin_user_info.nickname like #{buyerName}))
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		<if test="beforeShipTime !=null and beforeShipTime !=''">
+			and indent.ship_time &lt;= #{beforeShipTime}
+		</if>
+		<if test="receiverPhone!=null and receiverPhone!=''">
+			and indent.receiver_phone like #{receiverPhone}
+		</if>
+		<if test="indentStatus!=null and indentStatus!=''">
+			and indent.status = #{indentStatus}
+		</if>
+		order by 
+		<if test="indentStatus!=null and indentStatus!='' and indentStatus == 2">
+			indent.ship_notice desc,
+		</if>
+		indent.id desc 
+		<if test="startIndex != null and pageSize != null">
+			limit #{startIndex},#{pageSize}
+		</if>
+	</select>
+
+	<select id="findAmountByMap" resultType="java.util.HashMap">
+		select
+		(select
+		IFNULL(SUM(indent.total_amount),0)
+		from indent where 1 = 1
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="storeName!=null and storeName!='' and storeName!='%%'">
+			and (trade_head_store_id in (select id from trade_head_store where trade_head_store.name like
+			#{storeName})
+			or subbranch_id in (select id from store_subbranch where store_subbranch.name like #{storeName}))
+		</if>
+		<if test="buyerName!=null and buyerName!='' and buyerName!='%%'">
+			and (buyer_id in (select id from weixin_user_info where weixin_user_info.nickname like #{buyerName}))
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		<if test="receiverPhone!=null and receiverPhone!=''">
+			and indent.receiver_phone like #{receiverPhone}
+		</if>
+		) as indentTotalAmount,
+		(select
+		IFNULL(SUM(indent.payment_amount),0) as indentPaymentAmount
+		from indent where 1 = 1
+		<if test="indentName!=null and indentName!=''">
+			and indent.name like #{indentName}
+		</if>
+		<if test="storeName!=null and storeName!='' and storeName!='%%'">
+			and (trade_head_store_id in (select id from trade_head_store where trade_head_store.name like
+			#{storeName})
+			or subbranch_id in (select id from store_subbranch where store_subbranch.name like #{storeName}))
+		</if>
+		<if test="buyerName!=null and buyerName!='' and buyerName!='%%'">
+			and (buyer_id in (select id from weixin_user_info where weixin_user_info.nickname like #{buyerName}))
+		</if>
+		<if test="startTime!=null and startTime!=''">
+			and indent.create_time &gt;= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and indent.create_time &lt;= #{endTime}
+		</if>
+		<if test="receiverPhone!=null and receiverPhone!=''">
+			and indent.receiver_phone like #{receiverPhone}
+		</if>
+		and (indent.status &lt;&gt; 1 and indent.status &lt;&gt; 8 and indent.status &lt;&gt; 9 and indent.status &lt;&gt; 11)
+		) as indentPaymentAmount
+		from dual
+	</select>
+
+	<select id="findListByIds" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from indent
+		where id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		order by id desc
+	</select>
+
+	<select id="findListByBuyerIdAndStoreId" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from indent
+		where buyer_id = #{buyerId} and delete_flag = 0
+		<if test="storeId != null and storeId != ''">
+			and indent.subbranch_id = #{storeId}
+		</if>
+		<if test="status != null and status != ''">
+			<if test="status == 0">
+				and indent.status in ('1')
+			</if>
+			<if test="status == 1">
+				and indent.status in ('2','5','10','12')
+			</if>
+		</if>
+		order by id desc limit #{startIndex},#{pageSize}
+	</select>
+	<resultMap id="ExtendBaseMap" type="com.club.web.deal.vo.IndentExtendVo">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="subbranch_id" property="shopId" />
+		<result column="total_amount" property="totalAmount" />
+		<result column="payment_amount" property="paymentAmount" />
+		<result column="create_time" property="createTime" />
+		<result column="number" property="count" />
+		<result column="type" property="type" />
+		<result column="receiver" property="receiver" />
+		<result column="status" property="status" />
+		<result column="carriage" property="carriage" />
+	    <result column="buyer_carriage" property="buyerCarriage"/>
+	</resultMap>
+	<select id="getShopOrderList" resultMap="ExtendBaseMap">
+		select id, `name`,subbranch_id,total_amount,payment_amount,create_time,`number`,
+		type,receiver,status,carriage,buyer_carriage
+		from
+		indent where subbranch_id = #{shopId}
+		<if test="userId != null and userId != ''">
+			and indent.buyer_id = #{userId}
+		</if>
+		<if test="status != null and status != ''">
+			and indent.status = #{status}
+		</if>
+		order by create_time desc limit #{startIndex},#{pageSize}
+	</select>
+
+	<select id="findCardoStockCheckVoByMap" resultMap="CheckResultMap">
+		select id ,indent_number,indent_status,sku_id,shelve_nopay,shelve_nosend,sku_code,goods_name,
+		goods_code,classy_name,brand_name
+		from
+		(
+		select c.classify_id,c.brand_id, s.indent_number,s.indent_status,s.id id,s.cargo_sku_id sku_id,
+		s.out_shelves_no no_shelve,s.on_sales_no shelve_noshale,s.on_pay_no shelve_nopay,
+		s.on_send_no shelve_nosend,s.remain_count remain_count,k.code sku_code,c.name goods_name,
+		c.cargo_no goods_code,f.name classy_name,b.name brand_name
+		from (
+		select
+		nils.indent_number,nils.indent_status,css.* from cargo_sku_stock css INNER JOIN
+		(
+		select SUM(nil.indent_number) indent_number,nil.indent_status, tgs.cargo_sku_id from 
+		(
+		select iil.trade_good_sku_id,SUM(number) indent_number,iil.`status` indent_status from
+		(
+		SELECT indentl.*,i.status FROM
+		indent_list indentl INNER JOIN indent i on indentl.indent_id = i.id where i.`status` in (1,2)
+		) iil GROUP BY
+		iil.`status`,iil.trade_good_sku_id
+		) nil
+		INNER JOIN trade_good_sku tgs ON nil.trade_good_sku_id = tgs.id GROUP BY nil.indent_status, tgs.cargo_sku_id
+		) nils on
+		nils.cargo_sku_id = css.cargo_sku_id
+		) s ,cargo_sku k,cargo c,cargo_classify f,cargo_brand b
+		where s.cargo_sku_id=k.id
+		and k.cargo_id=c.id and c.classify_id=f.id and c.brand_id=b.id and ((s.indent_status = 1 and
+		s.on_pay_no &lt;&gt;
+		s.indent_number) or (s.indent_status = 2 and s.on_send_no &lt;&gt; s.indent_number))
+		<if test="clissfyId!=null and clissfyId!=''">
+			and c.clissfy_id = #{clissfyId}
+		</if>
+		<if test="brandId!=null and brandId!=''">
+			and c.brand_id = #{brandId}
+		</if>
+		<if test="checkValue!=null and checkValue!=''">
+			and (k.code like #{checkValue} or c.name like #{checkValue} or c.cargo_no like #{checkValue})
+		</if>
+		<if test="startIndex!=null and startIndex!='' and pageSize!=null and pageSize!=''">
+			order by s.id desc limit #{startIndex},#{pageSize}
+		</if>
+		) v
+	</select>
+
+	<select id="selectSettlementBill" resultMap="BillResultMap">
+		SELECT i.id, i.`name`, i.finish_time, i.payment_amount, ssub.`name` as shopName, #{cycle} as cycle, ib.`status`,
+		date_add(i.finish_time, interval #{cycle} day) as settlementTime, 
+		ROUND((i.payment_amount - sum(COALESCE(il.supply_price,0) * COALESCE(il.number,1)) - COALESCE(i.buyer_carriage,0))*0.93,2) as supply_price
+		FROM indent i
+		JOIN indent_bill ib ON i.id = ib.indent_id
+		LEFT JOIN indent_list il ON i.id = il.indent_id
+		LEFT JOIN store_subbranch ssub ON i.subbranch_id = ssub.id
+		WHERE i.deal_status = 2
+		<if test="shopId != null and shopId != 0 and shopId != ''">
+			and i.subbranch_id = #{shopId}
+		</if>
+		<if test="startTime != null">
+			and i.pay_time > #{startTime}
+		</if>
+		<if test="endTime != null">
+			and i.pay_time &lt; #{endTime}
+		</if>
+		<if test="orderId != null and orderId != ''">
+			and i.id = #{orderId}
+		</if>
+		<if test="status != null and status != '' and status != 0">
+			AND NOW() > date_add(i.finish_time,interval #{cycle} day) AND ib.status = #{status}
+		</if>
+		<if test="status == 0">
+			AND NOW() &lt; date_add(i.finish_time,interval #{cycle} day) AND ib.status = 1
+		</if>
+		GROUP BY il.indent_id ORDER BY i.finish_time
+		<if test="startIndex != null and startIndex != ''">
+			LIMIT #{startIndex},#{pageSize}
+		</if>
+	</select>
+
+	<select id="selectSettlementBillCountPage" resultType="int">
+		select count(0) FROM (SELECT DISTINCT(i.id)
+		FROM indent i
+		JOIN indent_bill ib ON i.id = ib.indent_id
+		LEFT JOIN indent_list il ON i.id = il.indent_id
+		LEFT JOIN store_subbranch ssub ON i.subbranch_id = ssub.id
+		WHERE i.deal_status = 2
+		<if test="shopId != null and shopId != 0 and shopId != ''">
+			and i.subbranch_id = #{shopId}
+		</if>
+		<if test="startTime != null">
+			and i.pay_time > #{startTime}
+		</if>
+		<if test="endTime != null">
+			and i.pay_time &lt; #{endTime}
+		</if>
+		<if test="orderId != null and orderId != ''">
+			and i.id = #{orderId}
+		</if>
+		<if test="status != null and status != '' and status != 0">
+			AND NOW() > date_add(i.finish_time,interval #{cycle} day) AND ib.status = #{status}
+		</if>
+		<if test="status == 0">
+			AND NOW() &lt; date_add(i.finish_time,interval #{cycle} day) AND ib.status = 1
+		</if>
+		<!-- <if test="startIndex != null and startIndex != ''">
+			LIMIT #{startIndex},#{pageSize}
+		</if> -->
+		) T
+	</select>
+
+	<select id="selectExcelBill" resultMap="ExportExcelBillResultMap">
+		SELECT ssub.`name` as shopName,sbc.`name`,sbc.bank_name,sbc.bank_card,sbc.bank_address,
+		GROUP_CONCAT(il.trade_good_name) AS good_name,i.number,i.pay_time, #{cycle} as cycle,
+		date_add(i.finish_time, interval #{cycle} day) as settlementTime, i.payment_amount,i.buyer_carriage,
+		ROUND((i.payment_amount - sum(COALESCE(il.supply_price,0) * COALESCE(il.number,1)) - COALESCE(i.buyer_carriage,0))*0.93,2) as supply_price
+		<if test="payStatus != null and payStatus != ''">
+			,#{payStatus} as payStatus
+		</if>
+		FROM indent i
+		JOIN indent_bill ib ON i.id = ib.indent_id
+		LEFT JOIN indent_list il ON i.id = il.indent_id
+		LEFT JOIN store_subbranch ssub ON i.subbranch_id = ssub.id
+		LEFT JOIN store_bank_card sbc ON ssub.id = sbc.connect_Id
+		LEFT JOIN weixin_user_info wui ON wui.ID = i.buyer_id
+		WHERE i.deal_status = 2 AND NOW() > date_add(i.finish_time,interval #{cycle} day)
+		<if test="shopId != null and shopId != 0 and shopId != ''">
+			and i.subbranch_id = #{shopId}
+		</if>
+		<if test="startTime != null">
+			and i.pay_time > #{startTime}
+		</if>
+		<if test="endTime != null">
+			and i.pay_time &lt; #{endTime}
+		</if>
+		<if test="orderId != null and orderId != ''">
+			and i.id = #{orderId}
+		</if>
+		<if test="status != null and status != ''">
+			AND ib.status = #{status}
+		</if>
+		GROUP BY il.indent_id ORDER BY i.subbranch_id
+	</select>
+	<select id="getHistoryOrderTotalMsg" resultType="java.util.Map">
+		select count(*) historyNumTotal,sum(payment_amount)
+		hostoryAmtTotal from indent where
+		subbranch_id=#{shopId} and status!=11 and status!=1 and status!=8 and status!=9
+	</select>
+	<select id="getTodayOrderTotalMsg" resultType="java.math.BigDecimal">
+		select count(*) todayNumTotal from indent where
+		subbranch_id=#{shopId} and status!=11 and
+		status!=1 and
+		date_format(pay_time,'%Y-%m-%d')=date_format(#{nowDate},'%Y-%m-%d')
+	</select>
+	<select id="getLastOrderTotalMsg" resultType="java.math.BigDecimal">
+		select sum(payment_amount) tomorowAmtTotal from indent where
+		subbranch_id=#{shopId} and status!=11 and status!=1 and
+		date_format(pay_time,'%Y-%m-%d')=date_format(#{lastDate},'%Y-%m-%d')
+	</select>
+	<select id="indentExist" resultType="int">
+		SELECT COUNT(0) FROM indent_bill WHERE indent_id = #{indentId}
+	</select>
+</mapper>

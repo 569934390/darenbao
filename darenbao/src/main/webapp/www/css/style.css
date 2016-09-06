@@ -1,0 +1,131 @@
+/* Empty. Add your own CSS if you like */
+html {    font-size: 20px; font-family: "Microsoft YaHei"!important;}
+body{ font-family: "Microsoft YaHei"!important; }
+body {
+    font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    font-size: .85rem;
+    line-height: 1.5rem;
+    color: #3d4145;
+    background: #eee;
+}
+.bar-default {
+    background-color: #2e2e2e;
+    color: rgba(255,255,255,.87);
+    /*display: block;*/
+    border-bottom:1px solid #2e2e2e;
+    background-size: 100% 0px;
+}
+.bar-default .head-title {
+    color: rgba(255,255,255,1);
+    font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    -webkit-box-flex:1.0; /* Safari 和 Chrome */
+    flex:1.0;
+    text-align: center;
+    line-height: 33px;
+
+}
+.bar-default .title{
+    color: rgba(255,255,255,1);
+    font-weight: normal;
+    font-size: 1rem;
+}
+.ff5555{
+    color: #ff5555;
+}
+.head-left-btn{
+    border: 1px solid red;
+    width:33px;
+}
+.head-right-btn{
+    width:33px;
+}
+.head-left-btn img , .head-right-btn img{
+   width:100%;
+    display: block;
+   border:none;
+    text-align: center;
+}
+.bar-default div:nth-child(3){
+    position: absolute;
+    right: 0;
+    top:5px;
+}
+.popup-head{
+    border: none;
+    padding: 30px 15px 20px 15px;
+}
+.popup-img{
+    width:56px;
+}
+.popup-div{
+    margin-top:20px;
+}
+.button-cancel{
+    border-color: transparent;
+    border: 1px solid  #ff5555;
+    color: #ff5555;
+
+}
+.button-save{
+    border-color: transparent;
+    background-color: #ff5555;
+    color: #fff;
+}
+.toast-css .popup{
+    background-color: rgba(76, 76, 76, 0.7);
+    width: 10rem;
+}
+.alert-css  .popup{
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.alert-css  .popup .popup-buttons{
+    min-height: 44px;
+    padding:10px 20px 20px 20px;
+}
+.alert-css  .popup .popup-buttons .button {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: block;
+    min-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    line-height: 20px;
+    margin-right: 1rem;
+}
+.alert-css  .popup .popup-buttons .button:last-child {
+    margin-right: 0px;
+}
+
+.alert-img{
+    width: 40%;
+    margin: auto;
+}
+.alert-img img{
+    width: 100%;
+    background-size: 100% 100%;
+}
+.alert-text{
+    text-align: -webkit-center;
+    text-align: center;
+    width:100%;
+    color:white;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-device-height: 667px) {
+    html {    font-size: 25px;}
+}
+@media screen and (min-device-height: 480px) and (max-device-height: 667px) {
+    html {    font-size: 20px;}
+}
+@media screen and (max-device-height: 480px)  {
+    html {    font-size: 15px;}
+}

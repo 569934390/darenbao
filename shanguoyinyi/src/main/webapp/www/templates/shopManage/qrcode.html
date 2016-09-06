@@ -1,0 +1,84 @@
+<style>
+    .content-div{
+        position: absolute;
+        top: 2.2rem;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        margin-top: -1px;
+        padding-top: 1px;
+        margin-bottom: -1px;
+        width: auto;
+        height: auto;
+    }
+    .div-backgroud{
+        background: url("img/home_bj.png") no-repeat;
+        background-size: 100%;
+        height: 100%!important;
+        min-height: 100%!important;
+    }
+    .content-head{
+        height: 5rem;
+        width: 100%;
+        display: block;
+    }
+    .content-qr-bj{
+        position: relative;
+        background: url("img/qrcode_bj.png") no-repeat;
+        filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+        -moz-background-size:100% 100%;
+        background-size:100% 100%;
+        height: 13rem;
+        max-width: 17.5rem;
+        min-width: 16rem;
+        margin: 0 auto;
+        display: block;
+
+    }
+    .content-qr-bj .content-img{
+        position: absolute;
+        background: 100% 100%;
+        top: 27%;
+        bottom: 23%;
+        left: 30%;
+        right: 30%;
+        display: inline-block;
+    }
+    .content-qr-bj .content-img canvas{
+        position: relative;
+        width: 100%;
+        height:100%;
+        background: 100% 100%;
+    }
+    .content-text{
+        position: relative;
+        display: block;
+        margin-top: 3rem;
+        font-size: .8rem;
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+<ion-view title="中国茶商">
+    <ion-header-bar class="bar-default">
+        <div class="button button-icon icon" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">{{shopInfo.name}}</h1>
+        <div class="button button-icon icon" ng-click="openShareModal(shopInfo.name,qrcodeInfo,shopContent,shopInfo.headImgUrl)">
+            <img src="img/share.png">
+        </div>
+    </ion-header-bar>
+    <div class="content-div div-backgroud">
+        <div class="content-head"></div>
+        <div class="content-qr-bj">
+            <div class="content-img">
+                <wminfo size="5" style="margin: 0 .2rem" infostr='{{qrcodeInfo}}' color="#000000"></wminfo>
+            </div>
+        </div>
+        <div class="content-text">
+            <span>扫一扫，关注我的店铺哦！</span>
+        </div>
+    </div>
+</ion-view>

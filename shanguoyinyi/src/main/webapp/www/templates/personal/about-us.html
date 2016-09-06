@@ -1,0 +1,85 @@
+<style>
+    .context-aboutUs{
+        display: -webkit-box;
+        width: 100%;
+        text-align: center;
+    }
+    .context-version{
+        position: fixed;
+        bottom: 1rem;
+        width: 100%;
+        text-align : center;
+        font-weight: bold;
+    }
+    .context-img{
+        display: -webkit-box;
+        text-align: center;
+        padding: 1.5rem 3rem .5rem 3rem;
+        width: 100%;
+        height: auto;
+    }
+    .context-text{
+        /*display: -webkit-box;*/
+        text-align: left;
+        padding: 1.5rem .5rem .5rem .5rem;
+        max-width: 100%;
+        height: auto;
+    }
+    .about-us-context{
+        top: 2rem!important;
+        bottom:2rem!important;
+        width: auto;
+        height: auto;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+    }
+    .about-us-img{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+    }
+    .about-us-version{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        font-size: .8rem;
+        font-weight: bold;
+        text-align: center;
+        margin: .5rem;
+    }
+    .about-us-text{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding: .75rem;
+    }
+    .about-us-footer{
+        padding:.5rem;
+        height:2rem!important;
+        font-size: .75rem;
+        line-height: 1.2rem;
+        text-align: center;
+        font-weight: bold;
+        display: inline-block !important;
+    }
+</style>
+<ion-view view-title="关于我们">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">关于我们</div>
+        <div ng-if="false" class="head-right-btn" ng-click="openShareModal('{{shareTitel}}','{{shareUrl}})')" >
+            <img src="img/share.png">
+        </div>
+    </ion-header-bar>
+    <ion-content class="about-us-context" lazy-scroll overflow-scroll="false" >
+        <img class="about-us-img" image-lazy-src="{{aboutUs.fileUrl}}"/>
+        <div class="about-us-version">版本：{{versionName}}</div>
+        <div class="about-us-text" ng-bind-html="aboutUs.content"></div>
+    </ion-content>
+    <div class="bar bar-footer about-us-footer">厦门山国饮艺茶业有限公司 版权所有</div>
+</ion-view>

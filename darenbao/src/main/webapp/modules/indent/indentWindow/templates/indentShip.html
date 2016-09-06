@@ -1,0 +1,45 @@
+<div class="ui-dialog dialog-md indent-ship">
+	<div class="modal-header">
+		<h4 class="modal-title">发货单</h4>
+	</div>
+	<div class="modal-body">
+		<input type="hidden" name="id">
+		<form class="form-horizontal" name="indent-ship-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+						<div class="col-md-12 form-group required">
+							<label class="col-md-4 control-label">快递单号：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="expressNumber" data-rule="required">
+							</div>
+						</div>
+						<div class="col-md-12 form-group required">
+							<label class="col-md-4 control-label">快递公司：</label>
+							<div class="input-group col-md-8">
+                                <input type="text" name="expressCompany" class="form-control" data-rule="required;"/>
+                            </div>
+						</div>
+					<!-- <div class="col-md-12">
+						<div class="col-md-6 form-group">
+							<label class="col-md-4 control-label">重量：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="weight">
+							</div>
+						</div>
+						<div class="col-md-6 form-group">
+							<label class="col-md-4 control-label">运费：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="carriage" data-rule="digits">
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

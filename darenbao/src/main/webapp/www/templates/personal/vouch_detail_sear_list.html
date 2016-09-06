@@ -1,0 +1,73 @@
+<style>
+.scroll-content{
+	background: #F8F8F8;
+}
+.list,.item{
+	margin: 0rem;
+	padding: 0rem;
+}
+.item h3{
+	padding-left: 0.5rem;
+	padding-top: 0.5rem;
+}
+.vouch-no-use{
+	position: relative;
+	float: right;
+	margin-right: 0.5rem;
+}
+.shop-own-sh{
+ margin-left: 0.5rem;
+ padding:0rem 0.3rem;
+ border-radius:4px;
+ font-size:0.75rem;
+ background: #FFBE00;
+}
+</style>
+<ion-view title="卡券兑换">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+		<div class="title">卡券兑换</div>
+    </ion-header-bar>
+    <div class="bar bar-header item-input-inset" style="position: absolute;top: 2rem;">
+		  <label class="item-input-wrapper">
+		    <input ng-model="data.codeName" type="search" placeholder="请输入搜索兑换券编码">
+		  </label>
+		  <span class="button button-clear" ng-click="getSearchVouchList()">搜索 </span>
+	</div>
+ <ion-content overflow-scroll="false" class="good-list-content" lazy-scroll delegate-handle="mainScroll-vouch-serach">
+     <ion-refresher
+            pulling-text="下拉刷新..."
+            on-refresh="doRefresh()">
+    </ion-refresher>      
+    <ul  class="list" style="margin-top: 2rem;">
+		     <li class="item" style="margin: 0.4rem;"  ng-repeat="vouch in vouchDetails">
+			      <h3 ng-show="vouch.status!=2" style="background:url({{vouch.status!=1?'img/group_bg.png':'img/vouch_bg.png'}});background-size: 100% 100%; margin: 0;padding: 0 0.5rem; font-size: 0.8rem;height: 2.25rem; line-height:2.25rem;color: #FFFFFF" >
+			      	<span>{{vouch.code}}</span>
+			      	<span ng-show="shopId==vouch.shopId" class="shop-own-sh">本店</span>
+			      	<span style="float: right;margin-right: 0.5rem">{{vouch.statusName}}</span>
+			      </h3>
+			      <h3 ng-show="vouch.status==2" style="background:url('img/group_bg_l.png');background-size: 100% 100%; margin: 0;padding: 0 0.5rem; font-size: 0.8rem;height: 2.25rem; line-height:2.25rem;color: #FFFFFF" >
+			      	<span>{{vouch.code}}</span>
+			      	<span ng-show="shopId==vouch.shopId" class="shop-own-sh">本店</span>
+			      	<span style="float: right;margin-right: 0.5rem">已兑换</span>
+			      </h3>			      
+			      <!--<h3>每个用户限用一张</h3>-->
+			      <h3 style="padding-bottom: 0.4rem">有效期:&nbsp;&nbsp;{{vouch.beginDate}} 至  {{vouch.endDate}}
+			     	<img ng-show="shopId==vouch.shopId" style="width:1.2rem;position: relative;float: right;margin-right: 0.5rem;display: {{vouch.status==1?'':'none'}};" ng-click="setVoucherStatus(vouch.id)" src="img/forbiden.png"/>
+			      </h3>
+   			 </li>
+		</ul >
+		<div  ng-if="vouchDataF" style="text-align: center;margin-top: 30%;">
+		      <img src="img/no-search.png" style="width: 9rem;">
+		      <h3 style="font-size: 0.8rem;color: #989898;font-weight: bold;">搜索无数据</h3>
+		</div >
+		 <ion-infinite-scroll
+                ng-if="showScroll"
+                on-infinite="loadMore()"
+                immediate-check="false"
+                distance="10%">
+        </ion-infinite-scroll>			
+    </ion-content>
+</ion-view>

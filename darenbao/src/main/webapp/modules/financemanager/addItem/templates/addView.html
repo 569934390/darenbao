@@ -1,0 +1,57 @@
+<div class="ui-dialog dialog-md itemManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新建科目</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="item-form">
+                    <input type="hidden" name="itemId">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">科目名称：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="name" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">科目代码：</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="code" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">类型：</label>
+                            <div class="input-group col-md-8">
+                                <select name="type" class="form-control" data-rule="required;">
+                                    <option value="1" selected="selected">应收</option>
+                                    <option value="2">应付</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">状态：</label>
+                            <div class="input-group col-md-8">
+                                <select name="state" class="form-control" data-rule="required;">
+                                    <option value="00X">失效</option>
+                                    <option value="00A" selected="selected">正常</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

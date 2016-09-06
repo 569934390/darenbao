@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.CarriageRuleDetailExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.CarriageRuleDetailVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="carriage_rule_id" property="carriageRuleId" jdbcType="BIGINT" />
+    <result column="indent_money_full" property="indentMoneyFull" jdbcType="DECIMAL" />
+    <result column="carriage_full" property="carriageFull" jdbcType="DECIMAL" />
+    <result column="carriage_not_full" property="carriageNotFull" jdbcType="DECIMAL" />
+    <result column="deliver_region" property="deliverRegion" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, carriage_rule_id, indent_money_full, carriage_full, carriage_not_full, deliver_region
+  </sql>
+  
+  <select id="selectCarriageRuleDetailListByCarriageRuleId" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	from carriage_rule_detail
+	where carriage_rule_id = #{carriageRuleId}
+  </select>
+  
+  <delete id="deleteCarriageRuleDetailByCarriageRuleId" parameterType="java.lang.Long" >
+    delete from carriage_rule_detail
+    where carriage_rule_id = #{carriageRuleId}
+  </delete>
+  
+  <select id="getCarriageByRegionId" parameterType="map" resultType="java.math.BigDecimal">
+  	select ifnull(ifnull(
+  	(SELECT carriage_full from carriage_rule_detail 
+	where indent_money_full &lt;= #{money} AND INSTR(CONCAT(',',deliver_region,','),CONCAT(',',#{regionId},',')) > 0 
+	AND carriage_rule_id = #{carriageRuleId} ORDER BY indent_money_full DESC limit 0,1),
+	(SELECT carriage_not_full from carriage_rule_detail 
+	where indent_money_full > #{money} AND INSTR(CONCAT(',',deliver_region,','),CONCAT(',',#{regionId},',')) > 0 
+	AND carriage_rule_id = #{carriageRuleId} ORDER BY indent_money_full limit 0,1)),
+	(SELECT carriage from carriage_rule where id = #{carriageRuleId})) 
+	from dual
+  </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.RuleSourceExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.RuleSourceVo" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="rule_number" property="ruleNumber" jdbcType="INTEGER" />
+    <result column="rule_name" property="ruleName" jdbcType="VARCHAR" />
+    <result column="rule_type" property="ruleType" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, rule_number, rule_name, rule_type
+  </sql>
+  
+  <select id="selectRuleSourceList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rule_source where rule_type = #{ruleType}
+  </select>
+</mapper>

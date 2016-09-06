@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoInboundDetailExtendMapper">
+<delete id="deleteInboundDetailByIds">
+  	delete from cargo_inbound_detail where id in
+     <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">  
+	  	#{item}  
+	 </foreach>  
+</delete>
+<delete id="deleteInboundDetail">
+  	delete from cargo_inbound_detail where inbound_id in
+     <foreach item="item" index="index" collection="inboundIds" open="(" separator="," close=")">  
+	  	#{item}  
+	 </foreach>  
+</delete>
+  <select id="selectBySkuId" resultMap="com.club.web.stock.dao.base.CargoInboundDetailMapper.BaseResultMap" parameterType="java.lang.Long" >
+    select id, sku_id, `count`, inbound_id from cargo_inbound_detail
+    where sku_id = #{skuId,jdbcType=BIGINT} and inbound_id=#{inbound}
+  </select>
+  <resultMap id="InboundDetailResultMap" type="com.club.web.stock.vo.CargoInboundDetailVo" >
+    <result column="sku_id" property="skuId"/>
+    <result column="count" property="count"/>
+  </resultMap>
+  <select id="querySkuIdsByInboundId" resultMap="InboundDetailResultMap" parameterType="java.lang.Long" >
+    select sku_id,count from cargo_inbound_detail where inbound_id=#{inboundId}
+  </select>
+</mapper>

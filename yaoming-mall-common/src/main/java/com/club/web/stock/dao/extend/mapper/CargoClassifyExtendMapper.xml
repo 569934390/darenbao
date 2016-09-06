@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoClassifyExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.stock.dao.base.po.CargoClassify">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="order_index" property="orderIndex" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, `name`, create_time, create_by, update_time, update_by, status, order_index,img_url
+  </sql>
+  <select id="findListByIds" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_classify
+    where id in 
+	 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+	  #{item}  
+	 </foreach>  
+	 order by order_index desc,update_time desc
+  </select>
+
+  <select id="findByIdAndStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_classify
+    where id = #{id,jdbcType=BIGINT}
+    <if test="status!=null">
+    	and status=#{status}
+      </if>
+  </select>
+  
+  <select id="findNoIds" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_classify
+    where id not in 
+	 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+	  #{item}  
+	 </foreach>  
+	 order by order_index desc,update_time desc
+  </select>
+  
+  <select id="findByParentIdAndStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo_classify
+    where parent_id = #{parentId,jdbcType=BIGINT}
+ 	  <if test="status!=null">
+    	and status=#{status}
+      </if>
+	 order by order_index desc,update_time desc
+  </select>
+    
+  <select id="findAllPoByStatus" resultMap="BaseResultMap">
+    select 
+    	c1.id, c1.parent_id, c1.`name`, c1.create_time, c1.create_by, c1.update_time, c1.update_by, c1.status, c1.order_index,c1.img_url
+    from cargo_classify c1 INNER JOIN cargo_classify c2 on c1.parent_id = c2.id where c1.id != '1'
+    <if test="status!=null">
+   	  and c1.status=#{status}
+    </if>
+  	order by c1.order_index desc,c1.update_time desc	 
+  </select>
+  <select id="queryNameById" resultType="java.lang.String">
+  	select name from cargo_classify where id=#{id};
+  </select>
+</mapper>

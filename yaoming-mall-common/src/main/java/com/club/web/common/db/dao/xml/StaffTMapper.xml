@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.common.db.dao.mapper.IStaffTMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.common.db.po.StaffT" >
+    <id column="STAFF_ID" property="staffId" jdbcType="BIGINT" />
+    <result column="ORG_ID" property="orgId" jdbcType="BIGINT" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="PWD_VALID_TYPE" property="pwdValidType" jdbcType="VARCHAR" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="CONTACT_NBR" property="contactNbr" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="CREATEd_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="EFF_DATE" property="effDate" jdbcType="TIMESTAMP" />
+    <result column="EXP_DATE" property="expDate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="LIMIT_count" property="limitCount" jdbcType="BIGINT" />
+    <result column="PRE_LOGIN_time" property="preLoginTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="incor_starttime" property="incorStarttime" jdbcType="TIMESTAMP" />
+    <result column="STAFF_STATE" property="staffState" jdbcType="VARCHAR" />
+    <result column="login_status" property="loginStatus" jdbcType="VARCHAR" />
+    <result column="login_count" property="loginCount" jdbcType="BIGINT" />
+    <result column="third_sys_id" property="thirdSysId" jdbcType="BIGINT" />
+    <result column="menu_path" property="menuPath" jdbcType="VARCHAR" />
+    <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="SelectResultMap" type="com.club.web.common.vo.StaffTVO" >
+    <id column="STAFF_ID" property="staffId" jdbcType="BIGINT" />
+    <result column="ORG_ID" property="orgId" jdbcType="BIGINT" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="PWD_VALID_TYPE" property="pwdValidType" jdbcType="VARCHAR" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="CONTACT_NBR" property="contactNbr" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="CREATEd_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="EFF_DATE" property="effDate" jdbcType="TIMESTAMP" />
+    <result column="EXP_DATE" property="expDate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="LIMIT_count" property="limitCount" jdbcType="BIGINT" />
+    <result column="PRE_LOGIN_time" property="preLoginTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="incor_starttime" property="incorStarttime" jdbcType="TIMESTAMP" />
+    <result column="STAFF_STATE" property="staffState" jdbcType="VARCHAR" />
+    <result column="login_status" property="loginStatus" jdbcType="VARCHAR" />
+    <result column="login_count" property="loginCount" jdbcType="BIGINT" />
+    <result column="third_sys_id" property="thirdSysId" jdbcType="BIGINT" />
+    <result column="menu_path" property="menuPath" jdbcType="VARCHAR" />
+    <result column="MENU_CODE" property="menuCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    STAFF_ID, ORG_ID, LOGIN_NAME, PASSWORD, PWD_VALID_TYPE, STAFF_NAME, CONTACT_NBR, 
+    Email, CREATEd_TIME, EFF_DATE, EXP_DATE, LOGIN_TIME, LIMIT_count, PRE_LOGIN_time, 
+    update_time, incor_starttime, STAFF_STATE, login_status, login_count, third_sys_id, 
+    menu_path, MENU_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff_t
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </select>
+  <select id="selectById" resultMap="SelectResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff_t
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from staff_t
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.common.db.po.StaffT" >
+    insert into staff_t (STAFF_ID, ORG_ID, LOGIN_NAME, 
+      PASSWORD, PWD_VALID_TYPE, STAFF_NAME, 
+      CONTACT_NBR, Email, CREATEd_TIME, 
+      EFF_DATE, EXP_DATE, LOGIN_TIME, 
+      LIMIT_count, PRE_LOGIN_time, update_time, 
+      incor_starttime, STAFF_STATE, login_status, 
+      login_count, third_sys_id, menu_path, 
+      MENU_CODE)
+    values (#{staffId,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{pwdValidType,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, 
+      #{contactNbr,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{effDate,jdbcType=TIMESTAMP}, #{expDate,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{limitCount,jdbcType=BIGINT}, #{preLoginTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{incorStarttime,jdbcType=TIMESTAMP}, #{staffState,jdbcType=VARCHAR}, #{loginStatus,jdbcType=VARCHAR}, 
+      #{loginCount,jdbcType=BIGINT}, #{thirdSysId,jdbcType=BIGINT}, #{menuPath,jdbcType=VARCHAR}, 
+      #{menuCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.common.db.po.StaffT" >
+    insert into staff_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="orgId != null" >
+        ORG_ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="pwdValidType != null" >
+        PWD_VALID_TYPE,
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME,
+      </if>
+      <if test="contactNbr != null" >
+        CONTACT_NBR,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="createdTime != null" >
+        CREATEd_TIME,
+      </if>
+      <if test="effDate != null" >
+        EFF_DATE,
+      </if>
+      <if test="expDate != null" >
+        EXP_DATE,
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME,
+      </if>
+      <if test="limitCount != null" >
+        LIMIT_count,
+      </if>
+      <if test="preLoginTime != null" >
+        PRE_LOGIN_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="incorStarttime != null" >
+        incor_starttime,
+      </if>
+      <if test="staffState != null" >
+        STAFF_STATE,
+      </if>
+      <if test="loginStatus != null" >
+        login_status,
+      </if>
+      <if test="loginCount != null" >
+        login_count,
+      </if>
+      <if test="thirdSysId != null" >
+        third_sys_id,
+      </if>
+      <if test="menuPath != null" >
+        menu_path,
+      </if>
+      <if test="menuCode != null" >
+        MENU_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdValidType != null" >
+        #{pwdValidType,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNbr != null" >
+        #{contactNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effDate != null" >
+        #{effDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expDate != null" >
+        #{expDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitCount != null" >
+        #{limitCount,jdbcType=BIGINT},
+      </if>
+      <if test="preLoginTime != null" >
+        #{preLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incorStarttime != null" >
+        #{incorStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffState != null" >
+        #{staffState,jdbcType=VARCHAR},
+      </if>
+      <if test="loginStatus != null" >
+        #{loginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=BIGINT},
+      </if>
+      <if test="thirdSysId != null" >
+        #{thirdSysId,jdbcType=BIGINT},
+      </if>
+      <if test="menuPath != null" >
+        #{menuPath,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCode != null" >
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.common.db.po.StaffT" >
+    update staff_t
+    <set >
+      <if test="orgId != null" >
+        ORG_ID = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdValidType != null" >
+        PWD_VALID_TYPE = #{pwdValidType,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNbr != null" >
+        CONTACT_NBR = #{contactNbr,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATEd_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effDate != null" >
+        EFF_DATE = #{effDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expDate != null" >
+        EXP_DATE = #{expDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitCount != null" >
+        LIMIT_count = #{limitCount,jdbcType=BIGINT},
+      </if>
+      <if test="preLoginTime != null" >
+        PRE_LOGIN_time = #{preLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incorStarttime != null" >
+        incor_starttime = #{incorStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffState != null" >
+        STAFF_STATE = #{staffState,jdbcType=VARCHAR},
+      </if>
+      <if test="loginStatus != null" >
+        login_status = #{loginStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null" >
+        login_count = #{loginCount,jdbcType=BIGINT},
+      </if>
+      <if test="thirdSysId != null" >
+        third_sys_id = #{thirdSysId,jdbcType=BIGINT},
+      </if>
+      <if test="menuPath != null" >
+        menu_path = #{menuPath,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCode != null" >
+        MENU_CODE = #{menuCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.common.db.po.StaffT" >
+    update staff_t
+    set ORG_ID = #{orgId,jdbcType=BIGINT},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      PWD_VALID_TYPE = #{pwdValidType,jdbcType=VARCHAR},
+      STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      CONTACT_NBR = #{contactNbr,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      CREATEd_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      EFF_DATE = #{effDate,jdbcType=TIMESTAMP},
+      EXP_DATE = #{expDate,jdbcType=TIMESTAMP},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      LIMIT_count = #{limitCount,jdbcType=BIGINT},
+      PRE_LOGIN_time = #{preLoginTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      incor_starttime = #{incorStarttime,jdbcType=TIMESTAMP},
+      STAFF_STATE = #{staffState,jdbcType=VARCHAR},
+      login_status = #{loginStatus,jdbcType=VARCHAR},
+      login_count = #{loginCount,jdbcType=BIGINT},
+      third_sys_id = #{thirdSysId,jdbcType=BIGINT},
+      menu_path = #{menuPath,jdbcType=VARCHAR},
+      MENU_CODE = #{menuCode,jdbcType=VARCHAR}
+    where STAFF_ID = #{staffId,jdbcType=BIGINT}
+  </update>
+</mapper>

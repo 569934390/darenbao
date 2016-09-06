@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.TimeCycleExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.TimeCycleVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, duration,type, update_time
+  </sql>
+  <select id="findVoByMap" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from time_cycle where 1 = 1
+    <if test="id != null">
+    and id = #{id}
+    </if>
+    <if test="type != null">
+    and type = #{type}
+    </if>
+    order by id desc limit 0,1
+  </select>
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.GoodLabelsExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.GoodLabels" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="good_base_label_id" property="goodBaseLabelId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByGoodId" parameterType="java.lang.Long" >
+    delete from good_labels
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </delete>
+</mapper>

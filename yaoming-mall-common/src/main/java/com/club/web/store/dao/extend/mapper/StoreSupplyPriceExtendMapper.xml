@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.StoreSupplyPriceExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.StoreSupplyPriceVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_level_id" property="storeLevelId" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="good_sku_id" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="supply_price" property="supplyPrice" jdbcType="DOUBLE" />
+    <result column="name" property="storeName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <delete id="deleteBySkuId" parameterType="java.lang.Long" >
+    delete from store_supply_price
+    where good_sku_id = #{goodSkuId}
+  </delete>
+  
+  <delete id="deleteByGoodId" parameterType="java.lang.Long" >
+    delete from store_supply_price
+    where good_id = #{goodId}
+  </delete>
+  
+  <select id="findByGoodId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select a.*,b.name as storeName from store_supply_price a right join store_level b on a.store_level_id=b.level_Id
+    where a.good_id = #{goodId}
+  </select>
+  
+</mapper>

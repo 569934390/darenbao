@@ -1,0 +1,33 @@
+<div class="ui-dialog dialog-md homePageImgManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新增首页图片</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="homePageImg-form">
+                   
+                    <input type="hidden" name="createTime">
+                    <input type="hidden" name="creator">
+                    <input type="hidden" name="id"> 
+                    
+               
+                     <div class="form-group required">
+                            <label class="col-md-4 control-label">添加图片</label>                   
+                             <div class="btn-group" >
+						       <div class="flex-container" id="picUrl_img_container" style="height:50px;"></div>
+						      <span style="font-size:10px;color: #B0B0B0">建议大小750*任意</span>
+					         </div>
+                     </div>
+                     <div class="col-md-12">
+                     
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

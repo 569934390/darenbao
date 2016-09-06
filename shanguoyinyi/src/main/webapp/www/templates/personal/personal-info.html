@@ -1,0 +1,128 @@
+<style>
+    .center_list{
+        display: -webkit-box;
+        width: 100%;
+        padding:0 .5rem;
+        border-bottom: 1px solid #f5f5f5;
+        line-height: 2.5rem;
+    }
+    .center_list .left_part{
+       width:4rem;
+        text-align: left;
+    }
+    .center_list .center_part{
+        -webkit-box-flex: 1;
+        text-align: right;
+        color:#757575;
+    }
+    .center_list .right_part{
+        width:1.5rem;
+        text-align: center;
+    }
+    .center_list .right_part img{
+        width:100%;
+        text-align: center;
+        vertical-align: middle;
+        margin-top: -0.4rem;
+    }
+    .center_list .center_part .photo-img{
+        width: 3.5rem;
+        height: 3.5rem;
+        text-align: right;
+        border-radius: 50%;
+        border: 1px solid #eeeeee!important;
+        vertical-align: middle;
+        background-size: 100% 100%;
+    }
+</style>
+<ion-view title="个人信息">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">个人信息</div>
+        <div class="head-right-btn">
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="center_list"  ng-click="choosePic()">
+            <div class="left_part" style="line-height: 4rem;">头像</div>
+            <div class="center_part" style="line-height: 4rem;">
+                <img class="photo-img" image-lazy-src="{{shopInfo.headImgUrl}}" lazy-scroll-resize="true" err-src="img/mrtx_80.png" >
+            </div>
+            <div class="right_part" style="line-height: 4rem;">
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list"  ng-click="editShopName()">
+            <div class="left_part" >店铺名称</div>
+            <div class="center_part" >
+                {{shopInfo.name}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list">
+            <div class="left_part" >手机号</div>
+            <div class="center_part" >
+                {{shopInfo.mobile}}
+            </div>
+            <div class="right_part" >
+            </div>
+        </div>
+        <div class="center_list" ng-click="editWeixin()">
+            <div class="left_part" >微信号</div>
+            <div class="center_part" >
+                {{shopInfo.weixin}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list" ng-click="editUserName()">
+            <div class="left_part" >茶掌柜</div>
+            <div class="center_part" >
+                {{shopInfo.userName}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list"  ng-click="editMobile()" >
+            <div class="left_part" >门店电话</div>
+            <div class="center_part" >
+                {{shopInfo.phone}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list"ng-click="editAddress()" >
+            <div class="left_part" >门店地址</div>
+            <div class="center_part" >
+                {{(shopInfo.provinceName==null?'':shopInfo.provinceName)+' ' + (shopInfo.cityName==null?'':shopInfo.cityName)}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list" ng-click="editDescription()">
+            <div class="left_part" >店铺介绍</div>
+            <div class="center_part" >
+                {{shopInfo.description}}
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+        <div class="center_list"  ng-click="editQrcode()">
+            <div class="left_part" >二维码</div>
+            <div class="center_part" >
+            </div>
+            <div class="right_part" >
+                <img src="img/dpgl_spxq_jt.png">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

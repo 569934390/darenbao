@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.common.db.dao.mapper.ICodeValueMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.common.db.po.CodeValuePO">
+  	<id column="code_name" property="codeName" jdbcType="VARCHAR" />
+  	<result column="code_type" property="codeType" jdbcType="VARCHAR" />
+  	<result column="code_value" property="codeValue" jdbcType="VARCHAR" />
+  	<result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+  	code_type,code_name,code_value,state
+  </sql>
+  <sql id="Arg_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Arg_Where_Clause" >
+    <where >
+      <foreach collection="arg.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>  
+  <select id="selectByArg" resultMap="BaseResultMap" parameterType="com.club.web.common.db.arg.CodeValueArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CODE_VALUE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>  
+  <select id="selectByArgAndPage" resultMap="BaseResultMap" parameterType="com.club.web.common.db.arg.CodeValueArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+     <if test="columns == null" >
+    	<include refid="Base_Column_List" />
+    </if>
+    <if test="columns != null" >
+    	${columns}
+   	</if>
+    from CODE_VALUE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+	<if test="groupByClause != null" >
+      group by ${groupByClause}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="countByArg" parameterType="com.club.web.common.db.arg.CodeValueArg" resultType="java.lang.Integer" >
+    <if test="countsql1 != null" >
+    	${countsql1}
+    	<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+		${countsql2}
+    </if>
+	<if test="countsql1 == null" >
+		select count(*) from CODE_VALUE
+		<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+	</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select
+	<include refid="Base_Column_List" />
+	from CODE_VALUE
+	where code_name = #{codeName,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.club.web.common.db.po.CodeValuePO"  >
+		insert into CODE_VALUE(code_type,code_name,code_value,state)
+		values (#{codeType,jdbcType=VARCHAR},#{codeName,jdbcType=VARCHAR},#{codeValue,jdbcType=VARCHAR},#{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.common.db.po.CodeValuePO">
+		insert into CODE_VALUE
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="codeType != null" >
+			code_type,
+		</if>
+		<if test="codeName != null" >
+			code_name,
+		</if>
+		<if test="codeValue != null" >
+			code_value,
+		</if>
+		<if test="state != null" >
+			state,
+		</if>
+ 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		<if test="codeType != null" >
+			#{codeType,jdbcType=VARCHAR},
+		</if>
+		<if test="codeName != null" >
+			#{codeName,jdbcType=VARCHAR},
+		</if>
+		<if test="codeValue != null" >
+			#{codeValue,jdbcType=VARCHAR},
+		</if>
+		<if test="state != null" >
+			#{state,jdbcType=CHAR},
+		</if>
+ 	</trim> 	
+  </insert>	
+  <insert id="insertBatch" parameterType="list"  >
+	insert into CODE_VALUE(code_type,code_name,code_value,state)
+	 values 
+	 <foreach collection="list" item="item" index="index" separator=",">
+	 		(#{item.codeType,jdbcType=VARCHAR},#{item.codeName,jdbcType=VARCHAR},#{item.codeValue,jdbcType=VARCHAR},#{item.state,jdbcType=CHAR})
+	 </foreach>
+  </insert>
+  <update id="updateByArgSelective" parameterType="map" >
+    update CODE_VALUE
+    <set>
+		<if test="record.codeType != null" >
+			code_type= #{record.codeType,jdbcType=VARCHAR},
+		</if>
+		<if test="record.codeValue != null" >
+			code_value= #{record.codeValue,jdbcType=VARCHAR},
+		</if>
+		<if test="record.state != null" >
+			state= #{record.state,jdbcType=CHAR}
+		</if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByArg" parameterType="map" >
+    update CODE_VALUE
+    set 
+		code_type = #{record.codeType,jdbcType=VARCHAR},
+		code_name = #{record.codeName,jdbcType=VARCHAR},
+		code_value = #{record.codeValue,jdbcType=VARCHAR},
+		state = #{record.state,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.common.db.po.CodeValuePO" >
+		update CODE_VALUE
+	<set >
+	<if test="codeType != null" >
+		code_type = #{codeType,jdbcType=VARCHAR},
+	</if>
+	<if test="codeValue != null" >
+		code_value = #{codeValue,jdbcType=VARCHAR},
+	</if>
+		state = #{state,jdbcType=CHAR}
+	</set >
+	 where code_name = #{codeName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.common.db.po.CodeValuePO" >
+		update CODE_VALUE
+		set 
+			code_type = #{codeType,jdbcType=VARCHAR},
+			code_value = #{codeValue,jdbcType=VARCHAR},
+			state = #{state,jdbcType=CHAR}
+	 where code_name = #{codeName,jdbcType=VARCHAR}
+   </update>
+  <delete id="deleteByArg" parameterType="com.club.web.common.db.arg.CodeValueArg" >
+    delete from CODE_VALUE
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	 delete from CODE_VALUE
+	 where code_name = #{codeName,jdbcType=VARCHAR}
+  </delete>
+</mapper>  

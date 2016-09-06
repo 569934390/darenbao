@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.GoodsBaseLabelExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.GoodsBaseLabelVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_ID" property="shopId" jdbcType="BIGINT" />
+    <result column="label_name" property="labelName" jdbcType="VARCHAR" />
+    <result column="order_by" property="orderBy" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, shop_ID, label_name, order_by, `status`, create_by, create_time, update_by, update_time
+  </sql>
+  
+  <select id="selectGoodsBaseLabelByLabelName" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+        <include refid="Base_Column_List" />
+    from goods_base_label
+    where 1=1 
+    <if test="labelName != null">
+     and label_name like #{labelName}
+    </if>
+    <if test="shopYn != null">
+     and (shop_ID = #{shopYn} or shop_ID is null) 
+    </if>
+    order by order_by desc,create_time desc 
+    limit #{start},#{limit}
+  </select>
+  
+  <select id="queryGoodsBaseLabelCountPage" resultType="java.lang.Long" parameterType="map">
+    select 
+	count(1) as count 
+	from goods_base_label 
+	where 1=1 
+	<if test="labelName != null">
+     and label_name like #{labelName}
+    </if>
+     <if test="shopYn != null">
+     and (shop_ID = #{shopYn} or shop_ID is null) 
+    </if>
+  </select>
+  
+  <update id="updateStatusById" >
+    update goods_base_label
+    <set>
+      <if test="status != null" >
+        `status` = #{status},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  
+  <select id="selectGoodsBaseLabelListByLabelName" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+   	<include refid="Base_Column_List" /> 
+    from goods_base_label 
+    where 1=1 
+    <if test="labelName != null">
+     and label_name like #{labelName}
+    </if>
+    <if test="shopYn != null">
+     and (shop_ID = #{shopYn} or shop_ID is null) 
+    </if>
+    order by order_by desc 
+    limit #{start},#{limit}
+  </select>
+  
+  <select id="selectGoodsBaseLabelListByGoodId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select *
+    from goods_base_label where id in (select good_base_label_id from good_labels
+    where good_labels.good_id = #{goodId});
+  </select>
+  <select id="findListAll" resultMap="BaseResultMap">
+    select    	
+    <include refid="Base_Column_List" /> 
+    from goods_base_label where status=1 
+    and id in (select good_base_label_id from good_labels)
+    order by order_by desc
+  </select>
+  
+</mapper>

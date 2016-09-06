@@ -1,0 +1,104 @@
+<div class="ui-dialog dialog-md AddOnlineStudyWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新增在线学习信息</h4>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" name="online-study-form">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<input type="hidden" name="id"/>
+					<input type="hidden" name="readNum" value="0"/>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">学习标题：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="title" data-rule="required;">
+							</div>
+						</div>
+					</div>
+				    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">学习分类：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="studyType" class="form-control" data-rule="required";>
+	                            
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">学习子分类：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="studyChildType" class="form-control" data-rule="required;">
+	                            
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">作者：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="author" data-rule="required;">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">封面图片：</label>
+                             <div class="input-group col-md-8" style="text-align: left;">
+						       <div class="flex-container" id="covePic_img_container"></div>
+						       <input type="hidden" name="covePic">
+						       <span style="font-size:10px;color: #B0B0B0">建议大小480*360</span>
+					         </div>
+                        </div>
+                    </div>
+					 <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">类型：</label>
+                            <div class="input-group col-md-8">
+	                            <select name="type" class="form-control" data-rule="required;">
+	                                    <option value="1" selected="selected">文章</option>
+	                                    <option value="2">视频</option>
+	                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 videoUrl" style="display: none;">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">视频地址：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="videoUrl" data-rule="required;url;">
+							</div>
+						</div>
+					</div>
+                    <div class="col-md-6 file" >
+						<div class="form-group">
+							<label class="col-md-4 control-label">附件地址：</label>
+							<div class="input-group col-md-8">
+							    <div class="flex-container" id="coveFile_container"></div>
+								<input type="hidden" name="file">
+								<span style="font-size:10px;color: #B0B0B0">建议大小10MB以下</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">内容：</label>
+							<div class="input-group col-md-9">
+								<div id="onlineStudyContent" name="content" style="width: 100%; height: 200px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

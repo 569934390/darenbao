@@ -1,0 +1,37 @@
+/**
+         * fish-desktop v2.0.0
+         *
+         * Copyright 2013-2015, club, Inc.
+         * All rights reserved.
+         *
+         * This source code is licensed under the LGPLV3-style license found in the
+         * LICENSE file in the root directory of this source tree. 
+         *
+         */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+.fileinput-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}

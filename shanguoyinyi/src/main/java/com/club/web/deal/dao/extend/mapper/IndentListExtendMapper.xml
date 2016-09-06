@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.deal.dao.extend.IndentListExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.deal.dao.base.po.IndentList" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="indent_id" property="indentId" jdbcType="BIGINT" />
+    <result column="trade_good_sku_id" property="tradeGoodSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="final_amount" property="finalAmount" jdbcType="DECIMAL" />
+    <result column="trade_good_name" property="tradeGoodName" jdbcType="VARCHAR" />
+    <result column="trade_good_img_url" property="tradeGoodImgUrl" jdbcType="VARCHAR" />
+    <result column="trade_good_amount" property="tradeGoodAmount" jdbcType="DECIMAL" />
+    <result column="supply_price" property="supplyPrice" jdbcType="DECIMAL" />
+    <result column="trade_good_type" property="tradeGoodType" jdbcType="VARCHAR" />
+    <result column="cargo_no" property="cargoNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, indent_id, trade_good_sku_id, `number`, final_amount, trade_good_name, trade_good_img_url, 
+    trade_good_amount, trade_good_type,supply_price,cargo_sku_id,
+    (select c.cargo_no FROM cargo c , cargo_sku cs , trade_good_sku tgs where tgs.cargo_sku_id = cs.id and c.id = cs.cargo_id and indent_list.trade_good_sku_id = tgs.id) as cargo_no
+  </sql>
+  <select id="findByIndentId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from indent_list
+    where indent_id = #{indentId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="findImgUrlByGoodSkuId" resultType="java.lang.String" parameterType="java.lang.Long">
+  	select pic_url from image where 
+	id in (select small_image_id from cargo where 
+	id in (select cargo_id from trade_good where 
+	id in (select good_id from trade_good_sku where id = #{goodSkuId})))
+  </select>
+  <select id="findSkuLongByGoodSkuId" resultType="java.lang.String" parameterType="java.lang.Long">
+    select 
+	group_concat(concat(b3.`name`, ":", b2.`name`)) sku_long
+	from cargo_sku_option b1
+	left join cargo_sku_item b2 on b1.cargo_sku_item_id=b2.id
+	left join cargo_sku_type b3 on b2.cargo_sku_type_id=b3.id
+	where b1.cargo_sku_id in (select cargo_sku_id from trade_good_sku where id = #{goodSkuId})
+	group by b1.cargo_sku_id
+	order by b2.id asc
+  </select>
+</mapper>

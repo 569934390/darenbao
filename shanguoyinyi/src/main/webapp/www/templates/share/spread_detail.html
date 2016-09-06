@@ -1,0 +1,83 @@
+<style>
+    .spread_detail_padding{
+        padding: 1rem;
+    }
+    .spread_detail_padding h3.name{
+        padding-bottom: 0.9rem;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.1rem;
+        color: #000000;
+        /*filter:alpha(opacity=87);*/
+        /*-moz-opacity:0.87;*/
+        /*-khtml-opacity: 0.87;*/
+        /*opacity: 0.87;*/
+        text-align: left;
+    }
+    .spread_detail_row{
+        padding: 0;
+        padding-bottom: 0.9rem;
+        font-size: 0.7rem;
+        color: #999999;
+    }
+    .spread_detail_row div{
+        padding: 0;
+        height: 1.4rem;
+        line-height: 1.4rem;
+        font-size: 0.7rem;
+        color: #999999;
+    }
+    .spreadInfo {
+        max-width: 1.4rem;
+        max-height:1.4rem;
+        vertical-align:bottom;
+    }
+    .spread_detail_content, .spread_detail_content p{
+        font-size: 0.8rem !important;
+        color: rgba(0,0,0,0.87);
+    }
+    .spread_detail_content p{
+        padding: 0;
+        margin: 0;
+        -webkit-margin-after: 0 !important;
+        -webkit-margin-before: 0 !important;
+    }
+    .spread_detail_content img{
+        max-width:100%;
+        height: auto;
+        margin: 0.9rem 0 0.75rem;
+    }
+    blockquote{
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+</style>
+<ion-view title="推广详情" class="spread_img">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">推广详情</h1>
+        <div class="head-right-btn" style="position: absolute; right: 15px" ng-click="openShare();">
+            <img src="img/share.png">
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="spread_detail_padding">
+            <h3 class="name">{{spread.name}}</h3>
+            <div class="row spread_detail_row">
+                <div class="col col-50">
+                    <img src="img/yxtg_sj.png" class="spreadInfo">
+                    {{spread.updateTime1}}
+                </div>
+                <div class="col col-50">
+                    <span style="float: right;margin-right: 20px">{{spread.readNum}}</span>
+                    <img src="img/yxtg_ll.png" class="spreadInfo" style="float: right;">
+
+                </div>
+            </div>
+            <div ng-bind-html="spread.content" class="spread_detail_content"></div>
+        </div>
+    </ion-content>
+</ion-view>

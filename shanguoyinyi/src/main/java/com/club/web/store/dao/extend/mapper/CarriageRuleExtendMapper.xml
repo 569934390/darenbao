@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.CarriageRuleExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.vo.CarriageRuleVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="template_name" property="templateName" jdbcType="VARCHAR" />
+    <result column="carriage" property="carriage" jdbcType="DECIMAL" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="useGoodsNum" property="useGoodsNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_name, carriage, update_time
+  </sql>
+  <sql id="Base_Column_page" >
+    cr.id, template_name, carriage, update_time, COUNT(tg.id) as useGoodsNum
+  </sql>
+  
+  <select id="selectCarriageRule" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_page" />
+	from carriage_rule cr 
+	LEFT JOIN trade_good tg on cr.id = tg.postid 
+	GROUP BY cr.id 
+	limit #{start},#{limit}
+  </select>
+  
+  <select id="selectGoodsColumnCountPage" resultType="java.lang.Long">
+	select
+	count(0) as count
+	from carriage_rule
+  </select>
+  
+  <select id="getCarriageRuleList" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	from carriage_rule
+  </select>
+  
+  <select id="getGoodsColumnByCarriageRuleId" resultType="java.lang.Long">
+	SELECT COUNT(0) FROM trade_good WHERE postid = #{carriageRuleId}
+  </select>
+</mapper>

@@ -1,0 +1,211 @@
+<style>
+.order-title{
+    /*position: relative;*/
+    background-color: #ffffff;
+    width: 100%;
+    height: 2rem;
+    padding: .4rem .8rem;
+}
+.order-name{
+    line-height: 1.2rem;
+    position: relative;
+    float: left;
+    font-size: .8rem;
+    padding: .2rem 0rem .3rem 0rem;
+}
+.order-name .span1{
+    position: relative;
+    float: right;
+    padding: 0rem .4rem 0rem 0rem;
+}
+.receive-info .order-name{
+    width: 100%;
+    line-height: 1.2rem;
+    position: relative;
+    float: left;
+    font-size: .7rem;
+}
+.order-status{
+    position: relative;
+    font-size: .7rem;
+    float: right;
+    color: #ffbd3b;
+}
+.receive-info{
+    padding: .4rem .4rem .4rem .8rem;
+    margin-top: 1px;
+    background-color: #ffffff;
+    width: 100%;
+    min-height: 2rem;
+    font-size: .8rem;
+    border-top: 2px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
+}
+.good-content{
+    position: relative;
+    background-color: #ffffff;
+    width: 100%;
+    margin-top: .3rem;
+    border-top: 2px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
+}
+.good-info{
+    position: relative;
+    width: 100%;
+    height: 5.5rem;
+    padding: .5rem .8rem;
+}
+.good-img{
+    float: left;
+    position: relative;
+    width: 30%;
+    max-height: 100%;
+}
+.good-img img{
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+}
+.good-text {
+    float: left;
+    position: relative;
+    width: 70%;
+    height: 100%;
+}
+.good-name{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    height: 30%;
+    font-size: .8rem;
+    color:#333333;
+    margin-left: .5rem;
+}
+.good-type{
+    margin-left: .5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space:normal;
+    overflow: hidden;
+    font-size: .65rem;
+    color:#999999;
+}
+.good-price{
+    font-size: .6rem;
+    color: red;
+    float: left;
+    position: relative;
+    margin: 0.5rem 0 0 .5rem;
+    bottom: 0;
+}
+.good_num{
+    font-size: .5rem;
+    float:right;
+    margin: 0.5rem 0 0 .5rem;
+}
+.good-statist{
+    position: relative;
+    height: 2rem;
+    width: 100%;
+}
+.good-statis-num{
+    float: left;
+    position: relative;
+    height: 100%;
+    line-height: 2.2rem;
+    font-size: .8rem;
+    margin-left: .8rem;
+}
+.good-statis-money{
+    float: right;
+    position: relative;
+    height: 100%;
+    line-height: 2rem;
+    font-size: .8rem;
+    margin-right: .8rem;
+}
+.bottom-div{
+    width: 100%;
+    border-top: 1px solid #d0d0d0;
+    font-size: .8rem;
+    float:right;
+    text-align: right;
+    padding: 0rem .6rem 0rem 0rem;
+}
+.money-div{
+    float: right;
+    color: red;
+}
+</style>
+<ion-view view-title="订单详情">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <div class="title">订单详情</div>
+        <div class="head-right-btn"></div>
+    </ion-header-bar>
+    <ion-content ng-class="{'ios-has-content-bar':platform == 'ios'}" delegate-handle="mainScroll">
+        <div class="order-title">
+            <div class="order-name">订单详情</div>
+            <div class="order-status">{{order.statusName}}</div>
+        </div>
+        <div class="receive-info">
+            <div class="order-name">订单编号：{{order.name}}</div>
+            <div class="order-name" ng-if="order.status == 6||order.status == 7||order.status == 9">退货原因：{{order.returnName}}</div>
+            <div class="order-name" ng-if="order.status == 6||order.status == 7||order.status == 9">退货理由：{{order.returnRemark}}</div>
+            <div class="order-name" ng-if="order.status == 3||order.status == 8">退款理由：{{order.refundRemark}}</div>
+            <!--<div class="order-name">收货人：{{order.receiver}}</div>-->
+            <div class="order-name">收货人：{{order.receiver}}<span class="span1">{{order.receiverPhone}}</span></div>
+            <!--<div class="order-name">手机号：{{order.receiverPhone}}</div>-->
+            <div class="order-name">收货地址：{{order.fullAddress}}</div>
+        </div>
+        <div class="head-title" style="margin-left: 0.6rem">商品信息</div>
+        <div class="good-content">
+            <div class="good-info" ng-repeat="good in order.indentList" ng-click="goGoodInfo(good.tradeGoodSku.goodId)">
+                <div class="good-img">
+                    <img  ng-src="{{good.tradeGoodImgUrl}}-img">
+                </div>
+                <div class="good-text">
+                    <div class="good-name">{{good.tradeGoodName}}</div>
+                    <div class="good-type">{{good.tradeGoodType}}</div>
+                    <div class="good-price">{{good.finalAmount |currency:'￥'}}</div>
+                    <div class="good_num">x {{good.number}}</div>
+                </div>
+            </div>
+            <div class="head-title" style="margin-left: 0.6rem">备注：</div>
+            <div class="good-statist">
+                <div class="good-statis-num">共{{order.number}}件商品</div>
+                <div class="good-statis-money">商品总额：<span class="money-div">{{ totalMoney |currency:'￥'}}</span></div>
+            </div>
+            <div class="good-statist">
+                <div class="good-statis-num">运费：</div>
+                <!--<div class="good-statis-money" ng-if="order.buyerCarriage == 0">商家免费配送&nbsp;&nbsp;包邮</div>-->
+                <div class="good-statis-money">{{order.buyerCarriage|currency:'￥'}}</div>
+            </div>
+            <div class="good-statist">
+                <div class="good-statis-num">支付方式：</div>
+                <div class="good-statis-money"><span ng-if="order.payType == 1">微信</span><span ng-if="order.payType == 2">支付宝</span></div>
+            </div>
+            <div class="good-statist">
+                <div class="good-statis-num">发票信息：</div>
+                <div class="good-statis-money">
+                    <span ng-if="!order.needInvoice">不要发票</span>
+                    <span ng-if="order.needInvoice">
+                        <span ng-if="order.invoiceName=='公司'">单位发票</span><span ng-if="order.invoiceName=='个人'">个人发票</span>
+                    </span>
+                </div>
+            </div>
+            <div class="good-statist">
+                <div class="good-statis-num">下单时间：</div>
+                <div class="good-statis-money"><span>{{order.createTime}}</span></div>
+            </div>
+            <div class="bottom-div">
+                实付款：<div class="money-div">{{order.paymentAmount |currency:'￥'}}</div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

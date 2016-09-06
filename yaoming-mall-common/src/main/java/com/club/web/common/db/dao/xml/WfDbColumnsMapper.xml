@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.common.db.dao.mapper.IWfDbColumnsMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.common.db.po.WfDbColumnsPO">
+  	<id column="table_name" property="tableName" jdbcType="VARCHAR" />
+	<result column="column_name" property="columnName" jdbcType="VARCHAR" />
+	<result column="display_name" property="displayName" jdbcType="VARCHAR" />
+  	<result column="db_type" property="dbType" jdbcType="VARCHAR" />
+  	<result column="type" property="type" jdbcType="VARCHAR" />
+  	<result column="is_null" property="isNull" jdbcType="VARCHAR" />
+  	<result column="default_value" property="defaultValue" jdbcType="VARCHAR" />
+  	<result column="length" property="length" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+  	table_name,column_name,display_name,db_type,type,is_null,default_value,length
+  </sql>
+  <sql id="Arg_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Arg_Where_Clause" >
+    <where >
+      <foreach collection="arg.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>  
+  <select id="selectByArg" resultMap="BaseResultMap" parameterType="com.club.web.common.db.arg.WfDbColumnsArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from WF_DB_COLUMNS
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>  
+  <select id="selectByArgAndPage" resultMap="BaseResultMap" parameterType="com.club.web.common.db.arg.WfDbColumnsArg" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+     <if test="columns == null" >
+    	<include refid="Base_Column_List" />
+    </if>
+    <if test="columns != null" >
+    	${columns}
+   	</if>
+    from WF_DB_COLUMNS
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+	<if test="groupByClause != null" >
+      group by ${groupByClause}
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="countByArg" parameterType="com.club.web.common.db.arg.WfDbColumnsArg" resultType="java.lang.Integer" >
+    <if test="countsql1 != null" >
+    	${countsql1}
+    	<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+		${countsql2}
+    </if>
+	<if test="countsql1 == null" >
+		select count(*) from WF_DB_COLUMNS
+		<if test="_parameter != null" >
+		  <include refid="Arg_Where_Clause" />
+		</if>
+	</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	select
+	<include refid="Base_Column_List" />
+	from WF_DB_COLUMNS
+	where table_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.club.web.common.db.po.WfDbColumnsPO"  >
+		insert into WF_DB_COLUMNS(table_name,column_name,display_name,db_type,type,is_null,default_value,length)
+		values (#{tableName,jdbcType=VARCHAR},#{columnName,jdbcType=VARCHAR},#{displayName,jdbcType=VARCHAR},#{dbType,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{isNull,jdbcType=VARCHAR},#{defaultValue,jdbcType=VARCHAR},#{length,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.common.db.po.WfDbColumnsPO">
+		insert into WF_DB_COLUMNS
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="tableName != null" >
+			table_name,
+		</if>
+		<if test="columnName != null" >
+			column_name,
+		</if>
+		<if test="displayName != null" >
+			display_name,
+		</if>
+		<if test="dbType != null" >
+			db_type,
+		</if>
+		<if test="type != null" >
+			type,
+		</if>
+		<if test="isNull != null" >
+			is_null,
+		</if>
+		<if test="defaultValue != null" >
+			default_value,
+		</if>
+		<if test="length != null" >
+			length,
+		</if>
+ 	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides="," >
+		<if test="tableName != null" >
+			#{tableName,jdbcType=VARCHAR},
+		</if>
+		<if test="columnName != null" >
+			#{columnName,jdbcType=VARCHAR},
+		</if>
+		<if test="displayName != null" >
+			#{displayName,jdbcType=VARCHAR},
+		</if>
+		<if test="dbType != null" >
+			#{dbType,jdbcType=VARCHAR},
+		</if>
+		<if test="type != null" >
+			#{type,jdbcType=VARCHAR},
+		</if>
+		<if test="isNull != null" >
+			#{isNull,jdbcType=VARCHAR},
+		</if>
+		<if test="defaultValue != null" >
+			#{defaultValue,jdbcType=VARCHAR},
+		</if>
+		<if test="length != null" >
+			#{length,jdbcType=INTEGER},
+		</if>
+ 	</trim> 	
+  </insert>	
+  <insert id="insertBatch" parameterType="list"  >
+	insert into WF_DB_COLUMNS(table_name,column_name,display_name,db_type,type,is_null,default_value,length)
+	 values 
+	 <foreach collection="list" item="item" index="index" separator=",">
+	 		(#{item.tableName,jdbcType=VARCHAR},#{item.columnName,jdbcType=VARCHAR},#{item.displayName,jdbcType=VARCHAR},#{item.dbType,jdbcType=VARCHAR},#{item.type,jdbcType=VARCHAR},#{item.isNull,jdbcType=VARCHAR},#{item.defaultValue,jdbcType=VARCHAR},#{item.length,jdbcType=INTEGER})
+	 </foreach>
+  </insert>
+  <update id="updateByArgSelective" parameterType="map" >
+    update WF_DB_COLUMNS
+    <set>
+		<if test="record.displayName != null" >
+			display_name= #{record.displayName,jdbcType=VARCHAR},
+		</if>
+		<if test="record.dbType != null" >
+			db_type= #{record.dbType,jdbcType=VARCHAR},
+		</if>
+		<if test="record.type != null" >
+			type= #{record.type,jdbcType=VARCHAR},
+		</if>
+		<if test="record.isNull != null" >
+			is_null= #{record.isNull,jdbcType=VARCHAR},
+		</if>
+		<if test="record.defaultValue != null" >
+			default_value= #{record.defaultValue,jdbcType=VARCHAR},
+		</if>
+		<if test="record.length != null" >
+			length= #{record.length,jdbcType=INTEGER}
+		</if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByArg" parameterType="map" >
+    update WF_DB_COLUMNS
+    set 
+		table_name = #{record.tableName,jdbcType=VARCHAR},
+		column_name = #{record.columnName,jdbcType=VARCHAR},
+		display_name = #{record.displayName,jdbcType=VARCHAR},
+		db_type = #{record.dbType,jdbcType=VARCHAR},
+		type = #{record.type,jdbcType=VARCHAR},
+		is_null = #{record.isNull,jdbcType=VARCHAR},
+		default_value = #{record.defaultValue,jdbcType=VARCHAR},
+		length = #{record.length,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Arg_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.common.db.po.WfDbColumnsPO" >
+		update WF_DB_COLUMNS
+	<set >
+	<if test="displayName != null" >
+		display_name = #{displayName,jdbcType=VARCHAR},
+	</if>
+	<if test="dbType != null" >
+		db_type = #{dbType,jdbcType=VARCHAR},
+	</if>
+	<if test="type != null" >
+		type = #{type,jdbcType=VARCHAR},
+	</if>
+	<if test="isNull != null" >
+		is_null = #{isNull,jdbcType=VARCHAR},
+	</if>
+	<if test="defaultValue != null" >
+		default_value = #{defaultValue,jdbcType=VARCHAR},
+	</if>
+		length = #{length,jdbcType=INTEGER}
+	</set >
+	 where table_name = #{tableName,jdbcType=VARCHAR} and column_name = #{columnName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.common.db.po.WfDbColumnsPO" >
+		update WF_DB_COLUMNS
+		set 
+			display_name = #{displayName,jdbcType=VARCHAR},
+			db_type = #{dbType,jdbcType=VARCHAR},
+			type = #{type,jdbcType=VARCHAR},
+			is_null = #{isNull,jdbcType=VARCHAR},
+			default_value = #{defaultValue,jdbcType=VARCHAR},
+			length = #{length,jdbcType=INTEGER}
+	 where table_name = #{tableName,jdbcType=VARCHAR} and column_name = #{columnName,jdbcType=VARCHAR}
+   </update>
+  <delete id="deleteByArg" parameterType="com.club.web.common.db.arg.WfDbColumnsArg" >
+    delete from WF_DB_COLUMNS
+    <if test="_parameter != null" >
+      <include refid="Arg_Where_Clause" />
+    </if>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	 delete from WF_DB_COLUMNS
+	 where table_name = #{tableName,jdbcType=VARCHAR} and column_name = #{columnName,jdbcType=VARCHAR}
+  </delete>
+</mapper>  

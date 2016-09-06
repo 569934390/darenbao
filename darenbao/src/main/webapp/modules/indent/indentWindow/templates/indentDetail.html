@@ -1,0 +1,162 @@
+<div class="ui-dialog dialog-md indentDetail">
+    <div class="modal-header">
+        <h4 class="modal-title">订单详情</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                 <div class="col-md-6">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">订单号：</label>
+                        <label class="col-md-8" name="name"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">买家昵称：</label>
+                        <label class="col-md-8" name="buyerName"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">订单时间：</label>
+                        <label class="col-md-8" name="createTime"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">支付类型：</label>
+                        <label class="col-md-8" name="payTypeName"></label>
+                    </div>
+                 </div>
+                 <div class="col-md-6">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">状态：</label>
+                        <label class="col-md-8" name="statusName"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">订单类型：</label>
+                        <label class="col-md-8" name="typeName"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">付款时间：</label>
+                        <label class="col-md-8" name="payTime"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">支付账号：</label>
+                        <label class="col-md-8" name="payAccount"></label>
+                    </div>
+                 </div>
+                 <div class="col-md-12">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-2 control-label">买家留言：</label>
+                        <label class="col-md-10" name="buyerRemark"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-2 control-label">订单备注：</label>
+                        <label class="col-md-10" name="remark"></label>
+                    </div>
+                </div>
+                <div class="col-md-12 refund-div" style="display: none">
+                    <div class="col-md-12 form-group" style="display: none">
+                        <label class="col-md-2 control-label">退款原因：</label>
+                        <label class="col-md-10" name="refundName"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-2 control-label">退款理由：</label>
+                        <label class="col-md-10" name="refundRemark"></label>
+                    </div>
+                </div>
+                <div class="col-md-12 return-div" style="display: none">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-2 control-label">退货原因：</label>
+                        <label class="col-md-10" name="returnName"></label>
+                    </div>
+                    <div class="col-md-12 form-group" style="display: none">
+                        <label class="col-md-2 control-label">退货理由：</label>
+                        <label class="col-md-10" name="returnRemark"></label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                 	<hr/>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">快递单号：</label>
+                        <label class="col-md-8" name="expressNumber"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">发货人：</label>
+                        <label class="col-md-4" name="shipper"></label>
+                    </div>
+                    <!-- <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">货品净重：</label>
+                        <label class="col-md-8" name="weight"></label>
+                    </div> -->
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">买家运费：</label>
+                        <label class="col-md-8" name="buyerCarriage"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">收货人：</label>
+                        <label class="col-md-3" name="receiver"></label>
+                        <label class="col-md-1"/>
+                        <label class="col-md-4" name="receiverPhone"></label>
+                    </div>       
+                 </div>
+                 <div class="col-md-6">
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">快递公司：</label>
+                        <label class="col-md-8" name="expressCompany"></label>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">发货时间：</label>
+                        <label class="col-md-8" name="shipTime"></label>
+                    </div>	                   
+                    <div class="col-md-12 form-group">
+                        <label class="col-md-4 control-label">收货时间：</label>
+                        <label class="col-md-8" name="finishTime"></label>
+                    </div>	 
+                 </div>
+                 <div class="col-md-12">
+                    <div class="col-md-12 form-group">
+                    	<label class="col-md-2 control-label">收货地址：</label>
+		                <label class="col-md-10" name="fullAddress"></label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                 	<hr/>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12 form-group">
+	                 	<label class="col-md-4 control-label">是否要发票：</label>
+	               		<label class="col-md-8" name="needInvoiceText"></label>
+	                </div>
+                </div>
+                <div class="col-md-6">
+	                <div class="col-md-12 form-group">
+	                 	<label class="col-md-4 control-label">发票类型：</label>
+	               		<label class="col-md-8" name="invoiceName"></label>
+	                </div>
+                </div>
+                <div class="col-md-12">
+	                <div class="col-md-12 form-group">
+	                	<label class="col-md-2 control-label">发票抬头：</label>
+	              		<label class="col-md-10" name="invoiceContent"></label>
+	                </div>
+                </div>
+                
+                <div class="col-md-12">
+                 	<hr/>
+                </div>
+                <div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						   <h3 class="panel-title">商品详情</h3>
+						</div>
+						<div class="col-md-1"></div>
+						<div class="panel-body col-md-11" id="good-sku-list">
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+	        <button type="button" class="btn btn-default" action="close-button">关闭</button>
+	    </div>
+    </div>
+</div>

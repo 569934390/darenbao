@@ -1,0 +1,131 @@
+/* reset */
+body,h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,form,input,textarea,th,td,select{margin:0;padding:0;font-size: 12px;}
+em{font-style:normal}
+li{list-style:none}
+a{text-decoration:none;}
+img{border:none; vertical-align:top;border-radius:50%;}
+table{border-collapse:collapse;}
+textarea{ resize:none;overflow:auto;}
+input,dd,textarea{border: none;outline: none;}
+
+.potrait{overflow: hidden;margin: 0 auto 1px;border-bottom: 1px solid #422d2d;}
+.potrait-left{width: 1.5rem;height: 1.6rem;float: left;position: relative;overflow: hidden;}
+.potrait-left img{width:1.2rem;height:1.2rem;position: absolute;top:50%;margin-top: -0.6rem;left: 60%;margin-left: -0.6rem;z-index: 100;}
+.potrait-right{width: 3.9rem;height: 1.6rem;float: left;padding-top: 0.2rem;overflow: hidden;box-sizing:border-box;}
+.potrait-right p{font-size:0.28rem;text-align:left;height: 0.6rem;line-height: 0.6rem;padding-left:0.36rem;position: relative;color:#000;}
+.potrait-right p:nth-child(1)::before{display: inline-block;content: "";width:0.22rem;height: 0.26rem;background-size: 100% auto;position: absolute;left:0;top:50%;margin-top: -0.13rem;}
+.potrait-right p:nth-child(2)::before{display: inline-block;content: "";width:0.20rem;height: 0.28rem;background-size: 100% auto;position: absolute;left:0;top:50%;margin-top: -0.13rem;}
+.clear { zoom:1; }
+.clear:after { content:''; display:block; clear:both; }
+/* end reset */
+
+
+body{background: #fede47 url("../img/body_bg.jpg") no-repeat 0 0;background-size: 6.4rem 2.97rem;padding-top: 3.05rem;font-size: 0.12rem;}
+
+/* down */
+.down{padding-bottom: 0.27rem;}
+.down .appPhone{width: 4.37rem;height: 5.64rem;margin: 0 auto 0.2rem;}
+.down .appPhone img{width: 100%;height: 100%;border-radius: 0;}
+
+.down .btn{width: 5.5rem;height: 0.92rem;margin: 0 auto;}
+.down .ios{float: left;width: 2.53rem;height: 0.92rem;background:url("../img/download/ios.png") no-repeat center;background-size: 2.53rem 0.92rem;}
+.down .Android{float: right;width: 2.53rem;height: 0.92rem;background:url("../img/download/Android.png") no-repeat center;background-size: 2.53rem 0.92rem;}
+input[type="button"], input[type="submit"], input[type="reset"] {
+
+-webkit-appearance: none;
+
+}
+
+textarea {  -webkit-appearance: none;}   
+
+
+/* register */
+.register{padding-bottom: 1.64rem;}
+.register .text{padding: 0.32rem 0.42rem 0.39rem;}
+.register .text p{font: 0.24rem/0.42rem 'ËÎÌå';text-indent: 2em;color: #422d2d;}
+
+
+.register .content{width: 5.6rem;margin: 0 auto;background: #febf2b;border-radius: 0.1rem;}
+
+.register .content .Personal_info{width: 4.93rem;margin: 0 auto 1px;border-bottom: 1px solid #422d2d;height: 1.76rem;}
+.register .content .Personal_info a{float: left;width: 1.2rem;height: 1.2rem;border-radius: 50%;margin: 0.2rem 0.2rem 0 0;}
+.register .content .Personal_info a img{width: 100%;height: 100%;}
+
+.register .content .Personal_info ol{float: left;margin-top: 0.23rem;}
+.register .content .Personal_info dd{font-size: 0.28rem;height: 0.56rem;line-height: 0.56rem;width: 3rem;color: #422d2d;}
+
+
+.register .content .ul{padding-bottom: 1px;height: 1.2rem;font-size: 0;text-align: center;}
+.register .content .li{display: inline-block;width: 2.3rem;vertical-align: middle;}
+.register .content .fg{display: inline-block;background: #422d2d;width: 1px;height: 1.2rem;vertical-align: middle;margin: 0 0.28rem;}
+
+
+.register .content .top{font-size: 0.28rem;color: #422d2d;display: block;}
+.register .content .botton{font-size: 0.36rem;color: #ff7e00;display: block;}
+
+
+
+.register .btn{position: fixed;left: 0;bottom: 0;width: 100%;height: 0.85rem;background: #eda600;border-top: 1px solid #422d2d;font-size: 0;text-align: center;}
+
+.register .btn a{display: inline-block;font-size: 0.28rem;vertical-align: middle;color: #422d2d;height: 0.8rem;line-height: 0.8rem;width: 2.6rem;text-indent: 0.6rem;}
+.register .btn .regin{background:  url("../img/register/ellipse-1.png") no-repeat 0.6rem center;background-size: 0.32rem 0.32rem;}
+.register .btn .dow{background:  url("../img/register/ellipse-2.png") no-repeat 0.5rem center; background-size: 0.52rem 0.32rem;}
+
+.register .btn .fg{display: inline-block;width: 1px;height: 100%;background: #422d2d;vertical-align: middle;margin: 0 0.3rem;}
+
+
+/* complete_register */
+
+.com{padding: 3.57rem 0 0.84rem;}
+.com .form{width: 5.96rem;margin: 0 auto;background: #febf2b;padding-top: 0.22rem;}
+
+.com .form form{}
+
+.com .form form .jz{display: inline-block;vertical-align: middle;height: 100%;width: 0;}
+
+
+.com .text{width: 4.93rem;margin: 0 auto;}
+.com .text>label{display:block;height: 0.9rem; border-bottom: 1px solid #422d2d;text-align: left;}
+.com .text>label:nth-of-type(1){background: url("../img/complete_register/from_phone.png") no-repeat 0.48rem center;background-size: 0.23rem 0.38rem;}
+.com .text>label:nth-of-type(2){background: url("../img/complete_register/from_pass.png") no-repeat 0.45rem center;background-size: 0.29rem 0.39rem;}
+
+
+.com .text>label input{color: #a97700;display: inline-block;vertical-align: middle;margin-left: 1.1rem;width: 3.6rem;height: 0.36rem;line-height: 0.36rem;
+    font-size: 0.28rem;background: #febf2b;
+}
+
+.y-btn{color: #faa701;font: 0.26rem/30px "å®‹ä½“";background:none;cursor: pointer;border: none;right: 0px;top:-5px;}
+
+.com .yz{height: 0.9rem;border-bottom: 1px solid #422d2d;}
+.com .yz label:nth-of-type(1){float: left;width: 3.16rem;height: 0.9rem;
+    background: url("../img/complete_register/from_info.png") no-repeat 0.42rem center;background-size: 0.34rem 0.25rem;
+}
+.com .yz label:nth-of-type(2){float: right;width: 1.7rem;height: 0.9rem;text-align: center;}
+
+.com .yz label input{font-size: 0.28rem;display: inline-block;vertical-align: middle;}
+.com .yz label:nth-of-type(1) input{color: #a97700;margin-left: 1.1rem;width: 2rem;background: #febf2b;}
+.com .yz label:nth-of-type(2) input{color: #422d2d;background: #febf2b;}
+
+
+.com .button{width: 4.88rem;margin: 0 auto;padding: 0.36rem 0 0.53rem;}
+.com .button label{height: 0.8rem;display: block;border-radius: 0.1rem;margin-bottom: 0.25rem;}
+.com .button label:nth-last-of-type(1){margin-bottom: 0;}
+.com .button label .input{display: block;height: 0.8rem;width:4.88rem;border-radius: 0.1rem;background: #422d2d;font-size: 0.28rem;color: #fede47;}
+
+.com .button label a.input{text-align: center;line-height: 0.8rem;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

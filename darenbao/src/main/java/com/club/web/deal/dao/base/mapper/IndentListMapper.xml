@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.deal.dao.base.IndentListMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.deal.dao.base.po.IndentList" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="indent_id" property="indentId" jdbcType="BIGINT" />
+    <result column="trade_good_sku_id" property="tradeGoodSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="final_amount" property="finalAmount" jdbcType="DECIMAL" />
+    <result column="trade_good_name" property="tradeGoodName" jdbcType="VARCHAR" />
+    <result column="trade_good_img_url" property="tradeGoodImgUrl" jdbcType="VARCHAR" />
+    <result column="trade_good_amount" property="tradeGoodAmount" jdbcType="DECIMAL" />
+    <result column="supply_price" property="supplyPrice" jdbcType="DECIMAL" />
+    <result column="trade_good_type" property="tradeGoodType" jdbcType="VARCHAR" />
+    <result column="cargo_no" property="cargoNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, indent_id, trade_good_sku_id, `number`, final_amount, trade_good_name, trade_good_img_url, 
+    trade_good_amount, trade_good_type,supply_price,cargo_sku_id,
+	(select c.cargo_no FROM cargo c , cargo_sku cs , trade_good_sku tgs where tgs.cargo_sku_id = cs.id and c.id = cs.cargo_id and indent_list.trade_good_sku_id = tgs.id) as cargo_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from indent_list
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from indent_list
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.deal.dao.base.po.IndentList" >
+    insert into indent_list (id, indent_id, trade_good_sku_id, 
+      `number`, final_amount, trade_good_name, 
+      trade_good_img_url, trade_good_amount, trade_good_type,supply_price,cargo_sku_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{indentId,jdbcType=BIGINT}, #{tradeGoodSkuId,jdbcType=BIGINT}, 
+      #{number,jdbcType=INTEGER}, #{finalAmount,jdbcType=DECIMAL}, #{tradeGoodName,jdbcType=VARCHAR}, 
+      #{tradeGoodImgUrl,jdbcType=VARCHAR}, #{tradeGoodAmount,jdbcType=DECIMAL}, #{tradeGoodType,jdbcType=VARCHAR}
+      , #{supplyPrice,jdbcType=DECIMAL},#{cargoSkuId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.deal.dao.base.po.IndentList" >
+    insert into indent_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="indentId != null" >
+        indent_id,
+      </if>
+      <if test="tradeGoodSkuId != null" >
+        trade_good_sku_id,
+      </if>
+      <if test="number != null" >
+        `number`,
+      </if>
+      <if test="finalAmount != null" >
+        final_amount,
+      </if>
+      <if test="tradeGoodName != null" >
+        trade_good_name,
+      </if>
+      <if test="tradeGoodImgUrl != null" >
+        trade_good_img_url,
+      </if>
+      <if test="tradeGoodAmount != null" >
+        trade_good_amount,
+      </if>
+      <if test="tradeGoodType != null" >
+        trade_good_type,
+      </if>
+      <if test="supplyPrice != null" >
+        supply_price,
+      </if>
+      <if test="cargoSkuId != null" >
+        cargo_sku_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="indentId != null" >
+        #{indentId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeGoodSkuId != null" >
+        #{tradeGoodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="finalAmount != null" >
+        #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeGoodName != null" >
+        #{tradeGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeGoodImgUrl != null" >
+        #{tradeGoodImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeGoodAmount != null" >
+        #{tradeGoodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeGoodType != null" >
+        #{tradeGoodType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyPrice != null" >
+        #{supplyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cargoSkuId != null" >
+        #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.deal.dao.base.po.IndentList" >
+    update indent_list
+    <set >
+      <if test="indentId != null" >
+        indent_id = #{indentId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeGoodSkuId != null" >
+        trade_good_sku_id = #{tradeGoodSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="finalAmount != null" >
+        final_amount = #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeGoodName != null" >
+        trade_good_name = #{tradeGoodName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeGoodImgUrl != null" >
+        trade_good_img_url = #{tradeGoodImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeGoodAmount != null" >
+        trade_good_amount = #{tradeGoodAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeGoodType != null" >
+        trade_good_type = #{tradeGoodType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyPrice != null" >
+        supply_price = #{supplyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cargoSkuId != null" >
+        cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.deal.dao.base.po.IndentList" >
+    update indent_list
+    set indent_id = #{indentId,jdbcType=BIGINT},
+      trade_good_sku_id = #{tradeGoodSkuId,jdbcType=BIGINT},
+      `number` = #{number,jdbcType=INTEGER},
+      final_amount = #{finalAmount,jdbcType=DECIMAL},
+      trade_good_name = #{tradeGoodName,jdbcType=VARCHAR},
+      trade_good_img_url = #{tradeGoodImgUrl,jdbcType=VARCHAR},
+      trade_good_amount = #{tradeGoodAmount,jdbcType=DECIMAL},
+      supply_price = #{supplyPrice,jdbcType=DECIMAL},
+      trade_good_type = #{tradeGoodType,jdbcType=VARCHAR},
+      cargo_sku_id = #{cargoSkuId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

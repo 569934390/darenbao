@@ -1,0 +1,91 @@
+<div class="ui-dialog dialog-md goodManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建推广</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="spreadInfo-form">
+					<input type="hidden" name="goodId"> 
+					<div class="col-md-4">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">推广内容类型：</label>
+							<div class="input-group col-md-8">
+									<select name="spreadContentType" class="form-control" disabled data-rule="required">
+            
+					                </select>								
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 cargoCode">
+						<div class="form-group">
+							<label class="col-md-4 control-label">货品编号：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="cargoNo" readOnly=true>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 goodName">
+						<div class="form-group">
+							<label class="col-md-4 control-label">商品名称：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="goodName" readOnly=true>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group required">
+							<label class="col-md-2 control-label">推广分类：</label>
+							<div class="input-group col-md-4">
+								<select name="classifyId" class="form-control"  data-rule="required">
+              	
+					           </select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group required">
+							<label class="col-md-2 control-label">作者：</label>
+							<div class="input-group col-md-4">
+								<input class="form-control" name="author" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">封面上传：</label>
+
+                             <div class="input-group col-md-4" >
+						       <div class="flex-container" id="logo_img_container"></div>
+						       <input type="hidden" name="logo">
+						       <span style="font-size:10px;color: #B0B0B0">建议大小224*164</span>
+					         </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ">
+						<div class="form-group required">
+							<label class="col-md-2 control-label">标题：</label>
+							<div class="input-group col-md-9">
+								<input class="form-control" name="name" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="col-md-2 control-label">推广内容编辑：</label>
+							<div class="input-group col-md-9">
+								<div id="contentEditor" name="content" style="width: 100%; height: 200px;"></div>
+							</div>
+						</div>
+					</div>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

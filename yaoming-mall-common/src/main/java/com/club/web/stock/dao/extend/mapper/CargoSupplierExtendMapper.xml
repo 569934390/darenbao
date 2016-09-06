@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoSupplierExtendMapper">
+
+	<resultMap id="VoResultMap" type="com.club.web.stock.vo.CargoSupplierVo">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="contacts" property="contacts" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="addr" property="addr" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, code, `name`, contacts, tel, addr, create_time,
+		create_by,
+		update_time, update_by
+	</sql>
+
+	<!-- 查询所有供应商 -->
+	<select id="findListAll" resultMap="VoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from cargo_supplier
+	</select>
+
+	<!-- 根据名称查询分页结果 -->
+	<select id="queryCargoSupplierPage" resultMap="VoResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from cargo_supplier
+		where
+		<if test="conditions != null">
+			(`name` like #{conditions}) or (contacts like
+			#{conditions}) or (tel like
+			#{conditions})
+		</if>
+		limit #{start},#{limit}
+	</select>
+
+	<!-- 根据名字查询分页条数 -->
+	<select id="queryCargoSupplierCountPage" resultType="java.lang.Long"
+		parameterType="map">
+		select
+		count(1) as count
+		from cargo_supplier
+		where
+		<if test="conditions != null">
+			(`name` like #{conditions}) or (contacts like
+			#{conditions}) or (tel like
+			#{conditions})
+		</if>
+	</select>
+
+	<!-- 根据名字查询 -->
+	<select id="queryCargoSupplierByName" resultMap="VoResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from cargo_supplier where name = #{name}
+	</select>
+
+</mapper>

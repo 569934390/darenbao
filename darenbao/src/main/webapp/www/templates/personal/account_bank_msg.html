@@ -1,0 +1,74 @@
+<style>
+.bank-center{
+	width: 100%;
+	height: 100%;
+	background-color: #F4EBEB;
+}
+.account-bank-update{
+	margin-top: 2.2rem;
+	background-color: #fff;
+}
+.finsh-titl{
+	color: #938181;
+}
+.account-bank-update .row{
+	border-bottom: dashed 0.05rem #F4DADA; 
+	padding-left:  1rem;
+	padding-top: 0.5rem;
+}
+.account-save-btn{
+	width: 10rem;
+	margin-top: 4rem;
+}
+.bank-tip-build{
+	margin-left: 1rem;
+	color: #9A8585;
+	font-size: 0.7rem;
+}
+.account-bank-update .row input{
+	border: 0rem ;
+	width: 10rem;
+}
+</style>
+<ion-view title="完善银行卡信息">
+    <ion-header-bar class="bar-default">
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">完善银行卡信息</h1>
+    </ion-header-bar>
+    <div class="bank-center">
+	    <div class="account-bank-update">
+	    	  <input hidden="true" ng-model="bank.id">
+	          <div class="row">
+	          	<div class="">开户人:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="请输入您的真实姓名" ng-model="bank.name"></input></div>
+	          </div>
+	          <div class="row">
+	         	 <div class="">身份证: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="请输入持卡人身份证号" ng-model="bank.card"></input></div>
+	          </div>
+	          <div class="row">
+	          	<div class="">银行卡号:&nbsp;&nbsp;&nbsp;<input placeholder="请输入银行卡号" ng-model="bank.bankCard"></input></div>
+	          </div>
+			<div class="row">
+				<div class="">银行全称:&nbsp;&nbsp;&nbsp;<input placeholder="请填写完整银行名称" ng-model="bank.bankName"/></div>
+			</div>
+	          <div class="row">
+	          	<div class="">开户行:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="请输入正确开户行信息" ng-model="bank.bankAddress"></input>
+				<div class="bank-tip-build bank-tip-build-red" style="margin-left: 0;color: #ef473a;">
+					举例：成都建设路支行（城市名+支行名）
+				</div>
+				</div>
+
+	          </div>
+	          <div class="row">
+	          	<div class="">手机号码:&nbsp;&nbsp;<input placeholder="请输入银行预留手机号码" ng-model="bank.mobile"></input></div>
+	          </div>
+	    </div>
+	    <div class="bank-tip-build bank-tip-build-red" style="color: #ef473a; line-height: 1.1rem">
+	    	* 该银行卡将用于平台与商家结算，请正确填写银行卡信息，否则将导致无法结算。
+	    </div>
+	    <div style="width: 100%;text-align: center;">
+		    <button class="button button-assertive account-save-btn" ng-click="saveOrUpdateBank()">完成</button>
+	    </div>
+    </div>
+</ion-view>

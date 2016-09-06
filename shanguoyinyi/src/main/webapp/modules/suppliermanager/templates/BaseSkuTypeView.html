@@ -1,0 +1,39 @@
+<div class="row supplier-info-main-btngroup">
+    <div class="col-md-12 emgceval-main-view">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group btn-group pull-right">
+                   	<label>规格类型：</label>
+                   	<select name="skuType-conditions"  data-rule="required;">
+                       <option value="0" selected="selected">全部</option>
+                       <option value="1">文本</option>
+                       <option value="2">值</option>
+                       <option value="3">图</option>
+                   	</select>
+                    <input type="text" name="supplier-conditions" placeholder="按规格名称搜索...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" class="btn btn-info" action="search" >
+                        	<i class="fa fa-search"></i>
+                        </button>
+                        <button type="button" class="btn btn-info" action="refresh" title="刷新">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="add" title="新增规格">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="edit" title="编辑规格">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" class="btn btn-info" action="del" title="删除规格">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-right:10px;">
+            <div class="col-md-12 emgceval-content-div" id="baseSkuType-info-content-div">
+            </div>
+        </div>
+    </div>
+</div>

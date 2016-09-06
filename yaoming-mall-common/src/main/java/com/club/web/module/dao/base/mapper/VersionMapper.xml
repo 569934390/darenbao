@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.module.dao.base.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.module.dao.base.po.Version" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="effect" property="effect" jdbcType="INTEGER" />
+    <result column="download_way" property="downloadWay" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.club.web.module.dao.base.po.Version" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, `name`, modifier, creater, update_time, url, platform, `status`, effect,download_way
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from version
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from version
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.module.dao.base.po.Version" >
+    insert into version (id, code, `name`, 
+      modifier, creater, update_time, 
+      url, platform, `status`, 
+      effect, description,download_way)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{url,jdbcType=VARCHAR}, #{platform,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{effect,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR},#{downloadWay,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.module.dao.base.po.Version" >
+    insert into version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="effect != null" >
+        effect,
+      </if>
+      <if test="downloadWay != null" >
+        downloadWay,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null" >
+        #{effect,jdbcType=INTEGER},
+      </if>
+      <if test="downloadWay != null" >
+        #{downloadWay,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.module.dao.base.po.Version" >
+    update version
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null" >
+        effect = #{effect,jdbcType=INTEGER},
+      </if>
+      <if test="downloadWay != null" >
+        download_way = #{downloadWay,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.module.dao.base.po.Version" >
+    update version
+    set code = #{code,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      effect = #{effect,jdbcType=INTEGER},
+      download_way = #{downloadWay,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.module.dao.base.po.Version" >
+    update version
+    set code = #{code,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      download_way = #{downloadWay,jdbcType=INTEGER},
+      effect = #{effect,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

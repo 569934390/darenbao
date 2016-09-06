@@ -1,0 +1,40 @@
+<div class="ui-dialog dialog-md salesReturnReasonManagerWindow">
+    <div class="modal-header">
+        <h4 class="modal-title">新增分店</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" name="salesReturnReason-form">
+                    <input type="hidden" name="id"> 
+                   
+                    
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">原因</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="reason" data-rule="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="col-md-4 control-label">显示排序</label>
+                            <div class="input-group col-md-8">
+                                <input class="form-control" name="rank" data-rule="required">
+                            	<span style="font-size:10px;color: #B0B0B0">提示：数字越大,排序越前</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                     
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="save-button">确定</button>
+        <button type="button" class="btn btn-default" action="clear-button">重置</button>
+        <button type="button" class="btn btn-default" action="cancel-button">取消</button>
+    </div>
+</div>

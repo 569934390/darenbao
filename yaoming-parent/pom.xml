@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yaoming</groupId>
+	<artifactId>yaoming-parent</artifactId>
+	<version>0.2.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		
+		<yaoming.common.version>0.1.0-SNAPSHOT</yaoming.common.version>
+		<yaoming.ueditor.version>0.1.0-SNAPSHOT</yaoming.ueditor.version>
+		<yaoming.security.version>0.2.1</yaoming.security.version>
+		<yaoming.wxpay.version>0.1.0</yaoming.wxpay.version>
+		
+		<yaoming.mall.common.version>0.2.0-SNAPSHOT</yaoming.mall.common.version>
+		<yaoming.zuitese.version>1.0.10</yaoming.zuitese.version>
+		<yaoming.shanguoyinyi.version>1.1.0</yaoming.shanguoyinyi.version>
+		<yaoming.kaiwo.version>0.1.10</yaoming.kaiwo.version>
+		
+		<!-- third jars version -->
+		<aspectj.version>1.8.9</aspectj.version>
+		<aspectj.mavenplugin.version>1.7</aspectj.mavenplugin.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<mysql.version>5.1.29</mysql.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.spring.version>1.2.3</mybatis.spring.version>
+		<slf4j.version>1.7.21</slf4j.version>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<testSource>${java.version}</testSource>
+					<testTarget>${java.version}</testTarget>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	
+	<repositories>
+		<repository>
+			<id>Yaoming Release</id>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>Yaoming Snapshots</id>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>114_67_53_114_release</id>
+			<name>Yaoming Repository Release</name>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>114_67_53_114_snapshot</id>
+			<name>Yaoming Repository Snapshot</name>
+			<url>http://114.67.53.114:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.extend.TradeGoodSkuExtendMapper" >
+  <resultMap id="VoResultMap" type="com.club.web.store.vo.GoodVo" >
+    <id column="id" property="goodSkuId" jdbcType="BIGINT" />
+    <result column="good_id" property="tradeGoodId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_name" property="cargoSkuName" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+  </resultMap>
+  
+    <resultMap id="goodSkuMap" type="com.club.web.store.vo.TradeGoodSkuVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="cargo_sku_id" property="cargoSkuId" jdbcType="BIGINT" />
+    <result column="cargo_sku_name" property="cargoSkuName" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="BIGINT" />
+    <result column="sale_num" property="saleNum" jdbcType="BIGINT" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="retail_price" property="retailPrice" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+    <result column="sku_long" property="skuLong" jdbcType="VARCHAR" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <delete id="deleteSkuByGoodId" parameterType="java.lang.Long" >
+    delete from trade_good_sku
+    where good_id = #{goodId}
+  </delete>
+  
+    <update id="updateSkuByGoodId" parameterType="com.club.web.store.domain.TradeGoodSkuDo" >
+    update trade_good_sku
+    <set >
+      <if test="cargoSkuId != null" >
+      	cargo_sku_id = #{cargoSkuId},
+      </if>
+      <if test="cargoSkuName != null" >
+      	cargo_sku_name = #{cargoSkuName},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice},
+      </if>
+      <if test="retailPrice != null" >
+        retail_price = #{retailPrice},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime},
+      </if>
+      <if test="limitNum != null" >
+        limit_num = #{limitNum},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice},
+      </if>
+    </set>
+    where good_id  = #{goodId}
+  </update>
+  
+  
+  <select id="selectSkuByGoodId" resultMap="goodSkuMap" parameterType="java.lang.Long" >
+    select t.*,c.code
+    from trade_good_sku t left join  cargo_sku c on c.id=t.cargo_sku_id
+    where 1=1 and t.good_id = #{goodId}
+  </select>
+  
+   <select id="selectById" resultMap="goodSkuMap" parameterType="java.lang.Long" >
+    select *,(select `name` from trade_good where id = trade_good_sku.good_id) as good_name
+    from trade_good_sku
+    where 1=1 and id = #{id}
+  </select>
+  
+  <update id="updateNumById" parameterType="com.club.web.store.domain.GoodUpDo" >
+    update trade_good_sku
+    set `nums` = #{num} 
+    where id  = #{goodSkuId}
+  </update>
+  
+  <update id="updateSaleNumById" parameterType="com.club.web.store.domain.GoodUpDo" >
+    update trade_good_sku
+    set `sale_num` = #{num} 
+    where id  = #{goodSkuId}
+  </update>
+  
+   <!-- 根据货品skuid查询是否有对应的商品skuid -->
+	<select id="selectGoodSkuNumsByCargoSkuId" parameterType="java.lang.Long"
+		resultType="com.club.web.store.domain.TradeGoodSkuDo">
+		select id
+		from trade_good_sku where cargo_sku_id=#{cargoSkuId}
+	</select>
+	
+	<select id="selectSkuList" resultMap="goodSkuMap" parameterType="java.lang.Long" >
+		   select 
+		   a.id, 
+		   a.good_id, 
+		   a.cargo_sku_id, 
+		   b.sku as cargo_sku_name, 
+		   a.nums, 
+		   a.sale_num, 
+		   a.market_price, 
+		   a.retail_price,
+		   a.start_time,
+		   a.end_time,
+		   a.limit_num,
+		   a.sale_price,
+		   b.sku_long
+			from trade_good_sku a
+			left join (
+					select 
+						b1.cargo_sku_id, 
+						group_concat(b2.cargo_base_sku_item_id) sku_value,
+						group_concat(b2.`name` SEPARATOR "!!") sku,
+						group_concat(concat(b3.`name`, "~", b2.`name`,"~",if(b3.type=3, b2.pic_url, b2.`value`)) SEPARATOR "!!") sku_long
+					from cargo_sku_option b1
+					left join (
+					select b21.*, b22.pic_url from cargo_sku_item b21
+					left join image b22 on b21.`value`=b22.id) b2 on b1.cargo_sku_item_id=b2.id
+					left join cargo_sku_type b3 on b2.cargo_sku_type_id=b3.id
+					group by b1.cargo_sku_id
+					order by b2.id asc
+				) b on a.cargo_sku_id=b.cargo_sku_id
+		where good_id = #{goodId}
+  	</select>
+  
+</mapper>

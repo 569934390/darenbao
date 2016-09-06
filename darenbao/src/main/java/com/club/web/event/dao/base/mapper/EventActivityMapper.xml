@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.event.dao.base.EventActivityMapper">
+	<resultMap id="BaseResultMap" type="com.club.web.event.dao.base.po.EventActivity">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="store_subbranch_id" property="subbranchId" jdbcType="BIGINT" />
+		<result column="activity_type_id" property="activityTypeId" jdbcType="BIGINT" />
+		<result column="type" property="type" jdbcType="BIGINT" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="sponsor_name" property="sponsorName" jdbcType="VARCHAR" />
+		<result column="sponsor_tel" property="sponsorTel" jdbcType="VARCHAR" />
+		<result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="number_limit" property="numberLimit" jdbcType="BIGINT" />
+		<result column="reg_start_time" property="regStartTime" jdbcType="TIMESTAMP" />
+		<result column="reg_end_time" property="regEndTime" jdbcType="TIMESTAMP" />
+		<result column="activity_status" property="activityStatus" jdbcType="BIGINT" />
+		<result column="status" property="status" jdbcType="BIGINT" />
+		<result column="activity_pic" property="activityPic" jdbcType="VARCHAR" />
+		<result column="activity_address" property="activityAddress" jdbcType="VARCHAR" />
+		<result column="activity_longitude" property="activityLongitude" jdbcType="DOUBLE" />
+		<result column="activity_latitude" property="activityLatitude" jdbcType="DOUBLE" />
+		<result column="create_address" property="createAddress" jdbcType="VARCHAR" />
+		<result column="create_longitude" property="createLongitude" jdbcType="DOUBLE" />
+		<result column="create_latitude" property="createLatitude" jdbcType="DOUBLE" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="BIGINT" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="BIGINT" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.club.web.event.dao.base.po.EventActivity" extends="BaseResultMap">
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, store_subbranch_id, activity_type_id, type,title, sponsor_name, sponsor_tel, begin_time, end_time, number_limit,
+		reg_start_time,
+		reg_end_time,
+		activity_status, `status`, activity_pic, activity_address,
+		activity_longitude, activity_latitude, create_address, create_longitude, create_latitude,
+		create_time, create_by, update_time, update_by
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from event_activity
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from event_activity
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.club.web.event.dao.base.po.EventActivity">
+		insert into event_activity (ID,store_subbranch_id, activity_type_id ,type,title,
+		sponsor_name, sponsor_tel, begin_time,
+		end_time, number_limit,
+		reg_start_time,
+		reg_end_time,
+		activity_status, `status`, activity_pic,
+		activity_address, activity_longitude,
+		activity_latitude, create_address, create_longitude,
+		create_latitude, create_time, create_by,
+		update_time, update_by
+		, content
+		, failure
+		)
+		values (#{id,jdbcType=BIGINT}, #{subbranchId,jdbcType=BIGINT}, #{activityTypeId,jdbcType=BIGINT},#{type,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR},
+		#{sponsorName,jdbcType=VARCHAR}, #{sponsorTel,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP}, #{numberLimit,jdbcType=BIGINT},
+		#{regStartTime,jdbcType=TIMESTAMP},
+		#{regEndTime,jdbcType=TIMESTAMP},
+		#{activityStatus,jdbcType=BIGINT}, #{status,jdbcType=BIGINT}, #{activityPic,jdbcType=VARCHAR},
+		#{activityAddress,jdbcType=VARCHAR}, #{activityLongitude,jdbcType=DOUBLE},
+		#{activityLatitude,jdbcType=DOUBLE}, #{createAddress,jdbcType=VARCHAR}, #{createLongitude,jdbcType=DOUBLE},
+		#{createLatitude,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT},
+		#{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT}
+		, #{content,jdbcType=LONGVARCHAR}
+		, #{failure,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.club.web.event.dao.base.po.EventActivity">
+		insert into event_activity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="subbranchId != null">
+				store_subbranch_id,
+			</if>
+			<if test="activityTypeId != null">
+				activity_type_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="sponsorName != null">
+				sponsor_name,
+			</if>
+			<if test="sponsorTel != null">
+				sponsor_tel,
+			</if>
+			<if test="beginTime != null">
+				begin_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="numberLimit != null">
+				number_limit,
+			</if>
+			<if test="regStartTime != null">
+				reg_start_time,
+			</if>
+			<if test="regEndTime != null">
+				reg_end_time,
+			</if>
+			<if test="activityStatus != null">
+				activity_status,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="activityPic != null">
+				activity_pic,
+			</if>
+			<if test="activityAddress != null">
+				activity_address,
+			</if>
+			<if test="activityLongitude != null">
+				activity_longitude,
+			</if>
+			<if test="activityLatitude != null">
+				activity_latitude,
+			</if>
+			<if test="createAddress != null">
+				create_address,
+			</if>
+			<if test="createLongitude != null">
+				create_longitude,
+			</if>
+			<if test="createLatitude != null">
+				create_latitude,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="failure != null">
+				failure
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="subbranchId != null">
+				#{subbranchId,jdbcType=BIGINT},
+			</if>
+			<if test="activityTypeId != null">
+				#{activityTypeId,jdbcType=BIGINT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="sponsorName != null">
+				#{sponsorName,jdbcType=VARCHAR},
+			</if>
+			<if test="sponsorTel != null">
+				#{sponsorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				#{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="numberLimit != null">
+				#{numberLimit,jdbcType=BIGINT},
+			</if>
+			<if test="regStartTime != null">
+				#{regStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regEndTime != null">
+				#{regEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activityStatus != null">
+				#{activityStatus,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=BIGINT},
+			</if>
+			<if test="activityPic != null">
+				#{activityPic,jdbcType=VARCHAR},
+			</if>
+			<if test="activityAddress != null">
+				#{activityAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="activityLongitude != null">
+				#{activityLongitude,jdbcType=DOUBLE},
+			</if>
+			<if test="activityLatitude != null">
+				#{activityLatitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createAddress != null">
+				#{createAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createLongitude != null">
+				#{createLongitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createLatitude != null">
+				#{createLatitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=BIGINT},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=BIGINT},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="failure != null">
+				#{failure,jdbcType=LONGVARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.club.web.event.dao.base.po.EventActivity">
+		update event_activity
+		<set>
+			<if test="subbranchId != null">
+				store_subbranch_id = #{subbranchId,jdbcType=BIGINT},
+			</if>
+			<if test="activityTypeId != null">
+				activity_type_id = #{activityTypeId,jdbcType=BIGINT},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="sponsorName != null">
+				sponsor_name = #{sponsorName,jdbcType=VARCHAR},
+			</if>
+			<if test="sponsorTel != null">
+				sponsor_tel = #{sponsorTel,jdbcType=VARCHAR},
+			</if>
+			<if test="beginTime != null">
+				begin_time = #{beginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="numberLimit != null">
+				number_limit = #{numberLimit,jdbcType=BIGINT},
+			</if>
+			<if test="regEndTime != null">
+				reg_end_time = #{regEndTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="regStartTime != null">
+				reg_start_time = #{regStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activityStatus != null">
+				activity_status = #{activityStatus,jdbcType=BIGINT},
+			</if>
+			<if test="status != null">
+				`status` = #{status,jdbcType=BIGINT},
+			</if>
+			<if test="activityPic != null">
+				activity_pic = #{activityPic,jdbcType=VARCHAR},
+			</if>
+			<if test="activityAddress != null">
+				activity_address = #{activityAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="activityLongitude != null">
+				activity_longitude = #{activityLongitude,jdbcType=DOUBLE},
+			</if>
+			<if test="activityLatitude != null">
+				activity_latitude = #{activityLatitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createAddress != null">
+				create_address = #{createAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="createLongitude != null">
+				create_longitude = #{createLongitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createLatitude != null">
+				create_latitude = #{createLatitude,jdbcType=DOUBLE},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=BIGINT},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=BIGINT},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="failure != null">
+				failure = #{failure,jdbcType=LONGVARCHAR}
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.club.web.event.dao.base.po.EventActivity">
+		update event_activity
+		set 
+		store_subbranch_id = #{subbranchId,jdbcType=BIGINT},
+		activity_type_id = #{activityTypeId,jdbcType=BIGINT},
+		type = #{type,jdbcType=BIGINT},
+		title = #{title,jdbcType=VARCHAR},
+		sponsor_name = #{sponsorName,jdbcType=VARCHAR},
+		sponsor_tel = #{sponsorTel,jdbcType=VARCHAR},
+		begin_time = #{beginTime,jdbcType=TIMESTAMP},
+		end_time = #{endTime,jdbcType=TIMESTAMP},
+		number_limit = #{numberLimit,jdbcType=BIGINT},
+		reg_start_time = #{regStartTime,jdbcType=TIMESTAMP},
+		reg_end_time = #{regEndTime,jdbcType=TIMESTAMP},
+		activity_status = #{activityStatus,jdbcType=BIGINT},
+		`status` = #{status,jdbcType=BIGINT},
+		activity_pic = #{activityPic,jdbcType=VARCHAR},
+		activity_address = #{activityAddress,jdbcType=VARCHAR},
+		activity_longitude = #{activityLongitude,jdbcType=DOUBLE},
+		activity_latitude = #{activityLatitude,jdbcType=DOUBLE},
+		create_address = #{createAddress,jdbcType=VARCHAR},
+		create_longitude = #{createLongitude,jdbcType=DOUBLE},
+		create_latitude = #{createLatitude,jdbcType=DOUBLE},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_by = #{createBy,jdbcType=BIGINT},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=BIGINT},
+		content = #{content,jdbcType=LONGVARCHAR},
+		failure = #{failure,jdbcType=LONGVARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.club.web.event.dao.base.po.EventActivity">
+		update event_activity
+		set 		
+		store_subbranch_id = #{subbranchId,jdbcType=BIGINT},
+		activity_type_id = #{activityTypeId,jdbcType=BIGINT},
+		type = #{type,jdbcType=BIGINT},
+		title = #{title,jdbcType=VARCHAR},
+		sponsor_name = #{sponsorName,jdbcType=VARCHAR},
+		sponsor_tel = #{sponsorTel,jdbcType=VARCHAR},
+		begin_time = #{beginTime,jdbcType=TIMESTAMP},
+		end_time = #{endTime,jdbcType=TIMESTAMP},
+		number_limit = #{numberLimit,jdbcType=BIGINT},
+		reg_start_time = #{regStartTime,jdbcType=TIMESTAMP},
+		reg_end_time = #{regEndTime,jdbcType=TIMESTAMP},
+		activity_status = #{activityStatus,jdbcType=BIGINT},
+		`status` = #{status,jdbcType=BIGINT},
+		activity_pic = #{activityPic,jdbcType=VARCHAR},
+		activity_address = #{activityAddress,jdbcType=VARCHAR},
+		activity_longitude = #{activityLongitude,jdbcType=DOUBLE},
+		activity_latitude = #{activityLatitude,jdbcType=DOUBLE},
+		create_address = #{createAddress,jdbcType=VARCHAR},
+		create_longitude = #{createLongitude,jdbcType=DOUBLE},
+		create_latitude = #{createLatitude,jdbcType=DOUBLE},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		create_by = #{createBy,jdbcType=BIGINT},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=BIGINT}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.extend.CargoBaseSkuItemExtendMapper">
+  <resultMap id="BaseResultMap" type="com.club.web.stock.vo.CargoBaseSkuItemVo">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="base_sku_type_id" property="baseSkuTypeId" jdbcType="BIGINT" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, code, base_sku_type_id, `value`, `name`, create_time, create_by, update_time, 
+    update_by
+  </sql>
+  
+  <sql id="Base_Column_Img_List">
+		id, code, base_sku_type_id, 
+		(select i.pic_url from Image i where i.id=value) as `value`,
+		`name`, create_time, create_by, update_time, update_by
+  </sql>
+  
+  <select id="selectSkuItemBySkuTypeId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+	<include refid="Base_Column_List" /> 
+    from cargo_base_sku_item 
+    where base_sku_type_id = #{baseSkuTypeId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectSkuItemAndImgBySkuTypeId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+	<include refid="Base_Column_Img_List"/> 
+    from cargo_base_sku_item 
+    where base_sku_type_id = #{baseSkuTypeId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByBaseSkuTypeId" parameterType="java.lang.Long" >
+    delete from cargo_base_sku_item
+    where base_sku_type_id = #{baseSkuTypeId} and id = #{id}
+  </delete>
+ 
+</mapper>

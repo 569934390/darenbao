@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.store.dao.base.CarriageRuleDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.store.dao.base.po.CarriageRuleDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="carriage_rule_id" property="carriageRuleId" jdbcType="BIGINT" />
+    <result column="indent_money_full" property="indentMoneyFull" jdbcType="DECIMAL" />
+    <result column="carriage_full" property="carriageFull" jdbcType="DECIMAL" />
+    <result column="carriage_not_full" property="carriageNotFull" jdbcType="DECIMAL" />
+    <result column="deliver_region" property="deliverRegion" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, carriage_rule_id, indent_money_full, carriage_full, carriage_not_full, deliver_region
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from carriage_rule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from carriage_rule_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.store.dao.base.po.CarriageRuleDetail" >
+    insert into carriage_rule_detail (id, carriage_rule_id, indent_money_full, 
+      carriage_full, carriage_not_full, deliver_region
+      )
+    values (#{id,jdbcType=BIGINT}, #{carriageRuleId,jdbcType=BIGINT}, #{indentMoneyFull,jdbcType=DECIMAL}, 
+      #{carriageFull,jdbcType=DECIMAL}, #{carriageNotFull,jdbcType=DECIMAL}, #{deliverRegion,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.store.dao.base.po.CarriageRuleDetail" >
+    insert into carriage_rule_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="carriageRuleId != null" >
+        carriage_rule_id,
+      </if>
+      <if test="indentMoneyFull != null" >
+        indent_money_full,
+      </if>
+      <if test="carriageFull != null" >
+        carriage_full,
+      </if>
+      <if test="carriageNotFull != null" >
+        carriage_not_full,
+      </if>
+      <if test="deliverRegion != null" >
+        deliver_region,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="carriageRuleId != null" >
+        #{carriageRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="indentMoneyFull != null" >
+        #{indentMoneyFull,jdbcType=DECIMAL},
+      </if>
+      <if test="carriageFull != null" >
+        #{carriageFull,jdbcType=DECIMAL},
+      </if>
+      <if test="carriageNotFull != null" >
+        #{carriageNotFull,jdbcType=DECIMAL},
+      </if>
+      <if test="deliverRegion != null" >
+        #{deliverRegion,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.store.dao.base.po.CarriageRuleDetail" >
+    update carriage_rule_detail
+    <set >
+      <if test="carriageRuleId != null" >
+        carriage_rule_id = #{carriageRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="indentMoneyFull != null" >
+        indent_money_full = #{indentMoneyFull,jdbcType=DECIMAL},
+      </if>
+      <if test="carriageFull != null" >
+        carriage_full = #{carriageFull,jdbcType=DECIMAL},
+      </if>
+      <if test="carriageNotFull != null" >
+        carriage_not_full = #{carriageNotFull,jdbcType=DECIMAL},
+      </if>
+      <if test="deliverRegion != null" >
+        deliver_region = #{deliverRegion,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.store.dao.base.po.CarriageRuleDetail" >
+    update carriage_rule_detail
+    set carriage_rule_id = #{carriageRuleId,jdbcType=BIGINT},
+      indent_money_full = #{indentMoneyFull,jdbcType=DECIMAL},
+      carriage_full = #{carriageFull,jdbcType=DECIMAL},
+      carriage_not_full = #{carriageNotFull,jdbcType=DECIMAL},
+      deliver_region = #{deliverRegion,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

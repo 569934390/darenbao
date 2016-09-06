@@ -1,0 +1,36 @@
+<div class="row message-manager">
+	<div id="tabs" class="ui-tabs-panel">
+		<div class="row">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<div class="navbar-form navbar-left" role="search">
+						<div class="form-group col-md-12">
+							会员昵称：<input type="text" name="iclientName" class="form-control">
+							回复类型：<select name="ireplyStatus" class="form-control">
+								<option value="" selected="selected">全部</option>
+								<option value="0">未回复</option>
+								<option value="1">已回复</option>
+							</select>
+							<button class="btn btn-info" action="search" title="搜索">
+								搜索<i class="fa fa-search"></i>
+							</button>
+							<button class="btn btn-info" action="refresh" title="刷新">
+								<i class="glyphicon glyphicon-refresh"></i>
+							</button>
+							<button class="btn btn-info" action="reply" title="回复消息">
+								回复消息
+							</button>
+							<button class="btn btn-info" action="operateReply" title="置为已回复">
+								置为已回复
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="width: 99%">
+			<div class="col-md-12" id="news-content-div"></div>
+		</div>
+	</div>
+</div>

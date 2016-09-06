@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.club.web.stock.dao.base.CargoMapper" >
+  <resultMap id="BaseResultMap" type="com.club.web.stock.dao.base.po.Cargo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="classify_id" property="classifyId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="cargo_no" property="cargoNo" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="small_image_id" property="smallImageId" jdbcType="BIGINT" />
+    <result column="show_image_group_id" property="showImageGroupId" jdbcType="BIGINT" />
+    <result column="detail_image_group_id" property="detailImageGroupId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, supplier_id, brand_id, classify_id, `name`, cargo_no, description, small_image_id, 
+    show_image_group_id, detail_image_group_id, create_time, create_by, update_time, 
+    update_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cargo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cargo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.club.web.stock.dao.base.po.Cargo" >
+    insert into cargo (id, supplier_id, brand_id, 
+      classify_id, `name`, cargo_no, 
+      description, small_image_id, show_image_group_id, 
+      detail_image_group_id, create_time, create_by, 
+      update_time, update_by)
+    values (#{id,jdbcType=BIGINT}, #{supplierId,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, 
+      #{classifyId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{cargoNo,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{smallImageId,jdbcType=BIGINT}, #{showImageGroupId,jdbcType=BIGINT}, 
+      #{detailImageGroupId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.club.web.stock.dao.base.po.Cargo" >
+    insert into cargo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="classifyId != null" >
+        classify_id,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="cargoNo != null" >
+        cargo_no,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="smallImageId != null" >
+        small_image_id,
+      </if>
+      <if test="showImageGroupId != null" >
+        show_image_group_id,
+      </if>
+      <if test="detailImageGroupId != null" >
+        detail_image_group_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="classifyId != null" >
+        #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoNo != null" >
+        #{cargoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImageId != null" >
+        #{smallImageId,jdbcType=BIGINT},
+      </if>
+      <if test="showImageGroupId != null" >
+        #{showImageGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="detailImageGroupId != null" >
+        #{detailImageGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.club.web.stock.dao.base.po.Cargo" >
+    update cargo
+    <set >
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="classifyId != null" >
+        classify_id = #{classifyId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoNo != null" >
+        cargo_no = #{cargoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImageId != null" >
+        small_image_id = #{smallImageId,jdbcType=BIGINT},
+      </if>
+      <if test="showImageGroupId != null" >
+        show_image_group_id = #{showImageGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="detailImageGroupId != null" >
+        detail_image_group_id = #{detailImageGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.club.web.stock.dao.base.po.Cargo" >
+    update cargo
+    set supplier_id = #{supplierId,jdbcType=BIGINT},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      classify_id = #{classifyId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      cargo_no = #{cargoNo,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      small_image_id = #{smallImageId,jdbcType=BIGINT},
+      show_image_group_id = #{showImageGroupId,jdbcType=BIGINT},
+      detail_image_group_id = #{detailImageGroupId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

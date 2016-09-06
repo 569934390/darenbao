@@ -1,0 +1,319 @@
+/* reset */
+body,h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,form,input,textarea,th,td,select{margin:0;padding:0;}
+em{font-style:normal}
+li{list-style:none}
+a{text-decoration:none;}
+img{border:none; vertical-align:top;}
+table{border-collapse:collapse;}
+textarea{ resize:none;overflow:auto;}
+input,dd{border: none;}
+
+.clear { zoom:1; }
+.clear:after { content:''; display:block; clear:both; }
+/* end reset */
+
+
+/* public */
+
+/* end public */
+
+body{font: normal 12px '΢���ź� ����';background: #0f1120 url("../img/bg.png") no-repeat  center  fixed;background-size: 6.4rem 8.03rem ;}
+
+section{perspective:8rem;
+    -webkit-perspective:8rem; /* Safari and Chrome */
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d; /* Safari and Chrome */
+}
+.context{position: relative;
+
+    transform-origin:center;
+    -ms-transform-origin:center; 		/* IE 9 */
+    -webkit-transform-origin:center;	/* Safari �� Chrome */
+    -moz-transform-origin:center;		/* Firefox */
+    -o-transform-origin:center;
+
+}
+
+
+
+#top{position: absolute;width: 100%;display: block;z-index: 1;}
+#bottom{position: absolute;width: 100%;opacity: 0;
+    transform:translate3d(6.4rem,0,0) rotateY(180deg);
+    -ms-transform:translate3d(6.4rem,0,0) rotateY(180deg); 	/* IE 9 */
+    -moz-transform:translate3d(6.4rem,0,0) rotateY(180deg); 	/* Firefox */
+    -webkit-transform:translate3d(6.4rem,0,0) rotateY(180deg); /* Safari �� Chrome */
+    -o-transform:translate3d(6.4rem,0,0) rotateY(180deg);
+
+
+
+    transform-origin:left;
+    -ms-transform-origin:left; 		/* IE 9 */
+    -webkit-transform-origin:left;	/* Safari �� Chrome */
+    -moz-transform-origin:left;		/* Firefox */
+    -o-transform-origin:left;
+}
+
+#bottom1{position: absolute;width: 100%;opacity: 1;
+
+
+
+    transform-origin:left;
+    -ms-transform-origin:left; 		/* IE 9 */
+    -webkit-transform-origin:left;	/* Safari �� Chrome */
+    -moz-transform-origin:left;		/* Firefox */
+    -o-transform-origin:left;
+}
+
+.rollover{
+    animation: rollover 1s;
+    -webkit-animation: rollover 1s;
+    -moz-animation: rollover 1s;
+    -o-animation: rollover 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode:forwards ;
+
+
+}
+
+
+
+
+@keyframes rollover{
+
+    to{
+        transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg); 	/* IE 9 */
+        -moz-transform: rotateY(-180deg); 	/* Firefox */
+        -webkit-transform: rotateY(-180deg); /* Safari �� Chrome */
+        -o-transform: rotateY(-180deg);
+    }
+}
+@-webkit-keyframes rollover{   /* Safari �� Chrome */
+
+    to{
+        transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg); 	/* IE 9 */
+        -moz-transform: rotateY(-180deg); 	/* Firefox */
+        -webkit-transform: rotateY(-180deg); /* Safari �� Chrome */
+        -o-transform: rotateY(-180deg);
+    }
+}
+@-moz-keyframes rollover{ /* Firefox */
+
+    to{
+        transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg); 	/* IE 9 */
+        -moz-transform: rotateY(-180deg); 	/* Firefox */
+        -webkit-transform: rotateY(-180deg); /* Safari �� Chrome */
+        -o-transform: rotateY(-180deg);
+    }
+}
+
+@-o-keyframes rollover{/* Opera */
+    to{
+        transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg); 	/* IE 9 */
+        -moz-transform: rotateY(-180deg); 	/* Firefox */
+        -webkit-transform: rotateY(-180deg); /* Safari �� Chrome */
+        -o-transform: rotateY(-180deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.logo{padding: 1.16rem 0 0.8rem;}
+.logo img{margin: 0 auto;display: block;width: 3.1rem;}
+
+
+.call{width: 6rem;margin: 0 auto;background: #ffffff;border-radius: 0.1rem;}
+.call dl{padding: 0.19rem 0;}
+.call dt{float: left;margin: 0.05rem 0.22rem 0 0.4rem;}
+.call dt img{width: 1.2rem;}
+.call dd{margin: 0 0 0 1.82rem;height: 0.62rem;font: 0.28rem/0.62rem '΢���ź� ����';color: #333;text-indent: 0.4rem;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.call dd:nth-of-type(1){background: url("../img/callCardImg/call_img1.png") no-repeat left;background-size:0.22rem 0.26rem; }
+.call dd:nth-of-type(2){background: url("../img/callCardImg/call_img2.png") no-repeat 0.01rem;background-size:0.2rem 0.28rem;}
+
+.call ul{width: 5.3rem;margin: 0 auto;border-top: 1px solid #cccccc;}
+.call li{height: 0.72rem;;padding-left: 0.98rem;}
+
+.call li:nth-of-type(1){background:url("../img/callCardImg/call_img3.png") no-repeat 0.22rem;background-size: 0.34rem 0.34rem;}
+.call li:nth-of-type(2){background:url("../img/callCardImg/call_img4.png") no-repeat 0.22rem;background-size:0.34rem 0.26rem; }
+.call li:nth-of-type(3){background:url("../img/callCardImg/call_img5.png") no-repeat 0.22rem;background-size:0.34rem 0.26rem;}
+.call li:nth-of-type(4){background:url("../img/callCardImg/call_img6.png") no-repeat 0.25rem;background-size:0.24rem 0.34rem;}
+
+
+.call li em{font:normal 0.28rem/0.72rem '΢���ź� ����';color: #444;vertical-align: middle;}
+.call li strong{font: normal 0.24rem/0.72rem '΢���ź� ����';color:#666;text-align: right;vertical-align: middle;margin-left: 0.5rem;display: inline-block;width: 3.1rem;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+.regist-bg{padding:38px 40px 0;}
+
+.form{margin: 2.1rem auto 0;width: 4.8rem;}
+
+.form dl{}
+.form dd{border-bottom:1px solid #999999;height: 0.72rem;padding-left: 0.94rem;margin-bottom: 0.36rem; }
+.form dd:nth-of-type(1){background:url("../img/callCardImg/form_img1.png") no-repeat 0.32rem ;background-size: 0.32rem 0.28rem;}
+.form dd:nth-of-type(1) input{}
+.rebtn{margin-top:50px;}
+.form dd:nth-of-type(2){background:url("../img/callCardImg/form_img2.png") no-repeat 0.33rem;background-size: 0.3rem 0.32rem;position: relative;}
+.form dd:nth-of-type(2) label:nth-of-type(1){width: 60%;}
+.form dd:nth-of-type(2) label:nth-of-type(2){width: 32%;position: absolute;right: 0;height: 100%;top: 0;}
+.form dd:nth-of-type(2) input[type=text]{}
+.form dd:nth-of-type(2) input[type=button]{;color: #faa701;font-weight: lighter;height: 100%;}
+
+.form dd:nth-of-type(3){background:url("../img/callCardImg/form_img3.png") no-repeat 0.38rem;background-size: 0.2rem 0.32rem;}
+.form dd:nth-of-type(3) input{}
+
+.form dd label{height:0.72rem;display: inline-block;width: 100%; }
+.form dd label span{display: inline-block;height: 100%;vertical-align: middle;}
+.form dd input{font: 0.28rem '΢���ź� ����';color: #666;width: 100%;background: none;outline: none;vertical-align: middle;}
+.form dd input:focus{color: #fff;}
+
+
+
+.form dt{margin-top: 1.4rem;}
+.form dt input{display: block;width: 3.8rem;height: 0.9rem;margin: 0 auto;border-radius: 0.4rem;background: #faa701;font: 0.34rem '΢���ź� ����';color: #333;}
+
+
+.p{font: 0.3rem '΢���ź� ����';color: #eee;text-align: center;padding: 1.5rem 0 0.5rem;}
+
+
+
+
+.loadImg{text-align: center;padding:0.4rem 0; }
+.loadImg img{width: 4.99rem;height: 6.31rem;}
+.load-img img{width: 2.58rem;height: 2.56rem;}
+.load-img{padding:1rem 0;}
+
+
+.loadText{padding: 0 0.4rem;font:normal 0.19rem/0.36rem '΢���ź� ����';margin-bottom: 0.4rem;}
+.loadText p{color: #999999;}
+.loadText h3{font:normal 0.19rem/1rem '΢���ź� ����'; color: #faa701;text-align: center;}
+
+
+.loadHint{color: #a4a0b9;font: 0.24rem/0.64rem '΢���ź� ����';text-align: right;height: 0.64rem;padding-right: 0.40rem;}
+
+.loadBtn{margin:1rem auto 1.5rem;position: relative;text-align: center;}
+.loadBtn li{width: 2.56rem;height: 0.84rem;text-align: center;line-height: 0.84rem;font-size: 0.36rem ;font-weight: lighter;border-radius: 0.44rem;border: 1px solid #faa701;}
+.loadBtn li a{display: block;color: #faa701;border-radius: 0.44rem;}
+.loadBtn li:nth-of-type(1){position: absolute;left:0.4rem;top: 0;background:url("../img/load/load_btn1.png") no-repeat 0.23rem ;background-size: 0.36rem 0.54rem;}
+.loadBtn li:nth-of-type(2){position: absolute;right: 0.4rem;top: 0;background: url("../img/load/load_btn2.png") no-repeat 0.4rem ;background-size: 0.38rem 0.46rem;}
+.loadBtn li:nth-of-type(3){display: inline-block;width: 3.72rem;opacity: 0;visibility: hidden;}
+
+
+
+.mergeLeft{
+    animation: mergeLeft 1s;
+    -webkit-animation: mergeLeft 1s;
+    -moz-animation: mergeLeft 1s;
+    -o-animation: mergeLeft 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode:forwards ;
+
+
+}
+
+.mergeRight{
+    animation: mergeRight 1s;
+    -webkit-animation: mergeRight 1s;
+    -moz-animation: mergeRight 1s;
+    -o-animation: mergeRight 1s;
+
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode:forwards ;
+}
+
+#loadBtn .mergeMiddle{
+    visibility: visible;
+    animation: mergeMiddle 1s;
+    -webkit-animation: mergeMiddle 1s;
+    -moz-animation: mergeMiddle 1s;
+    -o-animation: mergeMiddle 1s;
+
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode:forwards ;
+
+
+
+
+}
+
+
+@keyframes mergeLeft{
+    from{left:0.4rem;}
+    to{left:1.92rem;opacity: 0;}
+}
+
+@keyframes mergeRight{
+    from{right: 0.4rem;}
+    to{right: 1.92rem;opacity: 0;}
+}
+@keyframes mergeMiddle{
+    to{opacity: 1}
+}
+
+
+
+@-webkit-keyframes mergeLeft{   /* Safari �� Chrome */
+    from{left:0.4rem;}
+    to{left:1.92rem;opacity: 0;}
+}
+
+@-webkit-keyframes mergeRight{
+    from{right: 0.4rem;}
+    to{right: 1.92rem;opacity: 0;}
+}
+@-webkit-keyframes mergeMiddle{
+    to{opacity: 1}
+}
+
+
+@-moz-keyframes mergeLeft{ /* Firefox */
+    from{left:0.4rem;}
+    to{left:1.92rem;opacity: 0;}
+}
+
+@-moz-keyframes mergeRight{
+    from{right: 0.4rem;}
+    to{right: 1.92rem;opacity: 0;}
+}
+@-moz-keyframes mergeMiddle{
+    to{opacity: 1}
+}
+
+
+@-o-keyframes mergeLeft{/* Opera */
+    from{left:0.4rem;}
+    to{left:1.92rem;opacity: 0;}
+}
+
+@-o-keyframes mergeRight{
+    from{right: 0.4rem;}
+    to{right: 1.92rem;opacity: 0;}
+}
+@-o-keyframes mergeMiddle{
+    to{opacity: 1}
+
+}
+
+
+.mask{z-index: 3;display:none;position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0,0,0,0.7) url("../img/mask_bg.png") no-repeat 4.46rem 0.57rem;background-size: 1.4rem 1.8rem;padding-top: 2rem;}
+.mask ul{background:  url("../img/mask_img.png") no-repeat 1.4rem;padding-left: 2.66rem;background-size: 0.64rem 0.64rem;}
+.mask li{color: #fff;font: 0.32rem/0.64rem '΢���ź� ����';}
+
+
+
+
+
+
+
+
+
+
+

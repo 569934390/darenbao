@@ -1,0 +1,42 @@
+<div class="ui-dialog dialog-md storeLabelManagerWindow">
+	<div class="modal-header">
+		<h4 class="modal-title">新建商品标签信息</h4>
+	</div>
+	<div class="modal-body">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal" name="storeLabel-form">
+					<input type="hidden" name="id"/> 
+					<input type="hidden" name="status"/> 
+					<input type="hidden" name="shopId"/> 
+					<input type="hidden" name="createTime">
+				    <input type="hidden" name="createBy"> 
+				    <input type="hidden" name="updateTime">
+					<input type="hidden" name="updateBy">
+					<div class="col-md-6">
+						<div class="form-group required">
+							<label class="col-md-4 control-label">{{BASE_LABEL_NAME}}：</label>
+							<div class="input-group col-md-8">
+								<input class="form-control" name="labelName" data-rule="required">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 headStoreNameDiv">
+						<div class="form-group">
+							<label class="col-md-4 control-label">排序：</label>
+							<div class="input-group col-md-8">
+							    <input field="spinner" class="form-control" name="orderBy" value="0" data-rule="required;digits;">
+								<span style="font-size:10px;color: #B0B0B0">提示：数字越大,排序越前</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" action="save-button">确定</button>
+		<button type="button" class="btn btn-default" action="clear-button">重置</button>
+		<button type="button" class="btn btn-default" action="cancel-button">取消</button>
+	</div>
+</div>

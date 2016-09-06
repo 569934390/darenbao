@@ -1,0 +1,104 @@
+<style>
+    .spread_detail_padding{
+        padding: 1rem;
+    }
+    .spread_detail_padding h3.name{
+        padding-bottom: 0.9rem;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.1rem;
+        color: #000000;
+        filter:alpha(opacity=87);
+        -moz-opacity:0.87;
+        -khtml-opacity: 0.87;
+        opacity: 0.87;
+        /*text-align: left;*/
+    }
+    .spread_detail_row{
+        padding: 0;
+        padding-bottom: 0.9rem;
+    }
+    .spread_detail_row div{
+        padding: 0;
+        height: 1.4rem;
+        line-height: 1.4rem;
+    }
+    .spreadInfo {
+        max-width: 1.4rem;
+        max-height:1.4rem;
+        vertical-align:bottom;
+    }
+    .spread_detail_content, .spread_detail_content p{
+        font-size: 0.8rem !important;
+        color: rgba(0,0,0,0.87);
+    }
+    .spread_detail_content p{
+        padding: 0;
+        margin: 0;
+        -webkit-margin-after: 0 !important;
+        -webkit-margin-before: 0 !important;
+    }
+    .spread_detail_content img{
+        max-width:100%;
+        height: auto;
+        margin: 0.9rem 0 0.75rem;
+    }
+    .play img{
+        width:100%
+    }
+    .spread_img .footer-content{
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+    .spread_img .footer-content img{
+        width: 0.8rem;
+        vertical-align: middle;
+    }
+    .spread_img .footer-content .active{
+        color: #ff5555;
+        font-size: 0.8rem;
+    }
+    .spread_img .footer-content .inactive{
+        color: #000000;
+        font-size: 0.8rem;
+    }
+</style>
+<ion-view title="学习乐园" class="spread_img">
+    <ion-header-bar class="bar-default" >
+        <div class="head-right-btn" ng-click="myGoBack();">
+            <img src="img/back.png">
+        </div>
+        <h1 class="title">学习乐园</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="spread_detail_padding" style="padding-bottom: 0;">
+            <h3 class="name">{{study.title}}</h3>
+        </div>
+        <div ng-if="ifVideoShow" style="text-align: center;">
+            <video id="media" ng-src="{{study.videoUrl}}" poster="{{study.covePicUrl+'-img01'}}" preload="auto" width="100%" height="260" controls style="margin-left:auto;background-color: black;">
+            </video>
+        </div>
+        <div class="spread_detail_padding">
+            <div class="row spread_detail_row">
+                <div class="col col-50">
+                    <img src="img/yxtg_sj.png" class="spreadInfo">
+                    {{study.createTime1}}
+                </div>
+                <div class="col col-50">
+                    <span style="float: right;margin-right: 20px">{{study.readNum}}</span>
+                    <img src="img/yxtg_ll.png" class="spreadInfo" style="float: right;">
+                </div>
+            </div>
+            <div ng-bind-html="study.content" class="spread_detail_content"></div>
+        </div>
+    </ion-content>
+    <ion-footer-bar ng-show="study.type==1&&study.file!=''&&study.file!=null" >
+        <div class="footer-content">
+            <span ng-click="fileClick()" ng-class="{true: 'inactive', false: 'active'}[fileStatus==2]">
+                <img src="img/xxbl_xz.png"/>
+                <span  ng-bind-html="fileClickContent"></span>
+            </span>
+        </div>
+    </ion-footer-bar>
+</ion-view>

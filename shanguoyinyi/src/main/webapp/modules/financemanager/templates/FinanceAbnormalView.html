@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12 finance-abnormal-main-view">
+        <div class="row">
+            <div class="container-fluid">
+                <div class="navbar-form navbar-left finance-abnormal-main-btngroup">
+              		<div class="form-group">
+              		订单类型：&nbsp;
+					<select name="iorderType" class="form-control">
+						<option value="" selected="selected">全部异常单</option>								
+						<option value="0">异常销售单</option>
+						<option value="1">异常收款单</option>
+					</select>
+            		状态：&nbsp;
+					<select name="istatus" class="form-control">
+						<option value="" selected="selected">全部</option>								
+						<option value="0">正常</option>
+						<option value="1">取消</option>
+					</select>
+                    <button class="btn btn-info" action="search" title="搜索">
+						<i class="fa fa-search"></i>
+					</button>
+					<button class="btn btn-info" action="refresh" title="刷新">
+						<i class="glyphicon glyphicon-refresh"></i>
+					</button>
+                    <button type="button" class="btn btn-info" action="synOrder" title="同步销售单">同步销售单
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button type="button" class="btn btn-info" action="synAccept" title="同步收款单">同步收款单
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-right:10px;">
+            <div class="col-md-12" id="finance-abnormal-content-div">
+            </div>
+        </div>
+    </div>
+</div>

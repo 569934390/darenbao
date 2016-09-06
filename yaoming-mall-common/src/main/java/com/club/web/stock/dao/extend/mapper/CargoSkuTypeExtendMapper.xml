@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.club.web.stock.dao.extend.CargoSkuTypeExtendMapper" >
+
+<!-- com.club.web.stock.dao.base.CargoSkuTypeMapper.BaseResultMap -->
+
+	<select id="getListByCargoId" resultMap="com.club.web.stock.dao.base.CargoSkuTypeMapper.BaseResultMap" parameterType="_long">
+		select * from cargo_sku_type where cargo_id=#{cargoId};
+	</select>
+
+</mapper>

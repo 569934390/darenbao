@@ -1,0 +1,62 @@
+<div class="ui-dialog dialog-md add-outbound-detail-manager" style="width: 70%">
+    <div class="modal-header">
+        <h4 id="out-add-title" class="modal-title">新增出库单</h4>
+    </div>
+    <div class="modal-body">
+         <div class="panel panel-default">
+                <div  id="out-add-head" class="panel-body">
+                     <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">来源单号：</label>
+                            <div class="input-group col-md-4">
+                                <input class="form-control" id="out_source_code" data-rule="required" onkeyup="this.value=this.value.replace(/[^u4e00-u9fa5w]/g,'')">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">添加备注：</label>
+                            <div class="input-group col-md-10">
+                                <input class="form-control" id="out_remk" data-rule="required;" onkeyup="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left: 20px;"><span><b>添加出库明细</b></span></div>
+		        <div id="tabs-a" class="ui-tabs-panel">
+		            <div class="row">
+		                <div class="container-fluid">
+		                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		                      <div class="navbar-form navbar-left" role="search">
+		                        <div class="form-group">
+		                        	<label class="control-label">分类：</label>&nbsp;
+									<div class="input-group col-md-4" style="z-index: 1000;">
+										<input type="text" class="form-control" style="padding-left: 8px;" id="outbound_add_classify_name" name="outbound_add_classify_name" readonly="readonly" placeholder="请选择分类" data-rule="required;">
+										<input type="text" id="outbound_add_classify" name="outbound_add_classify" hidden="true" value="0">
+										<span class="input-group-addon">
+											<a href="javascript:void(0);" id="outbound-add-menuBtn" class="inforeport-add-triangle">
+												<span class="glyphicon glyphicon-triangle-bottom"></span>
+											</a>
+										</span>
+										<div class="menuContent" style="position: fixed;background-color:#00BFFF;width: 200px; max-height: 350px; overflow-y: auto;" id="tree_select_menu_html_outbound_add">
+											<ul id="treeDemoOutboundAdd" class="ztree" style="width:auto;overflow: auto;z-index: 1000"></ul>
+										</div>
+									</div>&nbsp;&nbsp;&nbsp;&nbsp;
+						          <input type="text" id="outbound_add_mach_param" name="outbound_add_mach_param" class="form-control" placeholder="货品名称 /货品编码">
+		                        </div>
+		                        &nbsp;&nbsp;<button class="btn btn-info" action="search-outbound-add">搜索</button>
+		                      </div>
+		                    </div>
+		                </div>
+		            </div>           
+			        <div class="row" style="margin-right:20px;">
+			            <div class="col-md-12 emgceval-content-div" id="add-outbound-rule-content-div">
+			            </div>
+			        </div>               
+		    </div>    
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" action="out-next-button">下一步</button>
+        <button type="button" class="btn btn-default" action="out-cancel-button">取消</button>
+    </div>
+</div>
+
