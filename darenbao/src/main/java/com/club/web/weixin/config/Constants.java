@@ -1,10 +1,11 @@
 package com.club.web.weixin.config;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Constants {
-	
-	public static Logger logger = Logger.getLogger(Constants.class);
+
+    private static Logger logger = LoggerFactory.getLogger(Constants.class);
 
     public static final String WEIXIN_USERINFO_SESSION = "weixinUserInfoVo"; //微信用户SESSION标签
     

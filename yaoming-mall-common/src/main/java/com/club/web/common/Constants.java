@@ -1,14 +1,14 @@
 package com.club.web.common;
 
+import com.club.core.spring.context.CustomPropertyConfigurer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
-
-import com.club.core.spring.context.CustomPropertyConfigurer;
-
 public class Constants {
-	public static Logger logger = Logger.getLogger(Constants.class);
+	private static Logger logger = LoggerFactory.getLogger(Constants.class);
 
 	/** int类型的NULL表示. */
 	public static final int NULL_INT = -2147483648;

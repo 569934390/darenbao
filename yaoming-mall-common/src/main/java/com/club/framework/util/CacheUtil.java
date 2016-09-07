@@ -1,8 +1,8 @@
 package com.club.framework.util;
 
-import org.apache.log4j.Logger;
-
 import com.club.framework.vo.CacheData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 缓存工具:系统初始化时将数据缓存
@@ -10,7 +10,7 @@ import com.club.framework.vo.CacheData;
  *
  */
 public class CacheUtil {
-	private static Logger logger = Logger.getLogger(CacheUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(CacheUtil.class);
 	
 	private CacheUtil(){}
 	
