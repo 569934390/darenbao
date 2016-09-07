@@ -124,6 +124,14 @@
 					<server>admin</server>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<skip>true </skip>
+				</configuration>
+			</plugin>
 			<!-- jrebel插件，自动生成rebel.xml -->
 			<!--<plugin>
 				<groupId>org.zeroturnaround</groupId>
@@ -205,13 +213,13 @@
 			<id>test</id>
 			<properties>
 				<server.address>http://sp.xiangshanzx.com/${project.artifactId}</server.address>
-				<db.ip>115.159.25.170</db.ip>
+				<db.ip>120.26.241.152</db.ip>
 				<db.port>3306</db.port>
 				<db.dbname>darenbao</db.dbname>
 				<db.username>root</db.username>
-				<db.password>82We0BD7zZ1ux4Yza7pC</db.password>
+				<db.password>smartMap120</db.password>
 				<db.type>mysql</db.type>
-				<db.auto_flush_tables_cache>false</db.auto_flush_tables_cache>
+				<db.auto_flush_tables_cache>true</db.auto_flush_tables_cache>
 				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
 				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
 				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
@@ -235,7 +243,7 @@
 				<log.path>/logs/${project.artifactId}/</log.path>
 			</properties>
 		</profile>
-		<profile>
+		<!--<profile>
 			<id>shanguoyinyiDeploy</id>
 			<properties>
 				<server.address>http://www.cha2u.com/${project.artifactId}</server.address>
@@ -250,18 +258,18 @@
 				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
 				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
 				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
-				
-				<!-- 微信公众号信息 -->
+
+				&lt;!&ndash; 微信公众号信息 &ndash;&gt;
 				<token>shanguoyinyi</token>
 				<appid>wxce11f51c18127ded</appid>
 				<appsecret>9c1d6941d8880bafe1f1a1528ae4da7c</appsecret>
 				<partner>1366290002</partner>
 				<partnerkey>f14F4vcsaj3j9fhf47ium78gio5cerhg</partnerkey>
 				<weixincerPath>/config/weixincer/apiclient_cert.p12</weixincerPath>
-				<!-- 微信公众号信息 -->
-				
+				&lt;!&ndash; 微信公众号信息 &ndash;&gt;
+
 				<u8.url>http://110.80.34.146:1004/U8EAI/import.asp</u8.url>
-				<!--<u8.url>http://110.80.34.146:995/U8EAI/import.asp</u8.url>-->
+				&lt;!&ndash;<u8.url>http://110.80.34.146:995/U8EAI/import.asp</u8.url>&ndash;&gt;
 				<u8.sender>999</u8.sender>
 				<upload.path>upload/</upload.path>
 				<uploadExcel.path>upload/</uploadExcel.path>
@@ -275,6 +283,6 @@
 					<value>shanguoyinyiDeploy</value>
 				</property>
 			</activation>
-		</profile>
+		</profile>-->
 	</profiles>
 </project>
