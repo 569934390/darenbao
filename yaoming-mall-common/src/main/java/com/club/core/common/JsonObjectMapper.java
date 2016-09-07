@@ -1,10 +1,13 @@
 package com.club.core.common;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -25,6 +28,11 @@ public class JsonObjectMapper extends ObjectMapper {
 		this.setVisibility(PropertyAccessor.GETTER, Visibility.PUBLIC_ONLY);
 		this.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 		
+
+	}
+
+	@Override
+	public void writeTree(JsonGenerator jsonGenerator, TreeNode treeNode) throws IOException, JsonProcessingException {
 
 	}
 

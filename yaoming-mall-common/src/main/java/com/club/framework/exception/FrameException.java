@@ -1,6 +1,7 @@
 package com.club.framework.exception;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -100,7 +101,7 @@ public class FrameException extends Exception {
 	
 	private Logger getLogger(){
 		if(m_logger == null){
-			m_logger = Logger.getLogger(FrameException.class);
+			m_logger = LoggerFactory.getLogger(FrameException.class);
 		}
 		return m_logger;
 	}

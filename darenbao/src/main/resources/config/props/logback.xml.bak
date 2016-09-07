@@ -8,7 +8,7 @@
     
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -109,19 +109,21 @@
 	<logger name="jdbc.sqltiming" level="${log.level}">
         <appender-ref ref="sqlLogFile" />
     </logger>
-    <logger name="jdbc.sqlonly" level="OFF">
+    <logger name="jdbc.sqlonly" level="OFF" additivity="false">
         <appender-ref ref="sqlLogFile" />
     </logger>
-    <logger name="jdbc.audit" level="OFF">
+    <logger name="jdbc.audit" level="OFF" additivity="false">
         <appender-ref ref="sqlLogFile" />
     </logger>
-    <logger name="jdbc.resultset" level="OFF" >
+    <logger name="jdbc.resultset" level="OFF" additivity="false">
         <appender-ref ref="sqlLogFile" />
     </logger>
-    <logger name="jdbc.connection" level="OFF">
+    <logger name="jdbc.connection" level="OFF" additivity="false">
         <appender-ref ref="sqlLogFile" />
     </logger>
-    <logger name="jdbc.resultsettable" level="OFF">
+    <logger name="jdbc.resultsettable" level="OFF" additivity="false">
         <appender-ref ref="sqlLogFile" />
     </logger>
+	<logger name="org.springframework" level="WARN"/>
+
 </configuration>
