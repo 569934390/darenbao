@@ -67,10 +67,8 @@ public class BaseRepositoryImpl implements IBaseRepository {
             paramsMap.put("sql", sql);
             List<Map<String,Object>> list=StringUtils.toHump(baseDao.selectList(paramsMap));
             List<T> returnList=new ArrayList<>(list.size());
-            int index=0;
             for (Map returnMap : list) {
-                returnList.set(index, BeanUtils.copy(returnMap, clazz));
-                index++;
+                returnList.add(BeanUtils.copy(returnMap, clazz));
             }
             return returnList;
         } catch (IntrospectionException e) {
@@ -156,10 +154,8 @@ public class BaseRepositoryImpl implements IBaseRepository {
         }else{
             List<Map<String,Object>> list=StringUtils.toHump(baseDao.selectList(paramsMap));
             List<T> returnList=new ArrayList<>(list.size());
-            int index=0;
             for (Map returnMap : list) {
-                returnList.set(index, BeanUtils.copy(returnMap, clazz));
-                index++;
+                returnList.add(BeanUtils.copy(returnMap, clazz));
             }
             page.setResultList(returnList);
         }
