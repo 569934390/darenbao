@@ -13,8 +13,8 @@ import java.util.Map;
  * Created by lifei on 2016/9/4.
  */
 public interface IBaseRepository {
-    public <T> Page<T>  selectPageList(Page page,BaseVo paramsBean,Class<T> clazz) throws BaseAppException;
-    public <T> Page<T>  selectPageList(Page page,Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException;
+    public <T> Page<T>  selectPageList(BaseVo paramsBean,Class<T> clazz) throws BaseAppException;
+    public <T> Page<T>  selectPageList(Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException;
     public <T> List<T>              selectList(BaseVo paramsBean,Class<T> clazz) throws BaseAppException;
     public List<Map<String,Object>> selectList(Map<String, Object> paramsMap) throws BaseAppException;
 

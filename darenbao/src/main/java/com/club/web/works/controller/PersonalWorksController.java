@@ -46,15 +46,15 @@ public class PersonalWorksController {
 
 	@RequestMapping("/mobile/selectPersonalWorksPageList")
 	@ResponseBody
-	public Page<PersonalWorksDo> selectPersonalWorksPageList(Page page, PersonalWorksVo personalWorksVo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		personalWorksVo.setSelectColumns("works_id,works_title,works_cover,works_type");
-		return personalWorksService.selectPageList(page, personalWorksVo);
+	public Page<PersonalWorksVo> selectPersonalWorksPageList(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		personalWorksDo.setSelectColumns("works_id,works_title,works_cover,works_type");
+		return personalWorksService.selectPageList(personalWorksDo);
 	}
 	@RequestMapping("/mobile/selectPersonalWorksList")
 	@ResponseBody
-	public List<PersonalWorksVo> selectPersonalWorksList(PersonalWorksVo personalWorksVo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		personalWorksVo.setSelectColumns("works_id,works_title,works_cover,works_type");
-		return personalWorksService.selectList(personalWorksVo);
+	public List<PersonalWorksVo> selectPersonalWorksList(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		personalWorksDo.setSelectColumns("works_id,works_title,works_cover,works_type");
+		return personalWorksService.selectList(personalWorksDo);
 	}
 
 

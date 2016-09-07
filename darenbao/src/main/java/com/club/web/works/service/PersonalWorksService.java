@@ -13,7 +13,7 @@ import java.util.List;
  * Created by lifei on 2016/9/4.
  */
 public interface PersonalWorksService {
-    public Page<PersonalWorksDo> selectPageList(Page page, PersonalWorksVo personalWorksVo) throws BaseAppException, InvocationTargetException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException;
+    public Page<PersonalWorksVo> selectPageList(PersonalWorksDo personalWorksDo) throws BaseAppException, InvocationTargetException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException;
 
-    List<PersonalWorksVo> selectList(PersonalWorksVo personalWorksVo) throws NoSuchMethodException, BaseAppException, IllegalAccessException, InvocationTargetException;
+    List<PersonalWorksVo> selectList(PersonalWorksDo personalWorksDo) throws NoSuchMethodException, BaseAppException, IllegalAccessException, InvocationTargetException;
 }

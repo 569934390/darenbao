@@ -22,11 +22,11 @@ public class PersonalWorksDo extends PersonalWorksVo{
     public void insert() throws BaseAppException {
         personalWorksRepository.insert(this);
     }
-    public Page<PersonalWorksDo> selectPageList(Page page,PersonalWorksVo personalWorksVo) throws BaseAppException {
-        return personalWorksRepository.selectPageList(page,personalWorksVo,PersonalWorksDo.class);
+    public Page<PersonalWorksVo> selectPageList() throws BaseAppException {
+        return personalWorksRepository.selectPageList(this,PersonalWorksVo.class);
     }
 
-    public List<PersonalWorksVo> selectList(PersonalWorksVo personalWorksVo) throws BaseAppException{
-        return personalWorksRepository.selectList(personalWorksVo, PersonalWorksVo.class);
+    public List<PersonalWorksVo> selectList() throws BaseAppException{
+        return personalWorksRepository.selectList(this, PersonalWorksVo.class);
     }
 }

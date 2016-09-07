@@ -36,11 +36,11 @@ public class BaseRepositoryImpl implements IBaseRepository {
     private BaseDao baseDao;
 
     @Override
-    public <T> Page<T> selectPageList(Page page,BaseVo paramsBean,Class<T> clazz) throws BaseAppException {
+    public <T> Page<T> selectPageList(BaseVo paramsBean,Class<T> clazz) throws BaseAppException {
         Map<String,Object> paramsMap= null;
         try {
             paramsMap = BeanUtils.convertBeanNotNull(paramsBean);
-            return selectPageList(paramsMap, page, clazz);
+            return selectMapPageList(paramsMap, clazz);
         } catch (IntrospectionException e) {
             ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "转换类属性失败");
         } catch (IllegalAccessException e) {
@@ -51,8 +51,8 @@ public class BaseRepositoryImpl implements IBaseRepository {
         return null;
     }
     @Override
-    public <T> Page<T> selectPageList(Page page,Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException {
-        return selectPageList(paramsMap, page, clazz);
+    public <T> Page<T> selectPageList(Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException {
+        return selectMapPageList(paramsMap, clazz);
 
     }
 
@@ -143,10 +143,17 @@ public class BaseRepositoryImpl implements IBaseRepository {
         }
         return sql;
     }
-    private <T> Page<T> selectPageList(Map<String,Object> paramsMap,Page page,Class<T> clazz) throws BaseAppException {
+    private <T> Page<T> selectMapPageList(Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException {
         String sql=this.getSelectListSql(paramsMap);
         if(Utils.isEmpty(sql)){
             return null;
+        }
+        Page page=new Page();
+        if(paramsMap.containsKey("start")){
+            page.setStart((int)paramsMap.get("start"));
+        }
+        if(paramsMap.containsKey("limit")){
+            page.setLimit((int)paramsMap.get("limit"));
         }
         paramsMap.put("sql", DBUtils.getPageSql(sql, page));
         if(clazz==null){
@@ -155,7 +162,19 @@ public class BaseRepositoryImpl implements IBaseRepository {
             List<Map<String,Object>> list=StringUtils.toHump(baseDao.selectList(paramsMap));
             List<T> returnList=new ArrayList<>(list.size());
             for (Map returnMap : list) {
-                returnList.add(BeanUtils.copy(returnMap, clazz));
+                try {
+                    T returnObj=clazz.newInstance();
+                    for (Object key : returnMap.keySet()) {
+                        org.apache.commons.beanutils.BeanUtils.copyProperty(returnObj,key.toString(),returnMap.get(key));
+                    }
+                    returnList.add(returnObj);
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
             }
             page.setResultList(returnList);
         }
