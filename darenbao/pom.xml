@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>darenbao</artifactId>
 	<packaging>war</packaging>
-	<version>${yaoming.shanguoyinyi.version}</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 
 	<dependencies>
