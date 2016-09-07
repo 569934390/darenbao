@@ -18,13 +18,16 @@ import java.util.List;
  */
 @Service
 public class PersonalWorksServiceImpl implements PersonalWorksService{
+    private String selectColumns="works_id,works_title,works_cover,works_type";
     @Override
     public Page<PersonalWorksVo> selectPageList(PersonalWorksDo personalWorksDo) throws BaseAppException, InvocationTargetException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException {
+        personalWorksDo.setSelectColumns(selectColumns);
         return personalWorksDo.selectPageList();
     }
 
     @Override
     public List<PersonalWorksVo> selectList(PersonalWorksDo personalWorksDo) throws NoSuchMethodException, BaseAppException, IllegalAccessException, InvocationTargetException {
+        personalWorksDo.setSelectColumns(selectColumns);
         return personalWorksDo.selectList();
     }
 }

@@ -11,6 +11,7 @@ import com.club.web.client.service.IIntegralMangerService;
 import com.club.web.common.service.IBaseService;
 import com.club.web.datamodel.service.IWfDbTableService;
 import com.club.web.finance.service.AuditService;
+import com.club.web.util.IdGenerator;
 import com.club.web.works.domain.PersonalWorksDo;
 import com.club.web.works.service.PersonalWorksService;
 import com.club.web.works.vo.PersonalWorksVo;
@@ -47,14 +48,29 @@ public class PersonalWorksController {
 	@RequestMapping("/mobile/selectPersonalWorksPageList")
 	@ResponseBody
 	public Page<PersonalWorksVo> selectPersonalWorksPageList(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		personalWorksDo.setSelectColumns("works_id,works_title,works_cover,works_type");
 		return personalWorksService.selectPageList(personalWorksDo);
 	}
+
 	@RequestMapping("/mobile/selectPersonalWorksList")
 	@ResponseBody
 	public List<PersonalWorksVo> selectPersonalWorksList(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		personalWorksDo.setSelectColumns("works_id,works_title,works_cover,works_type");
 		return personalWorksService.selectList(personalWorksDo);
+	}
+
+	@RequestMapping("/mobile/personalWorks/create")
+	@ResponseBody
+	public int create(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return personalWorksDo.insert();
+	}
+	@RequestMapping("/mobile/personalWorks/update")
+	@ResponseBody
+	public int update(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return personalWorksDo.update();
+	}
+	@RequestMapping("/mobile/personalWorks/delete")
+	@ResponseBody
+	public int delete(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return personalWorksDo.delete();
 	}
 
 

@@ -7,7 +7,7 @@ import com.club.web.works.constants.WorksCategoryEnum;
  * Created by lifei on 2016/9/4.
  */
 public class PersonalWorksVo extends BaseVo{
-    private String worksId;
+    private long worksId;
     private String worksTitle;
     private String worksCover;
     private String worksCategory;
@@ -19,11 +19,11 @@ public class PersonalWorksVo extends BaseVo{
     private String worksLink;
     private Integer worksLikes;
 
-    public String getWorksId() {
+    public long getWorksId() {
         return worksId;
     }
 
-    public void setWorksId(String worksId) {
+    public void setWorksId(long worksId) {
         this.worksId = worksId;
     }
 
