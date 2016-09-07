@@ -49,20 +49,4 @@ public class GetQiNiuTokenController {
 		}
 		return token;
 	}
-
-	@RequestMapping("/qiniu/getFileToken")
-	@ResponseBody
-	public Map<String,Object> getFileToken(HttpServletResponse response) {
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setContentType("text/json;charset=utf-8");
-		Map<String,Object> token= new HashMap();
-		try {
-			token.put("success", true);
-			token.put("uptoken",qiniu.getQiNiuFileToken());
-		} catch (Exception e) {
-			token.put("success", false);
-			token.put("msg", e.getMessage());
-		}
-		return token;
-	}
 }
