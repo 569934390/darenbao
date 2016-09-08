@@ -2,7 +2,9 @@ package com.club.framework.util;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Consts;
@@ -28,6 +30,47 @@ public class HttpClientUtils {
 			.setSocketTimeout(5000).setConnectTimeout(5000)
 			.setCookieSpec(CookieSpecs.BEST_MATCH).build();
 
+	public static String post(String url,Map<String,Object> paramMap) throws BaseAppException {
+		StringBuffer sb = new StringBuffer();
+		if (paramMap.isEmpty()) {
+		}else {
+			for (String key : paramMap.keySet()) {
+				if(paramMap.get(key)==null||paramMap.get(key).toString().isEmpty()) continue;
+				String value =paramMap.get(key).toString();
+				if (sb.length() < 1) {
+					sb.append(key).append("=").append(value);
+				}
+				else {
+					sb.append("&").append(key).append("=").append(value);
+				}
+			}
+		}
+		return post(url,sb.toString());
+	}
+	public static String get(String url,Map<String,Object> paramMap) throws BaseAppException {
+		StringBuffer sb = new StringBuffer();
+		if (paramMap.isEmpty()) {
+		}else {
+			for (String key : paramMap.keySet()) {
+				if(paramMap.get(key)==null||paramMap.get(key).toString().isEmpty()) continue;
+				String value = paramMap.get(key).toString();
+				if (sb.length() < 1) {
+					sb.append(key).append("=").append(value);
+				}
+				else {
+					sb.append("&").append(key).append("=").append(value);
+				}
+			}
+		}
+		String newUrl="";
+		if(url.indexOf("?")==-1){
+			newUrl=url+"?"+sb.toString();
+		}else{
+			newUrl=url+"&"+sb.toString();
+		}
+		return get(newUrl);
+	}
+
 	public static String post(String url, String postParmas) throws BaseAppException {
 		CloseableHttpClient httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
 		HttpPost httpPost = new HttpPost(url);
@@ -51,7 +94,7 @@ public class HttpClientUtils {
 				throw new BaseAppException("test", "获取数据失败");
 			}
 			responseEntity = response.getEntity();
-			List<String> lines = IOUtils.readLines(responseEntity.getContent());
+			List<String> lines = IOUtils.readLines(responseEntity.getContent(), Consts.UTF_8);
 			StringBuffer buffer=new StringBuffer();
 			for (String string : lines) {
 				buffer.append(string+"\r");
@@ -98,7 +141,7 @@ public class HttpClientUtils {
 				throw new BaseAppException("test", "获取数据失败");
 			}
 			responseEntity = response.getEntity();
-			List<String> lines = IOUtils.readLines(responseEntity.getContent());
+			List<String> lines = IOUtils.readLines(responseEntity.getContent(),Consts.UTF_8);
 			StringBuffer buffer=new StringBuffer();
 			for (String string : lines) {
 				buffer.append(string+"\r");

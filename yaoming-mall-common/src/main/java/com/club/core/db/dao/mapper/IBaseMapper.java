@@ -8,6 +8,7 @@ public interface IBaseMapper {
     Map<String,Object> selectOne(Map<String, Object> params);
     List<Map<String,Object>> selectList(Map<String, Object> params);
     int insert(Map<String, Object> params);
+    int insertNew(Map<String, Object> params);
     int update(Map<String, Object> params);
     int delete(Map<String, Object> params);
 }
