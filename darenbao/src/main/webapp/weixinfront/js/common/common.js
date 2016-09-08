@@ -15,6 +15,7 @@ Util.common = {
 //   baseUrl: '${server.address}',
     //配置全局版本号
     versionCode: 'v1.0',
+
     //获取html页面直接跳转参数值
     getParameter: function (name) {
         var re = new RegExp("[\?|\&]" + name + "=([^\&]*)", "i");
