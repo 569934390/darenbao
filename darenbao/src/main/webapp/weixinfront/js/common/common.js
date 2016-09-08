@@ -10,8 +10,8 @@ Util.common = {
     //配置全局根路径http://115.159.25.170/shanguoyinyi
 //    baseUrl: 'http://sp.xiangshanzx.com/shanguoyinyi',
 //    baseUrl: 'http://test.cha2u.com/shanguoyinyi',
-//    baseUrl: 'http://localhost:8080/darenbao',
-    baseUrl: 'http://120.26.241.152:28080/darenbao',
+    baseUrl: 'http://localhost:8080/darenbao',
+//    baseUrl: 'http://120.26.241.152:28080/darenbao',
 //   baseUrl: '${server.address}',
     //配置全局版本号
     versionCode: 'v1.0',
@@ -338,7 +338,8 @@ Util.weixinMenu = {
          var param = {"url": url};
          Util.common.executeAjaxCallback(vurl , param , function(data){
          	 console.log(data);
-             if(!wx) return;
+             //没有微信暂时return
+             return;
              wx.config({
                  debug: false,
                  appId: data.msg.appId,
