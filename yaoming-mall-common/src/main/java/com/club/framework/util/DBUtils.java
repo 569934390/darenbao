@@ -323,8 +323,10 @@ public class DBUtils {
 //                }
                 keys.append(",");
                 values.append(",");
-                if (column.getDbType().toUpperCase().equals("LONG") || column.getDbType().toUpperCase().equals("INT") || column.getDbType().toUpperCase().equals("BIGINT")) {
+                if (column.getDbType().toUpperCase().equals("INT")) {
                     record.put(columnName, Integer.parseInt(record.get(columnName) + ""));
+                }else if(column.getDbType().toUpperCase().equals("LONG") ||column.getDbType().toUpperCase().equals("BIGINT")){
+                    record.put(columnName, Long.parseLong(record.get(columnName) + ""));
                 }
 //                else if (column.getDbType().toUpperCase().indexOf("DATE")!=-1||column.getDbType().toUpperCase().indexOf("TIME")!=-1){
 //                    record.put(columnName,new Date());
