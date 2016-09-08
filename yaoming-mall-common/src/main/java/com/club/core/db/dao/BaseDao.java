@@ -60,6 +60,10 @@ public class BaseDao extends SqlSessionDaoSupport {
     public int insert(Map<String, Object> params){
     	return getMapper().insert(params);
     }
+    public int insertNew(Map<String, Object> params){
+        return getMapper().insertNew(params);
+    }
+
     
     public int update(Map<String, Object> params){
     	return getMapper().update(params);

@@ -4,6 +4,7 @@
 	<select id="selectOne" resultType="map" parameterType="map">${sql}</select>
 	<select id="selectList" resultType="map" parameterType="map">${sql}</select>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="bizId" parameterType="map">${sql}</insert>
+	<insert id="insertNew" parameterType="map">${sql}</insert>
 	<update id="update" parameterType="map" >${sql}</update>
 	<delete id="delete" parameterType="map" >${sql}</delete>
 </mapper>

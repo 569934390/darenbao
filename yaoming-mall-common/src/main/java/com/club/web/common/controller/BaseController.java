@@ -25,6 +25,7 @@ import com.club.framework.util.DBUtils;
 import com.club.web.common.vo.DBColumn;
 import com.club.web.common.vo.DBTable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +67,18 @@ public class BaseController {
 	public static final String RANDOMCODEKEY = "RANDOMVALIDATECODEKEY";//放到session中的key
 	
     private static final ClubLogManager logger = ClubLogManager.getLogger(BaseController.class);
+
+	@Value("#{propertyConfigurer.ctxPropertiesMap['framework.jdbc.driverClassName']}")
+	private String driver;
+
+	@Value("#{propertyConfigurer.ctxPropertiesMap['framework.jdbc.url']}")
+	private String url;
+
+	@Value("#{propertyConfigurer.ctxPropertiesMap['framework.jdbc.username']}")
+	private String username;
+
+	@Value("#{propertyConfigurer.ctxPropertiesMap['framework.jdbc.password']}")
+	private String password;
 
     @Autowired
     private IBaseService baseService;
@@ -211,11 +224,11 @@ public class BaseController {
 		Map<String,Object> result = new HashMap<String, Object>();
 		try{
 			result.put("success", true);
-			result.put("message", baseService.testDBConnection( driver, dbName, characterEncoding, ip, port, params, username, password));
+			result.put("message", baseService.testDBConnection(driver, dbName, characterEncoding, ip, port, params, username, password));
 		}catch(Exception e){
 			e.printStackTrace();
 			result.put("success", false);
-			result.put("message", e.getMessage()+e.toString());
+			result.put("message", e.getMessage() + e.toString());
 		}
 		return result;
 	}
@@ -241,11 +254,14 @@ public class BaseController {
 		Map<String,Object> result = new HashMap<String, Object>();
 		try{
 			result.put("success", true);
-			result.put("message", baseService.saveDBMeta( driver, dbName, characterEncoding, ip, port, params, username, password));
+			if(driver==null||driver.isEmpty()){
+				baseService.saveDBMeta(this.driver,this.url,this.username,this.password);
+			}
+			result.put("message", baseService.saveDBMeta(driver, dbName, characterEncoding, ip, port, params, username, password));
 		}catch(Exception e){
 			e.printStackTrace();
 			result.put("success", false);
-			result.put("message", e.getMessage()+e.toString());
+			result.put("message", e.getMessage() + e.toString());
 		}
 		return result;
 	}

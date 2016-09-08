@@ -97,7 +97,8 @@ public class BaseRepositoryImpl implements IBaseRepository {
     public <T> T selectOne(BaseVo record,Class<T> clazz) throws BaseAppException {
         try {
             Map<String,Object> paramsMap = BeanUtils.convertBeanNotNull(record);
-            Map<String,Object> returnMap=baseDao.selectOne(paramsMap);
+            String sql=this.getSelectListSql(paramsMap);
+            Map<String,Object> returnMap=baseDao.selectOne(sql,paramsMap);
             T returnObj=clazz.newInstance();
             for (Object key : returnMap.keySet()) {
                 org.apache.commons.beanutils.BeanUtils.copyProperty(returnObj,key.toString(),returnMap.get(key));
@@ -120,31 +121,74 @@ public class BaseRepositoryImpl implements IBaseRepository {
 
 
     @Override
-    public Map<String, Object> selectOne(Map<String, Object> paramsMap) {
-        Map<String,Object> returnMap=baseDao.selectOne(paramsMap);
+    public Map<String, Object> selectOne(Map<String, Object> paramsMap) throws BaseAppException {
+        String sql=this.getSelectListSql(paramsMap);
+        Map<String,Object> returnMap=baseDao.selectOne(sql,paramsMap);
         return returnMap;
     }
 
 
     @Override
     public <T> int insert(T record) throws BaseAppException {
-        Map<String,Object> keyValues = DBUtils.getInsertSql(record);
-        keyValues = StringUtils.toHump(keyValues);
-        return baseDao.insert(keyValues);
+        try {
+           Map<String,Object> keyValues= BeanUtils.convertBeanNotNull(record);
+            String sql = DBUtils.getInsertTableSql(this.tableName, keyValues);
+            keyValues.put("sql", sql);
+            baseDao.insertNew(keyValues);
+            return 1;
+        } catch (IntrospectionException e) {
+            //如果分析类属性失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "转换类属性失败");
+        } catch (IllegalAccessException e) {
+            //如果实例化 JavaBean 失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "实例化JavaBean失败");
+        } catch (InvocationTargetException e) {
+            //如果调用属性的 setter 方法失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "调用属性的setter方法失败");
+        }
+        return 0;
     }
 
     @Override
     public <T> int update(T record) throws BaseAppException {
-        Map<String,Object> paramsMap = DBUtils.getUpdateSql(record);
-        paramsMap = StringUtils.toHump(paramsMap);
-        return baseDao.update(paramsMap);
+        try {
+            Map<String,Object> keyValues = BeanUtils.convertBeanNotNull(record);
+            keyValues.put("sql", DBUtils.getUpdateTableSql(this.tableName, keyValues));
+            baseDao.update(keyValues);
+            return 1;
+        } catch (IntrospectionException e) {
+            //如果分析类属性失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "转换类属性失败");
+        } catch (IllegalAccessException e) {
+            //如果实例化 JavaBean 失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "实例化JavaBean失败");
+        } catch (InvocationTargetException e) {
+            //如果调用属性的 setter 方法失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "调用属性的setter方法失败");
+        }
+        return 0;
+
     }
 
     @Override
     public <T> int delete(T record) throws BaseAppException {
-        Map<String,Object> paramsMap = DBUtils.getDeleteSql(record);
-        paramsMap = StringUtils.toHump(paramsMap);
-        return baseDao.update(paramsMap);
+        try {
+            Map<String,Object> keyValues = BeanUtils.convertBeanNotNull(record);
+            keyValues.put("sql", DBUtils.getDeleteSql(this.tableName));
+            baseDao.delete(keyValues);
+            return 1;
+        } catch (IntrospectionException e) {
+            //如果分析类属性失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "转换类属性失败");
+        } catch (IllegalAccessException e) {
+            //如果实例化 JavaBean 失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "实例化JavaBean失败");
+        } catch (InvocationTargetException e) {
+            //如果调用属性的 setter 方法失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "调用属性的setter方法失败");
+        }
+        return 0;
+
     }
 
     @Override
@@ -156,7 +200,8 @@ public class BaseRepositoryImpl implements IBaseRepository {
         paramsMap.put("sql",sql);
         paramsMap.put(pkColumnName,id);
         paramsMap = StringUtils.toHump(paramsMap);
-        return baseDao.update(paramsMap);
+        baseDao.delete(paramsMap);
+        return 1;
     }
 
 
