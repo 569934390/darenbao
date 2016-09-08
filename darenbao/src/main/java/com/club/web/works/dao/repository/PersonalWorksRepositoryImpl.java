@@ -1,8 +1,7 @@
 package com.club.web.works.dao.repository;
 
-import com.club.web.common.domain.impl.BaseRepositoryImpl;
+import com.club.web.common.domain.repository.impl.BaseRepositoryImpl;
 import com.club.web.works.domain.repository.PersonalWorksRepository;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,4 +1,4 @@
-package com.club.web.common.domain.impl;
+package com.club.web.common.domain.repository.impl;
 
 import com.club.core.common.Page;
 import com.club.core.db.dao.BaseDao;
@@ -11,10 +11,8 @@ import com.club.framework.util.DBUtils;
 import com.club.framework.util.StringUtils;
 import com.club.framework.util.Utils;
 import com.club.web.common.cache.DBMetaCache;
-import com.club.web.common.domain.IBaseRepository;
+import com.club.web.common.domain.repository.IBaseRepository;
 import com.club.web.common.vo.BaseVo;
-import com.club.web.common.vo.DBColumn;
-import com.club.web.common.vo.DBTable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.beans.IntrospectionException;
@@ -93,6 +91,38 @@ public class BaseRepositoryImpl implements IBaseRepository {
         paramsMap.put("sql", sql);
         return StringUtils.toHump(baseDao.selectList(paramsMap));
 
+    }
+
+    @Override
+    public <T> T selectOne(BaseVo record,Class<T> clazz) throws BaseAppException {
+        try {
+            Map<String,Object> paramsMap = BeanUtils.convertBeanNotNull(record);
+            Map<String,Object> returnMap=baseDao.selectOne(paramsMap);
+            T returnObj=clazz.newInstance();
+            for (Object key : returnMap.keySet()) {
+                org.apache.commons.beanutils.BeanUtils.copyProperty(returnObj,key.toString(),returnMap.get(key));
+            }
+            return returnObj;
+        }  catch (IntrospectionException e) {
+            //如果分析类属性失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "转换类属性失败");
+        } catch (IllegalAccessException e) {
+            //如果实例化 JavaBean 失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "实例化JavaBean失败");
+        } catch (InvocationTargetException e) {
+            //如果调用属性的 setter 方法失败
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "调用属性的setter方法失败");
+        } catch (InstantiationException e) {
+            ExceptionHandler.publish(SystemErrorCode.INVOKE_EXCEPTION, "类实例化失败");
+        }
+        return null;
+    }
+
+
+    @Override
+    public Map<String, Object> selectOne(Map<String, Object> paramsMap) {
+        Map<String,Object> returnMap=baseDao.selectOne(paramsMap);
+        return returnMap;
     }
 
 

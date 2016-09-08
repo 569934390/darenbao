@@ -3,27 +3,17 @@ package com.club.web.works.controller;
 import com.club.core.common.Page;
 import com.club.framework.exception.BaseAppException;
 import com.club.framework.log.ClubLogManager;
-import com.club.framework.util.JsonUtil;
-import com.club.framework.util.StringUtils;
-import com.club.web.client.service.IAccountService;
-import com.club.web.client.service.IClientService;
-import com.club.web.client.service.IIntegralMangerService;
-import com.club.web.common.service.IBaseService;
-import com.club.web.datamodel.service.IWfDbTableService;
-import com.club.web.finance.service.AuditService;
-import com.club.web.util.IdGenerator;
 import com.club.web.works.domain.PersonalWorksDo;
 import com.club.web.works.service.PersonalWorksService;
 import com.club.web.works.vo.PersonalWorksVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.List;
 
 /**
  * <Description>自动生成代码 <br>
@@ -56,21 +46,26 @@ public class PersonalWorksController {
 	public List<PersonalWorksVo> selectPersonalWorksList(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return personalWorksService.selectList(personalWorksDo);
 	}
+	@RequestMapping("/mobile/select")
+	@ResponseBody
+	public List<PersonalWorksVo> select(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return personalWorksService.selectOne(personalWorksDo);
+	}
 
-	@RequestMapping("/mobile/personalWorks/create")
+	@RequestMapping("/mobile/create")
 	@ResponseBody
 	public int create(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		return personalWorksDo.insert();
+		return personalWorksService.insert(personalWorksDo);
 	}
-	@RequestMapping("/mobile/personalWorks/update")
+	@RequestMapping("/mobile/update")
 	@ResponseBody
 	public int update(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		return personalWorksDo.update();
+		return personalWorksService.update(personalWorksDo);
 	}
-	@RequestMapping("/mobile/personalWorks/delete")
+	@RequestMapping("/mobile/delete")
 	@ResponseBody
 	public int delete(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		return personalWorksDo.delete();
+		return personalWorksService.delete(personalWorksDo);
 	}
 
 

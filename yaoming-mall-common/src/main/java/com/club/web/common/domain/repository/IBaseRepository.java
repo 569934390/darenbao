@@ -1,4 +1,4 @@
-package com.club.web.common.domain;
+package com.club.web.common.domain.repository;
 
 import com.club.core.common.Page;
 import com.club.framework.exception.BaseAppException;
@@ -17,7 +17,8 @@ public interface IBaseRepository {
     public <T> Page<T>  selectPageList(Map<String,Object> paramsMap,Class<T> clazz) throws BaseAppException;
     public <T> List<T>              selectList(BaseVo paramsBean,Class<T> clazz) throws BaseAppException;
     public List<Map<String,Object>> selectList(Map<String, Object> paramsMap) throws BaseAppException;
-
+    public <T> T  selectOne(BaseVo record,Class<T> clazz) throws BaseAppException;
+    public Map<String,Object>  selectOne(Map<String,Object> paramsMap) throws BaseAppException;
     public <T> int  insert(T record) throws BaseAppException;
     public <T> int  update(T record) throws BaseAppException;
     public <T> int  delete(T record) throws BaseAppException;
