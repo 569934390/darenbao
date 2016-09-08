@@ -3,9 +3,9 @@ package com.club.web.works.domain;
 import com.club.core.common.Page;
 import com.club.framework.exception.BaseAppException;
 import com.club.web.common.domain.IBaseDo;
-import com.club.web.util.IdGenerator;
 import com.club.web.works.domain.repository.PersonalWorksRepository;
 import com.club.web.works.vo.PersonalWorksVo;
+import com.club.web.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -45,7 +45,7 @@ public class PersonalWorksDo extends PersonalWorksVo implements IBaseDo{
     }
     @Override
     public int delete() throws BaseAppException {
-        return personalWorksRepository.delete(this.getWorksId());
+        return personalWorksRepository.delete(this);
     }
 
     @Override

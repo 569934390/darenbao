@@ -48,7 +48,7 @@ public class PersonalWorksController {
 	}
 	@RequestMapping("/mobile/select")
 	@ResponseBody
-	public List<PersonalWorksVo> select(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	public PersonalWorksVo select(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return personalWorksService.selectOne(personalWorksDo);
 	}
 
