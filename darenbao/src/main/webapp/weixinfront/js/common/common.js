@@ -9,8 +9,10 @@ var Util = Util || {};
 Util.common = {
     //配置全局根路径http://115.159.25.170/shanguoyinyi
 //    baseUrl: 'http://sp.xiangshanzx.com/shanguoyinyi',
- //   baseUrl: 'http://test.cha2u.com/shanguoyinyi',
-    baseUrl: '${server.address}',
+//    baseUrl: 'http://test.cha2u.com/shanguoyinyi',
+//    baseUrl: 'http://localhost:8080/darenbao',
+    baseUrl: 'http://120.26.241.152:28080/darenbao',
+//   baseUrl: '${server.address}',
     //配置全局版本号
     versionCode: 'v1.0',
     //获取html页面直接跳转参数值
@@ -325,7 +327,7 @@ Util.weixinMenu = {
 		 var url=window.location.href;
 		 var storeInfo=localStorage.getItem('store');
 		 var shareImage = "";
-		 if(storeInfo !=""){
+		 if(storeInfo !=""&&storeInfo!=null){
 		 	var store=JSON.parse(storeInfo);
 		 	shareImage=store.headImgUrl;
 		 }
@@ -336,7 +338,8 @@ Util.weixinMenu = {
          var param = {"url": url};
          Util.common.executeAjaxCallback(vurl , param , function(data){
          	 console.log(data);
-        	 wx.config({
+             if(!wx) return;
+             wx.config({
                  debug: false,
                  appId: data.msg.appId,
                  timestamp: data.msg.timestamp,
