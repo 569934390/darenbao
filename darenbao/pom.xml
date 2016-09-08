@@ -171,7 +171,8 @@
 	    <profile>
 			<id>develop204</id>
 			<properties>
-				<server.address>http://test.cha2u.com/${project.artifactId}</server.address>
+                <!--<server.address>http://test.cha2u.com/${project.artifactId}</server.address>-->
+                <server.address>http://localhost:8080/${project.artifactId}</server.address>
 				<db.ip>119.90.136.204</db.ip>
 				<db.port>3306</db.port>
 				<db.dbname>darenbao</db.dbname>
@@ -212,7 +213,8 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<server.address>http://sp.xiangshanzx.com/${project.artifactId}</server.address>
+                <!--<server.address>http://sp.xiangshanzx.com/${project.artifactId}</server.address>-->
+                <server.address>http://120.26.241.152:28080/${project.artifactId}</server.address>
 				<db.ip>120.26.241.152</db.ip>
 				<db.port>3306</db.port>
 				<db.dbname>darenbao</db.dbname>

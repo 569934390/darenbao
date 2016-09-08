@@ -221,7 +221,6 @@
              <version>${spring.version}</version>  
         </dependency>
 
-
 		<!-- mybatis 这边的版本注意与1.1.1的区别 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -641,7 +640,7 @@
 		</repository>
 	</repositories>-->
 
-	<profiles>
+	<!--<profiles>
 		<profile>
 			<id>shanguoyinyi</id>
 			<properties>
@@ -656,5 +655,5 @@
 				</property>
 			</activation>
 		</profile>
-	</profiles>
+	</profiles>-->
 </project>
