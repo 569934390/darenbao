@@ -100,6 +100,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+                    <warName>${project.artifactId}-${maven.build.timestamp}</warName>
+                    <webappDirectory>${project.build.directory}/war_bak</webappDirectory>
 					<webResources>
 						<resource>
 							<directory>src/main/webapp</directory>
@@ -181,12 +183,18 @@
 				<db.password>shanguo2016</db.password>
 				<db.type>mysql</db.type>
 				<db.auto_flush_tables_cache>false</db.auto_flush_tables_cache>
-				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
-				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
-				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
-				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
-				
-				<!-- 微信公众号信息 -->
+				<!--<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>-->
+				<!--<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>-->
+				<!--<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>-->
+				<!--<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>-->
+                <qiniu.access_key>cB5qb5WU26QV3HvAr4K5pJWS3OnevgLWA5lNQgPO</qiniu.access_key>
+                <qiniu.secret_key>_z4IJ4DszRpF9Z0DQ0BgmSx00M361MS8Mw1LLBeb</qiniu.secret_key>
+                <qiniu.bucketname>daren</qiniu.bucketname>
+                <qiniu.bucketnamefile>shiping</qiniu.bucketnamefile>
+                <qiniu.hubname>daren</qiniu.hubname>
+
+
+                <!-- 微信公众号信息 -->
 				<token>shanguoyinyi</token>
 				<appid>wx13ea47ddb8c2bb7e</appid>
 				<appsecret>a8cb69741bde10326edfbf192d95c8e0</appsecret>
@@ -223,12 +231,17 @@
 				<db.password>root123</db.password>
 				<db.type>mysql</db.type>
 				<db.auto_flush_tables_cache>true</db.auto_flush_tables_cache>
-				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
-				<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>
-				<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>
-				<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>
-				
-				<!-- 微信公众号信息 -->
+				<!--<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>-->
+				<!--<qiniu.secret_key>DSEZCkiaNm3ZtCDHzlJJZgItLzykmvRNzCrBBTam</qiniu.secret_key>-->
+				<!--<qiniu.bucketname>shanguoyinyi</qiniu.bucketname>-->
+				<!--<qiniu.bucketnamefile>wordsshare</qiniu.bucketnamefile>-->
+                <qiniu.access_key>cB5qb5WU26QV3HvAr4K5pJWS3OnevgLWA5lNQgPO</qiniu.access_key>
+                <qiniu.secret_key>_z4IJ4DszRpF9Z0DQ0BgmSx00M361MS8Mw1LLBeb</qiniu.secret_key>
+                <qiniu.bucketname>daren</qiniu.bucketname>
+                <qiniu.bucketnamefile>shiping</qiniu.bucketnamefile>
+                <qiniu.hubname>daren</qiniu.hubname>
+
+                <!-- 微信公众号信息 -->
 				<token>shanguoyinyi</token>
 				<appid>wx13ea47ddb8c2bb7e</appid>
 				<appsecret>a8cb69741bde10326edfbf192d95c8e0</appsecret>

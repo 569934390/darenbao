@@ -609,6 +609,13 @@
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>7.0.8</version>
 		</dependency>
+        <!--七牛云直播sdk -->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>pili-sdk-java</artifactId>
+            <version>1.5.1-RELEASE</version>
+        </dependency>
+
 		<dependency>
 			<groupId>com.yaoming</groupId>
 			<artifactId>mybatis-cache</artifactId>
