@@ -154,15 +154,15 @@ public class CustomMappingExceptionResolver extends
         else if (ex instanceof SysRuntimeException) {
             errCode = ((SysRuntimeException) ex).getErrorCode();
             msg = (null == errCode ? MessageResourceUtils
-                    .getMessage(SystemErrorCode.UNKNOW_RUNTIME_EXPCEPTION)
+                    .getMessage(SystemErrorCode.UNKNOWN_RUNTIME_EXCEPTION)
                     : MessageResourceUtils.getMessage(errCode));
         }
         else if (ex instanceof RuntimeException) {
-            errCode = SystemErrorCode.UNKNOW_RUNTIME_EXPCEPTION;
+            errCode = SystemErrorCode.UNKNOWN_RUNTIME_EXCEPTION;
             msg = MessageResourceUtils.getMessage(errCode);
         }
         else {
-            errCode = SystemErrorCode.UNKNOW_EXPCEPTION;
+            errCode = SystemErrorCode.UNKNOWN_EXCEPTION;
             msg = MessageResourceUtils.getMessage(errCode);
         }
         String responseMsg = "{\"msg\":\"" + msg
