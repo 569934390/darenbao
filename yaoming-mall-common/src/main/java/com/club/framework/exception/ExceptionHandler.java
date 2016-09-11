@@ -39,6 +39,13 @@ public final class ExceptionHandler {
     private ExceptionHandler() {
     }
 
+    public static BaseAppException publishMsg(String msg) throws BaseAppException {
+        return publish(SystemErrorCode.CUSTOM_EXCEPTION, msg, SYS_ERROR_TYPE, null, null, null, null);
+    }
+    public static BaseAppException publishMsg(String msg,Throwable t) throws BaseAppException {
+        return publish(SystemErrorCode.CUSTOM_EXCEPTION, msg, SYS_ERROR_TYPE, t, null, null, null);
+    }
+
     /**
      * @param errorCode
      * @param t Throwable
@@ -242,17 +249,17 @@ public final class ExceptionHandler {
         }
         else if (cause instanceof SQLException) {
             // 数据访问异常
-            bae.setErrorCode(SystemErrorCode.DB_OPER_EXPCEPTION);
+            bae.setErrorCode(SystemErrorCode.DB_OPERATE_EXCEPTION);
             bae.setErrorMessage(MessageResourceUtils
-                    .getMessage(SystemErrorCode.DB_OPER_EXPCEPTION)
+                    .getMessage(SystemErrorCode.DB_OPERATE_EXCEPTION)
                     + " :"
                     + cause.getMessage() == null ? "" : cause.getMessage());
 
         }
         else {
-            bae.setErrorCode(SystemErrorCode.UNKNOW_EXPCEPTION);
+            bae.setErrorCode(SystemErrorCode.UNKNOWN_EXCEPTION);
             bae.setErrorMessage(MessageResourceUtils
-                    .getMessage(SystemErrorCode.UNKNOW_EXPCEPTION)
+                    .getMessage(SystemErrorCode.UNKNOWN_EXCEPTION)
                     + " :"
                     + cause.getMessage() == null ? "" : cause.getMessage());
         }
