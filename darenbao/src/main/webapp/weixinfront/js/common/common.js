@@ -10,9 +10,21 @@ Util.common = {
     //配置全局根路径http://115.159.25.170/shanguoyinyi
 //    baseUrl: 'http://sp.xiangshanzx.com/shanguoyinyi',
 //    baseUrl: 'http://test.cha2u.com/shanguoyinyi',
-    baseUrl: 'http://localhost:8080/darenbao',
-//    baseUrl: 'http://120.26.241.152:28080/darenbao',
-//   baseUrl: '${server.address}',
+//    baseUrl: 'http://localhost:8080/darenbao',
+//    baseUrl: 'http://114.55.229.188:8080/darenbao',
+//    baseUrl: '${server.address}',
+    baseUrl:function(){
+        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+        var curWwwPath=window.document.location.href;
+        //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+        var pathName=window.document.location.pathname;
+        var pos=curWwwPath.indexOf(pathName);
+        //获取主机地址，如： http://localhost:8083
+        var localhostPaht=curWwwPath.substring(0,pos);
+        //获取带"/"的项目名，如：/uimcardprj
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        return(localhostPaht+projectName);
+    }(),
     //配置全局版本号
     versionCode: 'v1.0',
     //获取html页面直接跳转参数值
