@@ -215,12 +215,12 @@
 			<id>test</id>
 			<properties>
                 <!--<server.address>http://sp.xiangshanzx.com/${project.artifactId}</server.address>-->
-                <server.address>http://120.26.241.152:28080/${project.artifactId}</server.address>
-				<db.ip>120.26.241.152</db.ip>
+                <server.address>http://114.55.229.188:8080/${project.artifactId}</server.address>
+				<db.ip>114.55.229.188</db.ip>
 				<db.port>3306</db.port>
 				<db.dbname>darenbao</db.dbname>
 				<db.username>root</db.username>
-				<db.password>smartMap120</db.password>
+				<db.password>root123</db.password>
 				<db.type>mysql</db.type>
 				<db.auto_flush_tables_cache>true</db.auto_flush_tables_cache>
 				<qiniu.access_key>jiZNnKPEiZpRe5L5jkkTYnAFJQ1TnJ0GOQnIYwQQ</qiniu.access_key>
