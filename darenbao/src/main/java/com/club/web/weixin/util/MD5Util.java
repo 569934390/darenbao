@@ -1,5 +1,7 @@
 package com.club.web.weixin.util;
 
+import com.club.web.common.Constants;
+
 import java.security.MessageDigest;
 
 /**
@@ -29,19 +31,23 @@ public class MD5Util {
 		return hexDigits[d1] + hexDigits[d2];
 	}
 
-	public static String MD5Encode(String origin, String charsetname) {
+	public static String MD5Encode(String origin, String charsetName) {
 		String resultString = null;
 		try {
 			resultString = new String(origin);
 			MessageDigest md = MessageDigest.getInstance("MD5");
-			if (charsetname == null || "".equals(charsetname))
+			if (charsetName == null || "".equals(charsetName))
 				resultString = byteArrayToHexString(md.digest(resultString.getBytes()));
 			else
-				resultString = byteArrayToHexString(md.digest(resultString.getBytes(charsetname)));
+				resultString = byteArrayToHexString(md.digest(resultString.getBytes(charsetName)));
 		} catch (Exception exception) {
 		}
 		return resultString;
 	}
+
+    public static String encode(String origin){
+        return MD5Encode(origin, Constants.UTF_8_ENCODING);
+    }
 
 	private static final String hexDigits[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
 			"e", "f" };

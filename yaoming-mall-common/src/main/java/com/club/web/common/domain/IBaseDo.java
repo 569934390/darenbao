@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Created by lifei on 2016/9/8.
  */
-public interface IBaseDo {
-    public <T> Page<T> selectPageList() throws BaseAppException;
-    public <T> List<T> selectList() throws BaseAppException;
-    public <T> T selectOne() throws BaseAppException;
+public interface IBaseDo<T> {
+    public Page<T> selectPageList() throws BaseAppException;
+    public List<T> selectList() throws BaseAppException;
+    public T selectOne() throws BaseAppException;
     public int insert() throws BaseAppException;
     public int update() throws BaseAppException;
     public int delete() throws BaseAppException;

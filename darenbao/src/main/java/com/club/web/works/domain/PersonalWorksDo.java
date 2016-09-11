@@ -17,7 +17,7 @@ import java.util.List;
  * Created by lifei on 2016/9/4.
  */
 @Configurable
-public class PersonalWorksDo extends PersonalWorksVo implements IBaseDo{
+public class PersonalWorksDo extends PersonalWorksVo implements IBaseDo<PersonalWorksVo>{
 
     @Autowired
     private PersonalWorksRepository personalWorksRepository;
