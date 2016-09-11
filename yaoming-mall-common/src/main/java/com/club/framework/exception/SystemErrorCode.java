@@ -7,10 +7,10 @@ package com.club.framework.exception;
 public class SystemErrorCode {
 
     /** 未知异常 */
-    public final static String UNKNOW_EXPCEPTION = "APP-00-0000";
+    public final static String UNKNOWN_EXCEPTION = "APP-00-0000";
 
     /** 数据库操作异常 */
-    public final static String DB_OPER_EXPCEPTION = "APP-00-0001";
+    public final static String DB_OPERATE_EXCEPTION = "APP-00-0001";
 
     /** 主键冲突 */
     public final static String DUPLICATE_KEY_EXCEPTION = "APP-00-0002";
@@ -161,5 +161,9 @@ public class SystemErrorCode {
     public static final String FLOW_PD_EXCEPTION = "APP-00-0077";
 
     /** 未知运行时异常 <br> */
-    public static final String UNKNOW_RUNTIME_EXPCEPTION = "APP-00-0100";
+    public static final String UNKNOWN_RUNTIME_EXCEPTION = "APP-00-0100";
+
+    /** 自定义异常 **/
+    public static final String CUSTOM_EXCEPTION = "APP-00-0200";
+
 }
