@@ -23,7 +23,7 @@ public class BaseDoServiceImpl implements IBaseDoService {
 
     @Override
     public <T> T selectOne(IBaseDo baseDo) throws BaseAppException {
-        return baseDo.selectOne();
+        return (T) baseDo.selectOne();
     }
 
     @Override
