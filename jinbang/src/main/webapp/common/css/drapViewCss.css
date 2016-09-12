@@ -1,0 +1,36 @@
+.select_tree .x-tree-node-text{
+    cursor:move;
+}
+
+/**
+服务流程图
+**/
+
+.task_divfalse{
+	position: absolute;
+    background:url("../formsImages/transparent.png") repeat;
+    z-index: 99999;
+}
+.task_div_hover{
+	position: absolute;
+    background:url("../formsImages/transparent.png") repeat;
+	border:3px solid #cccccc;
+    z-index: 99999;
+    -moz-border-radius: 10px;      /* Gecko browsers */
+    -webkit-border-radius: 10px;   /* Webkit browsers */
+    border-radius:10px;            /* W3C syntax */
+}
+.task_divtrue{
+	position: absolute;
+    background:url("../formsImages/transparent.png") repeat;
+	border:3px solid red;
+    z-index: 99999;
+    -moz-border-radius: 10px;      /* Gecko browsers */
+    -webkit-border-radius: 10px;   /* Webkit browsers */
+    border-radius:10px;            /* W3C syntax */
+}
+
+.flowTraceView{
+	background-color:#DDD;width:100%;height:100%;overflow:auto;
+	background: url(../formsImages/bg.png) repeat;
+}

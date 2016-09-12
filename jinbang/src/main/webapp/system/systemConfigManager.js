@@ -1,0 +1,105 @@
+var template = {
+	edit:{
+		title:'系统设置',
+		width:650,
+		height:480,
+		sqlKey:'systemConfig.DB',
+		id:'configId',
+		cascade:true,
+		items:[
+			{
+				xtype:'hidden',
+				name:'configId',
+				value:'NULL'
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'设置项名称',
+				name:'configName',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'设置项值',
+				name:'configValue',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'文件url',
+				name:'fileUrl',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'是否启用',
+				name:'status',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'备注',
+				name:'remark',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'code值',
+				name:'configCode',
+				value:''
+			}
+		]
+	},
+	search:[
+		{
+			xtype:'clearTextField',
+			fieldLabel:'设置项名称',
+			name:'%configName%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'设置项值',
+			name:'%configValue%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'文件url',
+			name:'%fileUrl%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'是否启用',
+			name:'%status%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'备注',
+			name:'%remark%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'code值',
+			name:'%configCode%',
+			value:''
+		}
+	],
+	store:{
+		fields:['configId','configName','configValue','fileUrl','status','remark','configCode'],
+		sqlKey:'systemConfig.selectList',
+		type:'DB'
+	},
+	grid:[
+		{ text: 'id',  dataIndex: 'configId' ,flex:1,hidden:true},
+		{ text: '设置项名称',  dataIndex: 'configName' ,flex:1},
+		{ text: '设置项值',  dataIndex: 'configValue' ,flex:1},
+		{ text: '文件url',  dataIndex: 'fileUrl' ,flex:1},
+		{ text: '是否启用',  dataIndex: 'status' ,flex:1},
+		{ text: '备注',  dataIndex: 'remark' ,flex:1},
+		{ text: 'code值',  dataIndex: 'configCode' ,flex:1}
+	]
+}

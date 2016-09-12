@@ -1,0 +1,45 @@
+package ${daoPackage}.impl;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import com.compses.common.Constants;
+import ${daoPackage}.I${domainObjectName}DAO;
+import ${modelPackage}.${domainObjectName};
+
+@Repository
+public class ${domainObjectName}DAO implements I${domainObjectName}DAO {
+	
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public int deleteByPrimaryKey(${keyType} ${keyTypeStr}) {
+		return sqlSession.delete(Constants.sqlmapPrefix+"${domainObjectName}Mapper.deleteByPrimaryKey", ${keyTypeStr});
+	}
+
+	@Override
+	public int insert(${domainObjectName} ${domainObjectNameLowerCase}) {
+		return sqlSession.insert(Constants.sqlmapPrefix+"${domainObjectName}Mapper.insert", ${domainObjectNameLowerCase});
+	}
+
+	@Override
+	public int insertSelective(${domainObjectName} ${domainObjectNameLowerCase}) {
+		return sqlSession.insert(Constants.sqlmapPrefix+"${domainObjectName}Mapper.insertSelective", ${domainObjectNameLowerCase});
+	}
+
+	@Override
+	public ${domainObjectName} selectByPrimaryKey(${keyType} ${keyTypeStr}) {
+		return sqlSession.selectOne(Constants.sqlmapPrefix+"${domainObjectName}Mapper.selectByPrimaryKey", ${keyTypeStr});
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(${domainObjectName} ${domainObjectNameLowerCase}) {
+		return sqlSession.update(Constants.sqlmapPrefix+"${domainObjectName}Mapper.updateByPrimaryKeySelective", ${domainObjectNameLowerCase});
+	}
+
+	@Override
+	public int updateByPrimaryKey(${domainObjectName} ${domainObjectNameLowerCase}) {
+		return sqlSession.update(Constants.sqlmapPrefix+"${domainObjectName}Mapper.updateByPrimaryKey", ${domainObjectNameLowerCase});
+	}
+}

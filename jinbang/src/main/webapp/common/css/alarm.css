@@ -1,0 +1,16 @@
+
+.x-grid-critical {  
+        background: #FF6464;  
+} 
+ .x-grid-major {  
+        background: #FF8C00;  
+} 
+ .x-grid-minor {  
+        background: #FFFF00;  
+ } 
+  .x-grid-unknow {  
+        background: #6464FF;  
+ }
+
+
+

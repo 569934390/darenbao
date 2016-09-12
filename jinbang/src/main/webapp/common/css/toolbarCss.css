@@ -1,0 +1,234 @@
+@charset "utf-8";   
+/***样式********/
+
+.win-topo {background: url(../topoImages/16x16/topo.gif) 0 no-repeat !important;}
+.win-nets {background: url(../topoImages/16x16/NetList.gif) 0 no-repeat !important;}
+.win-lines {background: url(../topoImages/16x16/LinkList.gif) 0 no-repeat !important;}
+
+.win-net{background:url(../topoImages/16x16/AddNet.gif) 0 no-repeat !important;}
+.win-symbol{background:url(../topoImages/16x16/AddSymbol.gif) 0 no-repeat !important;}
+.win-node{background:url(../topoImages/16x16/AddNode.gif) 0 no-repeat !important;}
+.win-link{background:url(../topoImages/16x16/AddLink.gif) 0 no-repeat !important;}
+
+
+.win-copy{background:url(../topoImages/16x16/copy.png) 0 no-repeat !important;}
+.win-move{background:url(../topoImages/16x16/moveto.gif) 0 no-repeat !important;}
+
+.toolbar-export{background: url(../topoImages/16x16/export.gif) no-repeat !important;}
+.toolbar-lock{background: url(../topoImages/16x16/locknode.gif) no-repeat !important;}
+.toolbar-splitter{background: url(../topoImages/16x16/splitter.gif) no-repeat !important;}
+.toolbar-alarm{background: url(../topoImages/16x16/alarmMgt.gif) no-repeat !important;}
+.toolbar-location{background: url(../topoImages/16x16/topLocation.gif) no-repeat !important;}
+.toolbar-subnet_OK{background: url(../topoImages/16x16/subnet_OK.gif) no-repeat !important;}
+.toolbar-query{background: url(../alarm/resource/images/16x16/alarmQueryPanel.gif) no-repeat !important;}
+
+
+.toolbar-expandAll{background:url(../topoImages/16x16/expand-all.gif) 0 no-repeat !important;}
+.toolbar-collapseAll{background:url(../topoImages/16x16/collapse-all.gif) 0 no-repeat !important;}
+
+.toolbar-save{background:url(../formsImages/save.png) 0 no-repeat !important;}
+.toolbar-add{background:url(../topoImages/16x16/edit_add.png) 0 no-repeat !important;}
+.toolbar-edit{background:url(../topoImages/16x16/pencil.png) 0 no-repeat !important;}
+.toolbar-flowEdit{background:url(../topoImages/16x16/edit.png) 0 no-repeat !important;}
+.toolbar-del{background:url(../topoImages/16x16/edit_remove.png) 0 no-repeat !important;}
+.toolbar-flowDel{background:url(../topoImages/16x16/delete.png) 0 no-repeat !important;}
+.toolbar-view{background:url(../topoImages/16x16/preferences.gif) 0 no-repeat !important;}
+.toolbar-expand{background:url(../topoImages/16x16/expand.gif) 0 no-repeat !important;}
+.toolbar-collapse{background:url(../topoImages/16x16/collapse.gif) 0 no-repeat !important;}
+.toolbar-home{background:url(../topoImages/16x16/Home.gif) 0 no-repeat !important;}
+.toolbar-unpre{background:url(../topoImages/16x16/unpre.png) 0 no-repeat !important;}
+.toolbar-up{background:url(../topoImages/16x16/up.gif) 0 no-repeat !important;}
+.toolbar-down{background:url(../topoImages/16x16/down.gif) 0 no-repeat !important;}
+.toolbar-left{background:url(../topoImages/16x16/left.gif) 0 no-repeat !important;}
+.toolbar-right{background:url(../topoImages/16x16/right.gif) 0 no-repeat !important;}
+.toolbar-back{background:url(../topoImages/16x16/back.png) 0 no-repeat !important;}
+.toolbar-zoomReset{background:url(../topoImages/16x16/ZoomReset.gif) 0 no-repeat !important;}
+.toolbar-zoomOut{background:url(../topoImages/16x16/ZoomOut.gif) 0 no-repeat !important;}
+.toolbar-zoomIn{background:url(../topoImages/16x16/ZoomIn.gif) 0 no-repeat !important;}
+.toolbar-addNet{background:url(../topoImages/16x16/AddNet.gif) 0 no-repeat !important;}
+.toolbar-addSymbol{background:url(../topoImages/16x16/AddSymbol.gif) 0 no-repeat !important;}
+.toolbar-addNode{background:url(../topoImages/16x16/AddNode.gif) 0 no-repeat !important;}
+.toolbar-customer{background:url(../topoImages/16x16/customer.png) 0 no-repeat !important;}
+.toolbar-select{background:url(../topoImages/16x16/Select.gif) 0 no-repeat !important;}
+.toolbar-addLink{background:url(../topoImages/16x16/AddLink.gif) 0 no-repeat !important;}
+.toolbar-filesave{background:url(../topoImages/16x16/filesave.png) 0 no-repeat !important;}
+.toolbar-search{background:url(../topoImages/16x16/search.png) 0 no-repeat !important;}
+.toolbar-pencil{background:url(../topoImages/16x16/pencil.png) 0 no-repeat !important;}
+.toolbar-copy{background:url(../topoImages/16x16/copy.png) 0 no-repeat !important;}
+.toolbar-moveto{background:url(../topoImages/16x16/moveto.gif) 0 no-repeat !important;}
+.toolbar-delete{background:url(../topoImages/16x16/Delete.gif) 0 no-repeat !important;}
+.toolbar-netList{background:url(../topoImages/16x16/NetList.gif) 0 no-repeat !important;}
+.toolbar-linkList{background:url(../topoImages/16x16/LinkList.gif) 0 no-repeat !important;}
+.toolbar-NEList{background:url(../topoImages/16x16/NEList.gif) 0 no-repeat !important;}
+.toolbar-bcGround{background:url(../topoImages/16x16/setbackground.gif) 0 no-repeat !important;}
+.toolbar-bgGround{background:url(../topoImages/16x16/background.png) 0 no-repeat !important;}
+.toolbar-sound{background:url(../topoImages/16x16/play.gif) 0 no-repeat !important;}
+.toolbar-silent{background:url(../topoImages/16x16/silent.gif) 0 no-repeat !important;}
+.toolbar-sync{background:url(../topoImages/16x16/sync.gif) 0 no-repeat !important;}
+.toolbar-alarmFilterPolicy{background:url(../topoImages/16x16/alarmFilterPolicy.gif) 0 no-repeat !important;}
+.toolbar-reLoad{background:url(../topoImages/16x16/reload.png) 0 no-repeat !important;}
+.toolbar-module{background:url(../topoImages/16x16/module.png) 0 no-repeat !important;}
+.toolbar-tools{background:url(../formsImages/tool.gif) 0 no-repeat !important;}
+.toolbar-play{background:url(../topoImages/16x16/play.png) 0 no-repeat !important;}
+.toolbar-stop{background:url(../topoImages/16x16/stop.png) 0 no-repeat !important;}
+.toolbar-effective{background:url(../topoImages/16x16/effective.png) 0 no-repeat !important;}
+.toolbar-invalid{background:url(../topoImages/16x16/invalid.png) 0 no-repeat !important;}
+.toolbar-tasks{background:url(../formsImages/tasks.png) 0 no-repeat !important;}
+
+.toolbar-alarmCritical{background:url(../topoImages/16x16/fault_critical.gif) 0 no-repeat !important;}
+.toolbar-alarmMajor{background:url(../topoImages/16x16/fault_major.gif) 0 no-repeat !important;}
+.toolbar-alarmMinor{background:url(../topoImages/16x16/fault_minor.gif) 0 no-repeat !important;}
+.toolbar-alarmIndeter{background:url(../topoImages/16x16/fault_indeterminate.gif) 0 no-repeat !important;}
+.toolbar-offLine{background:url(../topoImages/16x16/offline.gif) 0 no-repeat !important;}
+
+.toolbar-exportXML{background:url(../topoImages/16x16/exportXML.png) 0 no-repeat !important;}
+.toolbar-exportToImage{background:url(../topoImages/16x16/exportToImage.png) 0 no-repeat !important;}
+.toolbar-exportToExcel{background:url(../images/16x16/exportExcel.png) 0 no-repeat !important;}
+.toolbar-pan{background:url(../topoImages/16x16/pan.png) 0 no-repeat !important;}
+.toolbar-command{background:url(../images/business/command_16.png) 0 no-repeat !important;}
+
+.toolbar-webResource{background:url(../topoImages/16x16/webResource.gif) 0 no-repeat !important;}
+
+.layout-bus{background:url(../topoImages/16x16/layout/bus.gif) 0 no-repeat !important;}
+.layout-custom{background:url(../topoImages/16x16/layout/custom.gif) 0 no-repeat !important;}
+.layout-round{background:url(../topoImages/16x16/layout/ring.gif) 0 no-repeat !important;}
+.layout-random{background:url(../topoImages/16x16/layout/random.gif) 0 no-repeat !important;}
+.layout-grid{background:url(../topoImages/16x16/layout/grid.gif) 0 no-repeat !important;}
+.layout-rect{background:url(../topoImages/16x16/layout/grid.gif) 0 no-repeat !important;}
+.layout-tree{background:url(../topoImages/16x16/layout/tree.gif) 0 no-repeat !important;}
+.layout-lefttree{background:url(../topoImages/16x16/layout/lefttree.gif) 0 no-repeat !important;}
+.layout-star{background:url(../topoImages/16x16/layout/star.gif) 0 no-repeat !important;}
+.layout-stretch{background:url(../topoImages/16x16/layout/stretch.gif) 0 no-repeat !important;}
+
+/***************fieldCls**************************/
+.field-red {background:red 0 no-repeat !important;}
+.field-green {background:green 0 no-repeat !important;}
+.field-blue {background:blue 0 no-repeat !important;}
+.field-yellow {background:yellow 0 no-repeat !important;}
+
+/*************************告警样式****************************************/
+
+ /*告警操作*/ 
+.alarmOp {
+    background-image: url(../images/16x16/alarmOp.gif) ! important;
+}
+ /*告警清除*/ 
+.alarmClear {
+    background-image: url(../images/16x16/alarmClear.gif) ! important;
+}
+ /*告警删除*/ 
+.alarmDelete {
+    background-image: url(../images/16x16/alarmDelete.gif) ! important;
+}
+ /*告警升级*/ 
+.alarmIncrease {
+    background-image: url(../images/16x16/alarmIncrease.gif) ! important;
+}
+/*告警前转*/ 
+.alarmForward {
+    background-image: url(../images/16x16/alarmForward.gif) ! important;
+}
+/*告警派单*/ 
+.alarmAssign {
+    background-image: url(../images/16x16/alarmAssign.gif) ! important;
+}
+/*告警启动*/ 
+.alarmStart {
+    background-image: url(../images/16x16/alarmStart.gif) ! important;
+}
+/*告警运行*/ 
+.alarmRunning {
+    background-image: url(../images/16x16/alarmRunning.gif) ! important;
+}
+/*告警操作(带下拉框)*/ 
+.alarmOpMenu {
+    background-image: url(../images/16x16/alarmOpMenu.gif) ! important;
+}
+/*告警详情*/ 
+.alarmDetails {
+    background-image: url(../images/16x16/alarmDetails.gif) ! important;
+}
+/*告警关联信息*/ 
+.alarmRelateInfo {
+    background-image: url(../images/16x16/alarmRelateInfo.gif) ! important;
+}
+/*查询面板*/ 
+.alarmQueryPanel {
+    background-image: url(../images/16x16/alarmQueryPanel.gif) ! important;
+}
+/*关联信息查询图标*/ 
+.alarmRelInfoQuery {
+    background-image: url(../images/16x16/alarmRelInfoQuery.gif) ! important;
+}
+/*关联信息查询图标*/ 
+.alarmComfirm {
+    background-image: url(../images/16x16/alarmComfirm.gif) ! important;
+}
+/*关联信息查询图标*/ 
+.alarmDebug {
+    background-image: url(../images/16x16/alarmDebug.gif) ! important;
+}
+.osAdd {
+	background-image: url(images/16x16/Note-Add.gif) ! important;
+}
+
+.osRemove {
+	background-image: url(images/16x16/Note-Remove.gif) ! important;
+}
+
+.osEdit {
+	background-image: url(images/16x16/Text-Edit.gif) ! important;
+}
+
+.tasks-icon-column-header .x-column-header-text {
+    display: block;
+    height: 22px;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 3px;
+}
+.tasks-icon-column-header .x-column-header-inner {
+    padding: 0 4px;
+}
+.tasks-done-column-header .x-column-header-inner {
+    padding: 0 6px;
+}
+.tasks-done-column-header .x-column-header-text {
+    background: url(../topoImages/16x16/edit.png);
+}
+.tasks-export-column-header .x-column-header-text {
+    background-image: url(../topoImages/16x16/exportToImage.png) ;
+}
+.tasks-edit-column-header .x-column-header-text {
+    background-image: url(../topoImages/16x16/webResource.gif) ;
+}
+.tasks-claim-column-header .x-column-header-text {
+    background-image: url(../topoImages/16x16/edit.png) ;
+}
+.tasks-del-column-header .x-column-header-text {
+    background-image: url(../topoImages/16x16/delete.png) ;
+}
+.tasks-pan-column-header .x-column-header-text {
+    background-image: url(../topoImages/16x16/pan.png) ;
+}
+.tasks-deploy-column-header .x-column-header-text {
+    background-image: url(../formsImages/tool.gif) ;
+}
+.tasks-toOthers-column-header .x-column-header-text {
+    background-image: url(../formsImages/userGroup.gif) ;
+}
+.tasks-processimagepreview-column-header .x-column-header-text {
+    background-image: url(../formsImages/processimagepreview.png) ;
+}
+
+.disable{
+	background:url("../../portal/images/bg.png");
+	border:2px solid red;
+	z-index:9999;
+}
+
+.translate{
+	border:2px solid #04b400;
+	background:url("../../portal/images/t_bg.png");
+	z-index:9999;
+}

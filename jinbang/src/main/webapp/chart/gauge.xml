@@ -1,0 +1,119 @@
+<anychart>
+	<!-- 
+	<margin all="0"/>
+	<border color="Red" type="Solid" enabled="false" />
+	 -->
+  <settings>
+    <animation enabled="true"/>
+    <image_export use_title_as_file_name="True"/>
+   	<context_menu version_info="False" about_anychart="False">
+   	<save_as_image_item_text>保存图片...</save_as_image_item_text>
+   	<print_chart_item_text>打印图片...</print_chart_item_text>
+   </context_menu>
+  </settings>
+  <gauges>
+    <gauge>
+      <chart_settings>
+      	<!-- 
+      	<chart_background enabled="false">
+			<inside_margin all="0"/>
+			<corners type="Square"/>
+		</chart_background>
+		 -->
+        <title enabled="true">
+          <text><![CDATA[系统当前健康状况]]></text>
+        </title>
+      </chart_settings>
+      <circular name="sysBuy">
+        <axis radius="37" start_angle="30" sweep_angle="300" size="3">
+          <scale_bar>
+            <fill color="#292929"/>
+          </scale_bar>
+          <major_tickmark align="Center" length="0" padding="0"/>
+          <minor_tickmark enabled="false"/>
+		  <scale minimum="0" maximum="100" major_interval="100"/>
+		  <labels enabled="false"/>
+          <color_ranges>
+            <color_range start="0" end="25" color="Red" align="Inside" padding="0" start_size="10" end_size="10">
+              	<fill opacity="0.7"/>
+              	<label enabled="true" align="Inside" padding="30">
+              		<font bold="false" size="20"/>
+					<format>严重</format>
+					<position valign="Center" halign="Center"/>
+					<font bold="true" size="11"/>
+				</label>
+            </color_range>
+            <color_range start="25" end="50" color="#fba400" align="Inside" padding="0" start_size="10" end_size="10">
+              	<fill opacity="0.7"/>
+              	<label enabled="true" align="Inside" padding="30">
+              		<font bold="false" size="20"/>
+					<format>重要</format>
+					<position valign="Center" halign="Center"/>
+					<font bold="true" size="11"/>
+				</label>
+            </color_range>
+            <color_range start="50" end="75" color="Yellow" align="Inside" padding="0" start_size="10" end_size="10">
+              	<fill opacity="0.7"/>
+              	<label enabled="true" align="Inside" padding="30">
+              		<font bold="false" size="20"/>
+					<format>一般</format>
+					<position valign="Center" halign="Center"/>
+					<font bold="true" size="11"/>
+				</label>
+            </color_range>
+            <color_range start="75" end="100" color="Green" align="Inside" padding="0" start_size="10" end_size="10">
+              	<fill opacity="0.7"/>
+              	<label enabled="true" align="Inside" padding="30">
+              		<font bold="false" size="20"/>
+					<format>正常</format>
+					<position valign="Center" halign="Center"/>
+					<font bold="true" size="11"/>
+				</label>
+            </color_range>
+          </color_ranges>
+        </axis>
+        <frame>
+          <inner_stroke enabled="false"/>
+          <outer_stroke enabled="false"/>
+          <background>
+            <fill type="Gradient">
+              <gradient angle="45">
+                <key color="#FDFDFD"/>
+                <key color="#FDFDFD"/>
+              </gradient>
+            </fill>
+          </background>
+          <effects enabled="false"/>
+        </frame>
+        <pointers>
+          <pointer value="87.5"  name="pointer">
+            <needle_pointer_style thickness="7" point_thickness="5" point_radius="3">
+              <fill color="Rgb(230,230,230)"/>
+              <border color="Black" opacity="0.7"/>
+              <effects enabled="true">
+                <bevel enabled="true" distance="2" shadow_opacity="0.6" highlight_opacity="0.6"/>
+                <drop_shadow enabled="true" distance="1" blur_x="1" blur_y="1" opacity="0.4"/>
+              </effects>
+              <cap>
+                <background>
+                  <fill type="Gradient">
+                    <gradient type="Linear" angle="45">
+                      <key color="#D3D3D3"/>
+                      <key color="#6F6F6F"/>
+                    </gradient>
+                  </fill>
+                  <border color="Black" opacity="0.9"/>
+                </background>
+                <effects enabled="true">
+                  <bevel enabled="true" distance="2" shadow_opacity="0.6" highlight_opacity="0.6"/>
+                  <drop_shadow enabled="true" distance="1.5" blur_x="2" blur_y="2" opacity="0.4"/>
+                </effects>
+              </cap>
+            </needle_pointer_style>
+            <animation enabled="true" start_time="0" duration="0.7" interpolation_type="Bounce"/>
+          </pointer>
+        </pointers>
+      </circular>
+    </gauge>
+  </gauges>
+</anychart>

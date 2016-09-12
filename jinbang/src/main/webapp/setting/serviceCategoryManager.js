@@ -1,0 +1,111 @@
+var template = {
+	edit:{
+		title:'服务类别表',
+		width:650,
+		height:480,
+		sqlKey:'serviceCategory.DB',
+		id:'serviceCategoryId',
+		cascade:true,
+		items:[
+			{
+				xtype:'hidden',
+				name:'serviceCategoryId',
+				value:'NULL'
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'服务类型名称',
+				name:'categoryName',
+				value:''
+			},
+			{
+				xtype:'datefield',
+				fieldLabel:'创建时间',
+				name:'createDate',
+				value:'Fri Aug 05 2016 08:27:55 GMT+0800 (中国标准时间)',format:'Y-m-d'
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'所属省名称',
+				name:'nativeProviceName',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'所属市名称',
+				name:'nativeCityName',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'状态',
+				name:'status',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'备注',
+				name:'remark',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'ch…Id',
+				name:'chargeUserId',
+				value:''
+			},
+			{
+				xtype:'clearTextField',
+				fieldLabel:'iconUrl',
+				name:'iconUrl',
+				value:''
+			}
+		]
+	},
+	search:[
+		{
+			xtype:'clearTextField',
+			fieldLabel:'服务…名称',
+			name:'%categoryName%',
+			value:''
+		},
+		{
+			xtype:'datefield',
+			fieldLabel:'创建时间',
+			name:'createDate',
+			value:'2016-08-05 08:27:55',format:'Y-m-d'
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'所属省名称',
+			name:'%nativeProviceName%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'所属市名称',
+			name:'%nativeCityName%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'状态',
+			name:'%status%',
+			value:''
+		},
+	],
+	store:{
+		fields:['serviceCategoryId','categoryName','createDate','nativeProviceId','nativeProviceName','nativeCityId','nativeCityName','status','remark','chargeUserId','iconUrl'],
+		sqlKey:'serviceCategory.selectList',
+		type:'DB'
+	},
+	grid:[
+		{ text: 'id',  dataIndex: 'serviceCategoryId' ,flex:1,hidden:true},
+		{ text: '服务类别名称',  dataIndex: 'categoryName' ,flex:1},
+		{ text: '创建时间',  dataIndex: 'createDate' ,flex:1},
+		{ text: '所属省名称',  dataIndex: 'nativeProviceName' ,flex:1},
+		{ text: '所属市名称',  dataIndex: 'nativeCityName' ,flex:1},
+		{ text: '状态',  dataIndex: 'status' ,flex:1},
+		{ text: '备注',  dataIndex: 'remark' ,flex:1},
+	]
+}

@@ -1,0 +1,30 @@
+CACHE MANIFEST
+# 注释：需要缓存的文件，无论在线与否，均从缓存里读取
+lib/jq.js
+lib/jquery.cookie.js
+lib/jquery.easing.min.js
+../public/amd/require.js
+../public/ECharts/echarts-plain.js
+css/portal.css
+images/chart_bg.png
+images/logo.png
+images/main-bg.png
+images/loading1.gif
+images/icons/automation_min.png
+images/icons/cmd_min.png
+images/icons/hdfs_min.png
+images/icons/messageSearch_min.png
+images/icons/performance_min.png
+images/icons/privilegeManager_min.png
+images/icons/setting_min.png
+images/icons/simulator_min.png
+images/icons/task_min.png
+images/icons/testDcc_min.png
+../public/ext-4.2.1/ext-all-debug.js
+../public/ext-4.2.1/resources/css/ext-all-debug.css
+# 注释：不缓存的文件，无论缓存中存在与否，均从新获取
+NETWORK:
+*
+# 注释：获取不到资源时的备选路径，如index.html访问失败，则返回404页面
+FALLBACK:
+../main/login.jsp
