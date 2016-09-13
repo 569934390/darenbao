@@ -8,22 +8,22 @@ public enum  WorksTypeEnum {
      * 作品分类类型
      *
      */
-    视频("video"),文章("article");
+    视频(1),文章(2);
 
 
-    private String name;
+    private Integer name;
 
 
-    private WorksTypeEnum(String name) {
+    private WorksTypeEnum(Integer name) {
         this.name = name;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 

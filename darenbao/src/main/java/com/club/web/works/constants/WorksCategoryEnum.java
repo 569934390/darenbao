@@ -9,22 +9,22 @@ public enum  WorksCategoryEnum {
      * 作品分类类型
      *
      */
-    音乐("music");
+    热门(1),电影(2),体育(3),游戏(4),音乐(5);
 
 
-    private String name;
+    private Integer name;
 
 
-    private WorksCategoryEnum(String name) {
+    private WorksCategoryEnum(Integer name) {
         this.name = name;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
