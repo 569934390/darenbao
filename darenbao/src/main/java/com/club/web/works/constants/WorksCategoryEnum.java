@@ -1,6 +1,11 @@
 package com.club.web.works.constants;
 
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by lifei on 2016/9/4.
  */
@@ -28,8 +33,8 @@ public enum  WorksCategoryEnum {
         this.name = name;
     }
 
-    public static WorksCategoryEnum getByName(String name){
-        if(name!=null&&!name.isEmpty()){
+    public static WorksCategoryEnum getByName(Integer name){
+        if(name!=null){
             for (WorksCategoryEnum c : WorksCategoryEnum.values()) {
                 if (c.getName().equals(name)) {
                     return c;
@@ -38,6 +43,15 @@ public enum  WorksCategoryEnum {
         }
 
         return null;
+    }
+
+    public static String toJsonString(){
+        WorksCategoryEnum[] categoryEnum=WorksCategoryEnum.values();
+        Map<Integer,String> map=new HashMap<>();
+        for (WorksCategoryEnum worksCategoryEnum : categoryEnum) {
+            map.put(worksCategoryEnum.name,worksCategoryEnum.toString());
+        }
+        return JSON.toJSONString(map);
     }
 
 

@@ -10,9 +10,9 @@ public class PersonalWorksVo extends BaseVo{
     private long worksId;
     private String worksTitle;
     private String worksCover;
-    private String worksCategory;
+    private Integer worksCategory;
     private WorksCategoryEnum worksCategoryName;
-    private String worksType;
+    private Integer worksType;
     private String worksLabel;
     private String recommendedProductId;
     private String worksContent;
@@ -43,11 +43,11 @@ public class PersonalWorksVo extends BaseVo{
         this.worksCover = worksCover;
     }
 
-    public String getWorksCategory() {
+    public Integer getWorksCategory() {
         return worksCategory;
     }
 
-    public void setWorksCategory(String worksCategory) {
+    public void setWorksCategory(Integer worksCategory) {
         this.worksCategory = worksCategory;
     }
 
@@ -56,11 +56,11 @@ public class PersonalWorksVo extends BaseVo{
     }
 
 
-    public String getWorksType() {
+    public Integer getWorksType() {
         return worksType;
     }
 
-    public void setWorksType(String worksType) {
+    public void setWorksType(Integer worksType) {
         this.worksType = worksType;
     }
 

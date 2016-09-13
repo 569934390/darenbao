@@ -95,4 +95,9 @@ public class PersonalWorksControllerTest {
         String result=HttpClientUtils.get(url, params);
         System.out.println(result);
     }
+    @Test
+    public void selectWroksCategory() throws BaseAppException, IllegalAccessException, IntrospectionException, InvocationTargetException {
+        System.out.println(WorksCategoryEnum.toJsonString());
+    }
+
 }

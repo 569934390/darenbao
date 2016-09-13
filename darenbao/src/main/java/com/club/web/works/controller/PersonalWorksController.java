@@ -3,6 +3,7 @@ package com.club.web.works.controller;
 import com.club.core.common.Page;
 import com.club.framework.exception.BaseAppException;
 import com.club.framework.log.ClubLogManager;
+import com.club.web.works.constants.WorksCategoryEnum;
 import com.club.web.works.domain.PersonalWorksDo;
 import com.club.web.works.service.PersonalWorksService;
 import com.club.web.works.vo.PersonalWorksVo;
@@ -66,6 +67,12 @@ public class PersonalWorksController {
 	@ResponseBody
 	public int delete(PersonalWorksDo personalWorksDo) throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		return personalWorksService.delete(personalWorksDo);
+	}
+	@RequestMapping("/mobile/getWorksCategory")
+	@ResponseBody
+	public String getWorksCategory() throws BaseAppException, NoSuchMethodException, IntrospectionException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		return WorksCategoryEnum.toJsonString();
+
 	}
 
 
