@@ -1,0 +1,15 @@
+classPath=D:/work/repository/com/oracle/ojdbc6/11.2.0.1.0/ojdbc6-11.2.0.1.0.jar
+targetProject=./src/main/java
+driverClass=oracle.jdbc.driver.OracleDriver
+#connectionURL=jdbc:oracle:thin:@10.45.44.195:1521:zxnms
+#connectionURL=jdbc:oracle:thin:@172.10.100.9:1521:dlnms
+connectionURL=jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+userId=dlnms
+password=dlnms
+modelPackage=com.compses.model
+sqlMapperPackage=com.compses.dao.sqlmap
+daoPackage=com.compses.dao
+
+#下面是表名
+tableName=nms_payout_interface
+domainObjectName=NmsPayoutInterface

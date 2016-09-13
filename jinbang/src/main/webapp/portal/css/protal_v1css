@@ -1,0 +1,223 @@
+html,body{width:100%;height:100%;overflow: hidden;margin:0;padding:0;background:#146397;
+-moz-user-select: none;
+-khtml-user-select: none;
+user-select: none;}
+#banner{width:100%;height:30px;}
+#logobar{width:230px;height:30px;background: url("../images/logo.png") no-repeat;float: left;}
+#toolbar{max-width:360px;height: 22px;float: left;overflow: hidden;	}
+#staffInfo{color: #fff;float: right;height: 20px;width:250px;font-size: 12px;margin:5px;margin-top:10px;text-align: right;}
+#logout{width:30px;height:24px;background: url("../images/logout.png") no-repeat;float: right;margin-right: 10px;margin-top: 5px;cursor: pointer;}
+#mask{
+	background:url("../images/bg.png");
+	left:0px;
+	z-index:7777;
+	top:0px;
+	position: absolute;
+}
+#helper{
+	height:110px;position: absolute;z-index:9999999;
+	background:#d3d3d3;overflow:hidden;
+	-moz-border-radius:20px;/*仅Firefox支持，实现圆角效果*/
+	-webkit-border-radius:20px;/*仅Safari,Chrome支持，实现圆角效果*/
+	-khtml-border-radius:20px;/*仅Safari,Chrome支持，实现圆角效果*/
+	border-radius:20px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.loadingTips{
+	position: absolute;
+	left:0px;
+	top:0px;
+	margin-top:-100px;
+	width:150px;
+	text-align:center;
+	height:79px;
+	color:#5c5c5c;
+	font-size:14px;
+	background: url("../images/shift.png") no-repeat;
+	background-position:0px 20px; 
+}
+.pageLoading{vertical-align:middle; width:150px;height:150px;position:absolute;font-size: 20px;font-weight: bolder;color: #fff;text-align: center;background:url("../images/loading.gif") no-repeat;}
+.helperTask{
+	margin:10px 5px;
+	float: left;
+	border:4px solid #d3d3d3;
+	background-position:-6px 0px;
+	background-repeat:no-repeat;
+	-moz-border-radius:10px;/*仅Firefox支持，实现圆角效果*/
+	-webkit-border-radius:10px;/*仅Safari,Chrome支持，实现圆角效果*/
+	-khtml-border-radius:10px;/*仅Safari,Chrome支持，实现圆角效果*/
+	border-radius:10px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+}
+.collect {
+	width:40px;
+	height: 40px;
+	position: absolute;
+	z-index: 99999;
+	display: none;
+}
+.toolbar_level0{
+	color:#fff;
+	height: 20px;
+	float: left;
+	font-size: 14px;
+	font-weight:bolder;
+	padding:0 5px;
+	margin-top:5px;
+	cursor: default;
+	text-align:center;
+}
+.toolbar_level1{
+	background: #fff;
+	border:1px solid #dbdddb;
+	position: absolute;
+	min-width:90px;
+	font-size: 12px;
+	cursor: pointer;
+	text-align:center;
+	padding:5px;
+}
+.toolbar_level1_item{
+	padding:5px;
+}
+.menu{
+	heigth:43px;
+	left:0px;
+	top:0px;
+	position: absolute;
+	z-index: 9999;
+}
+.menu-item	{
+	color:#252964;
+	font-size:12px;
+	width:40px;
+	height:40px;
+	float:left;
+	padding:5px;
+	cursor: pointer;
+	text-align:center;
+}
+.menu-item-selected{
+	font-size:12px;
+	color:#fff;
+	font-weight:bolder;
+	width:40px;
+}
+.box{
+	background:#b5b5b5;
+	left:10px;
+	top:30px;
+	position: absolute;
+}
+.mainPanel{
+	background:#fff;
+	left:10px;
+	top:30px;
+	position: absolute;
+}
+.main_frame{
+	width: 100%;
+	height: 0px;
+	border:0px;
+	overflow: hidden;
+}
+.chart{
+	background:#fcfefc;
+	float: left;
+	margin:5px;
+}
+.heart{
+	width:40px;height: 40px;
+	margin-top:-25px;
+	position: relative;
+}
+
+.heart-selected{
+	width:40px;height: 40px;
+	margin-top:-25px;
+}
+
+img {
+	border: none;
+}
+#dock{
+	width: 100%;
+	bottom: 44px;
+	position: absolute;
+	z-index:99999;
+	left: 0px;
+}
+.dock-left{
+	position: absolute;
+	left:0px;
+	bottom:0px;
+	height: 50px;
+	width:30px;
+	margin-left:-30px;
+	background: url("../images/toolbar-left.png") no-repeat;
+}
+.dock-right{
+	float:right;
+	height: 50px;
+	width:30px;
+	margin-right:-30px;
+	background: url("../images/toolbar-right.png") no-repeat;
+}
+.dock-container{
+	position: absolute;
+	height: 50px;
+	background: url("../images/toolbar-middle.png");
+}
+a.dock-item {
+	display: block; 
+	font: bold 12px Arial, Helvetica, sans-serif;
+	width: 40px; 
+	color: #fff; 
+	bottom: 7px; 
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+}
+.dock-item .textcontext {
+	display: none;
+}
+.dock-item .textcontext span {
+	padding:2px 6px;
+	background: #5c5c5c;
+	-moz-border-radius:4px;/*仅Firefox支持，实现圆角效果*/
+	-webkit-border-radius:4px;/*仅Safari,Chrome支持，实现圆角效果*/
+	-khtml-border-radius:4px;/*仅Safari,Chrome支持，实现圆角效果*/
+	border-radius:4px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
+	opacity: 0.9;
+	filter:alpha(opacity=90);-moz-opacity:0.9;-khtml-opacity: 0.9;
+	white-space: nowrap !important;
+}
+.dock-item img {
+	border: none; 
+	margin: 0px; 
+	margin-bottom:7px;
+	width: 100%; 
+}
+
+#dockContainer { position: fixed; bottom: -2px;z-index:999;height: 50px;display: none;}
+#jqDock { position: relative; bottom: 0px; }
+#jqDock li { list-style: none; }
+.jqDockLabel { 
+	background: #333; color: #fff; font-size:12px; padding: 5px 10px;
+	-webkit-border-radius: 10px; -moz-border-radius: 10px; 
+	white-space: nowrap;
+	opacity: 0.8;
+	filter:alpha(opacity=80);-moz-opacity:0.8;-khtml-opacity: 0.8;
+	}
+
+.menu-task{
+	margin: 0;
+	padding: 0;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:-5px;
+	height: 6px;
+	width:30px;
+	background-color: transparent;
+}
+.menu-task-selected{
+	background: url("../images/indicator_medium.png");
+}

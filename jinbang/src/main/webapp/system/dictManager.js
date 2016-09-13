@@ -1,0 +1,113 @@
+var template = {
+	edit:{
+		title:'参数设置',
+		width:650,
+		height:480,
+		sqlKey:'dict.DB',
+		id:'bizId',
+		cascade:true,
+		items:[
+			{
+				xtype:'hidden',
+				name:'bizId',
+				value:'NULL'
+			},
+			{
+				xtype:'textfield',
+				fieldLabel:'显示名称',
+				name:'displayField',
+				value:''
+			},
+			{
+				xtype:'textfield',
+				fieldLabel:'显示值',
+				name:'valueField',
+				value:''
+			},
+			{
+				xtype:'numberfield',
+				fieldLabel:'顺序',
+				name:'orders',
+				value:0
+			},
+			{
+				xtype:'textfield',
+				fieldLabel:'类型',
+				name:'types',
+				value:''
+			},
+			{
+				xtype:'textfield',
+				fieldLabel:'类型名称',
+				name:'typeName',
+				value:''
+			},
+			{
+				xtype:'ajaxComboBox',
+				fieldLabel:'状态',
+				queryMode:'local',
+				name:'state',
+				value:'00A',
+				data:[['有效','00A'],['无效','00X']]
+			},
+			{
+				xtype:'numberfield',
+				fieldLabel:'父节点id',
+				name:'pid',
+				value:0
+			},
+			{
+				xtype:'ajaxComboBox',
+				fieldLabel:'控件类型',
+				queryMode:'local',
+				name:'controlType',
+				value:'1',
+				data:[['下拉','1'],['单选','2'],['复选','3'],['单选组','4']]
+			}
+		]
+	},
+	search:[
+		{
+			xtype:'clearTextField',
+			fieldLabel:'显示名称',
+			name:'%displayField%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'显示值',
+			name:'%valueField%',
+			value:''
+		},
+		{
+			xtype:'clearTextField',
+			fieldLabel:'型类',
+			name:'%typeName%',
+			value:''
+		},
+		{
+			xtype:'ajaxComboBox',
+			fieldLabel:'状态',
+			queryMode:'local',
+			name:'state',
+			value:'00A',
+			data:[['有效','00A'],['无效','00X']]
+		}
+	],
+	store:{
+		fields:['bizId','displayField','valueField','orders','typeName','state','controlType'],
+		sqlKey:'dict.selectList',
+		type:'DB'
+	},
+	grid:[
+		{ text: '',  dataIndex: 'bizId' ,flex:1,hidden:true},
+		{ text: '显示名称',  dataIndex: 'displayField' ,flex:1},
+		{ text: '显示值',  dataIndex: 'valueField' ,flex:1},
+		{ text: '顺序',  dataIndex: 'orders' ,flex:1},
+		{ text: '类型',  dataIndex: 'typeName' ,flex:1},
+		{ text: '状态',  dataIndex: 'state' ,flex:1,renderer:function(val){
+			if(val==='00X')return '无效';
+			else return '有效';
+		}}
+	]
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<jmxConfigurator />
+	<Encoding>UTF-8</Encoding>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/logFile.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/showcase.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="businessLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/business.log</file>
+		<!-- 按每小时滚动文件，如果一个小时内达到10M也会滚动文件, 滚动文件将会压缩成zip格式 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/business-%d{yyyy-MM-dd_HH}.%i.zip</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 独立的pattern -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS},%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- business log 使用独立的appender，不继承Root的appender -->
+	<logger name="com.compses" level="DEBUG" additivity="true">
+		<appender-ref ref="businessLogFile" />
+	</logger>
+	
+	<logger name="org.apache.zookeeper" level="ERROR">
+	   <!-- appenders -->
+	</logger>
+	<logger name="o.a.z" level="ERROR">
+	   <!-- appenders -->
+	</logger>
+	<logger name="com.compses.action.common.BaseCommonController" level="ERROR">
+	   <!-- appenders -->
+	</logger>
+	
+
+	<!--log4jdbc -->
+	<logger name="jdbc.sqltiming" level="DEBUG"/>
+	<logger name="jdbc.sqlonly" level="OFF"/>
+	<logger name="jdbc.audit" level="OFF"/>
+	<logger name="jdbc.resultset" level="OFF"/>
+	<logger name="jdbc.connection" level="OFF"/>
+	<logger name="org.apache.commons.digester.Digester" level="OFF"/>
+	<logger name="jdbc.resultsettable" additivity="false">     
+		<level value="DEBUG" />     
+		<appender-ref ref="console" />   
+	</logger>
+	
+	<!-- cxf inbound/outbound logger -->
+	<!-- <logger name="org.apache.cxf.services" level="INFO" /> -->
+
+	<!-- root -->
+	<root level="DEBUG">
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+	</root>
+</configuration>

@@ -1,0 +1,23 @@
+Ext.define('component.public.EditWindow',{
+	getEditState:function(){
+		return this.editState;
+	},
+	setEditState:function(editState){
+		if(!this.originalTitle){
+			this.originalTitle=this.title;
+		}
+		if(editState==common.constant.buttonOperate.view){
+			this.setTitle('查看'+this.originalTitle);
+		}
+		if(editState==common.constant.buttonOperate.save||editState==common.constant.buttonOperate.add){
+			this.setTitle('新增'+this.originalTitle);
+		}
+		if(editState==common.constant.buttonOperate.update||editState==common.constant.buttonOperate.edit){
+			this.setTitle('修改'+this.originalTitle);
+		}
+		if(editState==common.constant.buttonOperate.saveOrUpdate){
+			this.setTitle('修改(新增)'+this.originalTitle);
+		}
+		this.editState=editState;
+	}
+});

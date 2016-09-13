@@ -1,0 +1,45 @@
+CACHE MANIFEST
+# 注释：需要缓存的文件，无论在线与否，均从缓存里读取
+public/ext-4.2.1/examples/shared/include-ext.js
+public/ext-4.2.1/ext-all-debug.js
+public/ext-4.2.1/resources/css/ext-all-debug.css
+common/css/css.css
+common/css/ext-ie-patch.css
+common/css/toolbarCss.css
+public/ext-4.2.1/locale/ext-lang-zh_CN.js
+public/ext-4.2.1/grid-copy-clipboard.js
+common/ext-fix.js
+common/constants.js
+common/md5.js
+#component/view/widget/Persistent.js
+common/uuid.js
+public/ECharts/echarts-plain.js
+portal/js/jq.js
+
+
+portal/lib/jq.js
+portal/lib/jquery.cookie.js
+portal/lib/jquery.easing.min.js
+public/amd/require.js
+public/ECharts/echarts-plain.js
+portal/css/portal.css
+portal/images/chart_bg.png
+portal/images/logo.png
+portal/images/main-bg.png
+portal/images/loading1.gif
+portal/images/icons/automation_min.png
+portal/images/icons/cmd_min.png
+portal/images/icons/hdfs_min.png
+portal/images/icons/messageSearch_min.png
+portal/images/icons/performance_min.png
+portal/images/icons/privilegeManager_min.png
+portal/images/icons/setting_min.png
+portal/images/icons/simulator_min.png
+portal/images/icons/task_min.png
+portal/images/icons/testDcc_min.png
+# 注释：不缓存的文件，无论缓存中存在与否，均从新获取
+NETWORK:
+*
+# 注释：获取不到资源时的备选路径，如index.html访问失败，则返回404页面
+FALLBACK:
+main/login.jsp

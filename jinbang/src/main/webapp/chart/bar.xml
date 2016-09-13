@@ -1,0 +1,75 @@
+<anychart>
+	<settings>
+		<animation enabled="True" />
+	</settings>
+	<charts>
+		<chart plot_type="CategorizedVertical">
+			<data_plot_settings default_series_type="Bar"
+				enable_3d_mode="True" z_aspect="2.5">
+				<bar_series point_padding="0.2" group_padding="1">
+					<tooltip_settings enabled="true" />
+				</bar_series>
+			</data_plot_settings>
+			<chart_settings>
+				<title enabled="true">
+					<text>24小时消息延时统计</text>
+				</title>
+				<legend enabled="true" position="Right" align="Spread" ignore_auto_item="true" padding="15"> 
+		          <format>{%Icon} {%Name} (${%YValue})</format>  
+		          <template/>  
+		          <title enabled="false"> 
+		            <text>Products Sales</text> 
+		          </title>  
+		          <columns_separator enabled="false"/>  
+		          <background> 
+		            <inside_margin left="10" right="10"/> 
+		          </background>  
+		          <items> 
+		            <item source="Points"/> 
+		          </items> 
+		        </legend> 
+				<axes>
+					<x_axis tickmarks_placement="Center">
+						<title>
+							<text>
+								<![CDATA[响应时长 ]]>
+							</text>
+						</title>
+					</x_axis>
+					<y_axis>
+						<title>
+							<text>
+								<![CDATA[消息数(百万/毫秒)]]>
+							</text>
+						</title>
+						<labels>
+							<format>
+								<![CDATA[ {%Value}{numDecimals:0} ]]>
+							</format>
+						</labels>
+					</y_axis>
+				</axes>
+			</chart_settings>
+			<data>
+				<series name="数据">
+					<point name="&lt;50" y="228.14" />
+					<point name="&lt;100" y="212.61" />
+					<point name="&lt;200" y="263.21" />
+					<point name="&gt;=200" y="329.98" />
+				</series>
+				<series name="语音">
+					<point name="&lt;50" y="90.54" />
+					<point name="&lt;100" y="204.19" />
+					<point name="&lt;200" y="150.67" />
+					<point name="&gt;=200" y="120.43" />
+				</series>
+				<series name="短信">
+					<point name="&lt;50" y="43.76" />
+					<point name="&lt;100" y="61.34" />
+					<point name="&lt;200" y="34.17" />
+					<point name="&gt;=200" y="45.72" />
+				</series>
+			</data>
+		</chart>
+	</charts>
+</anychart>

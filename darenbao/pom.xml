@@ -101,7 +101,6 @@
 				<version>2.6</version>
 				<configuration>
                     <warName>${project.artifactId}-${maven.build.timestamp}</warName>
-                    <webappDirectory>${project.build.directory}/war_bak</webappDirectory>
 					<webResources>
 						<resource>
 							<directory>src/main/webapp</directory>
